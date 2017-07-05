@@ -1,0 +1,7 @@
+Flask==0.10.1
+Flask-Cors==2.1.2
+gevent==1.1.1
+greenlet==0.4.9
+itsdangerous==0.24
+requests==2.7
+ipdb==0.10.2
