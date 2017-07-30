@@ -2,6 +2,8 @@ import gevent
 import time
 from gevent import monkey
 from random import randint
+import mongo
+
 # Monkey patch python runtime
 monkey.patch_all()
 GREENLETS = {}
@@ -13,7 +15,7 @@ def scrader_poll(companies, sources):
     global GREENLETS
 
     GREENLETS = gevent. \
-        spawn(get_news, companies, sources, 5)
+        spawn(get_news, companies, sources, 3)
 
 
 def get_news(companies, sources, sleep_time):
@@ -21,10 +23,13 @@ def get_news(companies, sources, sleep_time):
     while True:
         count += 1
         print count
+        mongo.delete_many('companies')
         for company in companies:
             news = get_company_news(company, sources)
             # update db ("companies", company, news)
-            print(news)
+            mongo.insert_one("companies", news)
+            # print(news)
+        print "number is " + str(mongo.count("companies"))
         gevent.sleep(sleep_time)
 
 
@@ -41,8 +46,8 @@ def get_company_news(company, sources):
     # generate random number between 1 and 20 for good news
     # generate random number between 1 and 20 for bad news
 
-    ran_gen_good = randint(0, 20)
-    ran_gen_bad = randint(0, 20)
+    ran_gen_good = randint(0, 60)
+    ran_gen_bad = randint(0, 60)
 
     for num in range(ran_gen_good):
         new = {
@@ -60,3 +65,14 @@ def get_company_news(company, sources):
         news.get(company).get("Bad_news").append(new)
 
     return news
+
+
+def fetch_news_from_db():
+
+    result = {}
+    news = mongo.fetch_collection('companies')
+    for new in news:
+        print new
+        result.update(new)
+
+    return result

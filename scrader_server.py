@@ -6,6 +6,8 @@ import os
 import signal
 import config
 from scrader_handler import scrader_poll
+from scrader_handler import fetch_news_from_db
+import mongo
 
 DEBUG = False  # Enable this to print python crashes and exceptions
 
@@ -13,6 +15,17 @@ app = flask.Flask(__name__)
 
 # Make cross-origin AJAX possible (for all domains on all routes)
 CORS(app, resources={r"*": {"origins": "*"}})
+
+
+@app.route('/{0}/scrader'.format(config.API_VERSION), methods=['GET'])
+def get_html():
+    """ GET Server Status API endpoint
+        Args:
+        Returns:
+            dict: A JSON object containing the nfvacc server status information
+    """
+
+    return flask.render_template('index.html')
 
 
 @app.route('/{0}/status'.format(config.API_VERSION), methods=['GET'])
@@ -31,20 +44,20 @@ def get_server_status():
                           mimetype='application/json')
 
 
-# @app.route('/{0}/latest_news'.format(config.API_VERSION), methods=['GET'])
-# def get_latest_news():
-#     """ GET Server Status API endpoint
-#         Args:
-#         Returns:
-#             dict: A JSON object containing the nfvacc server status information
-#     """
-#
-#     response_data = database.get_latest_news()
-#     status = 200 if response_data is not None else 403
-#     js = json.dumps(response_data, indent=2)
-#     return flask.Response(js,
-#                           status=status,
-#                           mimetype='application/json')
+@app.route('/{0}/latest_news'.format(config.API_VERSION), methods=['GET'])
+def get_latest_news():
+    """ GET Server Status API endpoint
+        Args:
+        Returns:
+            dict: A JSON object containing the nfvacc server status information
+    """
+
+    response_data = fetch_news_from_db()
+    status = 200 if response_data is not None else 403
+    js = json.dumps(response_data, indent=2)
+    return flask.Response(js,
+                          status=status,
+                          mimetype='application/json')
 
 
 def signal_sigint_handler(rec_signal, rec_frame):
@@ -60,8 +73,10 @@ if __name__ == '__main__':
     log = logging.getLogger('werkzeug')
     log.setLevel(logging.ERROR)
 
-    # if mod.init_database() is None:
-    #     os._exit(1)
+    res = mongo.init_database()
+    if res is None:
+         os._exit(1)
 
+    print (res)
     scrader_poll(companies=config.companies, sources=config.sources)
     app.run(host=config.HOST, port=config.PORT, debug=DEBUG)
