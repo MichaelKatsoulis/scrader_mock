@@ -17,7 +17,7 @@ app = flask.Flask(__name__)
 CORS(app, resources={r"*": {"origins": "*"}})
 
 
-@app.route('/{0}/scrader'.format(config.API_VERSION), methods=['GET'])
+@app.route('/scrader'.format(methods=['GET']))
 def get_html():
     """ GET Server Status API endpoint
         Args:
@@ -28,7 +28,7 @@ def get_html():
     return flask.render_template('index.html')
 
 
-@app.route('/{0}/status'.format(config.API_VERSION), methods=['GET'])
+@app.route('/status'.format(methods=['GET']))
 def get_server_status():
     """ GET Server Status API endpoint
         Args:
@@ -44,7 +44,7 @@ def get_server_status():
                           mimetype='application/json')
 
 
-@app.route('/{0}/latest_news'.format(config.API_VERSION), methods=['GET'])
+@app.route('/latest_news'.format(methods=['GET']))
 def get_latest_news():
     """ GET Server Status API endpoint
         Args:
