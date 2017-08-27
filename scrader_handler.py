@@ -72,7 +72,7 @@ def fetch_news_from_db():
     result = {}
     news = mongo.fetch_collection('companies')
     for new in news:
-        print new
+        # print new
         result.update(new)
 
     return result

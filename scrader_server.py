@@ -51,7 +51,6 @@ def get_latest_news():
         Returns:
             dict: A JSON object containing the nfvacc server status information
     """
-
     response_data = fetch_news_from_db()
     status = 200 if response_data is not None else 403
     js = json.dumps(response_data, indent=2)
