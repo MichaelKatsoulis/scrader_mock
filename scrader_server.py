@@ -83,17 +83,17 @@ def get_news(company):
                         "item_url": "http://money.cnn.com/2017/08/25/technology/business/amazon-whole-foods-strategy/index.html",
                         "buttons": [{
                             "type": "web_url",
-                            "url": "http://money.cnn.com/2017/08/25/technology/business/amazon-whole-foods-strategy/index.html",
+                            "url": "http://edition.cnn.com/",
                             "title": "CNN.COM"
                         }]
                     }, {
                         "title": "Ocado Taps Amazon's Alexa for Voice Ordering in Convenience Push",
                         "image_url": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/i4GOoR9HbhHg/v0/1000x-1.jpg",
                         "subtitle": "U.K. online grocer Ocado Group Plc is teaming up with Amazon.com Inc.",
-                        "item_url": "https://petersapparel.parseapp.com/view_item?item_id=101",
+                        "item_url": "https://www.bloomberg.com/news/articles/2017-08-29/ocado-taps-amazon-s-alexa-for-voice-ordering-in-convenience-push",
                         "buttons": [{
                             "type": "web_url",
-                            "url": "https://petersapparel.parseapp.com/view_item?item_id=101",
+                            "url": "https://www.bloomberg.com/europe",
                             "title": "BLOOMBERG.COM"
                         }]
                     }]
