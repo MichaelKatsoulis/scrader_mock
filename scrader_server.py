@@ -107,6 +107,38 @@ def get_news(company, news_type):
 
         print('Negative news')
 
+        # response_data = {
+        #     "messages": [{
+        #         "attachment": {
+        #             "type": "template",
+        #             "payload": {
+        #                 "template_type": "generic",
+        #                 "elements": [{
+        #                     "title": "Instagram hackers are selling user emails and phone numbers",
+        #                     "image_url": "//i2.cdn.turner.com/money/dam/assets/170809095225-mostly-human-instagram-1024x576.jpg",
+        #                     "subtitle": "Instagram alerted verified users earlier this week about a security flaw that could give hackers access to their personal information.",
+        #                     "item_url": "http://money.cnn.com/2017/09/01/technology/business/instagram-hack/index.html",
+        #                     "buttons": [{
+        #                         "type": "web_url",
+        #                         "url": "http://edition.cnn.com/",
+        #                         "title": "CNN.COM"
+        #                     }]
+        #                 }, {
+        #                     "title": "How VMware's Partnership With Amazon Could End Up Backfiring",
+        #                     "image_url": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/i0_f6jVS4j68/v1/1000x-1.jpg",
+        #                     "subtitle": "Customers try the cloud through AWS, but Amazon has a history of competing with its best partners.",
+        #                     "item_url": "https://www.bloomberg.com/news/articles/2017-09-01/how-vmware-s-partnership-with-amazon-could-end-up-backfiring",
+        #                     "buttons": [{
+        #                         "type": "web_url",
+        #                         "url": "https://www.bloomberg.com/europe",
+        #                         "title": "BLOOMBERG.COM"
+        #                     }]
+        #                 }]
+        #             }
+        #         }
+        #     }]
+        # }
+
         response_data = {
             "messages": [{
                 "attachment": {
@@ -114,20 +146,20 @@ def get_news(company, news_type):
                     "payload": {
                         "template_type": "generic",
                         "elements": [{
-                            "title": "Instagram hackers are selling user emails and phone numbers",
-                            "image_url": "//i2.cdn.turner.com/money/dam/assets/170809095225-mostly-human-instagram-1024x576.jpg",
-                            "subtitle": "Instagram alerted verified users earlier this week about a security flaw that could give hackers access to their personal information.",
-                            "item_url": "http://money.cnn.com/2017/09/01/technology/business/instagram-hack/index.html",
+                            "title": "What Amazon knows: 'The war for retail will be won in groceries'",
+                            "image_url": "http://i2.cdn.turner.com/money/dam/assets/170825082748-whole-foods-fresh-fruit-apples-1024x576.jpg",
+                            "subtitle": "Amazon believes the future of grocery shopping is online.",
+                            "item_url": "http://money.cnn.com/2017/08/25/technology/business/amazon-whole-foods-strategy/index.html",
                             "buttons": [{
                                 "type": "web_url",
                                 "url": "http://edition.cnn.com/",
                                 "title": "CNN.COM"
                             }]
                         }, {
-                            "title": "How VMware's Partnership With Amazon Could End Up Backfiring",
-                            "image_url": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/i0_f6jVS4j68/v1/1000x-1.jpg",
-                            "subtitle": "Customers try the cloud through AWS, but Amazon has a history of competing with its best partners.",
-                            "item_url": "https://www.bloomberg.com/news/articles/2017-09-01/how-vmware-s-partnership-with-amazon-could-end-up-backfiring",
+                            "title": "Ocado Taps Amazon's Alexa for Voice Ordering in Convenience Push",
+                            "image_url": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/i4GOoR9HbhHg/v0/1000x-1.jpg",
+                            "subtitle": "U.K. online grocer Ocado Group Plc is teaming up with Amazon.com Inc.",
+                            "item_url": "https://www.bloomberg.com/news/articles/2017-08-29/ocado-taps-amazon-s-alexa-for-voice-ordering-in-convenience-push",
                             "buttons": [{
                                 "type": "web_url",
                                 "url": "https://www.bloomberg.com/europe",
