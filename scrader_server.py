@@ -90,6 +90,7 @@ def get_news(company):
                         "title": "Ocado Taps Amazon's Alexa for Voice Ordering in Convenience Push",
                         "image_url": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/i4GOoR9HbhHg/v0/1000x-1.jpg",
                         "subtitle": "U.K. online grocer Ocado Group Plc is teaming up with Amazon.com Inc.",
+                        "item_url": "https://petersapparel.parseapp.com/view_item?item_id=101",
                         "buttons": [{
                             "type": "web_url",
                             "url": "https://petersapparel.parseapp.com/view_item?item_id=101",
