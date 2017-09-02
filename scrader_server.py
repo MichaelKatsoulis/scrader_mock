@@ -67,45 +67,8 @@ def get_news(company):
             dict: A JSON object containing the nfvacc server status information
     """
 
-    # response_data = {
-    #     "messages": [
-    #         {
-    #             "attachment": {
-    #                 "type": "template",
-    #                 "payload": {
-    #                     "template_type": "list",
-    #                     "top_element_style": "compact",
-    #                     "elements": [
-    #                         {
-    #                             "title": "cnn.com",
-    #                             "image_url":
-    #                                 "http://i2.cdn.turner.com/money/dam/assets/170825082748-whole-foods-fresh-fruit-apples-1024x576.jpg",
-    #
-    #                             "buttons": [
-    #                                 {
-    #                                   "type": "web_url",
-    #                                   "url": "http://money.cnn.com/2017/08/25/technology/business/amazon-whole-foods-strategy/index.html",
-    #                                   "title": "What Amazon knows"
-    #                                 }
-    #                             ]
-    #                         },
-    #                         {
-    #                             "title": "bloomberg.com",
-    #                             "image_url": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/i4GOoR9HbhHg/v0/1000x-1.jpg",
-    #                             "buttons": [
-    #                                 {
-    #                                     "type": "web_url",
-    #                                     "url": "https://www.bloomberg.com/news/articles/2017-08-29/ocado-taps-amazon-s-alexa-for-voice-ordering-in-convenience-push",
-    #                                     "title": "Ocado Taps Amazon's Alexa"
-    #                                 }
-    #                             ]
-    #                         }
-    #                     ]
-    #                 }
-    #             }
-    #         }
-    #     ]
-    # }
+    print("Company is ")
+    print(company)
 
     response_data = {
         "messages": [{
