@@ -117,35 +117,25 @@ def get_news(company):
                   "elements":[
                     {
                       "title":"Classic White T-Shirt",
-                      "image_url":"http://petersapparel.parseapp.com/img/item100-thumb.png",
+                      "image_url": "http://i2.cdn.turner.com/money/dam/assets/170825082748-whole-foods-fresh-fruit-apples-1024x576.jpg",
                       "subtitle":"Soft white cotton t-shirt is back in style",
                       "buttons":[
                         {
                           "type":"web_url",
                           "url":"https://petersapparel.parseapp.com/view_item?item_id=100",
                           "title":"View Item"
-                        },
-                        {
-                          "type":"web_url",
-                          "url":"https://petersapparel.parseapp.com/buy_item?item_id=100",
-                          "title":"Buy Item"
                         }
                       ]
                     },
                     {
                       "title":"Classic Grey T-Shirt",
-                      "image_url":"http://petersapparel.parseapp.com/img/item101-thumb.png",
+                      "image_url": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/i4GOoR9HbhHg/v0/1000x-1.jpg",
                       "subtitle":"Soft gray cotton t-shirt is back in style",
                       "buttons":[
                         {
                           "type":"web_url",
                           "url":"https://petersapparel.parseapp.com/view_item?item_id=101",
                           "title":"View Item"
-                        },
-                        {
-                          "type":"web_url",
-                          "url":"https://petersapparel.parseapp.com/buy_item?item_id=101",
-                          "title":"Buy Item"
                         }
                       ]
                     }
