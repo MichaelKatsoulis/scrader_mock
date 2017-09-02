@@ -131,7 +131,7 @@ def get_top_stocks():
               "buttons":[
                 {
                     "type": "show_block",
-                    "block_name": "Amazon_news",
+                    "block_name": "Positive",
                     "title": "Check out the news!"
                 }
               ]
@@ -142,7 +142,7 @@ def get_top_stocks():
               "buttons": [
                 {
                   "type": "show_block",
-                  "block_name": "Apple_news",
+                  "block_name": "Positive",
                   "title": "Check out the news!"
                 }
               ]
@@ -153,7 +153,7 @@ def get_top_stocks():
               "buttons": [
                 {
                   "type": "show_block",
-                  "block_name": "Addidas_news",
+                  "block_name": "Positive",
                   "title": "Check out the news!"
                 }
               ]
