@@ -120,7 +120,7 @@ def get_news(company):
                         "buttons": [{
                             "type": "web_url",
                             "url": "http://money.cnn.com/2017/08/25/technology/business/amazon-whole-foods-strategy/index.html",
-                            "title": "cnn.com"
+                            "title": "CNN.COM"
                         }]
                     }, {
                         "title": "Ocado Taps Amazon's Alexa for Voice Ordering in Convenience Push",
@@ -129,7 +129,7 @@ def get_news(company):
                         "buttons": [{
                             "type": "web_url",
                             "url": "https://petersapparel.parseapp.com/view_item?item_id=101",
-                            "title": "bloomberg.com"
+                            "title": "BLOOMBERG.COM"
                         }]
                     }]
                 }
