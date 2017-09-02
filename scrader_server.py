@@ -80,7 +80,7 @@ def get_news(company):
                         "title": "What Amazon knows: 'The war for retail will be won in groceries'",
                         "image_url": "http://i2.cdn.turner.com/money/dam/assets/170825082748-whole-foods-fresh-fruit-apples-1024x576.jpg",
                         "subtitle": "Amazon believes the future of grocery shopping is online.",
-                        "url": "http://money.cnn.com/2017/08/25/technology/business/amazon-whole-foods-strategy/index.html",
+                        "item_url": "http://money.cnn.com/2017/08/25/technology/business/amazon-whole-foods-strategy/index.html",
                         "buttons": [{
                             "type": "web_url",
                             "url": "http://money.cnn.com/2017/08/25/technology/business/amazon-whole-foods-strategy/index.html",
