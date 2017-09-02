@@ -59,48 +59,86 @@ def get_latest_news():
                           mimetype='application/json')
 
 
-@app.route('/news/<company>'.format(methods=['GET']))
-def get_news(company):
+@app.route('/news/<company>/<news_type>'.format(methods=['GET']))
+def get_news(company, news_type):
     """ GET Server Status API endpoint
         Args:
         Returns:
             dict: A JSON object containing the nfvacc server status information
     """
 
-    print("Company is ")
-    print(company)
+    print("Fetching {} news for {}".format(news_type, company))
 
-    response_data = {
-        "messages": [{
-            "attachment": {
-                "type": "template",
-                "payload": {
-                    "template_type": "generic",
-                    "elements": [{
-                        "title": "What Amazon knows: 'The war for retail will be won in groceries'",
-                        "image_url": "http://i2.cdn.turner.com/money/dam/assets/170825082748-whole-foods-fresh-fruit-apples-1024x576.jpg",
-                        "subtitle": "Amazon believes the future of grocery shopping is online.",
-                        "item_url": "http://money.cnn.com/2017/08/25/technology/business/amazon-whole-foods-strategy/index.html",
-                        "buttons": [{
-                            "type": "web_url",
-                            "url": "http://edition.cnn.com/",
-                            "title": "CNN.COM"
+    if news_type == 'positive':
+
+        response_data = {
+            "messages": [{
+                "attachment": {
+                    "type": "template",
+                    "payload": {
+                        "template_type": "generic",
+                        "elements": [{
+                            "title": "What Amazon knows: 'The war for retail will be won in groceries'",
+                            "image_url": "http://i2.cdn.turner.com/money/dam/assets/170825082748-whole-foods-fresh-fruit-apples-1024x576.jpg",
+                            "subtitle": "Amazon believes the future of grocery shopping is online.",
+                            "item_url": "http://money.cnn.com/2017/08/25/technology/business/amazon-whole-foods-strategy/index.html",
+                            "buttons": [{
+                                "type": "web_url",
+                                "url": "http://edition.cnn.com/",
+                                "title": "CNN.COM"
+                            }]
+                        }, {
+                            "title": "Ocado Taps Amazon's Alexa for Voice Ordering in Convenience Push",
+                            "image_url": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/i4GOoR9HbhHg/v0/1000x-1.jpg",
+                            "subtitle": "U.K. online grocer Ocado Group Plc is teaming up with Amazon.com Inc.",
+                            "item_url": "https://www.bloomberg.com/news/articles/2017-08-29/ocado-taps-amazon-s-alexa-for-voice-ordering-in-convenience-push",
+                            "buttons": [{
+                                "type": "web_url",
+                                "url": "https://www.bloomberg.com/europe",
+                                "title": "BLOOMBERG.COM"
+                            }]
                         }]
-                    }, {
-                        "title": "Ocado Taps Amazon's Alexa for Voice Ordering in Convenience Push",
-                        "image_url": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/i4GOoR9HbhHg/v0/1000x-1.jpg",
-                        "subtitle": "U.K. online grocer Ocado Group Plc is teaming up with Amazon.com Inc.",
-                        "item_url": "https://www.bloomberg.com/news/articles/2017-08-29/ocado-taps-amazon-s-alexa-for-voice-ordering-in-convenience-push",
-                        "buttons": [{
-                            "type": "web_url",
-                            "url": "https://www.bloomberg.com/europe",
-                            "title": "BLOOMBERG.COM"
-                        }]
-                    }]
+                    }
                 }
-            }
-        }]
-    }
+            }]
+        }
+
+    elif news_type == 'negative':
+
+        response_data = {
+            "messages": [{
+                "attachment": {
+                    "type": "template",
+                    "payload": {
+                        "template_type": "generic",
+                        "elements": [{
+                            "title": "Instagram hackers are selling user emails and phone numbers",
+                            "image_url": "//i2.cdn.turner.com/money/dam/assets/170809095225-mostly-human-instagram-1024x576.jpg",
+                            "subtitle": "Instagram alerted verified users earlier this week about a security flaw that could give hackers access to their personal information.",
+                            "item_url": "http://money.cnn.com/2017/09/01/technology/business/instagram-hack/index.html",
+                            "buttons": [{
+                                "type": "web_url",
+                                "url": "http://edition.cnn.com/",
+                                "title": "CNN.COM"
+                            }]
+                        }, {
+                            "title": "How VMware's Partnership With Amazon Could End Up Backfiring",
+                            "image_url": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/i0_f6jVS4j68/v1/1000x-1.jpg",
+                            "subtitle": "Customers try the cloud through AWS, but Amazon has a history of competing with its best partners.",
+                            "item_url": "https://www.bloomberg.com/news/articles/2017-09-01/how-vmware-s-partnership-with-amazon-could-end-up-backfiring",
+                            "buttons": [{
+                                "type": "web_url",
+                                "url": "https://www.bloomberg.com/europe",
+                                "title": "BLOOMBERG.COM"
+                            }]
+                        }]
+                    }
+                }
+            }]
+        }
+
+    else:
+        response_data = {}
 
     status = 200 if response_data is not None else 403
     js = json.dumps(response_data, indent=2)
@@ -146,6 +184,123 @@ def get_top_stocks_new():
             }
         ]
     }
+    status = 200 if response_data is not None else 403
+    js = json.dumps(response_data, indent=2)
+    return flask.Response(js,
+                          status=status,
+                          mimetype='application/json')
+
+
+@app.route('/negative_stocks'.format(methods=['GET']))
+def get_negative_stocks():
+    """ GET Server Status API endpoint
+        Args:
+        Returns:
+            dict: A JSON object containing the nfvacc server status information
+    """
+    response_data = {
+        "messages": [
+            {
+              "attachment": {
+                "type": "template",
+                "payload": {
+                    "template_type": "button",
+                    "text": "These are today's top negative stocks",
+                    "buttons": [
+                        {
+                              "type": "show_block",
+                              "block_name": "Company Negative",
+                              "title": "Instagram"
+                        },
+                        {
+                              "type": "show_block",
+                              "block_name": "Company Negative",
+                              "title": "VMware"
+                        }
+                    ]
+                }
+              }
+            }
+        ]
+    }
+    status = 200 if response_data is not None else 403
+    js = json.dumps(response_data, indent=2)
+    return flask.Response(js,
+                          status=status,
+                          mimetype='application/json')
+
+
+@app.route('/companies/<stocks_type>'.format(methods=['GET']))
+def get_companies(stocks_type):
+    """ GET Server Status API endpoint
+        Args:
+        Returns:
+            dict: A JSON object containing the nfvacc server status information
+    """
+
+    if stocks_type == 'positive':
+
+        response_data = {
+            "messages": [
+                {
+                    "attachment": {
+                        "type": "template",
+                        "payload": {
+                            "template_type": "button",
+                            "text": "Great choice! These are today's top positive stocks",
+                            "buttons": [
+                                {
+                                    "type": "show_block",
+                                    "block_name": "Company Positive",
+                                    "title": "Amazon"
+                                },
+                                {
+                                    "type": "show_block",
+                                    "block_name": "Company Positive",
+                                    "title": "Apple"
+                                },
+                                {
+                                    "type": "show_block",
+                                    "block_name": "Company Positive",
+                                    "title": "Adidas"
+                                }
+                            ]
+                        }
+                    }
+                }
+            ]
+        }
+    elif stocks_type == 'negative':
+
+        response_data = {
+            "messages": [
+                {
+                    "attachment": {
+                        "type": "template",
+                        "payload": {
+                            "template_type": "button",
+                            "text": "These are today's top negative stocks",
+                            "buttons": [
+                                {
+                                    "type": "show_block",
+                                    "block_name": "Company Negative",
+                                    "title": "Instagram"
+                                },
+                                {
+                                    "type": "show_block",
+                                    "block_name": "Company Negative",
+                                    "title": "VMware"
+                                }
+                            ]
+                        }
+                    }
+                }
+            ]
+        }
+
+    else:
+        response_data = {}
+
     status = 200 if response_data is not None else 403
     js = json.dumps(response_data, indent=2)
     return flask.Response(js,
