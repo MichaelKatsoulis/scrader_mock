@@ -108,43 +108,34 @@ def get_news(company):
     # }
 
     response_data = {
-         "messages": [
-            {
-              "attachment":{
-                "type":"template",
-                "payload":{
-                  "template_type":"generic",
-                  "elements":[
-                    {
-                      "title":"Classic White T-Shirt",
-                      "image_url": "http://i2.cdn.turner.com/money/dam/assets/170825082748-whole-foods-fresh-fruit-apples-1024x576.jpg",
-                      "subtitle":"Soft white cotton t-shirt is back in style",
-                      "buttons":[
-                        {
-                          "type":"web_url",
-                          "url":"https://petersapparel.parseapp.com/view_item?item_id=100",
-                          "title":"View Item"
-                        }
-                      ]
-                    },
-                    {
-                      "title":"Classic Grey T-Shirt",
-                      "image_url": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/i4GOoR9HbhHg/v0/1000x-1.jpg",
-                      "subtitle":"Soft gray cotton t-shirt is back in style",
-                      "buttons":[
-                        {
-                          "type":"web_url",
-                          "url":"https://petersapparel.parseapp.com/view_item?item_id=101",
-                          "title":"View Item"
-                        }
-                      ]
-                    }
-                  ]
+        "messages": [{
+            "attachment": {
+                "type": "template",
+                "payload": {
+                    "template_type": "generic",
+                    "elements": [{
+                        "title": "What Amazon knows: 'The war for retail will be won in groceries'",
+                        "image_url": "http://i2.cdn.turner.com/money/dam/assets/170825082748-whole-foods-fresh-fruit-apples-1024x576.jpg",
+                        "subtitle": "Amazon believes the future of grocery shopping is online.",
+                        "buttons": [{
+                            "type": "web_url",
+                            "url": "http://money.cnn.com/2017/08/25/technology/business/amazon-whole-foods-strategy/index.html",
+                            "title": "cnn.com"
+                        }]
+                    }, {
+                        "title": "Ocado Taps Amazon's Alexa for Voice Ordering in Convenience Push",
+                        "image_url": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/i4GOoR9HbhHg/v0/1000x-1.jpg",
+                        "subtitle": "U.K. online grocer Ocado Group Plc is teaming up with Amazon.com Inc.",
+                        "buttons": [{
+                            "type": "web_url",
+                            "url": "https://petersapparel.parseapp.com/view_item?item_id=101",
+                            "title": "bloomberg.com"
+                        }]
+                    }]
                 }
-              }
             }
-          ]
-        }
+        }]
+    }
 
     status = 200 if response_data is not None else 403
     js = json.dumps(response_data, indent=2)
