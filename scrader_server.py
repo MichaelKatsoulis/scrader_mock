@@ -105,6 +105,8 @@ def get_news(company, news_type):
 
     elif news_type == 'negative':
 
+        print('Negative news')
+
         response_data = {
             "messages": [{
                 "attachment": {
@@ -140,6 +142,7 @@ def get_news(company, news_type):
     else:
         response_data = {}
 
+    print(response_data)
     status = 200 if response_data is not None else 403
     js = json.dumps(response_data, indent=2)
     return flask.Response(js,
@@ -237,6 +240,7 @@ def get_companies(stocks_type):
         Returns:
             dict: A JSON object containing the nfvacc server status information
     """
+    print("Fetching companies with {} news".format(stocks_type))
 
     if stocks_type == 'positive':
 
