@@ -124,7 +124,7 @@ def get_news(company, news_type):
                                 "title": "CNN.COM"
                             }]
                         }, {
-                            "title": "How VMware\'s Partnership With Amazon Could End Up Backfiring",
+                            "title": "How VMwares Partnership With Amazon Could End Up Backfiring",
                             "image_url": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/i0_f6jVS4j68/v1/1000x-1.jpg",
                             "subtitle": "Customers try the cloud through AWS, but Amazon has a history of competing with its best partners.",
                             "item_url": "https://www.bloomberg.com/news/articles/2017-09-01/how-vmware-s-partnership-with-amazon-could-end-up-backfiring",
