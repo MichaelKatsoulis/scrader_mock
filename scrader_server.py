@@ -107,70 +107,6 @@ def get_news(company):
                           mimetype='application/json')
 
 
-@app.route('/top_stocks'.format(methods=['GET']))
-def get_top_stocks():
-    """ GET Server Status API endpoint
-        Args:
-        Returns:
-            dict: A JSON object containing the nfvacc server status information
-    """
-
-    response_data = {
- "messages": [
-    {
-      "attachment":{
-        "type":"template",
-        "payload":{
-          "template_type": "list",
-          "top_element_style": "compact",
-          "elements":[
-            {
-              "title":"Amazon",
-              "image_url":"https://www.wired.com/wp-content/uploads/2016/04/amazon-a-logo-1200x630.jpg",
-            
-              "buttons":[
-                {
-                    "type": "show_block",
-                    "block_name": "Positive",
-                    "title": "Check out the news!"
-                }
-              ]
-            },
-            {
-              "title":"Apple",
-              "image_url": "https://www.apple.com/ac/structured-data/images/knowledge_graph_logo.png?201703170823",
-              "buttons": [
-                {
-                  "type": "show_block",
-                  "block_name": "Positive",
-                  "title": "Check out the news!"
-                }
-              ]
-            },
-         {
-              "title":"Adidas",
-              "image_url": "https://mymall.vn/static/images/2014/12/02/1417490727_adidas.jpg",
-              "buttons": [
-                {
-                  "type": "show_block",
-                  "block_name": "Positive",
-                  "title": "Check out the news!"
-                }
-              ]
-            }
-          ]
-          }
-         }
-        }
-       ]
-      }
-    status = 200 if response_data is not None else 403
-    js = json.dumps(response_data, indent=2)
-    return flask.Response(js,
-                          status=status,
-                          mimetype='application/json')
-
-
 @app.route('/top_stocks_new'.format(methods=['GET']))
 def get_top_stocks_new():
     """ GET Server Status API endpoint
@@ -189,17 +125,17 @@ def get_top_stocks_new():
                     "buttons": [
                         {
                               "type": "show_block",
-                              "block_name": "Amazon_news",
+                              "block_name": "Positive",
                               "title": "Amazon"
                         },
                         {
                               "type": "show_block",
-                              "block_name": "Apple_news",
+                              "block_name": "Positive",
                               "title": "Apple"
                         },
                         {
                               "type": "show_block",
-                              "block_name": "Addidas_news",
+                              "block_name": "Positive",
                               "title": "Adidas"
                         }
                     ]
@@ -233,6 +169,6 @@ if __name__ == '__main__':
     if res is None:
          os._exit(1)
 
-    print (res)
-    scrader_poll(companies=config.companies, sources=config.sources)
+    # print (res)
+    # scrader_poll(companies=config.companies, sources=config.sources)
     app.run(host=config.HOST, port=config.PORT, debug=DEBUG)
