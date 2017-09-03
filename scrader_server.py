@@ -105,8 +105,6 @@ def get_news(company, news_type):
 
     elif news_type == 'negative':
 
-        print('Negative news')
-
         response_data = {
             "messages": [{
                 "attachment": {
@@ -140,7 +138,37 @@ def get_news(company, news_type):
         }
 
     else:
-        response_data = {}
+        response_data = {
+            "messages": [{
+                "attachment": {
+                    "type": "template",
+                    "payload": {
+                        "template_type": "generic",
+                        "elements": [{
+                            "title": "SAP & IBM Jointly Offer Solution for Retail, Packaged Goods",
+                            "image_url": "https://staticx-tuner.zacks.com/images/default_article_images/default16.jpg",
+                            "subtitle": "Enterprise application software, SAP SE ...",
+                            "item_url": "https://www.zacks.com/stock/news/273394/sap-amp-ibm-jointly-offer-solution-for-retail-packaged-goods?cid=CS-CNN-HL-273394",
+                            "buttons": [{
+                                "type": "web_url",
+                                "url": "http://edition.cnn.com/",
+                                "title": "CNN.COM"
+                            }]
+                        }, {
+                            "title": "Lenovo Shares Could Fall Another 27%: Top-Ranked Analyst",
+                            "image_url": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/i0_f6jVS4j68/v1/1000x-1.jpg",
+                            "subtitle": "Lenovo Group Ltd., which breathed new life into IBM's personal-computer business...",
+                            "item_url": "https://www.bloomberg.com/news/articles/2017-08-21/top-ranked-analyst-says-lenovo-could-fall-another-27-percent",
+                            "buttons": [{
+                                "type": "web_url",
+                                "url": "https://www.bloomberg.com/europe",
+                                "title": "BLOOMBERG.COM"
+                            }]
+                        }]
+                    }
+                }
+            }]
+        }
 
     status = 200 if response_data is not None else 403
     js = json.dumps(response_data, indent=2)
@@ -156,7 +184,7 @@ def get_companies(stocks_type):
         Returns:
             dict: A JSON object containing the nfvacc server status information
     """
-    print("Fetching companies with {} news".format(stocks_type))
+    print("Fetching companies with {}.".format(stocks_type))
 
     if stocks_type == 'Positive+News':
 
@@ -227,7 +255,65 @@ def get_companies(stocks_type):
         }
 
     else:
-        response_data = {}
+        response_data = {
+            "set_attributes":
+                {
+                    "news_type": "all"
+                },
+            "messages": [
+                {
+                    "attachment": {
+                        "type": "template",
+                        "payload": {
+                            "template_type": "button",
+                            "text": "These are all scrader's supported stocks",
+                            "buttons": [
+                                {
+                                    "type": "show_block",
+                                    "block_name": "Company News",
+                                    "title": "Instagram"
+                                },
+                                {
+                                    "type": "show_block",
+                                    "block_name": "Company News",
+                                    "title": "VMware"
+                                },
+                                {
+                                    "type": "show_block",
+                                    "block_name": "Company News",
+                                    "title": "Amazon"
+                                },
+                                {
+                                    "type": "show_block",
+                                    "block_name": "Company News",
+                                    "title": "Apple"
+                                },
+                                {
+                                    "type": "show_block",
+                                    "block_name": "Company News",
+                                    "title": "Adidas"
+                                },
+                                {
+                                    "type": "show_block",
+                                    "block_name": "Company News",
+                                    "title": "Nokia"
+                                },
+                                {
+                                    "type": "show_block",
+                                    "block_name": "Company News",
+                                    "title": "IBM"
+                                },
+                                {
+                                    "type": "show_block",
+                                    "block_name": "Company News",
+                                    "title": "Facebook"
+                                }
+                            ]
+                        }
+                    }
+                }
+            ]
+        }
 
     status = 200 if response_data is not None else 403
     js = json.dumps(response_data, indent=2)
