@@ -162,6 +162,10 @@ def get_companies(stocks_type):
     if stocks_type == 'Positive+News':
 
         response_data = {
+            "set_attributes":
+                {
+                    "news_type": "positive"
+                },
             "messages": [
                 {
                     "attachment": {
