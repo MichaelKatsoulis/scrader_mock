@@ -266,7 +266,7 @@ def get_companies(stocks_type):
                         "type": "template",
                         "payload": {
                             "template_type": "button",
-                            "text": "These are all scrader's supported stocks",
+                            "text": "These are all scrader supported stocks",
                             "buttons": [
                                 {
                                     "type": "show_block",
