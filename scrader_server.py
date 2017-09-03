@@ -316,7 +316,7 @@ def get_companies(stocks_type):
                         "type": "template",
                         "payload": {
                             "template_type": "button",
-                            "text": "These are today's top negative stocks",
+                            "text": "These are scrader's supported stocks",
                             "buttons": [
                                 {
                                     "type": "show_block",
@@ -327,6 +327,26 @@ def get_companies(stocks_type):
                                     "type": "show_block",
                                     "block_name": "Company News",
                                     "title": "VMware"
+                                },
+                                {
+                                    "type": "show_block",
+                                    "block_name": "Company News",
+                                    "title": "IBM"
+                                },
+                                {
+                                    "type": "show_block",
+                                    "block_name": "Company News",
+                                    "title": "Amazon"
+                                },
+                                {
+                                    "type": "show_block",
+                                    "block_name": "Company News",
+                                    "title": "Apple"
+                                },
+                                {
+                                    "type": "show_block",
+                                    "block_name": "Company News",
+                                    "title": "Adidas"
                                 }
                             ]
                         }
