@@ -320,17 +320,17 @@ def get_companies(stocks_type):
                             "buttons": [
                                 {
                                     "type": "show_block",
-                                    "block_name": "Company News",
+                                    "block_name": "Company Specific News",
                                     "title": "Instagram"
                                 },
                                 {
                                     "type": "show_block",
-                                    "block_name": "Company News",
+                                    "block_name": "Company Specific News",
                                     "title": "VMware"
                                 },
                                 {
                                     "type": "show_block",
-                                    "block_name": "Company News",
+                                    "block_name": "Company Specific News",
                                     "title": "IBM"
                                 }
                             ]
