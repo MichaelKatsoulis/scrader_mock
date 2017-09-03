@@ -191,7 +191,7 @@ def get_companies(stocks_type):
                 }
             ]
         }
-    elif stocks_type == 'negative':
+    elif stocks_type == 'Negative+News':
 
         response_data = {
             "messages": [
