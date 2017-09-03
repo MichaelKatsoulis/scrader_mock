@@ -305,6 +305,7 @@ def get_companies(stocks_type):
             ]
         }
 
+    print(response_data)
     status = 200 if response_data is not None else 403
     js = json.dumps(response_data, indent=2)
     return flask.Response(js,
