@@ -198,6 +198,10 @@ def get_companies(stocks_type):
     elif stocks_type == 'Negative+News':
 
         response_data = {
+            "set_attributes":
+                {
+                    "news_type": "negative"
+                },
             "messages": [
                 {
                     "attachment": {
