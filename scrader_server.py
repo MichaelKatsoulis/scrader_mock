@@ -188,41 +188,6 @@ def get_companies(stocks_type):
 
     if stocks_type == 'Positive+News':
 
-        # response_data = {
-        #     "set_attributes":
-        #         {
-        #             "news_type": "positive"
-        #         },
-        #     "messages": [
-        #         {
-        #             "attachment": {
-        #                 "type": "template",
-        #                 "payload": {
-        #                     "template_type": "button",
-        #                     "text": "Great choice! These are today's top positive stocks",
-        #                     "buttons": [
-        #                         {
-        #                             "type": "show_block",
-        #                             "block_name": "Company News",
-        #                             "title": "Amazon"
-        #                         },
-        #                         {
-        #                             "type": "show_block",
-        #                             "block_name": "Company News",
-        #                             "title": "Apple"
-        #                         },
-        #                         {
-        #                             "type": "show_block",
-        #                             "block_name": "Company News",
-        #                             "title": "Adidas"
-        #                         }
-        #                     ]
-        #                 }
-        #             }
-        #         }
-        #     ]
-        # }
-
         response_data = {
             "set_attributes":
                 {
@@ -230,36 +195,71 @@ def get_companies(stocks_type):
                 },
             "messages": [
                 {
-                  "text":  "testRedirectInQuickReply",
-                  "quick_replies": [
-                    {
-                      "title":"Amazon",
-                      "block_names":["Company News"]
-                    },
-                    {
-                      "title": "Apple",
-                      "block_names": ["Company News"]
-                    },
-                    {
-                      "title": "Adidas",
-                      "block_names": ["Company News"]
-                    },
-                    {
-                        "title": "Instagram",
-                        "block_names": ["Company News"]
-                    },
-                    {
-                        "title": "VMware",
-                        "block_names": ["Company News"]
-                    },
-                    {
-                        "title": "IBM",
-                        "block_names": ["Company News"]
+                    "attachment": {
+                        "type": "template",
+                        "payload": {
+                            "template_type": "button",
+                            "text": "Great choice! These are today's top positive stocks",
+                            "buttons": [
+                                {
+                                    "type": "show_block",
+                                    "block_name": "Company News",
+                                    "title": "Amazon"
+                                },
+                                {
+                                    "type": "show_block",
+                                    "block_name": "Company News",
+                                    "title": "Apple"
+                                },
+                                {
+                                    "type": "show_block",
+                                    "block_name": "Company News",
+                                    "title": "Adidas"
+                                }
+                            ]
+                        }
                     }
-                  ]
                 }
-          ]
+            ]
         }
+
+        # response_data = {
+        #     "set_attributes":
+        #         {
+        #             "news_type": "positive"
+        #         },
+        #     "messages": [
+        #         {
+        #           "text":  "testRedirectInQuickReply",
+        #           "quick_replies": [
+        #             {
+        #               "title":"Amazon",
+        #               "block_names":["Company News"]
+        #             },
+        #             {
+        #               "title": "Apple",
+        #               "block_names": ["Company News"]
+        #             },
+        #             {
+        #               "title": "Adidas",
+        #               "block_names": ["Company News"]
+        #             },
+        #             {
+        #                 "title": "Instagram",
+        #                 "block_names": ["Company News"]
+        #             },
+        #             {
+        #                 "title": "VMware",
+        #                 "block_names": ["Company News"]
+        #             },
+        #             {
+        #                 "title": "IBM",
+        #                 "block_names": ["Company News"]
+        #             }
+        #           ]
+        #         }
+        #   ]
+        # }
 
     elif stocks_type == 'Negative+News':
 
