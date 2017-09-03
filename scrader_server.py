@@ -255,6 +255,56 @@ def get_companies(stocks_type):
         }
 
     else:
+        # response_data = {
+        #     "set_attributes":
+        #         {
+        #             "news_type": "all"
+        #         },
+        #     "messages": [
+        #         {
+        #             "attachment": {
+        #                 "type": "template",
+        #                 "payload": {
+        #                     "template_type": "button",
+        #                     "text": "These are all scrader supported stocks",
+        #                     "buttons": [
+        #                         {
+        #                             "type": "show_block",
+        #                             "block_name": "Company News",
+        #                             "title": "Instagram"
+        #                         },
+        #                         {
+        #                             "type": "show_block",
+        #                             "block_name": "Company News",
+        #                             "title": "VMware"
+        #                         },
+        #                         {
+        #                             "type": "show_block",
+        #                             "block_name": "Company News",
+        #                             "title": "Amazon"
+        #                         },
+        #                         {
+        #                             "type": "show_block",
+        #                             "block_name": "Company News",
+        #                             "title": "Apple"
+        #                         },
+        #                         {
+        #                             "type": "show_block",
+        #                             "block_name": "Company News",
+        #                             "title": "Adidas"
+        #                         },
+        #                         {
+        #                             "type": "show_block",
+        #                             "block_name": "Company News",
+        #                             "title": "IBM"
+        #                         }
+        #                     ]
+        #                 }
+        #             }
+        #         }
+        #     ]
+        # }
+
         response_data = {
             "set_attributes":
                 {
@@ -266,7 +316,7 @@ def get_companies(stocks_type):
                         "type": "template",
                         "payload": {
                             "template_type": "button",
-                            "text": "These are all scrader supported stocks",
+                            "text": "These are today's top negative stocks",
                             "buttons": [
                                 {
                                     "type": "show_block",
@@ -277,26 +327,6 @@ def get_companies(stocks_type):
                                     "type": "show_block",
                                     "block_name": "Company News",
                                     "title": "VMware"
-                                },
-                                {
-                                    "type": "show_block",
-                                    "block_name": "Company News",
-                                    "title": "Amazon"
-                                },
-                                {
-                                    "type": "show_block",
-                                    "block_name": "Company News",
-                                    "title": "Apple"
-                                },
-                                {
-                                    "type": "show_block",
-                                    "block_name": "Company News",
-                                    "title": "Adidas"
-                                },
-                                {
-                                    "type": "show_block",
-                                    "block_name": "Company News",
-                                    "title": "IBM"
                                 }
                             ]
                         }
