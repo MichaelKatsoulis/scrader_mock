@@ -142,7 +142,6 @@ def get_news(company, news_type):
     else:
         response_data = {}
 
-    print(response_data)
     status = 200 if response_data is not None else 403
     js = json.dumps(response_data, indent=2)
     return flask.Response(js,
@@ -176,17 +175,17 @@ def get_companies(stocks_type):
                             "buttons": [
                                 {
                                     "type": "show_block",
-                                    "block_name": "Company Positive",
+                                    "block_name": "Company News",
                                     "title": "Amazon"
                                 },
                                 {
                                     "type": "show_block",
-                                    "block_name": "Company Positive",
+                                    "block_name": "Company News",
                                     "title": "Apple"
                                 },
                                 {
                                     "type": "show_block",
-                                    "block_name": "Company Positive",
+                                    "block_name": "Company News",
                                     "title": "Adidas"
                                 }
                             ]
@@ -212,12 +211,12 @@ def get_companies(stocks_type):
                             "buttons": [
                                 {
                                     "type": "show_block",
-                                    "block_name": "Company Negative",
+                                    "block_name": "Company News",
                                     "title": "Instagram"
                                 },
                                 {
                                     "type": "show_block",
-                                    "block_name": "Company Negative",
+                                    "block_name": "Company News",
                                     "title": "VMware"
                                 }
                             ]
