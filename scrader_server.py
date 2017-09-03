@@ -150,89 +150,6 @@ def get_news(company, news_type):
                           mimetype='application/json')
 
 
-@app.route('/top_stocks_new'.format(methods=['GET']))
-def get_top_stocks_new():
-    """ GET Server Status API endpoint
-        Args:
-        Returns:
-            dict: A JSON object containing the nfvacc server status information
-    """
-    response_data = {
-        "messages": [
-            {
-              "attachment": {
-                "type": "template",
-                "payload": {
-                    "template_type": "button",
-                    "text": "Great choice! These are today's top positive stocks",
-                    "buttons": [
-                        {
-                              "type": "show_block",
-                              "block_name": "Positive",
-                              "title": "Amazon"
-                        },
-                        {
-                              "type": "show_block",
-                              "block_name": "Positive",
-                              "title": "Apple"
-                        },
-                        {
-                              "type": "show_block",
-                              "block_name": "Positive",
-                              "title": "Adidas"
-                        }
-                    ]
-                }
-              }
-            }
-        ]
-    }
-    status = 200 if response_data is not None else 403
-    js = json.dumps(response_data, indent=2)
-    return flask.Response(js,
-                          status=status,
-                          mimetype='application/json')
-
-
-@app.route('/negative_stocks'.format(methods=['GET']))
-def get_negative_stocks():
-    """ GET Server Status API endpoint
-        Args:
-        Returns:
-            dict: A JSON object containing the nfvacc server status information
-    """
-    response_data = {
-        "messages": [
-            {
-              "attachment": {
-                "type": "template",
-                "payload": {
-                    "template_type": "button",
-                    "text": "These are today's top negative stocks",
-                    "buttons": [
-                        {
-                              "type": "show_block",
-                              "block_name": "Company Negative",
-                              "title": "Instagram"
-                        },
-                        {
-                              "type": "show_block",
-                              "block_name": "Company Negative",
-                              "title": "VMware"
-                        }
-                    ]
-                }
-              }
-            }
-        ]
-    }
-    status = 200 if response_data is not None else 403
-    js = json.dumps(response_data, indent=2)
-    return flask.Response(js,
-                          status=status,
-                          mimetype='application/json')
-
-
 @app.route('/companies/<stocks_type>'.format(methods=['GET']))
 def get_companies(stocks_type):
     """ GET Server Status API endpoint
@@ -242,7 +159,7 @@ def get_companies(stocks_type):
     """
     print("Fetching companies with {} news".format(stocks_type))
 
-    if stocks_type == 'positive':
+    if stocks_type == 'Positive+News':
 
         response_data = {
             "messages": [
