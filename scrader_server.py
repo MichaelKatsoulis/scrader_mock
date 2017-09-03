@@ -332,11 +332,6 @@ def get_companies(stocks_type):
                                     "type": "show_block",
                                     "block_name": "Company News",
                                     "title": "IBM"
-                                },
-                                {
-                                    "type": "show_block",
-                                    "block_name": "Company News",
-                                    "title": "Amazon"
                                 }
                             ]
                         }
