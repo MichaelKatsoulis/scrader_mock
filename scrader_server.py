@@ -231,20 +231,18 @@ def get_companies(stocks_type):
                         "template_type": "list",
                         "top_element_style": "compact",
                         "elements": [{
-                            "title": "SAP & IBM Jointly Offer Solution for Retail, Packaged Goods",
-                            "subtitle": "Enterprise application software, SAP SE ...",
+                            "title": "Amazon",
                             "buttons": [{
                                 "type": "web_url",
                                 "url": "http://edition.cnn.com/",
-                                "title": "CNN.COM"
+                                "title": "Amazon"
                             }]
                         }, {
-                            "title": "Lenovo Shares Could Fall Another 27%: Top-Ranked Analyst",
-                            "subtitle": "Lenovo Group Ltd., which breathed new life into IBM's personal-computer business...",
+                            "title": "Apple",
                             "buttons": [{
                                 "type": "web_url",
                                 "url": "https://www.bloomberg.com/europe",
-                                "title": "BLOOMBERG.COM"
+                                "title": "Apple"
                             }]
                         }]
                     }
