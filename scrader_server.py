@@ -258,11 +258,11 @@ def get_companies(stocks_type):
                             }]
                         },
                         {
-                            "title": "Instagram",
+                            "title": "Facebook",
                             "buttons": [{
                                 "type": "show_block",
                                 "block_name": "Company News",
-                                "title": "Instagram"
+                                "title": "Facebook"
                             }]
                         }
                         ]
@@ -273,41 +273,10 @@ def get_companies(stocks_type):
 
     elif stocks_type == 'Negative+News':
 
-        response_data = {
-            "set_attributes":
-                {
-                    "news_type": "negative"
-                },
-            "messages": [
-                {
-                    "attachment": {
-                        "type": "template",
-                        "payload": {
-                            "template_type": "button",
-                            "text": "These are today's top negative stocks",
-                            "buttons": [
-                                {
-                                    "type": "show_block",
-                                    "block_name": "Company News",
-                                    "title": "Instagram"
-                                },
-                                {
-                                    "type": "show_block",
-                                    "block_name": "Company News",
-                                    "title": "VMware"
-                                }
-                            ]
-                        }
-                    }
-                }
-            ]
-        }
-
-    else:
         # response_data = {
         #     "set_attributes":
         #         {
-        #             "news_type": "all"
+        #             "news_type": "negative"
         #         },
         #     "messages": [
         #         {
@@ -315,7 +284,7 @@ def get_companies(stocks_type):
         #                 "type": "template",
         #                 "payload": {
         #                     "template_type": "button",
-        #                     "text": "These are all scrader supported stocks",
+        #                     "text": "These are today's top negative stocks",
         #                     "buttons": [
         #                         {
         #                             "type": "show_block",
@@ -326,26 +295,6 @@ def get_companies(stocks_type):
         #                             "type": "show_block",
         #                             "block_name": "Company News",
         #                             "title": "VMware"
-        #                         },
-        #                         {
-        #                             "type": "show_block",
-        #                             "block_name": "Company News",
-        #                             "title": "Amazon"
-        #                         },
-        #                         {
-        #                             "type": "show_block",
-        #                             "block_name": "Company News",
-        #                             "title": "Apple"
-        #                         },
-        #                         {
-        #                             "type": "show_block",
-        #                             "block_name": "Company News",
-        #                             "title": "Adidas"
-        #                         },
-        #                         {
-        #                             "type": "show_block",
-        #                             "block_name": "Company News",
-        #                             "title": "IBM"
         #                         }
         #                     ]
         #                 }
@@ -357,37 +306,152 @@ def get_companies(stocks_type):
         response_data = {
             "set_attributes":
                 {
-                    "news_type": "all"
+                    "news_type": "negative"
                 },
-            "messages": [
-                {
-                    "attachment": {
-                        "type": "template",
-                        "payload": {
-                            "template_type": "button",
-                            "text": "These are scrader's supported stocks",
-                            "buttons": [
-                                {
-                                    "type": "show_block",
-                                    "block_name": "Company Specific News",
-                                    "title": "Instagram"
-                                },
-                                {
-                                    "type": "show_block",
-                                    "block_name": "Company Specific News",
-                                    "title": "VMware"
-                                },
-                                {
-                                    "type": "show_block",
-                                    "block_name": "Company Specific News",
-                                    "title": "IBM"
-                                }
-                            ]
+            "messages": [{
+                "attachment": {
+                    "type": "template",
+                    "payload": {
+                        "template_type": "list",
+                        "top_element_style": "compact",
+                        "elements": [{
+                            "title": "Instagram",
+                            "buttons": [{
+                                "type": "show_block",
+                                "block_name": "Company News",
+                                "title": "Instagram"
+                            }]
+                        }, {
+                            "title": "VMware",
+                            "buttons": [{
+                                "type": "show_block",
+                                "block_name": "Company News",
+                                "title": "VMware"
+                            }]
                         }
+                        ]
                     }
                 }
-            ]
+            }]
         }
+
+    else:
+
+        response_data = {
+            "set_attributes":
+                {
+                    "news_type": "all"
+                },
+            "messages": [{
+                "attachment": {
+                    "type": "template",
+                    "payload": {
+                        "template_type": "list",
+                        "top_element_style": "compact",
+                        "elements": [{
+                            "title": "Amazon",
+                            "buttons": [{
+                                "type": "show_block",
+                                "block_name": "Company Specific News",
+                                "title": "Amazon"
+                            }]
+                        }, {
+                            "title": "Apple",
+                            "buttons": [{
+                                "type": "show_block",
+                                "block_name": "Company Specific News",
+                                "title": "Apple"
+                            }]
+                        },
+                        {
+                            "title": "Adidas",
+                            "buttons": [{
+                                "type": "show_block",
+                                "block_name": "Company Specific News",
+                                "title": "Adidas"
+                            }]
+                        },
+                        {
+                            "title": "Facebook",
+                            "buttons": [{
+                                "type": "show_block",
+                                "block_name": "Company Specific News",
+                                "title": "Facebook"
+                            }]
+                        },
+                        {
+                            "title": "VMware",
+                            "buttons": [{
+                                "type": "show_block",
+                                "block_name": "Company Specific News",
+                                "title": "VMware"
+                            }]
+                        },
+                        {
+                            "title": "Instagram",
+                            "buttons": [{
+                                "type": "show_block",
+                                "block_name": "Company Specific News",
+                                "title": "Instagram"
+                            }]
+                        },
+                        {
+                            "title": "Hooli",
+                            "buttons": [{
+                                "type": "show_block",
+                                "block_name": "Company Specific News",
+                                "title": "Hooli"
+                            }]
+                        },
+                        {
+                            "title": "Pied Piper",
+                            "buttons": [{
+                                "type": "show_block",
+                                "block_name": "Company Specific News",
+                                "title": "Pied Piper"
+                            }]
+                        }
+                        ]
+                    }
+                }
+            }]
+        }
+
+        # response_data = {
+        #     "set_attributes":
+        #         {
+        #             "news_type": "all"
+        #         },
+        #     "messages": [
+        #         {
+        #             "attachment": {
+        #                 "type": "template",
+        #                 "payload": {
+        #                     "template_type": "button",
+        #                     "text": "These are scrader's supported stocks",
+        #                     "buttons": [
+        #                         {
+        #                             "type": "show_block",
+        #                             "block_name": "Company Specific News",
+        #                             "title": "Instagram"
+        #                         },
+        #                         {
+        #                             "type": "show_block",
+        #                             "block_name": "Company Specific News",
+        #                             "title": "VMware"
+        #                         },
+        #                         {
+        #                             "type": "show_block",
+        #                             "block_name": "Company Specific News",
+        #                             "title": "IBM"
+        #                         }
+        #                     ]
+        #                 }
+        #             }
+        #         }
+        #     ]
+        # }
+
 
     print(response_data)
     status = 200 if response_data is not None else 403
