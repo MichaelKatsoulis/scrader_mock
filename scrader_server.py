@@ -69,7 +69,7 @@ def get_news(company, news_type):
 
     print("Fetching {} news for {}".format(news_type, company))
 
-    if news_type == 'positive':
+    if news_type == 'positive' or news_type == 'Positive+News':
 
         response_data = {
             "messages": [{
@@ -103,7 +103,7 @@ def get_news(company, news_type):
             }]
         }
 
-    elif news_type == 'negative':
+    elif news_type == 'negative' or news_type == 'Negative+News':
 
         response_data = {
             "messages": [{
