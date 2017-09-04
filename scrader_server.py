@@ -376,28 +376,28 @@ def get_companies(stocks_type):
                                 "block_name": "Company Specific News",
                                 "title": "Facebook"
                             }]
-                        }, {
-                            "title": "VMware",
-                            "buttons": [{
-                                "type": "show_block",
-                                "block_name": "Company Specific News",
-                                "title": "VMware"
-                            }]
-                        }, {
-                            "title": "Instagram",
-                            "buttons": [{
-                                "type": "show_block",
-                                "block_name": "Company Specific News",
-                                "title": "Instagram"
-                            }]
-                        }, {
-                            "title": "Hooli",
-                            "buttons": [{
-                                "type": "show_block",
-                                "block_name": "Company Specific News",
-                                "title": "Hooli"
-                            }]
-                         }, #{
+                         }#, {
+                        #     "title": "VMware",
+                        #     "buttons": [{
+                        #         "type": "show_block",
+                        #         "block_name": "Company Specific News",
+                        #         "title": "VMware"
+                        #     }]
+                        # }, {
+                        #     "title": "Instagram",
+                        #     "buttons": [{
+                        #         "type": "show_block",
+                        #         "block_name": "Company Specific News",
+                        #         "title": "Instagram"
+                        #     }]
+                        #  }#, {
+                        #     "title": "Hooli",
+                        #     "buttons": [{
+                        #         "type": "show_block",
+                        #         "block_name": "Company Specific News",
+                        #         "title": "Hooli"
+                        #     }]
+                        #  }, #{
                         #     "title": "Pied Piper",
                         #     "buttons": [{
                         #         "type": "show_block",
