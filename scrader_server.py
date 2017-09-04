@@ -359,36 +359,38 @@ def get_companies(stocks_type):
                                 "type": "show_block",
                                 "block_name": "Company Specific News",
                                 "title": "Apple"
-                            },
-                            {
-                                "type": "show_block",
-                                "block_name": "Company Specific News",
-                                "title": "Adidas"
-                            }
-                            ]
-                        }, {
-                            "title": "more...",
-                            "buttons": [{
-                                "type": "show_block",
-                                "block_name": "Company Specific News",
-                                "title": "Vmware"
-                            },
-                            {
-                                "type": "show_block",
-                                "block_name": "Company Specific News",
-                                "title": "Instagram"
-                            },
-                            {
-                                "type": "show_block",
-                                "block_name": "Company Specific News",
-                                "title": "Facebook"
                             }
                             ]
                         }
                         ]
                     }
                 }
-            }]
+            },
+            {
+                "attachment": {
+                    "type": "template",
+                    "payload": {
+                        "template_type": "generic",
+                        # "top_element_style": "compact",
+                        "elements": [{
+                            "title": "more...",
+                            "buttons": [{
+                                "type": "show_block",
+                                "block_name": "Company Specific News",
+                                "title": "Vmware"
+                            },
+                                {
+                                    "type": "show_block",
+                                    "block_name": "Company Specific News",
+                                    "title": "Instagram"
+                                }
+                            ]
+                        }
+                        ]
+                    }
+                }
+            }
+            ]
         }
 
         # response_data = {
