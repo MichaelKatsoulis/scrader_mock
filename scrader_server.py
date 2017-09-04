@@ -359,6 +359,11 @@ def get_companies(stocks_type):
                                 "type": "show_block",
                                 "block_name": "Company Specific News",
                                 "title": "Apple"
+                            },
+                            {
+                                "type": "show_block",
+                                "block_name": "Company Specific News",
+                                "title": "Adidas"
                             }
                             ]
                         }, {
@@ -366,12 +371,17 @@ def get_companies(stocks_type):
                             "buttons": [{
                                 "type": "show_block",
                                 "block_name": "Company Specific News",
-                                "title": "Facebook"
+                                "title": "Vmware"
                             },
                             {
                                 "type": "show_block",
                                 "block_name": "Company Specific News",
                                 "title": "Instagram"
+                            },
+                            {
+                                "type": "show_block",
+                                "block_name": "Company Specific News",
+                                "title": "Facebook"
                             }
                             ]
                         }
