@@ -376,14 +376,14 @@ def get_companies(stocks_type):
                                 "block_name": "Company Specific News",
                                 "title": "Facebook"
                             }]
-                         }#, {
-                        #     "title": "VMware",
-                        #     "buttons": [{
-                        #         "type": "show_block",
-                        #         "block_name": "Company Specific News",
-                        #         "title": "VMware"
-                        #     }]
-                        # }, {
+                         }, {
+                            "title": "VMware",
+                            "buttons": [{
+                                "type": "show_block",
+                                "block_name": "Company Specific News",
+                                "title": "VMware"
+                            }]
+                        }#, {
                         #     "title": "Instagram",
                         #     "buttons": [{
                         #         "type": "show_block",
