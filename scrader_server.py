@@ -281,23 +281,25 @@ def get_companies(stocks_type):
                                 "elements": [
                                     {
                                         "title": "Classic White T-Shirt",
+                                        "image_url": "http://petersapparel.parseapp.com/img/item100-thumb.png",
                                         "subtitle": "Soft white cotton t-shirt is back in style",
                                         "buttons": [
                                             {
-                                                "type": "web_url",
-                                                "url": "https://petersapparel.parseapp.com/view_item?item_id=100",
-                                                "title": "View Item"
+                                                "type": "show_block",
+                                                "block_name": "Company News",
+                                                "title": "Amazon"
                                             }
                                         ]
                                     },
                                     {
                                         "title": "Classic Grey T-Shirt",
+                                        "image_url": "http://petersapparel.parseapp.com/img/item101-thumb.png",
                                         "subtitle": "Soft gray cotton t-shirt is back in style",
                                         "buttons": [
                                             {
-                                                "type": "web_url",
-                                                "url": "https://petersapparel.parseapp.com/view_item?item_id=101",
-                                                "title": "View Item"
+                                                "type": "show_block",
+                                                "block_name": "Company News",
+                                                "title": "Apple"
                                             }
                                         ]
                                     }
