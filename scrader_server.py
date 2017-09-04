@@ -362,55 +362,49 @@ def get_companies(stocks_type):
                                 "block_name": "Company Specific News",
                                 "title": "Apple"
                             }]
-                        },
-                        {
+                        }, {
                             "title": "Adidas",
                             "buttons": [{
                                 "type": "show_block",
                                 "block_name": "Company Specific News",
                                 "title": "Adidas"
                             }]
-                        },
-                        {
+                        }, {
                             "title": "Facebook",
                             "buttons": [{
                                 "type": "show_block",
                                 "block_name": "Company Specific News",
                                 "title": "Facebook"
                             }]
-                        },
-                        {
+                        }, {
                             "title": "VMware",
                             "buttons": [{
                                 "type": "show_block",
                                 "block_name": "Company Specific News",
                                 "title": "VMware"
                             }]
-                        },
-                        {
+                        }, {
                             "title": "Instagram",
                             "buttons": [{
                                 "type": "show_block",
                                 "block_name": "Company Specific News",
                                 "title": "Instagram"
                             }]
-                        },
-                        {
+                        }, {
                             "title": "Hooli",
                             "buttons": [{
                                 "type": "show_block",
                                 "block_name": "Company Specific News",
                                 "title": "Hooli"
                             }]
-                        },
-                        {
-                            "title": "Pied Piper",
-                            "buttons": [{
-                                "type": "show_block",
-                                "block_name": "Company Specific News",
-                                "title": "Pied Piper"
-                            }]
-                        }
+                         }, #{
+                        #     "title": "Pied Piper",
+                        #     "buttons": [{
+                        #         "type": "show_block",
+                        #         "block_name": "Company Specific News",
+                        #         "title": "Pied Piper"
+                        #     }]
+                        # }
                         ]
                     }
                 }
@@ -451,7 +445,6 @@ def get_companies(stocks_type):
         #         }
         #     ]
         # }
-
 
     print(response_data)
     status = 200 if response_data is not None else 403
