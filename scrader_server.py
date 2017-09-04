@@ -228,7 +228,8 @@ def get_companies(stocks_type):
                 "attachment": {
                     "type": "template",
                     "payload": {
-                        "template_type": "generic",
+                        "template_type": "list",
+                        "top_element_style": "compact",
                         "elements": [{
                             "title": "SAP & IBM Jointly Offer Solution for Retail, Packaged Goods",
                             "subtitle": "Enterprise application software, SAP SE ...",
