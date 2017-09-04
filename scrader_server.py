@@ -384,24 +384,6 @@ def get_companies(stocks_type):
                                 "title": "VMware"
                             }
                             ]
-                        }, {
-                            "title": "and more...",
-                            "buttons": [{
-                                "type": "show_block",
-                                "block_name": "Company Specific News",
-                                "title": "Hooli"
-                            },
-                            {
-                                "type": "show_block",
-                                "block_name": "Company Specific News",
-                                "title": "Pied Piper"
-                            },
-                            {
-                                "type": "show_block",
-                                "block_name": "Company Specific News",
-                                "title": "Google"
-                            }
-                            ]
                         }
                         ]
                     }
