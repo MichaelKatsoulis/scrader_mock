@@ -233,18 +233,35 @@ def get_companies(stocks_type):
                         "elements": [{
                             "title": "Amazon",
                             "buttons": [{
-                                "type": "web_url",
-                                "url": "http://edition.cnn.com/",
+                                "type": "show_block",
+                                "url": "Company News",
                                 "title": "Amazon"
                             }]
                         }, {
                             "title": "Apple",
                             "buttons": [{
-                                "type": "web_url",
-                                "url": "https://www.bloomberg.com/europe",
+                                "type": "show_block",
+                                "url": "Company News",
                                 "title": "Apple"
                             }]
-                        }]
+                        },
+                        {
+                            "title": "Adidas",
+                            "buttons": [{
+                                "type": "show_block",
+                                "url": "Company News",
+                                "title": "Adidas"
+                            }]
+                        },
+                        {
+                            "title": "Instagram",
+                            "buttons": [{
+                                "type": "show_block",
+                                "url": "Company News",
+                                "title": "Instagram"
+                            }]
+                        }
+                        ]
                     }
                 }
             }]
