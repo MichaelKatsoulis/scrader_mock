@@ -234,6 +234,7 @@ def get_companies(stocks_type):
                                 "elements": [
                                     {
                                         "title": "Amazon",
+                                        "subtitle": "Amazon",
                                         "buttons": [
                                             {
                                                 "type": "show_block",
@@ -244,6 +245,7 @@ def get_companies(stocks_type):
                                     },
                                     {
                                         "title": "Apple",
+                                        "subtitle": "Apple",
                                         "buttons": [
                                             {
                                                 "type": "show_block",
@@ -254,6 +256,7 @@ def get_companies(stocks_type):
                                     },
                                     {
                                         "title": "Adidas",
+                                        "subtitle": "Adidas",
                                         "buttons": [
                                             {
                                                 "type": "show_block",
