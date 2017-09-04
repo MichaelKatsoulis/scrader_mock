@@ -80,7 +80,7 @@ def get_news(company, news_type):
                         "elements": [{
                             "title": "What Amazon knows: 'The war for retail will be won in groceries'",
                             "image_url": "http://i2.cdn.turner.com/money/dam/assets/170825082748-whole-foods-fresh-fruit-apples-1024x576.jpg",
-                            "subtitle": "Amazon believes the future of grocery shopping is online.",
+                            "subtitle": "Date: 03/09/2017 14:23",
                             "item_url": "http://money.cnn.com/2017/08/25/technology/business/amazon-whole-foods-strategy/index.html",
                             "buttons": [{
                                 "type": "web_url",
@@ -90,7 +90,7 @@ def get_news(company, news_type):
                         }, {
                             "title": "Ocado Taps Amazon's Alexa for Voice Ordering in Convenience Push",
                             "image_url": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/i4GOoR9HbhHg/v0/1000x-1.jpg",
-                            "subtitle": "U.K. online grocer Ocado Group Plc is teaming up with Amazon.com Inc.",
+                            "subtitle": "Date: 03/09/2017 16:59",
                             "item_url": "https://www.bloomberg.com/news/articles/2017-08-29/ocado-taps-amazon-s-alexa-for-voice-ordering-in-convenience-push",
                             "buttons": [{
                                 "type": "web_url",
