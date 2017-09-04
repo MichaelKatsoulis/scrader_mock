@@ -238,14 +238,14 @@ def get_companies(stocks_type):
                             "title": "Amazon",
                             "buttons": [{
                                 "type": "show_block",
-                                "url": "Company News",
+                                "block_name": "Company News",
                                 "title": "Amazon"
                             }]
                         }, {
                             "title": "Apple",
                             "buttons": [{
                                 "type": "show_block",
-                                "url": "Company News",
+                                "block_name": "Company News",
                                 "title": "Apple"
                             }]
                         },
@@ -253,7 +253,7 @@ def get_companies(stocks_type):
                             "title": "Adidas",
                             "buttons": [{
                                 "type": "show_block",
-                                "url": "Company News",
+                                "block_name": "Company News",
                                 "title": "Adidas"
                             }]
                         },
@@ -261,7 +261,7 @@ def get_companies(stocks_type):
                             "title": "Instagram",
                             "buttons": [{
                                 "type": "show_block",
-                                "url": "Company News",
+                                "block_name": "Company News",
                                 "title": "Instagram"
                             }]
                         }
