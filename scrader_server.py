@@ -224,6 +224,10 @@ def get_companies(stocks_type):
         # }
 
         response_data = {
+            "set_attributes":
+                {
+                    "news_type": "positive"
+                },
             "messages": [{
                 "attachment": {
                     "type": "template",
