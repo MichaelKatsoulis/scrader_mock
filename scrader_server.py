@@ -224,6 +224,53 @@ def get_companies(stocks_type):
         }
 
         response_data = {
+            # {
+            #     "messages": [
+            #         {
+            #             "attachment": {
+            #                 "type": "template",
+            #                 "payload": {
+            #                     "template_type": "generic",
+            #                     "elements": [
+            #                         {
+            #                             "title": "Amazon",
+            #                             "subtitle": "Amazon",
+            #                             "buttons": [
+            #                                 {
+            #                                     "type": "show_block",
+            #                                     "block_name": "Company News",
+            #                                     "title": "Amazon"
+            #                                 }
+            #                             ]
+            #                         },
+            #                         {
+            #                             "title": "Apple",
+            #                             "subtitle": "Apple",
+            #                             "buttons": [
+            #                                 {
+            #                                     "type": "show_block",
+            #                                     "block_name": "Company News",
+            #                                     "title": "Apple"
+            #                                 }
+            #                             ]
+            #                         },
+            #                         {
+            #                             "title": "Adidas",
+            #                             "subtitle": "Adidas",
+            #                             "buttons": [
+            #                                 {
+            #                                     "type": "show_block",
+            #                                     "block_name": "Company News",
+            #                                     "title": "Adidas"
+            #                                 }
+            #                             ]
+            #                         }
+            #                     ]
+            #                 }
+            #             }
+            #         }
+            #     ]
+            # }
             {
                 "messages": [
                     {
@@ -233,35 +280,24 @@ def get_companies(stocks_type):
                                 "template_type": "generic",
                                 "elements": [
                                     {
-                                        "title": "Amazon",
-                                        "subtitle": "Amazon",
+                                        "title": "Classic White T-Shirt",
+                                        "subtitle": "Soft white cotton t-shirt is back in style",
                                         "buttons": [
                                             {
-                                                "type": "show_block",
-                                                "block_name": "Company News",
-                                                "title": "Amazon"
+                                                "type": "web_url",
+                                                "url": "https://petersapparel.parseapp.com/view_item?item_id=100",
+                                                "title": "View Item"
                                             }
                                         ]
                                     },
                                     {
-                                        "title": "Apple",
-                                        "subtitle": "Apple",
+                                        "title": "Classic Grey T-Shirt",
+                                        "subtitle": "Soft gray cotton t-shirt is back in style",
                                         "buttons": [
                                             {
-                                                "type": "show_block",
-                                                "block_name": "Company News",
-                                                "title": "Apple"
-                                            }
-                                        ]
-                                    },
-                                    {
-                                        "title": "Adidas",
-                                        "subtitle": "Adidas",
-                                        "buttons": [
-                                            {
-                                                "type": "show_block",
-                                                "block_name": "Company News",
-                                                "title": "Adidas"
+                                                "type": "web_url",
+                                                "url": "https://petersapparel.parseapp.com/view_item?item_id=101",
+                                                "title": "View Item"
                                             }
                                         ]
                                     }
