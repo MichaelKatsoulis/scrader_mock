@@ -349,62 +349,60 @@ def get_companies(stocks_type):
                         "template_type": "list",
                         "top_element_style": "compact",
                         "elements": [{
-                            "title": "Amazon",
+                            "title": "Scrader Supported Companies",
                             "buttons": [{
                                 "type": "show_block",
                                 "block_name": "Company Specific News",
                                 "title": "Amazon"
-                            }]
-                        }, {
-                            "title": "Apple",
-                            "buttons": [{
+                            },
+                            {
                                 "type": "show_block",
                                 "block_name": "Company Specific News",
                                 "title": "Apple"
-                            }]
-                        }, {
-                            "title": "Adidas",
-                            "buttons": [{
+                            },
+                            {
                                 "type": "show_block",
                                 "block_name": "Company Specific News",
                                 "title": "Adidas"
-                            }]
+                            }
+                            ]
                         }, {
-                            "title": "Facebook",
+                            "title": "more...",
                             "buttons": [{
                                 "type": "show_block",
                                 "block_name": "Company Specific News",
                                 "title": "Facebook"
-                            }]
-                         }, {
-                            "title": "VMware",
-                            "buttons": [{
+                            },
+                            {
+                                "type": "show_block",
+                                "block_name": "Company Specific News",
+                                "title": "Instagram"
+                            },
+                            {
                                 "type": "show_block",
                                 "block_name": "Company Specific News",
                                 "title": "VMware"
-                            }]
-                        }#, {
-                        #     "title": "Instagram",
-                        #     "buttons": [{
-                        #         "type": "show_block",
-                        #         "block_name": "Company Specific News",
-                        #         "title": "Instagram"
-                        #     }]
-                        #  }#, {
-                        #     "title": "Hooli",
-                        #     "buttons": [{
-                        #         "type": "show_block",
-                        #         "block_name": "Company Specific News",
-                        #         "title": "Hooli"
-                        #     }]
-                        #  }, #{
-                        #     "title": "Pied Piper",
-                        #     "buttons": [{
-                        #         "type": "show_block",
-                        #         "block_name": "Company Specific News",
-                        #         "title": "Pied Piper"
-                        #     }]
-                        # }
+                            }
+                            ]
+                        }, {
+                            "title": "and more...",
+                            "buttons": [{
+                                "type": "show_block",
+                                "block_name": "Company Specific News",
+                                "title": "Hooli"
+                            },
+                            {
+                                "type": "show_block",
+                                "block_name": "Company Specific News",
+                                "title": "Pied Piper"
+                            },
+                            {
+                                "type": "show_block",
+                                "block_name": "Company Specific News",
+                                "title": "Google"
+                            }
+                            ]
+                        }
                         ]
                     }
                 }
