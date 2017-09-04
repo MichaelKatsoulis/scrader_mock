@@ -188,127 +188,67 @@ def get_companies(stocks_type):
 
     if stocks_type == 'Positive+News':
 
-        response_data = {
-            "set_attributes":
-                {
-                    "news_type": "positive"
-                },
-            "messages": [
-                {
-                    "attachment": {
-                        "type": "template",
-                        "payload": {
-                            "template_type": "button",
-                            "text": "Great choice! These are today's top positive stocks",
-                            "buttons": [
-                                {
-                                    "type": "show_block",
-                                    "block_name": "Company News",
-                                    "title": "Amazon"
-                                },
-                                {
-                                    "type": "show_block",
-                                    "block_name": "Company News",
-                                    "title": "Apple"
-                                },
-                                {
-                                    "type": "show_block",
-                                    "block_name": "Company News",
-                                    "title": "Adidas"
-                                }
-                            ]
-                        }
-                    }
-                }
-            ]
-        }
+        # response_data = {
+        #     "set_attributes":
+        #         {
+        #             "news_type": "positive"
+        #         },
+        #     "messages": [
+        #         {
+        #             "attachment": {
+        #                 "type": "template",
+        #                 "payload": {
+        #                     "template_type": "button",
+        #                     "text": "Great choice! These are today's top positive stocks",
+        #                     "buttons": [
+        #                         {
+        #                             "type": "show_block",
+        #                             "block_name": "Company News",
+        #                             "title": "Amazon"
+        #                         },
+        #                         {
+        #                             "type": "show_block",
+        #                             "block_name": "Company News",
+        #                             "title": "Apple"
+        #                         },
+        #                         {
+        #                             "type": "show_block",
+        #                             "block_name": "Company News",
+        #                             "title": "Adidas"
+        #                         }
+        #                     ]
+        #                 }
+        #             }
+        #         }
+        #     ]
+        # }
 
         response_data = {
-            # {
-            #     "messages": [
-            #         {
-            #             "attachment": {
-            #                 "type": "template",
-            #                 "payload": {
-            #                     "template_type": "generic",
-            #                     "elements": [
-            #                         {
-            #                             "title": "Amazon",
-            #                             "subtitle": "Amazon",
-            #                             "buttons": [
-            #                                 {
-            #                                     "type": "show_block",
-            #                                     "block_name": "Company News",
-            #                                     "title": "Amazon"
-            #                                 }
-            #                             ]
-            #                         },
-            #                         {
-            #                             "title": "Apple",
-            #                             "subtitle": "Apple",
-            #                             "buttons": [
-            #                                 {
-            #                                     "type": "show_block",
-            #                                     "block_name": "Company News",
-            #                                     "title": "Apple"
-            #                                 }
-            #                             ]
-            #                         },
-            #                         {
-            #                             "title": "Adidas",
-            #                             "subtitle": "Adidas",
-            #                             "buttons": [
-            #                                 {
-            #                                     "type": "show_block",
-            #                                     "block_name": "Company News",
-            #                                     "title": "Adidas"
-            #                                 }
-            #                             ]
-            #                         }
-            #                     ]
-            #                 }
-            #             }
-            #         }
-            #     ]
-            # }
-            {
-                "messages": [
-                    {
-                        "attachment": {
-                            "type": "template",
-                            "payload": {
-                                "template_type": "generic",
-                                "elements": [
-                                    {
-                                        "title": "Classic White T-Shirt",
-                                        "image_url": "http://petersapparel.parseapp.com/img/item100-thumb.png",
-                                        "subtitle": "Soft white cotton t-shirt is back in style",
-                                        "buttons": [
-                                            {
-                                                "type": "web_url",
-                                                "url": "https://petersapparel.parseapp.com/view_item?item_id=100",
-                                                "title": "View Item"
-                                            }
-                                        ]
-                                    },
-                                    {
-                                        "title": "Classic Grey T-Shirt",
-                                        "image_url": "http://petersapparel.parseapp.com/img/item101-thumb.png",
-                                        "subtitle": "Soft gray cotton t-shirt is back in style",
-                                        "buttons": [
-                                            {
-                                                "type": "web_url",
-                                                "url": "https://petersapparel.parseapp.com/view_item?item_id=101",
-                                                "title": "View Item"
-                                            }
-                                        ]
-                                    }
-                                ]
-                            }
-                        }
+            "messages": [{
+                "attachment": {
+                    "type": "template",
+                    "payload": {
+                        "template_type": "generic",
+                        "elements": [{
+                            "title": "SAP & IBM Jointly Offer Solution for Retail, Packaged Goods",
+                            "subtitle": "Enterprise application software, SAP SE ...",
+                            "buttons": [{
+                                "type": "web_url",
+                                "url": "http://edition.cnn.com/",
+                                "title": "CNN.COM"
+                            }]
+                        }, {
+                            "title": "Lenovo Shares Could Fall Another 27%: Top-Ranked Analyst",
+                            "subtitle": "Lenovo Group Ltd., which breathed new life into IBM's personal-computer business...",
+                            "buttons": [{
+                                "type": "web_url",
+                                "url": "https://www.bloomberg.com/europe",
+                                "title": "BLOOMBERG.COM"
+                            }]
+                        }]
                     }
-                ]
-            }
+                }
+            }]
         }
 
     elif stocks_type == 'Negative+News':
