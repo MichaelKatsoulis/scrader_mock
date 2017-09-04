@@ -223,43 +223,52 @@ def get_companies(stocks_type):
             ]
         }
 
-        # response_data = {
-        #     "set_attributes":
-        #         {
-        #             "news_type": "positive"
-        #         },
-        #     "messages": [
-        #         {
-        #           "text":  "testRedirectInQuickReply",
-        #           "quick_replies": [
-        #             {
-        #               "title":"Amazon",
-        #               "block_names":["Company News"]
-        #             },
-        #             {
-        #               "title": "Apple",
-        #               "block_names": ["Company News"]
-        #             },
-        #             {
-        #               "title": "Adidas",
-        #               "block_names": ["Company News"]
-        #             },
-        #             {
-        #                 "title": "Instagram",
-        #                 "block_names": ["Company News"]
-        #             },
-        #             {
-        #                 "title": "VMware",
-        #                 "block_names": ["Company News"]
-        #             },
-        #             {
-        #                 "title": "IBM",
-        #                 "block_names": ["Company News"]
-        #             }
-        #           ]
-        #         }
-        #   ]
-        # }
+        response_data = {
+            {
+                "messages": [
+                    {
+                        "attachment": {
+                            "type": "template",
+                            "payload": {
+                                "template_type": "generic",
+                                "elements": [
+                                    {
+                                        "title": "Amazon",
+                                        "buttons": [
+                                            {
+                                                "type": "show_block",
+                                                "block_name": "Company News",
+                                                "title": "Amazon"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "title": "Apple",
+                                        "buttons": [
+                                            {
+                                                "type": "show_block",
+                                                "block_name": "Company News",
+                                                "title": "Apple"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "title": "Adidas",
+                                        "buttons": [
+                                            {
+                                                "type": "show_block",
+                                                "block_name": "Company News",
+                                                "title": "Adidas"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                ]
+            }
+        }
 
     elif stocks_type == 'Negative+News':
 
