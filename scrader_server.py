@@ -232,8 +232,8 @@ def get_companies(stocks_type):
                 "attachment": {
                     "type": "template",
                     "payload": {
-                        "template_type": "list",
-                        "top_element_style": "compact",
+                        "template_type": "generic",
+                        # "top_element_style": "compact",
                         "elements": [{
                             "title": "Amazon",
                             "buttons": [{
