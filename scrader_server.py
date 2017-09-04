@@ -285,9 +285,9 @@ def get_companies(stocks_type):
                                         "subtitle": "Soft white cotton t-shirt is back in style",
                                         "buttons": [
                                             {
-                                                "type": "show_block",
-                                                "block_name": "Company News",
-                                                "title": "Amazon"
+                                                "type": "web_url",
+                                                "url": "https://petersapparel.parseapp.com/view_item?item_id=100",
+                                                "title": "View Item"
                                             }
                                         ]
                                     },
@@ -297,9 +297,9 @@ def get_companies(stocks_type):
                                         "subtitle": "Soft gray cotton t-shirt is back in style",
                                         "buttons": [
                                             {
-                                                "type": "show_block",
-                                                "block_name": "Company News",
-                                                "title": "Apple"
+                                                "type": "web_url",
+                                                "url": "https://petersapparel.parseapp.com/view_item?item_id=101",
+                                                "title": "View Item"
                                             }
                                         ]
                                     }
