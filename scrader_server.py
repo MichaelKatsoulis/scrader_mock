@@ -188,210 +188,122 @@ def get_companies(stocks_type):
 
     if stocks_type == 'Positive+News':
 
-        # response_data = {
-        #     "set_attributes":
-        #         {
-        #             "news_type": "positive"
-        #         },
-        #     "messages": [
-        #         {
-        #             "attachment": {
-        #                 "type": "template",
-        #                 "payload": {
-        #                     "template_type": "button",
-        #                     "text": "Great choice! These are today's top positive stocks",
-        #                     "buttons": [
-        #                         {
-        #                             "type": "show_block",
-        #                             "block_name": "Company News",
-        #                             "title": "Amazon"
-        #                         },
-        #                         {
-        #                             "type": "show_block",
-        #                             "block_name": "Company News",
-        #                             "title": "Apple"
-        #                         },
-        #                         {
-        #                             "type": "show_block",
-        #                             "block_name": "Company News",
-        #                             "title": "Adidas"
-        #                         }
-        #                     ]
-        #                 }
-        #             }
-        #         }
-        #     ]
-        # }
-
         response_data = {
             "set_attributes":
                 {
                     "news_type": "positive"
                 },
-            "messages": [{
-                "attachment": {
-                    "type": "template",
-                    "payload": {
-                        "template_type": "list",
-                        "top_element_style": "compact",
-                        "elements": [{
-                            "title": "Amazon",
-                            "buttons": [{
-                                "type": "show_block",
-                                "block_name": "Company News",
-                                "title": "Amazon"
-                            }]
-                        }, {
-                            "title": "Apple",
-                            "buttons": [{
-                                "type": "show_block",
-                                "block_name": "Company News",
-                                "title": "Apple"
-                            }]
-                        },
-                        {
-                            "title": "Adidas",
-                            "buttons": [{
-                                "type": "show_block",
-                                "block_name": "Company News",
-                                "title": "Adidas"
-                            }]
-                        },
-                        {
-                            "title": "Facebook",
-                            "buttons": [{
-                                "type": "show_block",
-                                "block_name": "Company News",
-                                "title": "Facebook"
-                            }]
+            "messages": [
+                {
+                    "attachment": {
+                        "type": "template",
+                        "payload": {
+                            "template_type": "button",
+                            "text": "Great choice! These are today's top positive stocks",
+                            "buttons": [
+                                {
+                                    "type": "show_block",
+                                    "block_name": "Company News",
+                                    "title": "Amazon"
+                                },
+                                {
+                                    "type": "show_block",
+                                    "block_name": "Company News",
+                                    "title": "Apple"
+                                },
+                                {
+                                    "type": "show_block",
+                                    "block_name": "Company News",
+                                    "title": "Adidas"
+                                }
+                            ]
                         }
-                        ]
                     }
                 }
-            }]
+            ]
         }
-
-    elif stocks_type == 'Negative+News':
 
         # response_data = {
         #     "set_attributes":
         #         {
-        #             "news_type": "negative"
+        #             "news_type": "positive"
         #         },
-        #     "messages": [
-        #         {
-        #             "attachment": {
-        #                 "type": "template",
-        #                 "payload": {
-        #                     "template_type": "button",
-        #                     "text": "These are today's top negative stocks",
-        #                     "buttons": [
-        #                         {
-        #                             "type": "show_block",
-        #                             "block_name": "Company News",
-        #                             "title": "Instagram"
-        #                         },
-        #                         {
-        #                             "type": "show_block",
-        #                             "block_name": "Company News",
-        #                             "title": "VMware"
-        #                         }
-        #                     ]
+        #     "messages": [{
+        #         "attachment": {
+        #             "type": "template",
+        #             "payload": {
+        #                 "template_type": "list",
+        #                 "top_element_style": "compact",
+        #                 "elements": [{
+        #                     "title": "Amazon",
+        #                     "buttons": [{
+        #                         "type": "show_block",
+        #                         "block_name": "Company News",
+        #                         "title": "Amazon"
+        #                     }]
+        #                 }, {
+        #                     "title": "Apple",
+        #                     "buttons": [{
+        #                         "type": "show_block",
+        #                         "block_name": "Company News",
+        #                         "title": "Apple"
+        #                     }]
+        #                 },
+        #                 {
+        #                     "title": "Adidas",
+        #                     "buttons": [{
+        #                         "type": "show_block",
+        #                         "block_name": "Company News",
+        #                         "title": "Adidas"
+        #                     }]
+        #                 },
+        #                 {
+        #                     "title": "Facebook",
+        #                     "buttons": [{
+        #                         "type": "show_block",
+        #                         "block_name": "Company News",
+        #                         "title": "Facebook"
+        #                     }]
         #                 }
+        #                 ]
         #             }
         #         }
-        #     ]
+        #     }]
         # }
+
+    elif stocks_type == 'Negative+News':
 
         response_data = {
             "set_attributes":
                 {
                     "news_type": "negative"
                 },
-            "messages": [{
-                "attachment": {
-                    "type": "template",
-                    "payload": {
-                        "template_type": "list",
-                        "top_element_style": "compact",
-                        "elements": [{
-                            "title": "Instagram",
-                            "buttons": [{
-                                "type": "show_block",
-                                "block_name": "Company News",
-                                "title": "Instagram"
-                            }]
-                        }, {
-                            "title": "VMware",
-                            "buttons": [{
-                                "type": "show_block",
-                                "block_name": "Company News",
-                                "title": "VMware"
-                            }]
+            "messages": [
+                {
+                    "attachment": {
+                        "type": "template",
+                        "payload": {
+                            "template_type": "button",
+                            "text": "These are today's top negative stocks",
+                            "buttons": [
+                                {
+                                    "type": "show_block",
+                                    "block_name": "Company News",
+                                    "title": "Instagram"
+                                },
+                                {
+                                    "type": "show_block",
+                                    "block_name": "Company News",
+                                    "title": "VMware"
+                                }
+                            ]
                         }
-                        ]
                     }
                 }
-            }]
+            ]
         }
 
     else:
-
-        # response_data = {
-        #     "set_attributes":
-        #         {
-        #             "news_type": "all"
-        #         },
-        #     "messages": [{
-        #         "attachment": {
-        #             "type": "template",
-        #             "payload": {
-        #                 "template_type": "generic",
-        #                 # "top_element_style": "compact",
-        #                 "elements": [{
-        #                     "title": "Scrader Supported Companies",
-        #                     "buttons": [{
-        #                         "type": "show_block",
-        #                         "block_name": "Company Specific News",
-        #                         "title": "Amazon"
-        #                     },
-        #                     {
-        #                         "type": "show_block",
-        #                         "block_name": "Company Specific News",
-        #                         "title": "Apple"
-        #                     }
-        #                     ]
-        #                 }
-        #                 ]
-        #             }
-        #         }
-        #     },
-        #     {
-        #         "attachment": {
-        #             "type": "template",
-        #             "payload": {
-        #                 "template_type": "generic",
-        #                 # "top_element_style": "compact",
-        #                 "elements": [{
-        #                     "title": "more...",
-        #                     "buttons": [{
-        #                         "type": "show_block",
-        #                         "block_name": "Company Specific News",
-        #                         "title": "Vmware"
-        #                     },
-        #                         {
-        #                             "type": "show_block",
-        #                             "block_name": "Company Specific News",
-        #                             "title": "Instagram"
-        #                         }
-        #                     ]
-        #                 }
-        #                 ]
-        #             }
-        #         }
-        #     }
-        #     ]
-        # }
 
         response_data = {
             "set_attributes":
