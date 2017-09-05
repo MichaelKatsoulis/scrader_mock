@@ -59,6 +59,22 @@ def get_latest_news():
                           mimetype='application/json')
 
 
+@app.route('/subscribe/<user_id>'.format(methods=['POST']))
+def subscribe(user_id):
+    """ GET Server Status API endpoint
+        Args:
+        Returns:
+            dict: A JSON object containing the nfvacc server status information
+    """
+    print(user_id)
+    response_data = {}
+    status = 200 if response_data is not None else 403
+    js = json.dumps(response_data, indent=2)
+    return flask.Response(js,
+                          status=status,
+                          mimetype='application/json')
+
+
 @app.route('/news/<company>/<news_type>'.format(methods=['GET']))
 def get_news(company, news_type):
     """ GET Server Status API endpoint
