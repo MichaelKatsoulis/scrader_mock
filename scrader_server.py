@@ -110,16 +110,109 @@ def user_notification(user_id, time_frame):
 
     if time_frame == 'Daily':
         message = "Mr {} you will be notified {}".format(user_name, time_frame)
+        response_data = {
+
+            "messages": [
+                {"text": message}
+            ]
+
+        }
     else:
-        message = "Mr {} you will be notified for {}".format(user_name, time_frame)
+        message = "Mr {} you can be notified for the following {}".format(user_name, time_frame)
+        response_data = {
+            "set_attributes":
+                {
+                    "news_type": "all"
+                },
+            "messages": [
+                {
+                    "attachment": {
+                        "type": "template",
+                        "payload": {
+                            "template_type": "button",
+                            "text": message,
+                            "buttons": [
+                                {
+                                    "type": "show_block",
+                                    "block_name": "Company Specific News",
+                                    "title": "Instagram"
+                                },
+                                {
+                                    "type": "show_block",
+                                    "block_name": "Company Specific News",
+                                    "title": "VMware"
+                                },
+                                {
+                                    "type": "show_block",
+                                    "block_name": "Company Specific News",
+                                    "title": "IBM"
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "attachment": {
+                        "type": "template",
+                        "payload": {
+                            "template_type": "button",
+                            "text": "...",
+                            "buttons": [
+                                {
+                                    "type": "show_block",
+                                    "block_name": "Company Specific News",
+                                    "title": "Apple"
+                                },
+                                {
+                                    "type": "show_block",
+                                    "block_name": "Company Specific News",
+                                    "title": "Amazon"
+                                },
+                                {
+                                    "type": "show_block",
+                                    "block_name": "Company Specific News",
+                                    "title": "Adidas"
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "attachment": {
+                        "type": "template",
+                        "payload": {
+                            "template_type": "button",
+                            "text": "...",
+                            "buttons": [
+                                {
+                                    "type": "show_block",
+                                    "block_name": "Company Specific News",
+                                    "title": "Facebook"
+                                },
+                                {
+                                    "type": "show_block",
+                                    "block_name": "Company Specific News",
+                                    "title": "Google"
+                                },
+                                {
+                                    "type": "show_block",
+                                    "block_name": "Company Specific News",
+                                    "title": "Hooli"
+                                }
+                            ]
+                        }
+                    }
+                }
+            ]
+        }
 
-    response_data = {
-
-        "messages": [
-            {"text": message}
-        ]
-
-    }
+    # response_data = {
+    #
+    #     "messages": [
+    #         {"text": message}
+    #     ]
+    #
+    # }
     status = 200 if response_data is not None else 403
     js = json.dumps(response_data, indent=2)
     return flask.Response(js,
