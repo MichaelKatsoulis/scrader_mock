@@ -2,6 +2,7 @@ from __future__ import print_function
 import flask
 import json
 from flask.ext.cors import CORS
+from flask import request
 import os
 import signal
 import config
@@ -67,6 +68,10 @@ def subscribe(user_id):
             dict: A JSON object containing the nfvacc server status information
     """
     print(user_id)
+    data = request.data
+    print(data)
+    dataDict = json.loads(data)
+    print(dataDict)
     response_data = {}
     status = 200 if response_data is not None else 403
     js = json.dumps(response_data, indent=2)
