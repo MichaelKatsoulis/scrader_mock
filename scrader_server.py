@@ -80,7 +80,7 @@ def subscribe(user_id, user_name):
                           mimetype='application/json')
 
 
-@app.route('/user_notification/<user_id>/<time_frame>'.format(methods=['POST']))
+@app.route('/user_notification/<user_id>/<time_frame>'.format(methods=['GET']))
 def user_notification(user_id, time_frame):
     """ GET Server Status API endpoint
         Args:
@@ -95,7 +95,7 @@ def user_notification(user_id, time_frame):
     response_data = {
         {
             "messages": [
-                {"text": "User  you will be notified "}
+                {"text": "User {} you will be notified {}".format(user_id, time_frame)}
             ]
         }
     }
