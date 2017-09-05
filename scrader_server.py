@@ -81,7 +81,7 @@ def subscribe(user_id, user_name):
 
 
 @app.route('/user_notification/<user_id>/<time_frame>'.format(methods=['POST']))
-def subscribe(user_id, time_frame):
+def user_notification(user_id, time_frame):
     """ GET Server Status API endpoint
         Args:
         Returns:
