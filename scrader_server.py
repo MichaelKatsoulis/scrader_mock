@@ -59,8 +59,8 @@ def get_latest_news():
                           mimetype='application/json')
 
 
-@app.route('/subscribe/<user_id>/<time_frame>'.format(methods=['POST']))
-def subscribe(user_id, time_frame):
+@app.route('/subscribe/<user_id>'.format(methods=['POST']))
+def subscribe(user_id):
     """ GET Server Status API endpoint
         Args:
         Returns:
