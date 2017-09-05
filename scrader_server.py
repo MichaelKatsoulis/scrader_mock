@@ -92,10 +92,26 @@ def user_notification(user_id, time_frame):
     # data = request.data
     # dataDict = json.loads(data)
     # print(dataDict)
+    users = [
+        {
+            'user_id': '1409009692510182',
+            'name': 'Katsoulis'
+        },
+        {
+            'user_id': '1764058846955996',
+            'name': 'Giakoump'
+        }
+        ]
+
+    user_name = user_id
+    for user in users:
+        if user.get('user_id') == user_id:
+            user_name = user.get('name')
+
     response_data = {
 
         "messages": [
-            {"text": "User {} you will be notified {}".format(user_id, time_frame)}
+            {"text": "User {} you will be notified {}".format(user_name, time_frame)}
         ]
 
     }
