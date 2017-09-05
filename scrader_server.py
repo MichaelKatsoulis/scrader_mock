@@ -69,7 +69,6 @@ def subscribe(user_id):
     """
     print(user_id)
     data = request.data
-    print(data)
     dataDict = json.loads(data)
     print(dataDict)
     response_data = {}
