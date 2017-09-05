@@ -95,7 +95,8 @@ def user_notification(user_id, time_frame):
     response_data = {
         {
             "messages": [
-                {"text": "Welcome to our store!"}
+                {"text": "Welcome to our store!"},
+                {"text": "How can I help you?"}
             ]
         }
     }
