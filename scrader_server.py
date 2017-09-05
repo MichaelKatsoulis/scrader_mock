@@ -108,10 +108,15 @@ def user_notification(user_id, time_frame):
         if user.get('user_id') == user_id:
             user_name = user.get('name')
 
+    if time_frame == 'Daily':
+        message = "Mr {} you will be notified {}".format(user_name, time_frame)
+    else:
+        message = "Mr {} you will be notified for {}".format(user_name, time_frame)
+
     response_data = {
 
         "messages": [
-            {"text": "Mr {} you will be notified {}wise".format(user_name, time_frame)}
+            {"text": message}
         ]
 
     }
