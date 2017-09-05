@@ -114,7 +114,7 @@ def get_news(company, news_type):
                         "elements": [{
                             "title": "Instagram hackers are selling user emails and phone numbers",
                             "image_url": "http://i2.cdn.turner.com/money/dam/assets/170809095225-mostly-human-instagram-1024x576.jpg",
-                            "subtitle": "Date: 04/09/2017 14:23",
+                            "subtitle": "Date: 01/09/2017 14:23",
                             "item_url": "http://money.cnn.com/2017/09/01/technology/business/instagram-hack/index.html",
                             "buttons": [{
                                 "type": "web_url",
