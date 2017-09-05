@@ -67,7 +67,6 @@ def subscribe(user_id):
             dict: A JSON object containing the nfvacc server status information
     """
     print(user_id)
-    print(time_frame)
     response_data = {}
     status = 200 if response_data is not None else 403
     js = json.dumps(response_data, indent=2)
