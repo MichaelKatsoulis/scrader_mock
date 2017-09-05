@@ -111,7 +111,7 @@ def user_notification(user_id, time_frame):
     response_data = {
 
         "messages": [
-            {"text": "User {} you will be notified {}".format(user_name, time_frame)}
+            {"text": "Mr {} you will be notified {}wise".format(user_name, time_frame)}
         ]
 
     }
