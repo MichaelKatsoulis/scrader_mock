@@ -93,12 +93,11 @@ def user_notification(user_id, time_frame):
     # dataDict = json.loads(data)
     # print(dataDict)
     response_data = {
-        {
-            "messages": [
-                {"text": "Welcome to our store!"},
-                {"text": "How can I help you?"}
-            ]
-        }
+
+        "messages": [
+            {"text": "User {} you will be notified {}".format(user_id, time_frame)}
+        ]
+
     }
     status = 200 if response_data is not None else 403
     js = json.dumps(response_data, indent=2)
