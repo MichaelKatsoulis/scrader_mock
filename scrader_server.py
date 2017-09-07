@@ -28,6 +28,7 @@ def get_html(user_name):
             dict: A JSON object containing the nfvacc server status information
     """
     name = user_name
+    print('heeee')
     print(name)
     return flask.render_template('index1.html', name=name)
 
