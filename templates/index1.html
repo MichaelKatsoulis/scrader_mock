@@ -44,7 +44,7 @@ function myFunction() {
       company_templ = { company: name, checked:clicked};
       data.push(company_templ);
      }
-     var jsonString = JSON.stringify(my_arr)
+     var jsonString = JSON.stringify(data)
      url = "http://146.185.138.240/scrader/user_companies"
      $.ajax({
       type: "GET",
