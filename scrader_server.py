@@ -218,22 +218,28 @@ def user_notification(user_id, time_frame):
           "messages": [
             {
               "attachment": {
-                "payload":{
-                  "template_type": "button",
-                  "text": "See all supported companies",
-                  "buttons": [
+                "type": "template",
+                "payload": {
+                  "template_type": "list",
+                  "top_element_style": "large",
+                  "elements": [
                     {
-                      "url": "http://146.185.138.240/scrader/companies/{}".format(user_name),
-                      "type":"json_plugin_url",
-                      "title":"go"
+                      "title": "See scrader's supported companies",
+                      "buttons": [
+                        {
+                          "type": "web_url",
+                          "url": "http://146.185.138.240/scrader/companies/{}".format(user_name),
+                          "title": "Go Now"
+                        }
+                      ]
                     }
                   ]
-                },
-                "type": "template"
+                }
               }
             }
           ]
         }
+
 
     # response_data = {
     #
