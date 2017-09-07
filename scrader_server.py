@@ -97,9 +97,9 @@ def user_data():
             dict: A JSON object containing the nfvacc server status information
     """
 
-    # data = request.data
-    # dataDict = json.loads(data)
-    # print(dataDict)
+    data = request.data
+    dataDict = json.loads(data)
+    print(dataDict)
     response_data = {}
     status = 200 if response_data is not None else 403
     js = json.dumps(response_data, indent=2)
