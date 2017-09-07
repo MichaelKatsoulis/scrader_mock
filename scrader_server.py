@@ -28,7 +28,7 @@ def get_html():
             dict: A JSON object containing the nfvacc server status information
     """
 
-    return flask.render_template('index.html')
+    return flask.render_template('index1.html')
 
 
 @app.route('/status'.format(methods=['GET']))
