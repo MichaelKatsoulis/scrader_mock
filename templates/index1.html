@@ -36,7 +36,7 @@
 <script>
 function myFunction() {
     element = document.getElementById("myForm");
-    data = [user:{{name}}]
+    data = [user:'Katsoulis']
      for (var i=0; i< element.elements.length - 1; i++){
       name = element.elements[i].id;
       clicked = element.elements[i].checked;
@@ -45,7 +45,7 @@ function myFunction() {
       data.push(company_templ);
      }
 
-     url = "http://146.185.138.240/scrader/user_companies/"
+     url = "http://146.185.138.240/scrader/user_companies"
      $.ajax({
       type: "POST",
       url: url,
