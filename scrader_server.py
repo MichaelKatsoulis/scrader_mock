@@ -220,19 +220,18 @@ def user_notification(user_id, time_frame):
               "attachment": {
                 "type": "template",
                 "payload": {
-                  "template_type": "list",
-                  "top_element_style": "large",
-                  "elements": [
-                    {
-                      "title": "See scrader's supported companies",
-                      "buttons": [
+                    "template_type": "generic",
+                    "elements": [
                         {
-                          "type": "web_url",
-                          "url": "http://146.185.138.240/scrader/companies/{}".format(user_name),
-                          "title": "Go Now"
+                          "title": "See scrader's supported companies",
+                          "buttons": [
+                            {
+                              "type": "web_url",
+                              "url": "http://146.185.138.240/scrader/companies/{}".format(user_name),
+                              "title": "Go Now"
+                            }
+                          ]
                         }
-                      ]
-                    }
                   ]
                 }
               }
