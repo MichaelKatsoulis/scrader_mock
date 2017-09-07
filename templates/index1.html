@@ -37,7 +37,7 @@ function myFunction() {
     element = document.getElementById("myForm");
     
      for (var i=0; i< element.elements.length; i++){
-      name = element.elements[i].name;
+      name = element.elements[i].id;
       clicked = element.elements[i].checked;
       console.log(name + ' clicked ' + clicked);
      }
