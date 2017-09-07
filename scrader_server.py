@@ -89,7 +89,7 @@ def subscribe(user_id, user_name):
                           mimetype='application/json')
 
 
-@app.route('/scrader/user_companies'.format(methods=['GET']))
+@app.route('/scrader/user_companies'.format(methods=['POST']))
 def user_data():
     """ GET Server Status API endpoint
         Args:
@@ -97,9 +97,9 @@ def user_data():
             dict: A JSON object containing the nfvacc server status information
     """
 
-    data = request.data
-    dataDict = json.loads(data)
-    print(dataDict)
+    # data = request.data
+    # dataDict = json.loads(data)
+    # print(dataDict)
     response_data = {}
     status = 200 if response_data is not None else 403
     js = json.dumps(response_data, indent=2)
