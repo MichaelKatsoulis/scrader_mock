@@ -17,6 +17,8 @@ app = flask.Flask(__name__)
 # Make cross-origin AJAX possible (for all domains on all routes)
 CORS(app, resources={r"*": {"origins": "*"}})
 
+USERS = []
+
 
 @app.route('/scrader'.format(methods=['GET']))
 def get_html():
@@ -69,6 +71,11 @@ def subscribe(user_id, user_name):
     """
     print(user_id)
     print(user_name)
+    user_dict = {
+            'user_id': str(user_id),
+            'name': user_name
+        }
+    USERS.append(user_dict)
     # data = request.data
     # dataDict = json.loads(data)
     # print(dataDict)
@@ -92,19 +99,19 @@ def user_notification(user_id, time_frame):
     # data = request.data
     # dataDict = json.loads(data)
     # print(dataDict)
-    users = [
-        {
-            'user_id': '1409009692510182',
-            'name': 'Katsoulis'
-        },
-        {
-            'user_id': '1764058846955996',
-            'name': 'Giakoump'
-        }
-        ]
+    # users = [
+    #     {
+    #         'user_id': '1409009692510182',
+    #         'name': 'Katsoulis'
+    #     },
+    #     {
+    #         'user_id': '1764058846955996',
+    #         'name': 'Giakoump'
+    #     }
+    #     ]
 
     user_name = user_id
-    for user in users:
+    for user in USERS:
         if user.get('user_id') == user_id:
             user_name = user.get('name')
 
