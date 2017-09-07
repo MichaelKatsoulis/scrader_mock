@@ -98,8 +98,7 @@ def user_data():
     """
 
     data = request.data
-    dataDict = json.loads(data)
-    print(dataDict)
+    print(data)
     response_data = {}
     status = 200 if response_data is not None else 403
     js = json.dumps(response_data, indent=2)
