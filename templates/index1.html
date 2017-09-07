@@ -12,25 +12,32 @@
 
 <div class="container">
   <h2>Scrader's Supported Companies</h2>
-  <form>
+  <form id="myForm">
     <div class="checkbox">
-      <label><input type="checkbox" value="">Amazon</label>
+      <label><input type="checkbox" value="" id="Amazon">Amazon</label>
     </div>
     <div class="checkbox">
-      <label><input type="checkbox" value="">Google</label>
+      <label><input type="checkbox" value="" id="Google">Google</label>
     </div>
     <div class="checkbox">
-      <label><input type="checkbox" value="">Facebook</label>
+      <label><input type="checkbox" value="" id="Facebook">Facebook</label>
     </div>
     <div class="checkbox">
-      <label><input type="checkbox" value="">Instagram</label>
+      <label><input type="checkbox" value="" id="Instagram">Instagram</label>
     </div>
     <div class="checkbox">
-      <label><input type="checkbox" value="">Adidas</label>
+      <label><input type="checkbox" value="" id="Adidas">Adidas</label>
     </div>
-    <button type="submit" class="btn btn-default">Submit</button>
+    <button type="submit" class="btn btn-default" onclick="myFunction()">Submit</button>
   </form>
 </div>
+
+<script>
+function myFunction() {
+    element = document.getElementById("myForm");
+    console.log(element);
+}
+</script>
 
 </body>
 </html>

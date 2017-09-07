@@ -20,7 +20,7 @@ CORS(app, resources={r"*": {"origins": "*"}})
 USERS = []
 
 
-@app.route('/scrader'.format(methods=['GET']))
+@app.route('/scrader/companies'.format(methods=['GET']))
 def get_html():
     """ GET Server Status API endpoint
         Args:
