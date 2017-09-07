@@ -20,14 +20,14 @@ CORS(app, resources={r"*": {"origins": "*"}})
 USERS = []
 
 
-@app.route('/scrader/companies'.format(methods=['GET']))
-def get_html():
+@app.route('/scrader/companies/<user_name>'.format(methods=['GET']))
+def get_html(user_name):
     """ GET Server Status API endpoint
         Args:
         Returns:
             dict: A JSON object containing the nfvacc server status information
     """
-    name = 'Michalis'
+    name = user_name
     return flask.render_template('index1.html', name=name)
 
 
@@ -125,92 +125,112 @@ def user_notification(user_id, time_frame):
 
         }
     else:
-        message = "Mr {} you can be notified for the following {}".format(user_name, time_frame)
+        # message = "Mr {} you can be notified for the following {}".format(user_name, time_frame)
+        # response_data = {
+        #     "set_attributes":
+        #         {
+        #             "news_type": "all"
+        #         },
+        #     "messages": [
+        #         {
+        #             "attachment": {
+        #                 "type": "template",
+        #                 "payload": {
+        #                     "template_type": "button",
+        #                     "text": message,
+        #                     "buttons": [
+        #                         {
+        #                             "type": "show_block",
+        #                             "block_name": "Company Specific News",
+        #                             "title": "Instagram"
+        #                         },
+        #                         {
+        #                             "type": "show_block",
+        #                             "block_name": "Company Specific News",
+        #                             "title": "VMware"
+        #                         },
+        #                         {
+        #                             "type": "show_block",
+        #                             "block_name": "Company Specific News",
+        #                             "title": "IBM"
+        #                         }
+        #                     ]
+        #                 }
+        #             }
+        #         },
+        #         {
+        #             "attachment": {
+        #                 "type": "template",
+        #                 "payload": {
+        #                     "template_type": "button",
+        #                     "text": "...",
+        #                     "buttons": [
+        #                         {
+        #                             "type": "show_block",
+        #                             "block_name": "Company Specific News",
+        #                             "title": "Apple"
+        #                         },
+        #                         {
+        #                             "type": "show_block",
+        #                             "block_name": "Company Specific News",
+        #                             "title": "Amazon"
+        #                         },
+        #                         {
+        #                             "type": "show_block",
+        #                             "block_name": "Company Specific News",
+        #                             "title": "Adidas"
+        #                         }
+        #                     ]
+        #                 }
+        #             }
+        #         },
+        #         {
+        #             "attachment": {
+        #                 "type": "template",
+        #                 "payload": {
+        #                     "template_type": "button",
+        #                     "text": "...",
+        #                     "buttons": [
+        #                         {
+        #                             "type": "show_block",
+        #                             "block_name": "Company Specific News",
+        #                             "title": "Facebook"
+        #                         },
+        #                         {
+        #                             "type": "show_block",
+        #                             "block_name": "Company Specific News",
+        #                             "title": "Google"
+        #                         },
+        #                         {
+        #                             "type": "show_block",
+        #                             "block_name": "Company Specific News",
+        #                             "title": "Hooli"
+        #                         }
+        #                     ]
+        #                 }
+        #             }
+        #         }
+        #     ]
+        # }
         response_data = {
-            "set_attributes":
-                {
-                    "news_type": "all"
-                },
-            "messages": [
-                {
-                    "attachment": {
-                        "type": "template",
-                        "payload": {
-                            "template_type": "button",
-                            "text": message,
-                            "buttons": [
-                                {
-                                    "type": "show_block",
-                                    "block_name": "Company Specific News",
-                                    "title": "Instagram"
-                                },
-                                {
-                                    "type": "show_block",
-                                    "block_name": "Company Specific News",
-                                    "title": "VMware"
-                                },
-                                {
-                                    "type": "show_block",
-                                    "block_name": "Company Specific News",
-                                    "title": "IBM"
-                                }
-                            ]
-                        }
+          "messages": [
+            {
+              "attachment": {
+                "payload":{
+                  "template_type": "button",
+                  "text": "See all supported companies",
+                  "buttons": [
+                    {
+                      "url": "http://http://146.185.138.240/scrader/companies/{}".format(user_name),
+                      "type":"json_plugin_url",
+                      "title":"go"
                     }
+                  ]
                 },
-                {
-                    "attachment": {
-                        "type": "template",
-                        "payload": {
-                            "template_type": "button",
-                            "text": "...",
-                            "buttons": [
-                                {
-                                    "type": "show_block",
-                                    "block_name": "Company Specific News",
-                                    "title": "Apple"
-                                },
-                                {
-                                    "type": "show_block",
-                                    "block_name": "Company Specific News",
-                                    "title": "Amazon"
-                                },
-                                {
-                                    "type": "show_block",
-                                    "block_name": "Company Specific News",
-                                    "title": "Adidas"
-                                }
-                            ]
-                        }
-                    }
-                },
-                {
-                    "attachment": {
-                        "type": "template",
-                        "payload": {
-                            "template_type": "button",
-                            "text": "...",
-                            "buttons": [
-                                {
-                                    "type": "show_block",
-                                    "block_name": "Company Specific News",
-                                    "title": "Facebook"
-                                },
-                                {
-                                    "type": "show_block",
-                                    "block_name": "Company Specific News",
-                                    "title": "Google"
-                                },
-                                {
-                                    "type": "show_block",
-                                    "block_name": "Company Specific News",
-                                    "title": "Hooli"
-                                }
-                            ]
-                        }
-                    }
-                }
-            ]
+                "type": "template"
+              }
+            }
+          ]
         }
 
     # response_data = {
