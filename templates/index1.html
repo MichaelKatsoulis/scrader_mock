@@ -36,6 +36,9 @@
 function myFunction() {
     element = document.getElementById("myForm");
     console.log(element.elements);
+     for (var i=0; i< element.elements.length; i++){
+      console.log(element.elements[i].checked);
+     }
     console.log(document.getElementById('Instagram').checked)
     console.log('CLICK')
 }
