@@ -28,6 +28,7 @@ def get_html(user_name):
             dict: A JSON object containing the nfvacc server status information
     """
     name = user_name
+    print(name)
     return flask.render_template('index1.html', name=name)
 
 
@@ -221,7 +222,7 @@ def user_notification(user_id, time_frame):
                   "text": "See all supported companies",
                   "buttons": [
                     {
-                      "url": "http://http://146.185.138.240/scrader/companies/{}".format(user_name),
+                      "url": "http://146.185.138.240/scrader/companies/{}".format(user_name),
                       "type":"json_plugin_url",
                       "title":"go"
                     }
