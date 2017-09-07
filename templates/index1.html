@@ -10,6 +10,9 @@
 </head>
 <body>
 
+<div>
+ <p>{{name}}</p>
+</div>
 <div class="container">
   <h2>Scrader's Supported Companies</h2>
   <form id="myForm">
@@ -36,11 +39,12 @@
 function myFunction() {
     element = document.getElementById("myForm");
     
-     for (var i=0; i< element.elements.length; i++){
+     for (var i=0; i< element.elements.length - 1; i++){
       name = element.elements[i].id;
       clicked = element.elements[i].checked;
       console.log(name + ' clicked ' + clicked);
      }
+
 }
 </script>
 
