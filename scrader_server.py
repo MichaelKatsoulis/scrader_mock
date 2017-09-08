@@ -121,11 +121,22 @@ def user_companies(user):
     """
 
     message = "Mr {} these are your selected companies".format(user)
+    for user in USERS:
+        if user.get('name') == user:
+            companies = user.get('companies')
+
+    company_dict = {
+                        "type": "show_block",
+                        "block_name": "Company Specific News",
+                        "title": ""
+                    }
+    buttons = []
+    for company in companies:
+        company_dict["title"] = company
+        buttons.append(company_dict)
+
     response_data = {
-        "set_attributes":
-            {
-                "news_type": "all"
-            },
+
         "messages": [
             {
                 "attachment": {
@@ -133,23 +144,7 @@ def user_companies(user):
                     "payload": {
                         "template_type": "button",
                         "text": message,
-                        "buttons": [
-                            {
-                                "type": "show_block",
-                                "block_name": "Company Specific News",
-                                "title": "Instagram"
-                            },
-                            {
-                                "type": "show_block",
-                                "block_name": "Company Specific News",
-                                "title": "VMware"
-                            },
-                            {
-                                "type": "show_block",
-                                "block_name": "Company Specific News",
-                                "title": "IBM"
-                            }
-                        ]
+                        "buttons": buttons
                     }
                 }
             },
