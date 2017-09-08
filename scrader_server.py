@@ -97,12 +97,12 @@ def user_data():
     data = flask.request.get_json()
     print(data)
 
-    # for
-    #
-    # [{u'user': u'Katsoulis'}, {u'company': u'Amazon', u'checked': False}, {u'company': u'Google', u'checked': False},
-    #  {u'company': u'Facebook', u'checked': True}, {u'company': u'Instagram', u'checked': True},
-    #  {u'company': u'Adidas', u'checked': False}]
+    user_name = data.get('user')
+    for user in USERS:
+        if user.get('name') == user_name:
+            user['companies'] = data.get('companies')
 
+    print(USERS)
 
     response_data = {}
     status = 200 if response_data is not None else 403
