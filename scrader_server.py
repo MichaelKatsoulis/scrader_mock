@@ -86,11 +86,6 @@ def subscribe(user_id, user_name):
                           mimetype='application/json')
 
 
-@app.route('/post', methods = ['POST'])
-def postHandler():
-    return 'POST handler'
-
-
 @app.route('/scrader/user_companies', methods=['POST'])
 def user_data():
     """ GET Server Status API endpoint
@@ -101,6 +96,14 @@ def user_data():
 
     data = flask.request.get_json()
     print(data)
+
+    # for
+    #
+    # [{u'user': u'Katsoulis'}, {u'company': u'Amazon', u'checked': False}, {u'company': u'Google', u'checked': False},
+    #  {u'company': u'Facebook', u'checked': True}, {u'company': u'Instagram', u'checked': True},
+    #  {u'company': u'Adidas', u'checked': False}]
+
+
     response_data = {}
     status = 200 if response_data is not None else 403
     js = json.dumps(response_data, indent=2)
