@@ -124,7 +124,9 @@ def user_companies(user):
     print(USERS)
     print(user)
     for user in USERS:
+        print(str(user.get('name')))
         if str(user.get('name')) == str(user):
+            print('match')
             companies = user.get('companies')
 
     print(companies)
