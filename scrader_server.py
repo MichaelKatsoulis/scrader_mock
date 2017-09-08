@@ -86,7 +86,7 @@ def subscribe(user_id, user_name):
                           mimetype='application/json')
 
 
-@app.route('/scrader/user_companies'.format(methods=['GET']))
+@app.route('/scrader/user_companies'.format(methods=['POST']))
 def user_data():
     """ GET Server Status API endpoint
         Args:
