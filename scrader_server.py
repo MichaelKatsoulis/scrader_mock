@@ -124,7 +124,7 @@ def user_companies(user):
     print(USERS)
     print(user)
     for user in USERS:
-        if user.get('name') == user:
+        if user.get('name') == str(user):
             companies = user.get('companies')
 
     company_dict = {
@@ -134,7 +134,7 @@ def user_companies(user):
                     }
     buttons = []
     for company in companies:
-        company_dict["title"] = company
+        company_dict["title"] = str(company)
         print(company)
         buttons.append(company_dict)
 
