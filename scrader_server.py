@@ -124,9 +124,10 @@ def user_companies(user):
     print(USERS)
     print(user)
     for user in USERS:
-        if user.get('name') == str(user):
+        if str(user.get('name')) == str(user):
             companies = user.get('companies')
 
+    print(companies)
     company_dict = {
                         "type": "show_block",
                         "block_name": "Company Specific News",
