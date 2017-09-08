@@ -112,6 +112,83 @@ def user_data():
                           mimetype='application/json')
 
 
+@app.route('/companies/<user>', methods=['GET'])
+def user_companies(user):
+    """ GET Server Status API endpoint
+        Args:
+        Returns:
+            dict: A JSON object containing the nfvacc server status information
+    """
+
+    message = "Mr {} these are your selected companies".format(user)
+    response_data = {
+        "set_attributes":
+            {
+                "news_type": "all"
+            },
+        "messages": [
+            {
+                "attachment": {
+                    "type": "template",
+                    "payload": {
+                        "template_type": "button",
+                        "text": message,
+                        "buttons": [
+                            {
+                                "type": "show_block",
+                                "block_name": "Company Specific News",
+                                "title": "Instagram"
+                            },
+                            {
+                                "type": "show_block",
+                                "block_name": "Company Specific News",
+                                "title": "VMware"
+                            },
+                            {
+                                "type": "show_block",
+                                "block_name": "Company Specific News",
+                                "title": "IBM"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "attachment": {
+                    "type": "template",
+                    "payload": {
+                        "template_type": "button",
+                        "text": "...",
+                        "buttons": [
+                            {
+                                "type": "show_block",
+                                "block_name": "Company Specific News",
+                                "title": "Apple"
+                            },
+                            {
+                                "type": "show_block",
+                                "block_name": "Company Specific News",
+                                "title": "Amazon"
+                            },
+                            {
+                                "type": "show_block",
+                                "block_name": "Company Specific News",
+                                "title": "Adidas"
+                            }
+                        ]
+                    }
+                }
+            }
+        ]
+    }
+
+    status = 200 if response_data is not None else 403
+    js = json.dumps(response_data, indent=2)
+    return flask.Response(js,
+                          status=status,
+                          mimetype='application/json')
+
+
 @app.route('/user_notification/<user_id>/<time_frame>'.format(methods=['GET']))
 def user_notification(user_id, time_frame):
     """ GET Server Status API endpoint
@@ -121,19 +198,6 @@ def user_notification(user_id, time_frame):
     """
     print(user_id)
     print(time_frame)
-    # data = request.data
-    # dataDict = json.loads(data)
-    # print(dataDict)
-    # users = [
-    #     {
-    #         'user_id': '1409009692510182',
-    #         'name': 'Katsoulis'
-    #     },
-    #     {
-    #         'user_id': '1764058846955996',
-    #         'name': 'Giakoump'
-    #     }
-    #     ]
 
     user_name = user_id
     for user in USERS:
