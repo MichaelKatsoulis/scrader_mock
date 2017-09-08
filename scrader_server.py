@@ -90,7 +90,8 @@ def subscribe(user_id, user_name):
 def postHandler():
     return 'POST handler'
 
-@app.route('/scrader/user_companies'.format(methods=['POST']))
+
+@app.route('/scrader/user_companies', methods=['POST'])
 def user_data():
     """ GET Server Status API endpoint
         Args:
