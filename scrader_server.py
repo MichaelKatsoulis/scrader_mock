@@ -122,6 +122,7 @@ def user_companies(user):
 
     message = "Mr {} these are your selected companies".format(user)
     print(USERS)
+    print(user)
     for user in USERS:
         if user.get('name') == user:
             companies = user.get('companies')
