@@ -133,6 +133,7 @@ def user_companies(user):
     buttons = []
     for company in companies:
         company_dict["title"] = company
+        print(company)
         buttons.append(company_dict)
 
     response_data = {
