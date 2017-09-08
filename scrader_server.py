@@ -78,9 +78,6 @@ def subscribe(user_id, user_name):
             'name': user_name
         }
     USERS.append(user_dict)
-    # data = request.data
-    # dataDict = json.loads(data)
-    # print(dataDict)
     response_data = {}
     status = 200 if response_data is not None else 403
     js = json.dumps(response_data, indent=2)
