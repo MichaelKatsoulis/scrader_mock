@@ -47,7 +47,7 @@ function myFunction() {
      var jsonString = JSON.stringify(data)
      url = "http://146.185.138.240/scrader/user_companies"
      $.ajax({
-      type: "GET",
+      type: "POST",
       contentType: "application/json; charset=utf-8",
       url: url,
       data: jsonString,
