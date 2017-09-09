@@ -139,6 +139,7 @@ def user_companies(user_name):
     for company in companies:
         company_dict["title"] = str(company)
         print(company)
+        print(company_dict)
         buttons.append(company_dict)
 
     response_data = {
@@ -151,32 +152,6 @@ def user_companies(user_name):
                         "template_type": "button",
                         "text": message,
                         "buttons": buttons
-                    }
-                }
-            },
-            {
-                "attachment": {
-                    "type": "template",
-                    "payload": {
-                        "template_type": "button",
-                        "text": "...",
-                        "buttons": [
-                            {
-                                "type": "show_block",
-                                "block_name": "Company Specific News",
-                                "title": "Apple"
-                            },
-                            {
-                                "type": "show_block",
-                                "block_name": "Company Specific News",
-                                "title": "Amazon"
-                            },
-                            {
-                                "type": "show_block",
-                                "block_name": "Company Specific News",
-                                "title": "Adidas"
-                            }
-                        ]
                     }
                 }
             }
