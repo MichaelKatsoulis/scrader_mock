@@ -5,6 +5,7 @@ from flask.ext.cors import CORS
 from flask import request
 import os
 import signal
+import copy
 import config
 from scrader_handler import scrader_poll
 from scrader_handler import fetch_news_from_db
@@ -140,7 +141,7 @@ def user_companies(user_name):
         company_dict["title"] = str(company)
         print(company)
         print(company_dict)
-        buttons.append(company_dict)
+        buttons.append(copy.deepcopy(company_dict))
     print(buttons)
 
     response_data = {
