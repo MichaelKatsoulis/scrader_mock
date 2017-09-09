@@ -120,7 +120,7 @@ def user_companies(user_name):
             dict: A JSON object containing the nfvacc server status information
     """
 
-    message = "Mr {} these are your selected companies".format(user)
+    message = "Mr {} these are your selected companies".format(user_name)
     print(USERS)
     print(str(user_name))
     for user in USERS:
