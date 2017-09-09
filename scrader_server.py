@@ -112,8 +112,8 @@ def user_data():
                           mimetype='application/json')
 
 
-@app.route('/companies/<user>', methods=['GET'])
-def user_companies(user):
+@app.route('/companies/<user_name>', methods=['GET'])
+def user_companies(user_name):
     """ GET Server Status API endpoint
         Args:
         Returns:
@@ -122,10 +122,10 @@ def user_companies(user):
 
     message = "Mr {} these are your selected companies".format(user)
     print(USERS)
-    print(type(str(user)))
+    print(str(user_name))
     for user in USERS:
-        print(type((str(user.get('name')))))
-        if str(user.get('name')) == str(user):
+        print((str(user.get('name'))))
+        if str(user.get('name')) == str(user_name):
             print('match')
             companies = user.get('companies')
 
