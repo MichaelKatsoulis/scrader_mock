@@ -141,6 +141,7 @@ def user_companies(user_name):
         print(company)
         print(company_dict)
         buttons.append(company_dict)
+    print(buttons)
 
     response_data = {
 
