@@ -131,17 +131,18 @@ def user_companies(user_name):
             companies = user.get('companies')
 
     print(companies)
-    company_dict = {
+    company_dict_tmpl = {
                         "type": "show_block",
                         "block_name": "Company Specific News",
                         "title": ""
                     }
     buttons = []
     for company in companies:
+        company_dict = copy.deepcopy(company_dict_tmpl)
         company_dict["title"] = str(company)
         print(company)
         print(company_dict)
-        buttons.append(copy.deepcopy(company_dict))
+        buttons.append(company_dict)
     print(buttons)
 
     response_data = {
