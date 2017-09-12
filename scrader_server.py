@@ -169,7 +169,7 @@ def subscribe(user_id, user_name):
         Returns:
             dict: A JSON object containing the nfvacc server status information
     """
-    data = flask.request.get_json()
+    data = request.data
     print(data)
     user_dict = {
             'user_id': str(user_id),
