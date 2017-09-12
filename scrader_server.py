@@ -53,7 +53,7 @@ def user_login(user_id, user_name):
     for user in USERS:
         if user.get('user_id') == str(user_id):
             print('user already exists')
-            name = user.get('name')
+            first_name = user.get('first_name')
             registered = True
 
     block = ''
@@ -62,7 +62,7 @@ def user_login(user_id, user_name):
     button_title = ''
 
     if registered:
-        message = 'Hi again {}. How are you today? What would you like to do?'.format(name)
+        message = 'Hi again {}. How are you today? What would you like to do?'.format(first_name)
         block = 'Edit Companies'
         button_title = 'Edit Companies'
         button_dict_tmpl = {
@@ -162,18 +162,18 @@ def get_latest_news():
                           mimetype='application/json')
 
 
-@app.route('/subscribe/<user_id>/<user_name>', methods=['POST'])
-def subscribe(user_id, user_name):
+@app.route('/subscribe/<user_id>/<user_last_name>/<user_first_name>', methods=['POST'])
+def subscribe(user_id, user_last_name, user_first_name):
     """ GET Server Status API endpoint
         Args:
         Returns:
             dict: A JSON object containing the nfvacc server status information
     """
-    data = flask.request.data
-    print(data)
+
     user_dict = {
             'user_id': str(user_id),
-            'name': user_name
+            'name': user_last_name,
+            'first_name': user_first_name
         }
     USERS.append(user_dict)
     response_data = {}
