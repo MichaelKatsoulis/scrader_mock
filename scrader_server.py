@@ -50,7 +50,7 @@ def user_login(user_id, user_name):
     name = user_name
     registered = False
     for user in USERS:
-        if user.get('user_id') == user_id:
+        if user.get('user_id') == str(user_id):
             print('user already exists')
             name = user.get('name')
             registered = True
