@@ -73,6 +73,11 @@ def user_login(user_id, user_name):
         buttons.append(button_dict_tmpl)
         block = 'Initializition'
         button_title = 'Continue as a guest'
+        button_dict_tmpl = {
+            "type": "show_block",
+            "block_name": block,
+            "title": button_title
+        }
         buttons.append(button_dict_tmpl)
     else:
         print('first time loging in')
