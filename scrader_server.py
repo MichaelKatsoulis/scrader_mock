@@ -21,17 +21,21 @@ CORS(app, resources={r"*": {"origins": "*"}})
 USERS = []
 
 
-@app.route('/scrader/companies/<user_name>'.format(methods=['GET']))
-def get_html(user_name):
+@app.route('/scrader/companies/<user_id>'.format(methods=['GET']))
+def get_html(user_id):
     """ GET Server Status API endpoint
         Args:
         Returns:
             dict: A JSON object containing the nfvacc server status information
     """
-    name = user_name
-    print('heeee')
-    print(name)
-    return flask.render_template('index1.html', name=name)
+    
+    for user in USERS:
+	if user.get('user_id') == user_id:
+		name = user.get('name')
+    #print('heeee')
+    #print(user_id)
+    #print(name)
+    return flask.render_template('index1.html', name=name, user_id=user_id)
 
 
 @app.route('/status'.format(methods=['GET']))
@@ -72,8 +76,8 @@ def subscribe(user_id, user_name):
         Returns:
             dict: A JSON object containing the nfvacc server status information
     """
-    print(user_id)
-    print(user_name)
+    #print(user_id)
+    #print(user_name)
     user_dict = {
             'user_id': str(user_id),
             'name': user_name
@@ -96,14 +100,14 @@ def user_data():
     """
 
     data = flask.request.get_json()
-    print(data)
+    #print(data)
 
     user_name = data.get('user')
     for user in USERS:
         if user.get('name') == user_name:
             user['companies'] = data.get('companies')
 
-    print(USERS)
+    #print(USERS)
 
     response_data = {}
     status = 200 if response_data is not None else 403
@@ -122,15 +126,15 @@ def user_companies(user_name):
     """
 
     message = "Mr {} these are your selected companies".format(user_name)
-    print(USERS)
-    print(str(user_name))
+    #print(USERS)
+    #print(str(user_name))
     for user in USERS:
         print((str(user.get('name'))))
         if str(user.get('name')) == str(user_name):
-            print('match')
+           # print('match')
             companies = user.get('companies')
 
-    print(companies)
+    #print(companies)
     company_dict_tmpl = {
                         "type": "show_block",
                         "block_name": "Company Specific News",
@@ -140,10 +144,10 @@ def user_companies(user_name):
     for company in companies:
         company_dict = copy.deepcopy(company_dict_tmpl)
         company_dict["title"] = str(company)
-        print(company)
-        print(company_dict)
+        #print(company)
+        #print(company_dict)
         buttons.append(company_dict)
-    print(buttons)
+    #print(buttons)
 
     response_data = {
 
@@ -175,8 +179,8 @@ def user_notification(user_id, time_frame):
         Returns:
             dict: A JSON object containing the nfvacc server status information
     """
-    print(user_id)
-    print(time_frame)
+    #print(user_id)
+    #print(time_frame)
 
     user_name = user_id
     for user in USERS:
@@ -293,7 +297,7 @@ def user_notification(user_id, time_frame):
                           "buttons": [
                             {
                               "type": "web_url",
-                              "url": "http://146.185.138.240/scrader/companies/{}".format(user_name),
+                              "url": "http://146.185.138.240/scrader/companies/{}".format(user_id),
                               "title": "Go Now"
                             }
                           ]
@@ -438,7 +442,7 @@ def get_news(company, news_type):
                           mimetype='application/json')
 
 
-@app.route('/companies/<stocks_type>'.format(methods=['GET']))
+@app.route('/guest_companies/<stocks_type>'.format(methods=['GET']))
 def get_companies(stocks_type):
     """ GET Server Status API endpoint
         Args:
