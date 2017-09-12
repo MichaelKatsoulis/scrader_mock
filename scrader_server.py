@@ -162,15 +162,15 @@ def get_latest_news():
                           mimetype='application/json')
 
 
-@app.route('/subscribe/<user_id>/<user_name>'.format(methods=['POST']))
+@app.route('/subscribe/<user_id>/<user_name>', methods=['POST'])
 def subscribe(user_id, user_name):
     """ GET Server Status API endpoint
         Args:
         Returns:
             dict: A JSON object containing the nfvacc server status information
     """
-    #print(user_id)
-    #print(user_name)
+    data = flask.request.get_json()
+    print(data)
     user_dict = {
             'user_id': str(user_id),
             'name': user_name
