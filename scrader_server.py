@@ -58,16 +58,16 @@ def user_login(user_id, user_name):
     buttons = []
     message = ''
     button_title = ''
-    button_dict_tmpl = {
-        "type": "show_block",
-        "block_name": block,
-        "title": button_title
-    }
 
     if registered:
         message = 'Hi again {}. How are you today? What would you like to do?'.format(name)
         block = 'Edit Companies'
         button_title = 'Edit Companies'
+        button_dict_tmpl = {
+            "type": "show_block",
+            "block_name": block,
+            "title": button_title
+        }
         buttons.append(button_dict_tmpl)
         block = 'Initializition'
         button_title = 'Continue as a guest'
@@ -83,12 +83,21 @@ def user_login(user_id, user_name):
                   'I am still in development mode so many functions are not stable just yet. ' \
                   'Please subscribe in order to get notified when I will be fully functional'.format(name)
 
-        print(message)
         block = 'Subscribe'
         button_title = 'Subscribe'
+        button_dict_tmpl = {
+            "type": "show_block",
+            "block_name": block,
+            "title": button_title
+        }
         buttons.append(button_dict_tmpl)
         block = 'Initializition'
         button_title = 'I am just a guest'
+        button_dict_tmpl = {
+            "type": "show_block",
+            "block_name": block,
+            "title": button_title
+        }
         buttons.append(button_dict_tmpl)
 
     response_data = {
@@ -106,6 +115,7 @@ def user_login(user_id, user_name):
             }
         ]
     }
+
     print(response_data)
     status = 200 if response_data is not None else 403
     js = json.dumps(response_data, indent=2)
