@@ -63,7 +63,7 @@ def user_login(user_id, user_name):
 
     if registered:
         message = 'Hi again {}. How are you today? What would you like to do?'.format(first_name)
-        block = 'Edit Companies'
+        block = 'User Notification'
         button_title = 'Edit Companies'
         button_dict_tmpl = {
             "type": "show_block",
