@@ -95,12 +95,13 @@
 <script>
 
 $( document ).ready(function() {
-    console.log('{{companies}}');
-    companies = '{{companies}}';
-    console.log(companies.length);
-    for (var i=0; i< companies.length - 1; i++){
-      console.log(companies[i]);
-    }
+    //console.log('{{companies}}');
+    console.log(JSON.parse({{companies}}));
+    // companies = '{{companies}}';
+    // console.log(companies.length);
+    // for (var i=0; i< companies.length - 1; i++){
+    //   console.log(companies[i]);
+    // }
 });
 
 function myFunction() {
