@@ -39,6 +39,79 @@ def get_html(user_id):
     return flask.render_template('index1.html', name=name, user_id=user_id)
 
 
+@app.route('/login/<user_id>/<user_name>', methods=['POST', 'GET'])
+def user_login(user_id, user_name):
+    """ GET Server Status API endpoint
+        Args:
+        Returns:
+            dict: A JSON object containing the nfvacc server status information
+    """
+    name = user_name
+    registered = False
+    for user in USERS:
+        if user.get('user_id') == user_id:
+            print('user already exists')
+            name = user.get('name')
+            registered = True
+
+    block = ''
+    buttons = []
+    message = ''
+    button_title = ''
+    button_dict_tmpl = {
+        "type": "show_block",
+        "block_name": block,
+        "title": button_title
+    }
+
+    if registered:
+        message = 'Hi again {}. How are you today? What would you like to do?'.format(name)
+        block = 'Edit Companies'
+        button_title = 'Edit Companies'
+        buttons.append(button_dict_tmpl)
+        block = 'Initializition'
+        button_title = 'Continue as a guest'
+        buttons.append(button_dict_tmpl)
+    else:
+        print('first time loging in')
+        message = 'Hi {}! Nice to see you. ' \
+                  'I am the Scrader Bot. ' \
+                  'My job is to utilize powerful machine ' \
+                  'learning algorithms to extract the latest company ' \
+                  'insights from news articles for a valuable ' \
+                  'head start in your trading strategy. ' \
+                  'I am still in development mode so many functions are not stable just yet. ' \
+                  'Please subscribe in order to get notified when I will be fully functional'.format(name)
+
+        block = 'Subscribe'
+        button_title = 'Subscribe'
+        buttons.append(button_dict_tmpl)
+        block = 'Initializition'
+        button_title = 'I am just a guest'
+        buttons.append(button_dict_tmpl)
+
+    response_data = {
+
+        "messages": [
+            {
+                "attachment": {
+                    "type": "template",
+                    "payload": {
+                        "template_type": "button",
+                        "text": message,
+                        "buttons": buttons
+                    }
+                }
+            }
+        ]
+    }
+    status = 200 if response_data is not None else 403
+    js = json.dumps(response_data, indent=2)
+    return flask.Response(js,
+                          status=status,
+                          mimetype='application/json')
+
+
 @app.route('/status'.format(methods=['GET']))
 def get_server_status():
     """ GET Server Status API endpoint
