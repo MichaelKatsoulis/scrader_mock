@@ -39,7 +39,7 @@ def get_html(user_id):
     #print(user_id)
     #print(name)
     print(companies)
-    return flask.render_template('index1.html', name=name, user_id=user_id, companies=companies)
+    return flask.render_template('index1.html', name=name, user_id=user_id, companies=str(companies))
 
 
 @app.route('/login/<user_id>/<user_name>', methods=['POST', 'GET'])

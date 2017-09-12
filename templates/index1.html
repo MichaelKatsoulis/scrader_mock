@@ -96,7 +96,7 @@
 
 $( document ).ready(function() {
     //console.log({{companies}});
-    companies = {{companies}};
+    companies = JSON.parse({{companies}});
     for (var i=0; i< companies.length - 1; i++){
       console.log(companies[i]);
     }
