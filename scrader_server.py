@@ -38,6 +38,7 @@ def get_html(user_id):
     #print('heeee')
     #print(user_id)
     #print(name)
+    print(companies)
     return flask.render_template('index1.html', name=name, user_id=user_id, companies=companies)
 
 
