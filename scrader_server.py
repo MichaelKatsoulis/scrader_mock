@@ -47,6 +47,7 @@ def user_login(user_id, user_name):
             dict: A JSON object containing the nfvacc server status information
     """
     print(USERS)
+    print(str(user_id))
     name = user_name
     registered = False
     for user in USERS:
