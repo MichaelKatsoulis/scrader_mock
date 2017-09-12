@@ -29,14 +29,16 @@ def get_html(user_id):
             dict: A JSON object containing the nfvacc server status information
     """
     name = "None"
+    companies = []
     for user in USERS:
         if user.get('user_id') == user_id:
             name = user.get('name')
+            companies = user.get('companies', [])
 
     #print('heeee')
     #print(user_id)
     #print(name)
-    return flask.render_template('index1.html', name=name, user_id=user_id)
+    return flask.render_template('index1.html', name=name, user_id=user_id, companies=companies)
 
 
 @app.route('/login/<user_id>/<user_name>', methods=['POST', 'GET'])

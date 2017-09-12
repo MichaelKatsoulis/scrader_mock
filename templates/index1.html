@@ -93,6 +93,11 @@
 
 
 <script>
+
+$( document ).ready(function() {
+    console.log({{companies}});
+});
+
 function myFunction() {
     element = document.getElementById("myForm");
     data = {user: '{{ name }}' , companies: ''};
