@@ -63,14 +63,19 @@ def user_login(user_id, user_name):
 
     if registered:
         message = 'Hi again {}. How are you today? What would you like to do?'.format(first_name)
-        block = 'User Notification'
-        button_title = 'Edit Companies'
-        button_dict_tmpl = {
-            "type": "show_block",
-            "block_name": block,
-            "title": button_title
+        # block = 'User Notification'
+        # button_title = 'Edit Companies'
+        # button_dict_tmpl = {
+        #     "type": "show_block",
+        #     "block_name": block,
+        #     "title": button_title
+        # }
+        web_button = {
+            "type": "web_url",
+            "url": "http://146.185.138.240/scrader/companies/{}".format(user_id),
+            "title": "Edit Companies"
         }
-        buttons.append(button_dict_tmpl)
+        buttons.append(web_button)
         block = 'Initializition'
         button_title = 'Continue as a guest'
         button_dict_tmpl = {
