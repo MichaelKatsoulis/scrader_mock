@@ -83,6 +83,7 @@ def user_login(user_id, user_name):
                   'I am still in development mode so many functions are not stable just yet. ' \
                   'Please subscribe in order to get notified when I will be fully functional'.format(name)
 
+        print(message)
         block = 'Subscribe'
         button_title = 'Subscribe'
         buttons.append(button_dict_tmpl)
@@ -105,6 +106,7 @@ def user_login(user_id, user_name):
             }
         ]
     }
+    print(response_data)
     status = 200 if response_data is not None else 403
     js = json.dumps(response_data, indent=2)
     return flask.Response(js,
