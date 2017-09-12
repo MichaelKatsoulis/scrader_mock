@@ -28,10 +28,11 @@ def get_html(user_id):
         Returns:
             dict: A JSON object containing the nfvacc server status information
     """
-    
+    name = "None"
     for user in USERS:
-	if user.get('user_id') == user_id:
-		name = user.get('name')
+        if user.get('user_id') == user_id:
+            name = user.get('name')
+
     #print('heeee')
     #print(user_id)
     #print(name)
@@ -131,10 +132,8 @@ def user_companies(user_name):
     for user in USERS:
         print((str(user.get('name'))))
         if str(user.get('name')) == str(user_name):
-           # print('match')
             companies = user.get('companies')
 
-    #print(companies)
     company_dict_tmpl = {
                         "type": "show_block",
                         "block_name": "Company Specific News",
@@ -147,7 +146,6 @@ def user_companies(user_name):
         #print(company)
         #print(company_dict)
         buttons.append(company_dict)
-    #print(buttons)
 
     response_data = {
 
@@ -309,14 +307,6 @@ def user_notification(user_id, time_frame):
           ]
         }
 
-
-    # response_data = {
-    #
-    #     "messages": [
-    #         {"text": message}
-    #     ]
-    #
-    # }
     status = 200 if response_data is not None else 403
     js = json.dumps(response_data, indent=2)
     return flask.Response(js,
