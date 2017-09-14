@@ -38,8 +38,8 @@ def get_html(user_id):
     #print('heeee')
     #print(user_id)
     #print(name)
-    print(companies)
-    return flask.render_template('index1.html', name=name, user_id=user_id, companies=json.dumps(companies))
+    #print(companies)
+    return flask.render_template('index1.html', name=name, user_id=user_id)
 
 
 @app.route('/login/<user_id>/<user_name>', methods=['POST', 'GET'])
@@ -218,51 +218,57 @@ def user_data():
                           mimetype='application/json')
 
 
-@app.route('/companies/<user_name>', methods=['GET'])
-def user_companies(user_name):
+@app.route('/companies/<user_id>', methods=['GET'])
+def user_companies(user_id):
     """ GET Server Status API endpoint
         Args:
         Returns:
             dict: A JSON object containing the nfvacc server status information
     """
 
-    message = "Mr {} these are your selected companies".format(user_name)
-    #print(USERS)
-    #print(str(user_name))
+    # message = "Mr {} these are your selected companies".format(user_name)
+    # #print(USERS)
+    # #print(str(user_name))
+    # for user in USERS:
+    #     print((str(user.get('name'))))
+    #     if str(user.get('name')) == str(user_name):
+    #         companies = user.get('companies')
+    #
+    # company_dict_tmpl = {
+    #                     "type": "show_block",
+    #                     "block_name": "Company Specific News",
+    #                     "title": ""
+    #                 }
+    # buttons = []
+    # for company in companies:
+    #     company_dict = copy.deepcopy(company_dict_tmpl)
+    #     company_dict["title"] = str(company)
+    #     #print(company)
+    #     #print(company_dict)
+    #     buttons.append(company_dict)
+    #
+    # response_data = {
+    #
+    #     "messages": [
+    #         {
+    #             "attachment": {
+    #                 "type": "template",
+    #                 "payload": {
+    #                     "template_type": "button",
+    #                     "text": message,
+    #                     "buttons": buttons
+    #                 }
+    #             }
+    #         }
+    #     ]
+    # }
+    companies = []
     for user in USERS:
-        print((str(user.get('name'))))
-        if str(user.get('name')) == str(user_name):
-            companies = user.get('companies')
+        if user.get('user_id') == user_id:
+            companies = user.get('companies', [])
 
-    company_dict_tmpl = {
-                        "type": "show_block",
-                        "block_name": "Company Specific News",
-                        "title": ""
-                    }
-    buttons = []
-    for company in companies:
-        company_dict = copy.deepcopy(company_dict_tmpl)
-        company_dict["title"] = str(company)
-        #print(company)
-        #print(company_dict)
-        buttons.append(company_dict)
-
-    response_data = {
-
-        "messages": [
-            {
-                "attachment": {
-                    "type": "template",
-                    "payload": {
-                        "template_type": "button",
-                        "text": message,
-                        "buttons": buttons
-                    }
-                }
-            }
-        ]
-    }
-
+    print(companies)
+    response_data = companies
     status = 200 if response_data is not None else 403
     js = json.dumps(response_data, indent=2)
     return flask.Response(js,
