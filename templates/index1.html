@@ -109,6 +109,16 @@ $( document ).ready(function() {
                       //console.log(jsondata);
                       companies = jsondata
                       console.log(companies);
+                      var companies_arr = $.map(companies, function(el) { return el });
+                      element = document.getElementById("myForm");
+                      for (var i=0; i< element.elements.length - 1; i++) {
+                        name = element.elements[i].id;
+                        if ($.inArray(name, companies_arr) != -1){
+                          element.elements[i].checked = True;
+                        }
+                        console.log(element.elements[i].checked);
+                      }      
+
               },
               complete: function (data) {
                       // Schedule the next
