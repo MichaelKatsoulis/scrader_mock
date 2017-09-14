@@ -29,16 +29,12 @@ def get_html(user_id):
             dict: A JSON object containing the nfvacc server status information
     """
     name = "None"
-    companies = []
+
     for user in USERS:
         if user.get('user_id') == user_id:
             name = user.get('name')
             companies = user.get('companies', [])
 
-    #print('heeee')
-    #print(user_id)
-    #print(name)
-    #print(companies)
     return flask.render_template('index1.html', name=name, user_id=user_id)
 
 
@@ -66,19 +62,13 @@ def user_login(user_id, user_name):
 
     if registered:
         message = 'Hi again {}. How are you today? What would you like to do?'.format(first_name)
-        # block = 'User Notification'
-        # button_title = 'Edit Companies'
-        # button_dict_tmpl = {
-        #     "type": "show_block",
-        #     "block_name": block,
-        #     "title": button_title
-        # }
-        web_button = {
-            "type": "web_url",
-            "url": "http://146.185.138.240/scrader/companies/{}".format(user_id),
-            "title": "Edit Companies"
+
+        pref_button = {
+            "type": "show_block",
+            "block_name": "Preferences",
+            "title": "Edit Preferences"
         }
-        buttons.append(web_button)
+        buttons.append(pref_button)
         block = 'Initializition'
         button_title = 'Continue as a guest'
         button_dict_tmpl = {
