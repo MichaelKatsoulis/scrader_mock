@@ -61,7 +61,26 @@ def user_login(user_id, user_name):
     button_title = ''
 
     if registered:
-        message = 'Hi again {}. How are you today? What would you like to do?'.format(first_name)
+        message = 'Hi again {}. What would you like me to show you? ' \
+                  'Remember you can type any company you want to search for scraped news'.format(first_name)
+
+        block = 'Companies'
+        button_title = 'Positive News'
+        button_dict_tmpl = {
+            "type": "show_block",
+            "block_name": block,
+            "title": button_title
+        }
+        buttons.append(button_dict_tmpl)
+
+        block = 'Companies'
+        button_title = 'Negative News'
+        button_dict_tmpl = {
+            "type": "show_block",
+            "block_name": block,
+            "title": button_title
+        }
+        buttons.append(button_dict_tmpl)
 
         pref_button = {
             "type": "show_block",
@@ -69,14 +88,6 @@ def user_login(user_id, user_name):
             "title": "Edit Preferences"
         }
         buttons.append(pref_button)
-        block = 'Initializition'
-        button_title = 'Continue as a guest'
-        button_dict_tmpl = {
-            "type": "show_block",
-            "block_name": block,
-            "title": button_title
-        }
-        buttons.append(button_dict_tmpl)
     else:
         print('first time loging in')
         message = 'Hi {}! Nice to see you. ' \
