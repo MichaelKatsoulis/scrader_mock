@@ -630,18 +630,6 @@ def get_companies(stocks_type):
                     "template_type": "list",
                     "top_element_style": "compact",
                     "elements": [
-                        {
-                            "title": '',
-                            "image_url": '',
-                            "subtitle": '',
-                            "buttons": [
-                                {
-                                    "type": "show_block",
-                                    "block_name": "Company News",
-                                    "title": "View Articles"
-                                }
-                            ]
-                        }
                     ]
                 }
             }
