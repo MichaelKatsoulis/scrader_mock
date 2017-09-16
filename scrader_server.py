@@ -553,7 +553,8 @@ def get_companies(stocks_type):
         response_data = {
             "set_attributes":
                 {
-                    "news_type": "positive"
+                    "news_type": "positive",
+                    "stocks_type": 'Positive+News'
                 },
             # "messages": [
             #     {
@@ -599,24 +600,13 @@ def get_companies(stocks_type):
                                             "type": "show_block",
                                             "block_name": "Company News",
                                             "title": "View Articles"
+                                        },
+                                        {
+                                            "type": "show_block",
+                                            "url": "Next Company",
+                                            "title": "Next {}/5".format(NEXT)
                                         }
                                     ]
-                                }
-                            ]
-                        }
-                    }
-                }
-                , {
-                    "attachment": {
-                        "type": "template",
-                        "payload": {
-                            "template_type": "button",
-                            "text": "..",
-                            "buttons": [
-                                {
-                                    "type": "web_url",
-                                    "url": "http://146.185.138.240/guest_companies/Positive+News",
-                                    "title": "Next {}/5".format(NEXT)
                                 }
                             ]
                         }
