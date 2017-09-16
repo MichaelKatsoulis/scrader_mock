@@ -19,7 +19,7 @@ app = flask.Flask(__name__)
 CORS(app, resources={r"*": {"origins": "*"}})
 
 USERS = []
-NEXT = 1
+NEXT = 0
 
 
 @app.route('/scrader/companies/<user_id>'.format(methods=['GET']))
@@ -544,76 +544,80 @@ def get_companies(stocks_type):
     """
 
     global NEXT
-    NEXT += 1
     print(NEXT)
     print("Fetching companies with {}.".format(stocks_type))
+    Total_articles = 100
+    good_companies = [
+        {
+            'company_name': 'Amazon',
+            'company_logo': 'http://apps.3dcart.com/assets/images/amazon-black-logo.png',
+            'company_articles': 2
+        },
+        {
+            'company_name': 'Apple',
+            'company_logo': 'https://image.freepik.com/free-icon/apple-logo_318-40184.jpg',
+            'company_articles': 3
+        },
+        {
+            'company_name': 'Adidas',
+            'company_logo': 'http://www.thelogofactory.com/wp-content/uploads/2015/09/adidas-logo.png',
+            'company_articles': 1
+        },
+        {
+            'company_name': 'Instagram',
+            'company_logo': 'https://seeklogo.com/images/I/instagram-logo-7596E83E98-seeklogo.com.png',
+            'company_articles': 2
+        },
+        {
+            'company_name': 'Twitter',
+            'company_logo': 'http://goinkscape.com/wp-content/uploads/2015/07/twitter-logo-final.png',
+            'company_articles': 6
+        }
+    ]
 
     if stocks_type == 'Positive+News':
 
-        response_data = {
-            "set_attributes":
-                {
-                    "news_type": "positive",
-                    "stocks_type": 'Positive+News'
-                },
-            # "messages": [
-            #     {
-            #         "attachment": {
-            #             "type": "template",
-            #             "payload": {
-            #                 "template_type": "button",
-            #                 "text": "Great choice! These are today's top positive stocks",
-            #                 "buttons": [
-            #                     {
-            #                         "type": "show_block",
-            #                         "block_name": "Company News",
-            #                         "title": "Amazon"
-            #                     },
-            #                     {
-            #                         "type": "show_block",
-            #                         "block_name": "Company News",
-            #                         "title": "Apple"
-            #                     },
-            #                     {
-            #                         "type": "show_block",
-            #                         "block_name": "Company News",
-            #                         "title": "Adidas"
-            #                     }
-            #                 ]
-            #             }
-            #         }
-            #     }
-            # ]
-            "messages": [
-                {
-                    "attachment": {
-                        "type": "template",
-                        "payload": {
-                            "template_type": "generic",
-                            "elements": [
-                                {
-                                    "title": "Amazon",
-                                    "image_url": "http://apps.3dcart.com/assets/images/amazon-black-logo.png",
-                                    "subtitle": "2 articles / 100 articles",
-                                    "buttons": [
-                                        {
-                                            "type": "show_block",
-                                            "block_name": "Company News",
-                                            "title": "View Articles"
-                                        },
-                                        {
-                                            "type": "show_block",
-                                            "block_name": "Next Company",
-                                            "title": "Next {}/5".format(NEXT)
-                                        }
-                                    ]
-                                }
-                            ]
-                        }
+        attributes_dict = {
+            "news_type": "positive",
+            "stocks_type": 'Positive+News'
+        }
+
+        messages = [
+            {
+                "attachment": {
+                    "type": "template",
+                    "payload": {
+                        "template_type": "generic",
+                        "elements": [
+                            {
+                                "title": good_companies[NEXT].get('company_name'),
+                                "image_url": good_companies[NEXT].get('company_logo'),
+                                "subtitle": "{} articles / {} articles".format(good_companies[NEXT].get('company_articles'), Total_articles),
+                                "buttons": [
+                                    {
+                                        "type": "show_block",
+                                        "block_name": "Company News",
+                                        "title": "View Articles"
+                                    }
+                                ]
+                            }
+                        ]
                     }
                 }
-            ]
+            }
+        ]
+        next_button = {
+                        "type": "show_block",
+                        "block_name": "Next Company",
+                        "title": "Next {}/{}".format(NEXT + 2, len(good_companies))
         }
+
+
+        response_data = {}
+        response_data['set_attributes'] = attributes_dict
+        response_data['messages'] = messages
+        if NEXT < len(good_companies):
+            response_data['messages'][0]['attachment']['payload']['elements'][0]['buttons'].append(next_button)
 
     elif stocks_type == 'Negative+News':
 
@@ -736,6 +740,7 @@ def get_companies(stocks_type):
             ]
         }
 
+    NEXT += 1
     print(response_data)
     status = 200 if response_data is not None else 403
     js = json.dumps(response_data, indent=2)
