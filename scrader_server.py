@@ -542,7 +542,6 @@ def get_companies(stocks_type):
         Returns:
             dict: A JSON object containing the nfvacc server status information
     """
-    print('eeeeeeeeee')
     print(request.args.get('NEXT'))
     global NEXT
     NEXT = 0 if request.args.get('NEXT') is not None else NEXT
@@ -575,6 +574,24 @@ def get_companies(stocks_type):
             'company_name': 'Twitter',
             'company_logo': 'http://goinkscape.com/wp-content/uploads/2015/07/twitter-logo-final.png',
             'company_articles': 6
+        }
+    ]
+
+    bad_companies = [
+        {
+            'company_name': 'VMware',
+            'company_logo': 'https://www.uwosh.edu/cob/is/images/vmware-logo.jpg',
+            'company_articles': 2
+        },
+        {
+            'company_name': 'Erricsson',
+            'company_logo': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrKyaMRH0P_KORC9TZz9OxsQSPUAvoWN_1BOU-c1dGRCDehm3F',
+            'company_articles': 3
+        },
+        {
+            'company_name': 'Nokia',
+            'company_logo': 'https://www.nokia.com/sites/default/files/styles/medium/public/media/nokia_white_logo.png?itok=uqq4soUu',
+            'company_articles': 1
         }
     ]
 
@@ -632,35 +649,20 @@ def get_companies(stocks_type):
 
     elif stocks_type == 'Negative+News':
 
-        response_data = {
-            "set_attributes":
-                {
-                    "news_type": "negative"
-                },
-            "messages": [
-                {
-                    "attachment": {
-                        "type": "template",
-                        "payload": {
-                            "template_type": "button",
-                            "text": "These are today's top negative stocks",
-                            "buttons": [
-                                {
-                                    "type": "show_block",
-                                    "block_name": "Company News",
-                                    "title": "Instagram"
-                                },
-                                {
-                                    "type": "show_block",
-                                    "block_name": "Company News",
-                                    "title": "VMware"
-                                }
-                            ]
-                        }
-                    }
-                }
-            ]
-        }
+        attributes_dict['news_type'] = 'negative'
+        attributes_dict['stocks_type'] = 'Negative+News'
+
+        messages[0]['attachment']['payload']['elements'][0]['title'] = bad_companies[NEXT].get('company_name')
+        messages[0]['attachment']['payload']['elements'][0]['image_url'] = bad_companies[NEXT].get('company_logo')
+        messages[0]['attachment']['payload']['elements'][0]['subtitle'] = \
+            "{} articles / {} articles".format(bad_companies[NEXT].get('company_articles'),
+                                               Total_articles)
+
+        response_data = {}
+        response_data['set_attributes'] = attributes_dict
+        response_data['messages'] = messages
+        if NEXT < len(good_companies) - 1:
+            response_data['messages'][0]['attachment']['payload']['elements'][0]['buttons'].append(next_button)
 
     else:
 
