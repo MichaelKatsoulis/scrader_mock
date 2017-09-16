@@ -653,59 +653,70 @@ def get_companies(stocks_type):
         "title": ''
     }
 
+    button_message = {
+        "attachment": {
+            "type": "template",
+            "payload": {
+                "template_type": "button",
+                "text": ".",
+                "buttons": [
+                    next_button
+                ]
+            }
+        }
+    }
+
+    import math
+    four_packets = math.ceil((len(good_companies)/4.0))
+
     if stocks_type == 'Positive+News':
 
         attributes_dict['news_type'] = 'positive'
         attributes_dict['stocks_type'] = 'Positive+News'
 
-        messages[0]['attachment']['payload']['elements'][0]['title'] = good_companies[NEXT].get('company_name')
-        messages[0]['attachment']['payload']['elements'][0]['image_url'] = good_companies[NEXT].get('company_logo')
-        messages[0]['attachment']['payload']['elements'][0]['subtitle'] = \
-            "{} articles / {} articles".format(good_companies[NEXT].get('company_articles'),
-                                               Total_articles)
+        for index, company in enumerate(good_companies):
+            if index <= 3:
+                element = copy.deepcopy(element)
+                element['title'] = company.get('company_name')
+                element['image_url'] = company.get('company_logo')
+                element['subtitle'] = \
+                    "{} articles / {} articles".format(company.get('company_articles'),
+                                                       Total_articles)
+                messages[0]['attachment']['payload']['elements'].append(element)
 
-        element = copy.deepcopy(element)
-        element['title'] = good_companies[NEXT+1].get('company_name')
-        element['image_url'] = good_companies[NEXT+1].get('company_logo')
-        element['subtitle'] = \
-            "{} articles / {} articles".format(good_companies[NEXT+1].get('company_articles'),
-                                               Total_articles)
-        messages[0]['attachment']['payload']['elements'].append(element)
-        print(element)
-
-        element = copy.deepcopy(element)
-        element['title'] = good_companies[NEXT+2].get('company_name')
-        element['image_url'] = good_companies[NEXT + 2].get('company_logo')
-        element['subtitle'] = \
-            "{} articles / {} articles".format(good_companies[NEXT+2].get('company_articles'),
-                                               Total_articles)
-        messages[0]['attachment']['payload']['elements'].append(element)
-        print(element)
-
-        element = copy.deepcopy(element)
-        element['title'] = good_companies[NEXT+3].get('company_name')
-        element['image_url'] = good_companies[NEXT+3].get('company_logo')
-        element['subtitle'] = \
-            "{} articles / {} articles".format(good_companies[NEXT+3].get('company_articles'),
-                                               Total_articles)
-        messages[0]['attachment']['payload']['elements'].append(element)
-        print(element)
+        # element = copy.deepcopy(element)
+        # element['title'] = good_companies[NEXT+1].get('company_name')
+        # element['image_url'] = good_companies[NEXT+1].get('company_logo')
+        # element['subtitle'] = \
+        #     "{} articles / {} articles".format(good_companies[NEXT+1].get('company_articles'),
+        #                                        Total_articles)
+        # messages[0]['attachment']['payload']['elements'].append(element)
+        # print(element)
+        #
+        # element = copy.deepcopy(element)
+        # element['title'] = good_companies[NEXT+2].get('company_name')
+        # element['image_url'] = good_companies[NEXT + 2].get('company_logo')
+        # element['subtitle'] = \
+        #     "{} articles / {} articles".format(good_companies[NEXT+2].get('company_articles'),
+        #                                        Total_articles)
+        # messages[0]['attachment']['payload']['elements'].append(element)
+        # print(element)
+        #
+        # element = copy.deepcopy(element)
+        # element['title'] = good_companies[NEXT+3].get('company_name')
+        # element['image_url'] = good_companies[NEXT+3].get('company_logo')
+        # element['subtitle'] = \
+        #     "{} articles / {} articles".format(good_companies[NEXT+3].get('company_articles'),
+        #                                        Total_articles)
+        # messages[0]['attachment']['payload']['elements'].append(element)
+        # print(element)
 
 
         # next_button['title'] = "Next {}/{}".format(NEXT + 2, len(good_companies))
-        next_button['title'] = "Next 1/2"
-        button_message = {
-            "attachment": {
-                "type": "template",
-                "payload": {
-                    "template_type": "button",
-                    "text": ".",
-                    "buttons": [
-                        next_button
-                    ]
-                }
-            }
-        }
+        if four_packets > 1:
+            if (NEXT+2) < four_packets:
+                next_button['title'] = "Next {}/{}".format(NEXT+2, four_packets)
+
         response_data = {}
         response_data['set_attributes'] = attributes_dict
         response_data['messages'] = messages
