@@ -711,7 +711,8 @@ def get_companies(stocks_type):
             if (NEXT+2) <= four_packets:
                 next_button['title'] = "Next {}/{}".format(NEXT+2, int(four_packets))
                 # response_data['messages'].append(button_message)
-                response_data['messages']['attachment']['payload']['buttons'] = [next_button]
+                response_data['messages']['attachment']['payload']['buttons'] = []
+                response_data['messages']['attachment']['payload']['buttons'].append(next_button)
         # if NEXT < len(good_companies) - 1:
         #     response_data['messages'][0]['attachment']['payload']['elements'][0]['buttons'].append(next_button)
 
