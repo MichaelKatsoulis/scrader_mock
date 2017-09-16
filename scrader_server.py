@@ -660,21 +660,23 @@ def get_companies(stocks_type):
             "{} articles / {} articles".format(good_companies[NEXT+1].get('company_articles'),
                                                Total_articles)
         messages[0]['attachment']['payload']['elements'].append(element)
+        print(element)
 
-        element['title'] = good_companies[NEXT + 2].get('company_name')
+        element['title'] = good_companies[NEXT+2].get('company_name')
         element['image_url'] = good_companies[NEXT + 2].get('company_logo')
         element['subtitle'] = \
-            "{} articles / {} articles".format(good_companies[NEXT + 2].get('company_articles'),
+            "{} articles / {} articles".format(good_companies[NEXT+2].get('company_articles'),
                                                Total_articles)
-
         messages[0]['attachment']['payload']['elements'].append(element)
+        print(element)
 
-        element['title'] = good_companies[NEXT + 3].get('company_name')
-        element['image_url'] = good_companies[NEXT + 3].get('company_logo')
+        element['title'] = good_companies[NEXT+3].get('company_name')
+        element['image_url'] = good_companies[NEXT+3].get('company_logo')
         element['subtitle'] = \
-            "{} articles / {} articles".format(good_companies[NEXT + 3].get('company_articles'),
+            "{} articles / {} articles".format(good_companies[NEXT+3].get('company_articles'),
                                                Total_articles)
         messages[0]['attachment']['payload']['elements'].append(element)
+        print(element)
 
         next_button['title'] = "Next {}/{}".format(NEXT + 2, len(good_companies))
         response_data = {}
