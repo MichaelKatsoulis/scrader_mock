@@ -627,7 +627,7 @@ def get_companies(stocks_type):
     next_button = {
         "type": "show_block",
         "block_name": "Next Company",
-        "title": "Next {}/{}".format(NEXT + 2, len(good_companies))
+        "title": ''
     }
 
     if stocks_type == 'Positive+News':
@@ -641,6 +641,7 @@ def get_companies(stocks_type):
             "{} articles / {} articles".format(good_companies[NEXT].get('company_articles'),
                                                Total_articles)
 
+        next_button['title'] = "Next {}/{}".format(NEXT + 2, len(good_companies))
         response_data = {}
         response_data['set_attributes'] = attributes_dict
         response_data['messages'] = messages
@@ -658,10 +659,11 @@ def get_companies(stocks_type):
             "{} articles / {} articles".format(bad_companies[NEXT].get('company_articles'),
                                                Total_articles)
 
+        next_button['title'] = "Next {}/{}".format(NEXT + 2, len(bad_companies))
         response_data = {}
         response_data['set_attributes'] = attributes_dict
         response_data['messages'] = messages
-        if NEXT < len(good_companies) - 1:
+        if NEXT < len(bad_companies) - 1:
             response_data['messages'][0]['attachment']['payload']['elements'][0]['buttons'].append(next_button)
 
     else:
