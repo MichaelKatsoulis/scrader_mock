@@ -593,7 +593,7 @@ def get_companies(stocks_type):
                             "elements": [
                                 {
                                     "title": "Amazon",
-                                    "image_url": "http://www.vmastoryboard.com/wp-content/uploads/2014/08/Amazon-Logo_Feature.jpg",
+                                    "image_url": "http://apps.3dcart.com/assets/images/amazon-black-logo.png",
                                     "subtitle": "2 articles / 100 articles",
                                     "buttons": [
                                         {
@@ -607,22 +607,22 @@ def get_companies(stocks_type):
                         }
                     }
                 }
-                # , {
-                #     "attachment": {
-                #         "type": "template",
-                #         "payload": {
-                #             "template_type": "button",
-                #             "text": "..",
-                #             "buttons": [
-                #                 {
-                #                     "type": "web_url",
-                #                     "url": "http://146.185.138.240/guest_companies/Positive+News",
-                #                     "title": "Next {}/5".format(NEXT)
-                #                 }
-                #             ]
-                #         }
-                #     }
-                # }
+                , {
+                    "attachment": {
+                        "type": "template",
+                        "payload": {
+                            "template_type": "button",
+                            "text": "..",
+                            "buttons": [
+                                {
+                                    "type": "web_url",
+                                    "url": "http://146.185.138.240/guest_companies/Positive+News",
+                                    "title": "Next {}/5".format(NEXT)
+                                }
+                            ]
+                        }
+                    }
+                }
             ]
         }
 
