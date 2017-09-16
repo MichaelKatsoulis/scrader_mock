@@ -7,6 +7,25 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script>
+(function(d, s, id){
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.com/en_US/messenger.Extensions.js";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'Messenger'));
+</script>   
+
+<script>
+  window.extAsyncInit = function() {
+
+    console.log('the Messenger Extensions JS SDK is done loading ');
+    // the Messenger Extensions JS SDK is done loading 
+
+  };
+
+</script>
 </head>
 <body>
 
@@ -173,9 +192,16 @@ function success() {
 
 };
 function windowclose() { 
-      window.close();
-         /*    We need to do something for Safari. On iOS the window doesn't close so I have written the following*/
+  /* 
+MessengerExtensions.requestCloseBrowser(function success() {}, function failure(err) {
+  alert('error closing the window: ' + err); // error closing the window: 
+  console.log(err); // doesn't print
+ // window.close();
+});       */ 
+           //  We need to do something for Safari. On iOS the window doesn't close so I have written the following
+          window.close();
       $('#companies_header').text('Companies Saved. Please close this window and return to Messenger.');
+
       $('.panel-custom-body').hide();
 
   }
