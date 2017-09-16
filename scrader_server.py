@@ -575,43 +575,51 @@ def get_companies(stocks_type):
         }
     ]
 
-    if stocks_type == 'Positive+News':
+    attributes_dict = {
+        "news_type": '',
+        "stocks_type": ''
+    }
 
-        attributes_dict = {
-            "news_type": "positive",
-            "stocks_type": 'Positive+News'
-        }
-
-        messages = [
-            {
-                "attachment": {
-                    "type": "template",
-                    "payload": {
-                        "template_type": "generic",
-                        "elements": [
-                            {
-                                "title": good_companies[NEXT].get('company_name'),
-                                "image_url": good_companies[NEXT].get('company_logo'),
-                                "subtitle": "{} articles / {} articles".format(good_companies[NEXT].get('company_articles'), Total_articles),
-                                "buttons": [
-                                    {
-                                        "type": "show_block",
-                                        "block_name": "Company News",
-                                        "title": "View Articles"
-                                    }
-                                ]
-                            }
-                        ]
-                    }
+    messages = [
+        {
+            "attachment": {
+                "type": "template",
+                "payload": {
+                    "template_type": "generic",
+                    "elements": [
+                        {
+                            "title": '',
+                            "image_url": '',
+                            "subtitle": '',
+                            "buttons": [
+                                {
+                                    "type": "show_block",
+                                    "block_name": "Company News",
+                                    "title": "View Articles"
+                                }
+                            ]
+                        }
+                    ]
                 }
             }
-        ]
-        next_button = {
-                        "type": "show_block",
-                        "block_name": "Next Company",
-                        "title": "Next {}/{}".format(NEXT + 2, len(good_companies))
         }
+    ]
+    next_button = {
+        "type": "show_block",
+        "block_name": "Next Company",
+        "title": "Next {}/{}".format(NEXT + 2, len(good_companies))
+    }
 
+    if stocks_type == 'Positive+News':
+
+        attributes_dict['news_type'] = 'positive'
+        attributes_dict['stocks_type'] = 'Positive+News'
+
+        messages[0]['attachment']['payload']['elements'][0]['title'] = good_companies[NEXT].get('company_name')
+        messages[0]['attachment']['payload']['elements'][0]['image_url'] = good_companies[NEXT].get('company_logo')
+        messages[0]['attachment']['payload']['elements'][0]['subtitle'] = \
+            "{} articles / {} articles".format(good_companies[NEXT].get('company_articles'),
+                                               Total_articles)
 
         response_data = {}
         response_data['set_attributes'] = attributes_dict
