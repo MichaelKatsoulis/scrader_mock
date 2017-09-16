@@ -616,7 +616,7 @@ def get_companies(stocks_type):
         response_data = {}
         response_data['set_attributes'] = attributes_dict
         response_data['messages'] = messages
-        if NEXT < len(good_companies):
+        if NEXT < len(good_companies) - 1:
             response_data['messages'][0]['attachment']['payload']['elements'][0]['buttons'].append(next_button)
 
     elif stocks_type == 'Negative+News':
