@@ -661,9 +661,9 @@ def get_companies(stocks_type):
 
         attributes_dict['news_type'] = 'positive'
         attributes_dict['stocks_type'] = 'Positive+News'
-
-        for index, company in enumerate(good_companies):
-            if index <= 3:
+        start = NEXT*4
+        for index, company in enumerate(good_companies[start:]):
+            if index < start + 4:
                 element = copy.deepcopy(element)
                 element['title'] = company.get('company_name')
                 element['image_url'] = company.get('company_logo')
@@ -708,7 +708,7 @@ def get_companies(stocks_type):
         print(NEXT+2)
         if four_packets > 1:
             if (NEXT+2) <= four_packets:
-                next_button['title'] = "Next {}/{}".format(NEXT+2, four_packets)
+                next_button['title'] = "Next {}/{}".format(NEXT+2, int(four_packets))
                 response_data['messages'].append(button_message)
         # if NEXT < len(good_companies) - 1:
         #     response_data['messages'][0]['attachment']['payload']['elements'][0]['buttons'].append(next_button)
