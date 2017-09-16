@@ -542,7 +542,8 @@ def get_companies(stocks_type):
         Returns:
             dict: A JSON object containing the nfvacc server status information
     """
-
+    print('eeeeeeeeee')
+    print(request.args.get('NEXT'))
     global NEXT
     print(NEXT)
     print("Fetching companies with {}.".format(stocks_type))
