@@ -19,6 +19,7 @@ app = flask.Flask(__name__)
 CORS(app, resources={r"*": {"origins": "*"}})
 
 USERS = []
+NEXT = 1
 
 
 @app.route('/scrader/companies/<user_id>'.format(methods=['GET']))
@@ -202,14 +203,11 @@ def user_data():
     """
 
     data = flask.request.get_json()
-    #print(data)
 
     user_name = data.get('user')
     for user in USERS:
         if user.get('name') == user_name:
             user['companies'] = data.get('companies')
-
-    #print(USERS)
 
     response_data = {}
     status = 200 if response_data is not None else 403
@@ -284,8 +282,6 @@ def user_notification(user_id, time_frame):
         Returns:
             dict: A JSON object containing the nfvacc server status information
     """
-    #print(user_id)
-    #print(time_frame)
 
     user_name = user_id
     for user in USERS:
@@ -293,7 +289,7 @@ def user_notification(user_id, time_frame):
             user_name = user.get('name')
 
     if time_frame == 'Daily':
-        message = "Mr {} you will be notified {}".format(user_name, time_frame)
+        message = "{} you will be notified {}".format(user_name, time_frame)
         response_data = {
 
             "messages": [
@@ -546,6 +542,10 @@ def get_companies(stocks_type):
         Returns:
             dict: A JSON object containing the nfvacc server status information
     """
+
+    global NEXT
+    NEXT += 1
+    print(NEXT)
     print("Fetching companies with {}.".format(stocks_type))
 
     if stocks_type == 'Positive+News':
@@ -555,28 +555,69 @@ def get_companies(stocks_type):
                 {
                     "news_type": "positive"
                 },
+            # "messages": [
+            #     {
+            #         "attachment": {
+            #             "type": "template",
+            #             "payload": {
+            #                 "template_type": "button",
+            #                 "text": "Great choice! These are today's top positive stocks",
+            #                 "buttons": [
+            #                     {
+            #                         "type": "show_block",
+            #                         "block_name": "Company News",
+            #                         "title": "Amazon"
+            #                     },
+            #                     {
+            #                         "type": "show_block",
+            #                         "block_name": "Company News",
+            #                         "title": "Apple"
+            #                     },
+            #                     {
+            #                         "type": "show_block",
+            #                         "block_name": "Company News",
+            #                         "title": "Adidas"
+            #                     }
+            #                 ]
+            #             }
+            #         }
+            #     }
+            # ]
             "messages": [
                 {
                     "attachment": {
                         "type": "template",
                         "payload": {
+                            "template_type": "list",
+                            "top_element_style": "large",
+                            "elements": [
+                                {
+                                    "title": "Amazon",
+                                    "image_url": "http://www.vmastoryboard.com/wp-content/uploads/2014/08/Amazon-Logo_Feature.jpg",
+                                    "subtitle": "2 articles / 100 articles",
+                                    "buttons": [
+                                        {
+                                            "type": "show_block",
+                                            "block_name": "Company News",
+                                            "title": "View Articles"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "attachment": {
+                        "type": "template",
+                        "payload": {
                             "template_type": "button",
-                            "text": "Great choice! These are today's top positive stocks",
+                            "text": "..",
                             "buttons": [
                                 {
-                                    "type": "show_block",
-                                    "block_name": "Company News",
-                                    "title": "Amazon"
-                                },
-                                {
-                                    "type": "show_block",
-                                    "block_name": "Company News",
-                                    "title": "Apple"
-                                },
-                                {
-                                    "type": "show_block",
-                                    "block_name": "Company News",
-                                    "title": "Adidas"
+                                    "type": "web_url",
+                                    "url": "http://146.185.138.240/guest_companies/Positive+News",
+                                    "title": "Next {}/5".format(NEXT)
                                 }
                             ]
                         }
@@ -584,54 +625,6 @@ def get_companies(stocks_type):
                 }
             ]
         }
-
-        # response_data = {
-        #     "set_attributes":
-        #         {
-        #             "news_type": "positive"
-        #         },
-        #     "messages": [{
-        #         "attachment": {
-        #             "type": "template",
-        #             "payload": {
-        #                 "template_type": "list",
-        #                 "top_element_style": "compact",
-        #                 "elements": [{
-        #                     "title": "Amazon",
-        #                     "buttons": [{
-        #                         "type": "show_block",
-        #                         "block_name": "Company News",
-        #                         "title": "Amazon"
-        #                     }]
-        #                 }, {
-        #                     "title": "Apple",
-        #                     "buttons": [{
-        #                         "type": "show_block",
-        #                         "block_name": "Company News",
-        #                         "title": "Apple"
-        #                     }]
-        #                 },
-        #                 {
-        #                     "title": "Adidas",
-        #                     "buttons": [{
-        #                         "type": "show_block",
-        #                         "block_name": "Company News",
-        #                         "title": "Adidas"
-        #                     }]
-        #                 },
-        #                 {
-        #                     "title": "Facebook",
-        #                     "buttons": [{
-        #                         "type": "show_block",
-        #                         "block_name": "Company News",
-        #                         "title": "Facebook"
-        #                     }]
-        #                 }
-        #                 ]
-        #             }
-        #         }
-        #     }]
-        # }
 
     elif stocks_type == 'Negative+News':
 
