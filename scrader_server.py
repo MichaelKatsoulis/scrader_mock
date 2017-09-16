@@ -574,6 +574,16 @@ def get_companies(stocks_type):
             'company_name': 'Twitter',
             'company_logo': 'http://goinkscape.com/wp-content/uploads/2015/07/twitter-logo-final.png',
             'company_articles': 6
+        },
+        {
+            'company_name': 'Samsung',
+            'company_logo': 'http://goinkscape.com/wp-content/uploads/2015/07/twitter-logo-final.png',
+            'company_articles': 6
+        },
+        {
+            'company_name': 'Huawei',
+            'company_logo': 'http://goinkscape.com/wp-content/uploads/2015/07/twitter-logo-final.png',
+            'company_articles': 6
         }
     ]
 
@@ -681,10 +691,25 @@ def get_companies(stocks_type):
         messages[0]['attachment']['payload']['elements'].append(element)
         print(element)
 
-        next_button['title'] = "Next {}/{}".format(NEXT + 2, len(good_companies))
+
+        # next_button['title'] = "Next {}/{}".format(NEXT + 2, len(good_companies))
+        next_button['title'] = "Next 1/2"
+        button_message = {
+            "attachment": {
+                "type": "template",
+                "payload": {
+                    "template_type": "button",
+                    "text": ".",
+                    "buttons": [
+                        next_button
+                    ]
+                }
+            }
+        }
         response_data = {}
         response_data['set_attributes'] = attributes_dict
         response_data['messages'] = messages
+        response_data['messages'].append(button_message)
         # if NEXT < len(good_companies) - 1:
         #     response_data['messages'][0]['attachment']['payload']['elements'][0]['buttons'].append(next_button)
 
