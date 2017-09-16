@@ -605,8 +605,21 @@ def get_companies(stocks_type):
             "attachment": {
                 "type": "template",
                 "payload": {
-                    "template_type": "generic",
+                    "template_type": "list",
+                    "top_element_style": "compact",
                     "elements": [
+                        {
+                            "title": '',
+                            "image_url": '',
+                            "subtitle": '',
+                            "buttons": [
+                                {
+                                    "type": "show_block",
+                                    "block_name": "Company News",
+                                    "title": "View Articles"
+                                }
+                            ]
+                        },
                         {
                             "title": '',
                             "image_url": '',
@@ -641,12 +654,17 @@ def get_companies(stocks_type):
             "{} articles / {} articles".format(good_companies[NEXT].get('company_articles'),
                                                Total_articles)
 
+        messages[0]['attachment']['payload']['elements'][1]['title'] = good_companies[NEXT+1].get('company_name')
+        messages[0]['attachment']['payload']['elements'][1]['image_url'] = good_companies[NEXT+1].get('company_logo')
+        messages[0]['attachment']['payload']['elements'][1]['subtitle'] = \
+            "{} articles / {} articles".format(good_companies[NEXT+1].get('company_articles'),
+                                               Total_articles)
         next_button['title'] = "Next {}/{}".format(NEXT + 2, len(good_companies))
         response_data = {}
         response_data['set_attributes'] = attributes_dict
         response_data['messages'] = messages
-        if NEXT < len(good_companies) - 1:
-            response_data['messages'][0]['attachment']['payload']['elements'][0]['buttons'].append(next_button)
+        # if NEXT < len(good_companies) - 1:
+        #     response_data['messages'][0]['attachment']['payload']['elements'][0]['buttons'].append(next_button)
 
     elif stocks_type == 'Negative+News':
 
