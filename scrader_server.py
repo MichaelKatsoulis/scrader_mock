@@ -654,6 +654,7 @@ def get_companies(stocks_type):
             "{} articles / {} articles".format(good_companies[NEXT].get('company_articles'),
                                                Total_articles)
 
+        element = copy.deepcopy(element)
         element['title'] = good_companies[NEXT+1].get('company_name')
         element['image_url'] = good_companies[NEXT+1].get('company_logo')
         element['subtitle'] = \
@@ -662,6 +663,7 @@ def get_companies(stocks_type):
         messages[0]['attachment']['payload']['elements'].append(element)
         print(element)
 
+        element = copy.deepcopy(element)
         element['title'] = good_companies[NEXT+2].get('company_name')
         element['image_url'] = good_companies[NEXT + 2].get('company_logo')
         element['subtitle'] = \
@@ -670,6 +672,7 @@ def get_companies(stocks_type):
         messages[0]['attachment']['payload']['elements'].append(element)
         print(element)
 
+        element = copy.deepcopy(element)
         element['title'] = good_companies[NEXT+3].get('company_name')
         element['image_url'] = good_companies[NEXT+3].get('company_logo')
         element['subtitle'] = \
