@@ -545,6 +545,8 @@ def get_companies(stocks_type):
     print('eeeeeeeeee')
     print(request.args.get('NEXT'))
     global NEXT
+    NEXT = 0 if request.args.get('NEXT') is not None else NEXT
+
     print(NEXT)
     print("Fetching companies with {}.".format(stocks_type))
     Total_articles = 100
