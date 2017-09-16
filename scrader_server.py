@@ -663,6 +663,7 @@ def get_companies(stocks_type):
         attributes_dict['stocks_type'] = 'Positive+News'
         start = NEXT*4
         for index, company in enumerate(good_companies[start:]):
+            print(index)
             if index < start + 4:
                 element = copy.deepcopy(element)
                 element['title'] = company.get('company_name')
