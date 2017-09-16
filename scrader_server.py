@@ -603,7 +603,7 @@ def get_companies(stocks_type):
                                         },
                                         {
                                             "type": "show_block",
-                                            "url": "Next Company",
+                                            "block_name": "Next Company",
                                             "title": "Next {}/5".format(NEXT)
                                         }
                                     ]
