@@ -49,7 +49,6 @@ def user_login(user_id, user_name):
             dict: A JSON object containing the nfvacc server status information
     """
     print(USERS)
-    print(str(user_id))
     name = user_name
     registered = False
     exists = False
@@ -171,13 +170,6 @@ def subscribe(user_id, user_last_name, user_first_name):
             dict: A JSON object containing the nfvacc server status information
     """
 
-    # user_dict = {
-    #         'user_id': str(user_id),
-    #         'name': user_last_name,
-    #         'first_name': user_first_name,
-    #         'subscribed': True
-    #     }
-    # USERS.append(user_dict)
     for user in USERS:
         if user.get('user_id') == str(user_id):
             user['name'] = user_last_name
@@ -220,7 +212,6 @@ def get_latest_news():
     return flask.Response(js,
                           status=status,
                           mimetype='application/json')
-
 
 
 @app.route('/scrader/user_companies', methods=['POST'])
@@ -313,11 +304,15 @@ def user_notification(user_id, time_frame):
     """
 
     user_name = user_id
-    for user in USERS:
+    user_index = 0
+    for ind, user in enumerate(USERS):
         if user.get('user_id') == user_id:
-            user_name = user.get('name')
+            user_name = user.get('first_name')
+            user_index = ind
 
     if time_frame == 'Daily':
+
+        USERS[user_index]['notification_type'] = 'Daily'
         message = "{} you will be notified {}".format(user_name, time_frame)
         response_data = {
 
@@ -327,93 +322,8 @@ def user_notification(user_id, time_frame):
 
         }
     else:
-        # message = "Mr {} you can be notified for the following {}".format(user_name, time_frame)
-        # response_data = {
-        #     "set_attributes":
-        #         {
-        #             "news_type": "all"
-        #         },
-        #     "messages": [
-        #         {
-        #             "attachment": {
-        #                 "type": "template",
-        #                 "payload": {
-        #                     "template_type": "button",
-        #                     "text": message,
-        #                     "buttons": [
-        #                         {
-        #                             "type": "show_block",
-        #                             "block_name": "Company Specific News",
-        #                             "title": "Instagram"
-        #                         },
-        #                         {
-        #                             "type": "show_block",
-        #                             "block_name": "Company Specific News",
-        #                             "title": "VMware"
-        #                         },
-        #                         {
-        #                             "type": "show_block",
-        #                             "block_name": "Company Specific News",
-        #                             "title": "IBM"
-        #                         }
-        #                     ]
-        #                 }
-        #             }
-        #         },
-        #         {
-        #             "attachment": {
-        #                 "type": "template",
-        #                 "payload": {
-        #                     "template_type": "button",
-        #                     "text": "...",
-        #                     "buttons": [
-        #                         {
-        #                             "type": "show_block",
-        #                             "block_name": "Company Specific News",
-        #                             "title": "Apple"
-        #                         },
-        #                         {
-        #                             "type": "show_block",
-        #                             "block_name": "Company Specific News",
-        #                             "title": "Amazon"
-        #                         },
-        #                         {
-        #                             "type": "show_block",
-        #                             "block_name": "Company Specific News",
-        #                             "title": "Adidas"
-        #                         }
-        #                     ]
-        #                 }
-        #             }
-        #         },
-        #         {
-        #             "attachment": {
-        #                 "type": "template",
-        #                 "payload": {
-        #                     "template_type": "button",
-        #                     "text": "...",
-        #                     "buttons": [
-        #                         {
-        #                             "type": "show_block",
-        #                             "block_name": "Company Specific News",
-        #                             "title": "Facebook"
-        #                         },
-        #                         {
-        #                             "type": "show_block",
-        #                             "block_name": "Company Specific News",
-        #                             "title": "Google"
-        #                         },
-        #                         {
-        #                             "type": "show_block",
-        #                             "block_name": "Company Specific News",
-        #                             "title": "Hooli"
-        #                         }
-        #                     ]
-        #                 }
-        #             }
-        #         }
-        #     ]
-        # }
+
+        USERS[user_index]['notification_type'] = 'Companies'
         response_data = {
           "messages": [
             {
