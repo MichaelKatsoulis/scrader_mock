@@ -673,46 +673,18 @@ def get_companies(stocks_type):
                                                        Total_articles)
                 messages[0]['attachment']['payload']['elements'].append(element)
 
-        # element = copy.deepcopy(element)
-        # element['title'] = good_companies[NEXT+1].get('company_name')
-        # element['image_url'] = good_companies[NEXT+1].get('company_logo')
-        # element['subtitle'] = \
-        #     "{} articles / {} articles".format(good_companies[NEXT+1].get('company_articles'),
-        #                                        Total_articles)
-        # messages[0]['attachment']['payload']['elements'].append(element)
-        # print(element)
-        #
-        # element = copy.deepcopy(element)
-        # element['title'] = good_companies[NEXT+2].get('company_name')
-        # element['image_url'] = good_companies[NEXT + 2].get('company_logo')
-        # element['subtitle'] = \
-        #     "{} articles / {} articles".format(good_companies[NEXT+2].get('company_articles'),
-        #                                        Total_articles)
-        # messages[0]['attachment']['payload']['elements'].append(element)
-        # print(element)
-        #
-        # element = copy.deepcopy(element)
-        # element['title'] = good_companies[NEXT+3].get('company_name')
-        # element['image_url'] = good_companies[NEXT+3].get('company_logo')
-        # element['subtitle'] = \
-        #     "{} articles / {} articles".format(good_companies[NEXT+3].get('company_articles'),
-        #                                        Total_articles)
-        # messages[0]['attachment']['payload']['elements'].append(element)
-        # print(element)
-
-
         # next_button['title'] = "Next {}/{}".format(NEXT + 2, len(good_companies))
         response_data = {}
         response_data['set_attributes'] = attributes_dict
         response_data['messages'] = messages
-        print(four_packets)
-        print(NEXT+2)
-        if four_packets > 1:
-            if (NEXT+2) <= four_packets:
-                next_button['title'] = "Next {}/{}".format(NEXT+2, int(four_packets))
-                # response_data['messages'].append(button_message)
-                response_data['messages']['attachment']['payload']['buttons'] = []
-                response_data['messages']['attachment']['payload']['buttons'].append(next_button)
+        # print(four_packets)
+        # print(NEXT+2)
+        # if four_packets > 1:
+        #     if (NEXT+2) <= four_packets:
+        #         next_button['title'] = "Next {}/{}".format(NEXT+2, int(four_packets))
+        #         # response_data['messages'].append(button_message)
+        #         response_data['messages']['attachment']['payload']['buttons'] = []
+        #         response_data['messages']['attachment']['payload']['buttons'].append(next_button)
         # if NEXT < len(good_companies) - 1:
         #     response_data['messages'][0]['attachment']['payload']['elements'][0]['buttons'].append(next_button)
 
