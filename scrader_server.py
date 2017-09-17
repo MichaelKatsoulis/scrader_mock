@@ -9,7 +9,6 @@ import signal
 import copy
 import config
 import companies
-from scrader_handler import scrader_poll
 from scrader_handler import fetch_news_from_db
 import mongo
 
@@ -36,7 +35,6 @@ def get_html(user_id):
     for user in USERS:
         if user.get('user_id') == user_id:
             name = user.get('name')
-            companies = user.get('companies', [])
 
     return flask.render_template('index1.html', name=name, user_id=user_id)
 
@@ -71,11 +69,7 @@ def user_login(user_id, user_name):
         }
         USERS.append(user_dict)
 
-
-    block = ''
     buttons = []
-    message = ''
-    button_title = ''
 
     if registered:
         message = 'Hi again {}. What would you like me to show you? ' \
@@ -245,49 +239,13 @@ def user_companies(user_id):
             dict: A JSON object containing the nfvacc server status information
     """
 
-    # message = "Mr {} these are your selected companies".format(user_name)
-    # #print(USERS)
-    # #print(str(user_name))
-    # for user in USERS:
-    #     print((str(user.get('name'))))
-    #     if str(user.get('name')) == str(user_name):
-    #         companies = user.get('companies')
-    #
-    # company_dict_tmpl = {
-    #                     "type": "show_block",
-    #                     "block_name": "Company Specific News",
-    #                     "title": ""
-    #                 }
-    # buttons = []
-    # for company in companies:
-    #     company_dict = copy.deepcopy(company_dict_tmpl)
-    #     company_dict["title"] = str(company)
-    #     #print(company)
-    #     #print(company_dict)
-    #     buttons.append(company_dict)
-    #
-    # response_data = {
-    #
-    #     "messages": [
-    #         {
-    #             "attachment": {
-    #                 "type": "template",
-    #                 "payload": {
-    #                     "template_type": "button",
-    #                     "text": message,
-    #                     "buttons": buttons
-    #                 }
-    #             }
-    #         }
-    #     ]
-    # }
-    companies = []
+    subscribed_companies = []
     for user in USERS:
         if user.get('user_id') == user_id:
-            companies = user.get('companies', [])
+            subscribed_companies = user.get('companies', [])
 
-    print(companies)
-    response_data = companies
+    print(subscribed_companies)
+    response_data = subscribed_companies
     status = 200 if response_data is not None else 403
     js = json.dumps(response_data, indent=2)
     return flask.Response(js,
@@ -481,11 +439,10 @@ def get_companies(stocks_type):
         Returns:
             dict: A JSON object containing the nfvacc server status information
     """
-    print(request.args.get('NEXT'))
+
     global NEXT
     NEXT = 0 if request.args.get('NEXT') is not None else NEXT
 
-    print(NEXT)
     print("Fetching companies with {}.".format(stocks_type))
     total_articles = companies.Total_articles
 
@@ -549,11 +506,11 @@ def get_companies(stocks_type):
             'set_attributes': attributes_dict,
             'messages': messages
         }
-        print(four_packets)
-        print(NEXT+2)
+
         if four_packets > 1:
             if (NEXT+2) <= four_packets:
-                next_button['title'] = "Next {}/{}".format(NEXT+2, int(four_packets))
+                remaining = len(good_companies) - (NEXT+1)*4
+                next_button['title'] = "Next {}/{}".format(remaining, len(good_companies))
                 response_data['messages'][0]['attachment']['payload']['buttons'] = [next_button]
 
     elif stocks_type == 'Negative+News':
@@ -580,8 +537,7 @@ def get_companies(stocks_type):
             'set_attributes': attributes_dict,
             'messages': messages
         }
-        print(four_packets)
-        print(NEXT + 2)
+
         if four_packets > 1:
             if (NEXT + 2) <= four_packets:
                 next_button['title'] = "Next {}/{}".format(NEXT + 2, int(four_packets))
