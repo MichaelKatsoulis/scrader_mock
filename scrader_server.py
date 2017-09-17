@@ -39,6 +39,25 @@ def get_html(user_id):
     return flask.render_template('index1.html', name=name, user_id=user_id)
 
 
+@app.route('/scrader/all_companies'.format(methods=['GET']))
+def get_all_companies():
+    """ GET Server Status API endpoint
+        Args:
+        Returns:
+            dict: A JSON object containing the nfvacc server status information
+    """
+
+    good_company_names = [company['name'] for company in companies.all_companies['good_companies']]
+    bad_company_names = [company['name'] for company in companies.all_companies['bad_companies']]
+    response_data = good_company_names + bad_company_names
+
+    status = 200 if response_data is not None else 403
+    js = json.dumps(response_data, indent=2)
+    return flask.Response(js,
+                          status=status,
+                          mimetype='application/json')
+
+
 @app.route('/login/<user_id>/<user_name>', methods=['POST', 'GET'])
 def user_login(user_id, user_name):
     """ GET Server Status API endpoint
