@@ -37,7 +37,7 @@
             <div class="panel-body panel-custom-body">
              <form id="myForm" class="companies_form">
                 <ul id="mylist" class="input-list">
-                    <li>
+                   <!--  <li>
                         <div class="pure-checkbox-toggle">
                             <input id="Amazon" name="checkbox" type="checkbox" value="">
                             <label for="Amazon">Amazon</label>
@@ -70,7 +70,7 @@
                             <input id="Adidas" name="checkbox" type="checkbox" value="">
                             <label for="Adidas">Adidas</label>
                         </div>
-                    </li>
+                    </li> -->
                     
                 </ul>
                 <input type="button" onclick="myFunction()" value="Done" class="btn btn-success btn-block">
@@ -92,24 +92,27 @@
 
 $( document ).ready(function() {
     
-    var list_elem = document.createElement("li");
-    var div = document.createElement("div");
-    div.className = "pure-checkbox-toggle";
-    var input = document.createElement("input");
-    input.id = "Michalis";
-    input.name = "checkbox";
-    input.type = "checkbox";
-    input.value = "value";
-    div.appendChild(input);
-    var label = document.createElement("Label");
-    label.setAttribute("for","Michalis");
-    label.innerHTML = "Michalis";
-    div.appendChild(label);
+    all_companies = ["Amazon","Google", "Facebook", "Instagram", "Adidas", "Vmware", "Samsung", "Huawei"]
+    for (var i=0; i< all_companies.length - 1; i++){
+      
+      var list_elem = document.createElement("li");
+      var div = document.createElement("div");
+      div.className = "pure-checkbox-toggle";
+      var input = document.createElement("input");
+      input.id = all_companies[i];
+      input.name = "checkbox";
+      input.type = "checkbox";
+      input.value = "value";
+      div.appendChild(input);
+      var label = document.createElement("Label");
+      label.setAttribute("for", all_companies[i]);
+      label.innerHTML = all_companies[i];
+      div.appendChild(label);
 
-    list_elem.appendChild(div);
-    parent = document.getElementById("mylist");
-    parent.appendChild(list_elem);
-
+      list_elem.appendChild(div);
+      parent = document.getElementById("mylist");
+      parent.appendChild(list_elem);
+  }
 
 
     $.ajax({
