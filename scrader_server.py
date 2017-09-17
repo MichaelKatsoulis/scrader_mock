@@ -212,21 +212,6 @@ def get_server_status():
                           mimetype='application/json')
 
 
-@app.route('/latest_news'.format(methods=['GET']))
-def get_latest_news():
-    """ GET Server Status API endpoint
-        Args:
-        Returns:
-            dict: A JSON object containing the nfvacc server status information
-    """
-    response_data = fetch_news_from_db()
-    status = 200 if response_data is not None else 403
-    js = json.dumps(response_data, indent=2)
-    return flask.Response(js,
-                          status=status,
-                          mimetype='application/json')
-
-
 @app.route('/scrader/user_companies', methods=['POST'])
 def user_data():
     """ GET Server Status API endpoint
