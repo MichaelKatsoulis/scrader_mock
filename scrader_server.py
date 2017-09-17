@@ -47,8 +47,8 @@ def get_all_companies():
             dict: A JSON object containing the nfvacc server status information
     """
 
-    good_company_names = [company['name'] for company in companies.all_companies['good_companies']]
-    bad_company_names = [company['name'] for company in companies.all_companies['bad_companies']]
+    good_company_names = [company['company_name'] for company in companies.all_companies['good_companies']]
+    bad_company_names = [company['company_name'] for company in companies.all_companies['bad_companies']]
     response_data = good_company_names + bad_company_names
 
     status = 200 if response_data is not None else 403
