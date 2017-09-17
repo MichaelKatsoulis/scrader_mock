@@ -64,7 +64,26 @@ $( document ).ready(function() {
                   all_companies = jsondata
                   console.log(all_companies);
                   var companies_arr = $.map(all_companies, function(el) { return el });     
+                  for (var i=0; i< all_companies.length - 1; i++){
+      
+                      var list_elem = document.createElement("li");
+                      var div = document.createElement("div");
+                      div.className = "pure-checkbox-toggle";
+                      var input = document.createElement("input");
+                      input.id = all_companies[i];
+                      input.name = "checkbox";
+                      input.type = "checkbox";
+                      input.value = "value";
+                      div.appendChild(input);
+                      var label = document.createElement("Label");
+                      label.setAttribute("for", all_companies[i]);
+                      label.innerHTML = all_companies[i];
+                      div.appendChild(label);
 
+                      list_elem.appendChild(div);
+                      parent = document.getElementById("mylist");
+                      parent.appendChild(list_elem);
+                  }
           },
           complete: function (data) {
                   // Schedule the next
@@ -73,26 +92,26 @@ $( document ).ready(function() {
       });
 
 
-    for (var i=0; i< all_companies.length - 1; i++){
+  //   for (var i=0; i< all_companies.length - 1; i++){
       
-      var list_elem = document.createElement("li");
-      var div = document.createElement("div");
-      div.className = "pure-checkbox-toggle";
-      var input = document.createElement("input");
-      input.id = all_companies[i];
-      input.name = "checkbox";
-      input.type = "checkbox";
-      input.value = "value";
-      div.appendChild(input);
-      var label = document.createElement("Label");
-      label.setAttribute("for", all_companies[i]);
-      label.innerHTML = all_companies[i];
-      div.appendChild(label);
+  //     var list_elem = document.createElement("li");
+  //     var div = document.createElement("div");
+  //     div.className = "pure-checkbox-toggle";
+  //     var input = document.createElement("input");
+  //     input.id = all_companies[i];
+  //     input.name = "checkbox";
+  //     input.type = "checkbox";
+  //     input.value = "value";
+  //     div.appendChild(input);
+  //     var label = document.createElement("Label");
+  //     label.setAttribute("for", all_companies[i]);
+  //     label.innerHTML = all_companies[i];
+  //     div.appendChild(label);
 
-      list_elem.appendChild(div);
-      parent = document.getElementById("mylist");
-      parent.appendChild(list_elem);
-  }
+  //     list_elem.appendChild(div);
+  //     parent = document.getElementById("mylist");
+  //     parent.appendChild(list_elem);
+  // }
 
 
     $.ajax({
