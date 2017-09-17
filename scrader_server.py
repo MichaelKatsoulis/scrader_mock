@@ -1,6 +1,7 @@
 from __future__ import print_function
 import flask
 import json
+import math
 from flask.ext.cors import CORS
 from flask import request
 import os
@@ -654,11 +655,9 @@ def get_companies(stocks_type):
         }
     }
 
-    import math
-    four_packets = math.ceil((len(good_companies)/4.0))
-
     if stocks_type == 'Positive+News':
 
+        four_packets = math.ceil((len(good_companies) / 4.0))
         attributes_dict['news_type'] = 'positive'
         attributes_dict['stocks_type'] = 'Positive+News'
         start = NEXT*4
@@ -673,38 +672,46 @@ def get_companies(stocks_type):
                                                        Total_articles)
                 messages[0]['attachment']['payload']['elements'].append(element)
 
-        # next_button['title'] = "Next {}/{}".format(NEXT + 2, len(good_companies))
-        response_data = {}
-        response_data['set_attributes'] = attributes_dict
-        response_data['messages'] = messages
+        response_data = {
+            'set_attributes': attributes_dict,
+            'messages': messages
+        }
         print(four_packets)
         print(NEXT+2)
         if four_packets > 1:
             if (NEXT+2) <= four_packets:
                 next_button['title'] = "Next {}/{}".format(NEXT+2, int(four_packets))
-                # response_data['messages'].append(button_message)
-                response_data['messages'][0]['attachment']['payload']['buttons'] = []
-                response_data['messages'][0]['attachment']['payload']['buttons'].append(next_button)
-        # if NEXT < len(good_companies) - 1:
-        #     response_data['messages'][0]['attachment']['payload']['elements'][0]['buttons'].append(next_button)
+                response_data['messages'][0]['attachment']['payload']['buttons'] = [next_button]
+                # response_data['messages'][0]['attachment']['payload']['buttons'].append(next_button)
 
     elif stocks_type == 'Negative+News':
 
+        four_packets = math.ceil((len(bad_companies) / 4.0))
         attributes_dict['news_type'] = 'negative'
         attributes_dict['stocks_type'] = 'Negative+News'
+        start = NEXT * 4
+        for index, company in enumerate(bad_companies[start:]):
+            print(index)
+            if index < start + 4:
+                element = copy.deepcopy(element)
+                element['title'] = company.get('company_name')
+                element['image_url'] = company.get('company_logo')
+                element['subtitle'] = \
+                    "{} articles / {} articles".format(company.get('company_articles'),
+                                                       Total_articles)
+                messages[0]['attachment']['payload']['elements'].append(element)
 
-        messages[0]['attachment']['payload']['elements'][0]['title'] = bad_companies[NEXT].get('company_name')
-        messages[0]['attachment']['payload']['elements'][0]['image_url'] = bad_companies[NEXT].get('company_logo')
-        messages[0]['attachment']['payload']['elements'][0]['subtitle'] = \
-            "{} articles / {} articles".format(bad_companies[NEXT].get('company_articles'),
-                                               Total_articles)
-
-        next_button['title'] = "Next {}/{}".format(NEXT + 2, len(bad_companies))
-        response_data = {}
-        response_data['set_attributes'] = attributes_dict
-        response_data['messages'] = messages
-        if NEXT < len(bad_companies) - 1:
-            response_data['messages'][0]['attachment']['payload']['elements'][0]['buttons'].append(next_button)
+        response_data = {
+            'set_attributes': attributes_dict,
+            'messages': messages
+        }
+        print(four_packets)
+        print(NEXT + 2)
+        if four_packets > 1:
+            if (NEXT + 2) <= four_packets:
+                next_button['title'] = "Next {}/{}".format(NEXT + 2, int(four_packets))
+                response_data['messages'][0]['attachment']['payload']['buttons'] = [next_button]
+                # response_data['messages'][0]['attachment']['payload']['buttons'].append(next_button)
 
     else:
 
