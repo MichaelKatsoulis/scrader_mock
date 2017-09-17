@@ -8,6 +8,7 @@ import os
 import signal
 import copy
 import config
+import companies
 from scrader_handler import scrader_poll
 from scrader_handler import fetch_news_from_db
 import mongo
@@ -549,62 +550,7 @@ def get_companies(stocks_type):
 
     print(NEXT)
     print("Fetching companies with {}.".format(stocks_type))
-    Total_articles = 100
-    good_companies = [
-        {
-            'company_name': 'Amazon',
-            'company_logo': 'http://apps.3dcart.com/assets/images/amazon-black-logo.png',
-            'company_articles': 2
-        },
-        {
-            'company_name': 'Apple',
-            'company_logo': 'https://image.freepik.com/free-icon/apple-logo_318-40184.jpg',
-            'company_articles': 3
-        },
-        {
-            'company_name': 'Adidas',
-            'company_logo': 'http://www.thelogofactory.com/wp-content/uploads/2015/09/adidas-logo.png',
-            'company_articles': 1
-        },
-        {
-            'company_name': 'Instagram',
-            'company_logo': 'https://seeklogo.com/images/I/instagram-logo-7596E83E98-seeklogo.com.png',
-            'company_articles': 2
-        },
-        {
-            'company_name': 'Twitter',
-            'company_logo': 'http://goinkscape.com/wp-content/uploads/2015/07/twitter-logo-final.png',
-            'company_articles': 6
-        },
-        {
-            'company_name': 'Samsung',
-            'company_logo': 'http://goinkscape.com/wp-content/uploads/2015/07/twitter-logo-final.png',
-            'company_articles': 6
-        },
-        {
-            'company_name': 'Huawei',
-            'company_logo': 'http://goinkscape.com/wp-content/uploads/2015/07/twitter-logo-final.png',
-            'company_articles': 6
-        }
-    ]
-
-    bad_companies = [
-        {
-            'company_name': 'VMware',
-            'company_logo': 'https://www.uwosh.edu/cob/is/images/vmware-logo.jpg',
-            'company_articles': 2
-        },
-        {
-            'company_name': 'Erricsson',
-            'company_logo': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrKyaMRH0P_KORC9TZz9OxsQSPUAvoWN_1BOU-c1dGRCDehm3F',
-            'company_articles': 3
-        },
-        {
-            'company_name': 'Nokia',
-            'company_logo': 'https://www.nokia.com/sites/default/files/styles/medium/public/media/nokia_white_logo.png?itok=uqq4soUu',
-            'company_articles': 1
-        }
-    ]
+    total_articles = companies.Total_articles
 
     attributes_dict = {
         "news_type": '',
@@ -619,7 +565,7 @@ def get_companies(stocks_type):
             {
                 "type": "show_block",
                 "block_name": "Company News",
-                "title": "View Articles"
+                "title": ''
             }
         ]
     }
@@ -642,21 +588,9 @@ def get_companies(stocks_type):
         "title": ''
     }
 
-    button_message = {
-        "attachment": {
-            "type": "template",
-            "payload": {
-                "template_type": "button",
-                "text": ".",
-                "buttons": [
-                    next_button
-                ]
-            }
-        }
-    }
-
     if stocks_type == 'Positive+News':
 
+        good_companies = companies.all_companies.get('good_companies')
         four_packets = math.ceil((len(good_companies) / 4.0))
         attributes_dict['news_type'] = 'positive'
         attributes_dict['stocks_type'] = 'Positive+News'
@@ -669,7 +603,9 @@ def get_companies(stocks_type):
                 element['image_url'] = company.get('company_logo')
                 element['subtitle'] = \
                     "{} articles / {} articles".format(company.get('company_articles'),
-                                                       Total_articles)
+                                                       total_articles)
+                element['buttons'][0]['title'] = 'View articles' if company.get(
+                    'company_articles') > 1 else 'View article'
                 messages[0]['attachment']['payload']['elements'].append(element)
 
         response_data = {
@@ -682,10 +618,10 @@ def get_companies(stocks_type):
             if (NEXT+2) <= four_packets:
                 next_button['title'] = "Next {}/{}".format(NEXT+2, int(four_packets))
                 response_data['messages'][0]['attachment']['payload']['buttons'] = [next_button]
-                # response_data['messages'][0]['attachment']['payload']['buttons'].append(next_button)
 
     elif stocks_type == 'Negative+News':
 
+        bad_companies = companies.all_companies.get('bad_companies')
         four_packets = math.ceil((len(bad_companies) / 4.0))
         attributes_dict['news_type'] = 'negative'
         attributes_dict['stocks_type'] = 'Negative+News'
@@ -698,7 +634,9 @@ def get_companies(stocks_type):
                 element['image_url'] = company.get('company_logo')
                 element['subtitle'] = \
                     "{} articles / {} articles".format(company.get('company_articles'),
-                                                       Total_articles)
+                                                       total_articles)
+                element['buttons'][0]['title'] = 'View articles' if company.get(
+                    'company_articles') > 1 else 'View article'
                 messages[0]['attachment']['payload']['elements'].append(element)
 
         response_data = {
@@ -711,7 +649,6 @@ def get_companies(stocks_type):
             if (NEXT + 2) <= four_packets:
                 next_button['title'] = "Next {}/{}".format(NEXT + 2, int(four_packets))
                 response_data['messages'][0]['attachment']['payload']['buttons'] = [next_button]
-                # response_data['messages'][0]['attachment']['payload']['buttons'].append(next_button)
 
     else:
 
