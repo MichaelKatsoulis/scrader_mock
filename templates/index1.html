@@ -8,14 +8,14 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script>
-(function(d, s, id){
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) {return;}
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.com/en_US/messenger.Extensions.js";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'Messenger'));
-</script>   
+    (function(d, s, id){
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) {return;}
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.com/en_US/messenger.Extensions.js";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'Messenger'));
+  </script>   
 
 <script>
   window.extAsyncInit = function() {
@@ -37,50 +37,11 @@
             <div class="panel-body panel-custom-body">
              <form id="myForm" class="companies_form">
                 <ul id="mylist" class="input-list">
-                   <!--  <li>
-                        <div class="pure-checkbox-toggle">
-                            <input id="Amazon" name="checkbox" type="checkbox" value="">
-                            <label for="Amazon">Amazon</label>
-                        </div>
-                    </li>
-
-                    <li>
-                        <div class="pure-checkbox-toggle">
-                            <input id="Google" name="checkbox" type="checkbox" value="">
-                            <label for="Google">Google</label>
-                        </div>
-                    </li>
-
-                    <li>
-                        <div class="pure-checkbox-toggle">
-                            <input id="Facebook" name="checkbox" type="checkbox" value="">
-                            <label for="Facebook">Facebook</label>
-                        </div>
-                    </li>
-
-                    <li>
-                        <div class="pure-checkbox-toggle">
-                            <input id="Instagram" name="checkbox" type="checkbox" value="">
-                            <label for="Instagram">Instagram</label>
-                        </div>
-                    </li>
-
-                    <li>
-                        <div class="pure-checkbox-toggle">
-                            <input id="Adidas" name="checkbox" type="checkbox" value="">
-                            <label for="Adidas">Adidas</label>
-                        </div>
-                    </li> -->
-                    
                 </ul>
                 <input type="button" onclick="myFunction()" value="Done" class="btn btn-success btn-block">
                  </form>
             </div>
         </div>
-
-
-
-
 
 </div>
 
