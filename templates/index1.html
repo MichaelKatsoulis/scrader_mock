@@ -31,34 +31,12 @@
 
 
 <div class="main-container">
-<!--  <h2>Mr {{name}} these are Scrader's Supported Companies</h2>
-  <form id="myForm">
-    <div class="checkbox">
-      <label><input type="checkbox" value="" id="Amazon">Amazon</label>
-    </div>
-    <div class="checkbox">
-      <label><input type="checkbox" value="" id="Google">Google</label>
-    </div>
-    <div class="checkbox">
-      <label><input type="checkbox" value="" id="Facebook">Facebook</label>
-    </div>
-    <div class="checkbox">
-      <label><input type="checkbox" value="" id="Instagram">Instagram</label>
-    </div>
-    <div class="checkbox">
-      <label><input type="checkbox" value="" id="Adidas">Adidas</label>
-    </div>
-    <input type="button" onclick="myFunction()" value="Submit form">
-  </form>
-
-  -->
-
 
         <div class="panel">
             <div id="companies_header" class="panel-heading"> {{name}} these are Scrader's Supported Companies. Please select the ones you would like to get notifications for.</div>
             <div class="panel-body panel-custom-body">
              <form id="myForm" class="companies_form">
-                <ul class="input-list">
+                <ul id="mylist" class="input-list">
                     <li>
                         <div class="pure-checkbox-toggle">
                             <input id="Amazon" name="checkbox" type="checkbox" value="">
@@ -113,13 +91,27 @@
 <script>
 
 $( document ).ready(function() {
-    //console.log('{{companies}}');
-    // console.log(JSON.parse('{{companies}}'));
-    // companies = '{{companies}}';
-    // console.log(companies.length);
-    // for (var i=0; i< companies.length - 1; i++){
-    //   console.log(companies[i]);
-    // }
+    
+    var list_elem = document.createElement("li");
+    var div = document.createElement("div");
+    div.className = "pure-checkbox-toggle";
+    var input = document.createElement("input");
+    input.id = "Michalis";
+    input.name = "checkbox";
+    input.type = "checkbox";
+    input.value = "value";
+    div.appendChild(input);
+    var label = document.createElement("Label");
+    label.setAttribute("for","Michalis");
+    label.innerHTML = "Michalis";
+    div.appendChild(label);
+
+    list_elem.appendChild(div);
+    parent = document.getElementById("mylist");
+    parent.appendChild(list_elem);
+
+
+
     $.ajax({
               type: 'GET',
               url: 'http://146.185.138.240/companies/{{user_id}}',
