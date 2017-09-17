@@ -52,11 +52,26 @@ def user_login(user_id, user_name):
     print(str(user_id))
     name = user_name
     registered = False
+    exists = False
+    first_time = True
+
     for user in USERS:
         if user.get('user_id') == str(user_id):
             print('user already exists')
+            exists = True
+            first_time = False
             first_name = user.get('first_name')
-            registered = True
+            if user.get('subscribed'):
+                registered = True
+
+    if not exists:
+        user_dict = {
+            'user_id': str(user_id),
+            'first_name': user_name,
+            'subscribed': False
+        }
+        USERS.append(user_dict)
+
 
     block = ''
     buttons = []
@@ -92,15 +107,20 @@ def user_login(user_id, user_name):
         }
         buttons.append(pref_button)
     else:
-        print('first time loging in')
-        message = 'Hi {}! Nice to see you. ' \
-                  'I am the Scrader Bot. ' \
-                  'My job is to utilize powerful machine ' \
-                  'learning algorithms to extract the latest company ' \
-                  'insights from news articles for a valuable ' \
-                  'head start in your trading strategy. ' \
-                  'I am still in development mode so many functions are not stable just yet. ' \
-                  'Please subscribe in order to get notified when I will be fully functional'.format(name)
+        if first_time:
+            print('first time loging in')
+            message = 'Hi {}! Nice to see you. ' \
+                      'I am the Scrader Bot. ' \
+                      'My job is to utilize powerful machine ' \
+                      'learning algorithms to extract the latest company ' \
+                      'insights from news articles for a valuable ' \
+                      'head start in your trading strategy. ' \
+                      'I am still in development mode so many functions are not stable just yet. ' \
+                      'Please subscribe in order to get notified when I will be fully functional'.format(name)
+
+        else:
+            message = 'Hi again {}. What would you like me to show you? ' \
+                      'Remember you can type any company you want to search for scraped news'.format(name)
 
         block = 'Subscribe'
         button_title = 'Subscribe'
@@ -143,6 +163,34 @@ def user_login(user_id, user_name):
                           mimetype='application/json')
 
 
+@app.route('/subscribe/<user_id>/<user_last_name>/<user_first_name>', methods=['POST'])
+def subscribe(user_id, user_last_name, user_first_name):
+    """ GET Server Status API endpoint
+        Args:
+        Returns:
+            dict: A JSON object containing the nfvacc server status information
+    """
+
+    # user_dict = {
+    #         'user_id': str(user_id),
+    #         'name': user_last_name,
+    #         'first_name': user_first_name,
+    #         'subscribed': True
+    #     }
+    # USERS.append(user_dict)
+    for user in USERS:
+        if user.get('user_id') == str(user_id):
+            user['name'] = user_last_name
+            user['subscribed'] = True
+
+    response_data = {}
+    status = 200 if response_data is not None else 403
+    js = json.dumps(response_data, indent=2)
+    return flask.Response(js,
+                          status=status,
+                          mimetype='application/json')
+
+
 @app.route('/status'.format(methods=['GET']))
 def get_server_status():
     """ GET Server Status API endpoint
@@ -173,27 +221,6 @@ def get_latest_news():
                           status=status,
                           mimetype='application/json')
 
-
-@app.route('/subscribe/<user_id>/<user_last_name>/<user_first_name>', methods=['POST'])
-def subscribe(user_id, user_last_name, user_first_name):
-    """ GET Server Status API endpoint
-        Args:
-        Returns:
-            dict: A JSON object containing the nfvacc server status information
-    """
-
-    user_dict = {
-            'user_id': str(user_id),
-            'name': user_last_name,
-            'first_name': user_first_name
-        }
-    USERS.append(user_dict)
-    response_data = {}
-    status = 200 if response_data is not None else 403
-    js = json.dumps(response_data, indent=2)
-    return flask.Response(js,
-                          status=status,
-                          mimetype='application/json')
 
 
 @app.route('/scrader/user_companies', methods=['POST'])
