@@ -226,7 +226,7 @@ def user_data():
     for user in USERS:
         if user.get('name') == user_name:
             user['companies'] = data.get('companies')
-
+            user['notification_type'] = 'Companies'
     response_data = {}
     status = 200 if response_data is not None else 403
     js = json.dumps(response_data, indent=2)
@@ -544,7 +544,8 @@ def get_companies(stocks_type):
 
         if four_packets > 1:
             if (NEXT + 2) <= four_packets:
-                next_button['title'] = "Next {}/{}".format(NEXT + 2, int(four_packets))
+                remaining = len(bad_companies) - (NEXT + 1) * 4
+                next_button['title'] = "Next {}/{}".format(remaining, len(bad_companies))
                 response_data['messages'][0]['attachment']['payload']['buttons'] = [next_button]
 
     else:
