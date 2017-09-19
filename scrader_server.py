@@ -14,7 +14,7 @@ import mongo
 
 DEBUG = False  # Enable this to print python crashes and exceptions
 
-app = flask.Flask(__name__)
+app = flask.Flask(__name__, static_url_path='/static')
 
 # Make cross-origin AJAX possible (for all domains on all routes)
 CORS(app, resources={r"*": {"origins": "*"}})
@@ -500,8 +500,9 @@ def get_companies(stocks_type):
                 element['title'] = company.get('company_name')
                 element['image_url'] = company.get('company_logo')
                 element['subtitle'] = \
-                    "{} articles / {} articles".format(company.get('company_articles'),
-                                                       total_articles)
+                    "{} out of {} articles".format(company.get('company_articles'),
+                                                       total_articles) if company.get(
+                    'company_articles') > 1 else "One article Title"
                 element['buttons'][0]['title'] = 'View articles' if company.get(
                     'company_articles') > 1 else 'View article'
                 messages[0]['attachment']['payload']['elements'].append(element)
@@ -531,8 +532,9 @@ def get_companies(stocks_type):
                 element['title'] = company.get('company_name')
                 element['image_url'] = company.get('company_logo')
                 element['subtitle'] = \
-                    "{} articles / {} articles".format(company.get('company_articles'),
-                                                       total_articles)
+                    "{} out of {} articles".format(company.get('company_articles'),
+                                                       total_articles) if company.get(
+                    'company_articles') > 1 else "One article Title"
                 element['buttons'][0]['title'] = 'View articles' if company.get(
                     'company_articles') > 1 else 'View article'
                 messages[0]['attachment']['payload']['elements'].append(element)
