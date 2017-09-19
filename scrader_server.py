@@ -34,7 +34,8 @@ def get_html(user_id):
 
     for user in USERS:
         if user.get('user_id') == user_id:
-            name = user.get('name')
+            last_name = user.get('name')
+            name = user.get('first_name', last_name)
 
     return flask.render_template('index1.html', name=name, user_id=user_id)
 
