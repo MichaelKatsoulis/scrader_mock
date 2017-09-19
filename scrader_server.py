@@ -260,7 +260,7 @@ def user_companies_data():
 
     user_name = data.get('user')
     for user in USERS:
-        if user.get('name') == user_name:
+        if user.get('first_name') == user_name:
             user['companies'] = data.get('companies')
             user['notification_type'] = 'Companies'
     response_data = {}
@@ -283,7 +283,7 @@ def user_websites_data():
 
     user_name = data.get('user')
     for user in USERS:
-        if user.get('name') == user_name:
+        if user.get('first_name') == user_name:
             user['websites'] = data.get('websites')
 
     response_data = {}
