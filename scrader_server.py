@@ -9,6 +9,7 @@ import signal
 import copy
 import config
 import companies
+import websites
 from scrader_handler import fetch_news_from_db
 import mongo
 
@@ -24,7 +25,7 @@ NEXT = 0
 
 
 @app.route('/scrader/companies/<user_id>'.format(methods=['GET']))
-def get_html(user_id):
+def get_companies_html(user_id):
     """ GET Server Status API endpoint
         Args:
         Returns:
@@ -37,7 +38,24 @@ def get_html(user_id):
             last_name = user.get('name')
             name = user.get('first_name', last_name)
 
-    return flask.render_template('index1.html', name=name, user_id=user_id)
+    return flask.render_template('companies.html', name=name, user_id=user_id)
+
+
+@app.route('/scrader/websites/<user_id>'.format(methods=['GET']))
+def get_websites_html(user_id):
+    """ GET Server Status API endpoint
+        Args:
+        Returns:
+            dict: A JSON object containing the nfvacc server status information
+    """
+    name = "None"
+
+    for user in USERS:
+        if user.get('user_id') == user_id:
+            last_name = user.get('name')
+            name = user.get('first_name', last_name)
+
+    return flask.render_template('websites.html', name=name, user_id=user_id)
 
 
 @app.route('/scrader/all_companies'.format(methods=['GET']))
@@ -51,6 +69,23 @@ def get_all_companies():
     good_company_names = [company['company_name'] for company in companies.all_companies['good_companies']]
     bad_company_names = [company['company_name'] for company in companies.all_companies['bad_companies']]
     response_data = good_company_names + bad_company_names
+
+    status = 200 if response_data is not None else 403
+    js = json.dumps(response_data, indent=2)
+    return flask.Response(js,
+                          status=status,
+                          mimetype='application/json')
+
+
+@app.route('/scrader/all_websites'.format(methods=['GET']))
+def get_all_websites():
+    """ GET Server Status API endpoint
+        Args:
+        Returns:
+            dict: A JSON object containing the nfvacc server status information
+    """
+
+    response_data = websites.all_websites
 
     status = 200 if response_data is not None else 403
     js = json.dumps(response_data, indent=2)
@@ -214,7 +249,7 @@ def get_server_status():
 
 
 @app.route('/scrader/user_companies', methods=['POST'])
-def user_data():
+def user_companies_data():
     """ GET Server Status API endpoint
         Args:
         Returns:
@@ -228,6 +263,29 @@ def user_data():
         if user.get('name') == user_name:
             user['companies'] = data.get('companies')
             user['notification_type'] = 'Companies'
+    response_data = {}
+    status = 200 if response_data is not None else 403
+    js = json.dumps(response_data, indent=2)
+    return flask.Response(js,
+                          status=status,
+                          mimetype='application/json')
+
+
+@app.route('/scrader/user_websites', methods=['POST'])
+def user_websites_data():
+    """ GET Server Status API endpoint
+        Args:
+        Returns:
+            dict: A JSON object containing the nfvacc server status information
+    """
+
+    data = flask.request.get_json()
+
+    user_name = data.get('user')
+    for user in USERS:
+        if user.get('name') == user_name:
+            user['websites'] = data.get('websites')
+
     response_data = {}
     status = 200 if response_data is not None else 403
     js = json.dumps(response_data, indent=2)
@@ -251,6 +309,27 @@ def user_companies(user_id):
 
     print(subscribed_companies)
     response_data = subscribed_companies
+    status = 200 if response_data is not None else 403
+    js = json.dumps(response_data, indent=2)
+    return flask.Response(js,
+                          status=status,
+                          mimetype='application/json')
+
+
+@app.route('/websites/<user_id>', methods=['GET'])
+def user_websites(user_id):
+    """ GET Server Status API endpoint
+        Args:
+        Returns:
+            dict: A JSON object containing the nfvacc server status information
+    """
+
+    subscribed_websites = []
+    for user in USERS:
+        if user.get('user_id') == user_id:
+            subscribed_websites = user.get('websites', [])
+
+    response_data = subscribed_websites
     status = 200 if response_data is not None else 403
     js = json.dumps(response_data, indent=2)
     return flask.Response(js,
