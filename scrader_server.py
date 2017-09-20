@@ -436,19 +436,19 @@ def get_news(company, news_type):
                                 "url": "https://www.bloomberg.com/europe",
                                 "title": "BLOOMBERG.COM"
                             }]
-                        }],
-                        "quick_replies": [
-                            {
-                                "title": "Page 2",
-                                "block_names": ["Fetch news", 'Default']
-                            },
-                            {
-                                "title": "Page 3",
-                                "block_names": ["Fetch news", 'Default']
-                            }
-                        ]
+                        }]
                     }
-                }
+                },
+                "quick_replies": [
+                    {
+                        "title": "Page 2",
+                        "block_names": ["Fetch news", 'Default']
+                    },
+                    {
+                        "title": "Page 3",
+                        "block_names": ["Fetch news", 'Default']
+                    }
+                ]
             }]
         }
 
