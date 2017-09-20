@@ -442,11 +442,13 @@ def get_news(company, news_type):
                 "quick_replies": [
                     {
                         "title": "Page 2",
-                        "block_names": ["Fetch news", 'Default']
+                        "block_names": ["Fetch news"],
+                        'payload': 'page 2'
                     },
                     {
                         "title": "Page 3",
-                        "block_names": ["Fetch news", 'Default']
+                        "block_names": ["Fetch news"],
+                        'payload': 'page 3'
                     }
                 ]
             }]
