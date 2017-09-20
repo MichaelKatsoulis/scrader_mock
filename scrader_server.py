@@ -572,7 +572,7 @@ def get_companies(stocks_type):
         news_type = 'positive'
 
     elif stocks_type == 'Negative+News':
-        companies_type = 'good_companies'
+        companies_type = 'bad_companies'
         news_type = 'negative'
     else:
         both = True
