@@ -439,12 +439,12 @@ def get_news(company, news_type):
                         }],
                         "quick_replies": [
                             {
-                                "title": "2",
-                                "block_names": ["Fetch news"]
+                                "title": "Page 2",
+                                "block_names": ["Fetch news", 'Default']
                             },
                             {
-                                "title": "3",
-                                "block_names": ["Fetch news"]
+                                "title": "Page 3",
+                                "block_names": ["Fetch news", 'Default']
                             }
                         ]
                     }
