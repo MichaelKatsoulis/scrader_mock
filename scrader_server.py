@@ -566,14 +566,24 @@ def get_companies(stocks_type):
         "title": ''
     }
 
+    both = False
     if stocks_type == 'Positive+News':
+        companies_type = 'good_companies'
+        news_type = 'positive'
 
-        good_companies = companies.all_companies.get('good_companies')
-        four_packets = math.ceil((len(good_companies) / 4.0))
-        attributes_dict['news_type'] = 'positive'
-        attributes_dict['stocks_type'] = 'Positive+News'
+    elif stocks_type == 'Negative+News':
+        companies_type = 'good_companies'
+        news_type = 'negative'
+    else:
+        both = True
+
+    if not both:
+        requested_companies = companies.all_companies.get(companies_type)
+        four_packets = math.ceil((len(requested_companies) / 4.0))
+        attributes_dict['news_type'] = news_type
+        attributes_dict['stocks_type'] = stocks_type
         start = NEXT*4
-        for index, company in enumerate(good_companies[start:]):
+        for index, company in enumerate(requested_companies[start:]):
             print(index)
             if index < start + 4:
                 element = copy.deepcopy(element)
@@ -594,40 +604,8 @@ def get_companies(stocks_type):
 
         if four_packets > 1:
             if (NEXT+2) <= four_packets:
-                remaining = len(good_companies) - (NEXT+1)*4
-                next_button['title'] = "Next {}/{}".format(remaining, len(good_companies))
-                response_data['messages'][0]['attachment']['payload']['buttons'] = [next_button]
-
-    elif stocks_type == 'Negative+News':
-
-        bad_companies = companies.all_companies.get('bad_companies')
-        four_packets = math.ceil((len(bad_companies) / 4.0))
-        attributes_dict['news_type'] = 'negative'
-        attributes_dict['stocks_type'] = 'Negative+News'
-        start = NEXT * 4
-        for index, company in enumerate(bad_companies[start:]):
-            print(index)
-            if index < start + 4:
-                element = copy.deepcopy(element)
-                element['title'] = company.get('company_name')
-                element['image_url'] = company.get('company_logo')
-                element['subtitle'] = \
-                    "{} out of {} articles".format(company.get('company_articles'),
-                                                       total_articles) if company.get(
-                    'company_articles') > 1 else "One article Title"
-                element['buttons'][0]['title'] = 'View articles' if company.get(
-                    'company_articles') > 1 else 'View article'
-                messages[0]['attachment']['payload']['elements'].append(element)
-
-        response_data = {
-            'set_attributes': attributes_dict,
-            'messages': messages
-        }
-
-        if four_packets > 1:
-            if (NEXT + 2) <= four_packets:
-                remaining = len(bad_companies) - (NEXT + 1) * 4
-                next_button['title'] = "Next {}/{}".format(remaining, len(bad_companies))
+                remaining = len(requested_companies) - (NEXT+1)*4
+                next_button['title'] = "Next {}/{}".format(remaining, len(requested_companies))
                 response_data['messages'][0]['attachment']['payload']['buttons'] = [next_button]
 
     else:
