@@ -578,6 +578,8 @@ def get_companies(stocks_type):
         both = True
 
     if not both:
+        print(companies_type)
+        print(news_type)
         requested_companies = companies.all_companies.get(companies_type)
         four_packets = math.ceil((len(requested_companies) / 4.0))
         attributes_dict['news_type'] = news_type
