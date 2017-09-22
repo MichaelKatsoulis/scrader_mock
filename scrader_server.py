@@ -602,8 +602,8 @@ def get_companies(stocks_type):
                     "{} out of {} articles".format(company.get('company_articles'),
                                                        total_articles) if company.get(
                     'company_articles') > 1 else "One article Title"
-                element['buttons'][0]['title'] = 'View {} articles'.format(company) if company.get(
-                    'company_articles') > 1 else 'View {} article'.format(company)
+                element['buttons'][0]['title'] = 'View {} articles'.format(company.get('company_name')) if company.get(
+                    'company_articles') > 1 else 'View {} article'.format(company.get('company_name'))
                 messages[0]['attachment']['payload']['elements'].append(element)
 
         response_data = {
