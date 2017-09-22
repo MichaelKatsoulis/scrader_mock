@@ -456,6 +456,10 @@ def get_news(company, news_type, page_num):
     """
 
     print("Fetching {} news for {} page {}".format(news_type, company, page_num))
+    if page_num == 1:
+        page_to_show = 2
+    else:
+        page_to_show = 1
 
     if news_type == 'positive' or news_type == 'Positive+News':
 
@@ -490,8 +494,8 @@ def get_news(company, news_type, page_num):
                 },
                 "quick_replies": [
                     {
-                        "title": "Page 2",
-                        "url": "http://146.185.138.240/news/{}/{}/{}".format(company, news_type, '2'),
+                        "title": "Page {}".format(page_to_show),
+                        "url": "http://146.185.138.240/news/{}/{}/{}".format(company, news_type, page_to_show),
                         "type": "json_plugin_url"
                     }
                 ]
