@@ -406,7 +406,6 @@ def get_news(company, news_type):
             dict: A JSON object containing the nfvacc server status information
     """
 
-    company = company.split[1]
     print("Fetching {} news for {}".format(news_type, company))
 
     if news_type == 'positive' or news_type == 'Positive+News':
@@ -550,8 +549,8 @@ def get_companies(stocks_type):
         "subtitle": '',
         "buttons": [
             {
-                "type": "show_block",
-                "block_name": "Company News",
+                "type": "json_plugin_url",
+                "url": '',
                 "title": ''
             }
         ]
@@ -602,8 +601,9 @@ def get_companies(stocks_type):
                     "{} out of {} articles".format(company.get('company_articles'),
                                                        total_articles) if company.get(
                     'company_articles') > 1 else "One article Title"
-                element['buttons'][0]['title'] = 'View {} articles'.format(company.get('company_name')) if company.get(
-                    'company_articles') > 1 else 'View {} article'.format(company.get('company_name'))
+                element['buttons'][0]['title'] = 'View articles' if company.get(
+                    'company_articles') > 1 else 'View article'
+                element['buttons'][0]['url'] = 'http://146.185.138.240/news/{}/positive'.format(company.get('company_name'))
                 messages[0]['attachment']['payload']['elements'].append(element)
 
         response_data = {
