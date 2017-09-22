@@ -595,7 +595,7 @@ def get_companies(stocks_type):
             print(index)
             if index < start + 4:
                 element = copy.deepcopy(element)
-                element['title'] = company.get('company_name')
+                element['title'] = company.get('company_name').split()[0]
                 element['image_url'] = company.get('company_logo')
                 element['subtitle'] = \
                     "{} out of {} articles".format(company.get('company_articles'),
