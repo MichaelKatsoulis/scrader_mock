@@ -440,14 +440,8 @@ def get_news(company, news_type):
                     }
                 },
                 "quick_replies": [
-                    {
-                        "title": "Page 3",
-                        "block_names": ["Fetch news"]
-                    },
-                    {
-                        "title": "Page 3",
-                        "block_names": ["Fetch news"]
-                    }
+                    {"content_type": "text", "payload": "Page 2", "title": "Page 2"},
+                    {"content_type": "text", "payload": "Page 3", "title": "Page 3"},
                 ]
             }]
         }
