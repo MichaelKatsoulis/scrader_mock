@@ -398,6 +398,55 @@ def user_notification(user_id, time_frame):
                           mimetype='application/json')
 
 
+@app.route('/company_specific/<company>'.format(methods=['GET']))
+def specific_company(company):
+    """ GET Server Status API endpoint
+        Args:
+        Returns:
+            dict: A JSON object containing the nfvacc server status information
+    """
+
+    response_data = {
+          "user_attributes": {
+                "company": company,
+           },
+          "messages": [
+            {
+              "attachment": {
+                "type": "template",
+                "payload": {
+                  "template_type": "button",
+                  "text": "Which news would you like to see?",
+                  "buttons": [
+                    {
+                      "type": "show_block",
+                      "block_names": ["Fetch news"],
+                      "title": "Positive News"
+                    },
+                    {
+                      "type": "show_block",
+                      "block_names": ["Fetch news"],
+                      "title": "Negative News"
+                    },
+                    {
+                      "type": "show_block",
+                      "block_names": ["Fetch news"],
+                      "title": "Both"
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+    }
+
+    status = 200 if response_data is not None else 403
+    js = json.dumps(response_data, indent=2)
+    return flask.Response(js,
+                          status=status,
+                          mimetype='application/json')
+
+
 @app.route('/news/<company>/<news_type>'.format(methods=['GET']))
 def get_news(company, news_type):
     """ GET Server Status API endpoint
@@ -595,7 +644,8 @@ def get_companies(stocks_type):
             print(index)
             if index < start + 4:
                 element = copy.deepcopy(element)
-                element['title'] = company.get('company_name').split()[0]
+                name_net = company.get('company_name').split()[0]
+                element['title'] = company.get('company_name')
                 element['image_url'] = company.get('company_logo')
                 element['subtitle'] = \
                     "{} out of {} articles".format(company.get('company_articles'),
@@ -603,7 +653,7 @@ def get_companies(stocks_type):
                     'company_articles') > 1 else "One article Title"
                 element['buttons'][0]['title'] = 'View articles' if company.get(
                     'company_articles') > 1 else 'View article'
-                element['buttons'][0]['url'] = 'http://146.185.138.240/news/{}/positive'.format(company.get('company_name'))
+                element['buttons'][0]['url'] = 'http://146.185.138.240/company_specific/{}'.format(name_net)
                 messages[0]['attachment']['payload']['elements'].append(element)
 
         response_data = {
