@@ -447,15 +447,15 @@ def specific_company(company):
                           mimetype='application/json')
 
 
-@app.route('/news/<company>/<news_type>'.format(methods=['GET']))
-def get_news(company, news_type):
+@app.route('/news/<company>/<news_type>/<page_num>'.format(methods=['GET']))
+def get_news(company, news_type, page_num):
     """ GET Server Status API endpoint
         Args:
         Returns:
             dict: A JSON object containing the nfvacc server status information
     """
 
-    print("Fetching {} news for {}".format(news_type, company))
+    print("Fetching {} news for {} page ".format(news_type, company, page_num))
 
     if news_type == 'positive' or news_type == 'Positive+News':
 
@@ -491,7 +491,7 @@ def get_news(company, news_type):
                 "quick_replies": [
                     {
                         "title": "Page 2",
-                        "url": "http://146.185.138.240/news/{}/{}".format(company, 'page+2'),
+                        "url": "http://146.185.138.240/news/{}/{}/{}".format(company, news_type, '2'),
                         "type": "json_plugin_url"
                     }
                 ]
