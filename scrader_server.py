@@ -456,10 +456,10 @@ def get_news(company, news_type, page_num):
     """
 
     print("Fetching {} news for {} page {}".format(news_type, company, page_num))
-    if page_num == 1:
-        page_to_show = 2
+    if page_num == '1':
+        page_to_show = '2'
     else:
-        page_to_show = 1
+        page_to_show = '1'
 
     if news_type == 'positive' or news_type == 'Positive+News':
 
