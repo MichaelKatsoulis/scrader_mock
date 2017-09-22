@@ -455,7 +455,7 @@ def get_news(company, news_type, page_num):
             dict: A JSON object containing the nfvacc server status information
     """
 
-    print("Fetching {} news for {} page ".format(news_type, company, page_num))
+    print("Fetching {} news for {} page {}".format(news_type, company, page_num))
 
     if news_type == 'positive' or news_type == 'Positive+News':
 
