@@ -532,7 +532,14 @@ def get_news(company, news_type, page_num):
                             }]
                         }]
                     }
-                }
+                },
+                "quick_replies": [
+                    {
+                        "title": "Page {}".format(page_to_show),
+                        "url": "http://146.185.138.240/news/{}/{}/{}".format(company, news_type, page_to_show),
+                        "type": "json_plugin_url"
+                    }
+                ]
             }]
         }
 
