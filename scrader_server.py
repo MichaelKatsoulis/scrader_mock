@@ -407,7 +407,6 @@ def get_news(company, news_type):
     """
 
     print("Fetching {} news for {}".format(news_type, company))
-    print(request.args.get('ref'))
 
     if news_type == 'positive' or news_type == 'Positive+News':
 
@@ -443,7 +442,7 @@ def get_news(company, news_type):
                 "quick_replies": [
                     {
                         "title": "Page 2",
-                        "url": "http://146.185.138.240/news/{}/{}".format(company, 'page 2'),
+                        "url": "http://146.185.138.240/news/{}/{}".format(company, 'page+2'),
                         "type": "json_plugin_url"
                     }
                 ]
