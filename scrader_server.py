@@ -407,6 +407,7 @@ def get_news(company, news_type):
     """
 
     print("Fetching {} news for {}".format(news_type, company))
+    print(request.args.get('ref'))
 
     if news_type == 'positive' or news_type == 'Positive+News':
 
@@ -440,8 +441,14 @@ def get_news(company, news_type):
                     }
                 },
                 "quick_replies": [
-                    {"content_type": "text", "payload": "Page 2", "title": "Page 2"},
-                    {"content_type": "text", "payload": "Page 3", "title": "Page 3"},
+                    {
+                        "title": "Page 3",
+                        "block_names": ["Fetch news"]
+                    },
+                    {
+                        "title": "Page 3",
+                        "block_names": ["Fetch news"]
+                    }
                 ]
             }]
         }
