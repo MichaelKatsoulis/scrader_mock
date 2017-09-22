@@ -442,12 +442,9 @@ def get_news(company, news_type):
                 },
                 "quick_replies": [
                     {
-                        "title": "Page 3",
-                        "block_names": ["Fetch news"]
-                    },
-                    {
-                        "title": "Page 3",
-                        "block_names": ["Fetch news"]
+                        "title": "Page 2",
+                        "url": "http://146.185.138.240/news/{}/{}".format(company, 'page 2'),
+                        "type": "json_plugin_url"
                     }
                 ]
             }]
