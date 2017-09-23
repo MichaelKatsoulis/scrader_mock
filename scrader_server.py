@@ -410,7 +410,7 @@ def specific_company(company):
     print(company)
     response_data = {
           "user_attributes": {
-                "company": company,
+                "company_requested": company,
            },
           "messages": [
             {
