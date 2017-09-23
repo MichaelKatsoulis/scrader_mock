@@ -510,6 +510,7 @@ def get_news(company, news_type, page_num):
     print(quick_replies_page_numbers_to_show)
 
     for new in news_to_show:
+        element = copy.deepcopy(element)
         element['title'] = new.get('title')
         element['image_url'] = new.get('image_url')
         element['subtitle'] = new.get('subtitle')
