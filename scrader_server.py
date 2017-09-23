@@ -491,17 +491,23 @@ def get_news(company, news_type, page_num):
 
     if news_type == 'positive' or news_type == 'Positive+News':
         direction = 'good'
-    else :
+    else:
         direction = 'bad'
 
     all_news = news.news
     positive_news = [new for new in all_news if new.get('direction') == direction]
+    print(positive_news)
     num_of_pages = int(math.ceil(len(positive_news)/3.0))
+    print(num_of_pages)
     f = lambda A, n=num_of_pages: [A[i:i + n] for i in range(0, len(A), n)]
     news_per_page = f(positive_news)
+    print(news_per_page)
     news_to_show = news_per_page[int(page_num) - 1]
+    print(news_to_show)
     all_quick_replies_page_numbers = [i+1 for i, _ in enumerate(news_per_page)]
+    print(all_quick_replies_page_numbers)
     quick_replies_page_numbers_to_show = filter(lambda x: x != 1, all_quick_replies_page_numbers)
+    print(quick_replies_page_numbers_to_show)
 
     for new in news_to_show:
         element['title'] = new.get('title')
@@ -511,12 +517,13 @@ def get_news(company, news_type, page_num):
         element['buttons'][0]['url'] = new.get('website_url')
         element['buttons'][0]['title'] = new.get('website')
         elements.append(element)
-        for page_number in quick_replies_page_numbers_to_show:
-            quick_reply['title'] = "Page {}".format(page_number)
-            quick_reply['url'] = "http://146.185.138.240/news/{}/{}/{}".format(company, news_type, page_number)
-            quick_replies.append(quick_reply)
 
-        message['quick_replies'] = quick_replies
+    for page_number in quick_replies_page_numbers_to_show:
+        quick_reply['title'] = "Page {}".format(page_number)
+        quick_reply['url'] = "http://146.185.138.240/news/{}/{}/{}".format(company, news_type, page_number)
+        quick_replies.append(quick_reply)
+
+    message['quick_replies'] = quick_replies
 
     message['attachment']['payload']['elements'] = elements
     messages.append(message)
