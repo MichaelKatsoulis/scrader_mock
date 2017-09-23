@@ -122,17 +122,6 @@ news = [
         'website_url': 'http://edition.cnn.com/'
     },
     {
-        'id': 12,
-        'title': "How VMwares Partnership With Amazon Could End Up Backfiring",
-        "image_url": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/i0_f6jVS4j68/v1/1000x-1.jpg",
-        "subtitle": "Date: 09/09/2017 11:59",
-        "item_url": "https://www.bloomberg.com/news/articles/2017-09-01/how-vmware-s-partnership-with-amazon-could-end-up-backfiring",
-        'direction': 'bad',
-        'company': 'VMware',
-        'website': 'bloomberg.com',
-        'website_url': 'https://www.bloomberg.com/europe'
-    },
-    {
         'id': 15,
         'title': "Ocado Taps Amazon's Alexa for Voice Ordering in Convenience Push",
         "image_url": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/i4GOoR9HbhHg/v0/1000x-1.jpg",
