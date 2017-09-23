@@ -506,7 +506,7 @@ def get_news(company, news_type, page_num):
     print(news_to_show)
     all_quick_replies_page_numbers = [i+1 for i, _ in enumerate(news_per_page)]
     print(all_quick_replies_page_numbers)
-    quick_replies_page_numbers_to_show = filter(lambda x: x != 1, all_quick_replies_page_numbers)
+    quick_replies_page_numbers_to_show = filter(lambda x: x != int(page_num), all_quick_replies_page_numbers)
     print(quick_replies_page_numbers_to_show)
 
     for new in news_to_show:
