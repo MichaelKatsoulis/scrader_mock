@@ -10,6 +10,7 @@ import copy
 import config
 import companies
 import websites
+import news
 from scrader_handler import fetch_news_from_db
 import mongo
 
@@ -456,125 +457,73 @@ def get_news(company, news_type, page_num):
     """
 
     print("Fetching {} news for {} page {}".format(news_type, company, page_num))
-    if page_num == '1':
-        page_to_show = '2'
-    else:
-        page_to_show = '1'
+
+    elements = []
+    element = {
+        "title": '',
+        "image_url": '',
+        "subtitle": '',
+        "item_url": '',
+        "buttons": [{
+            "type": "web_url",
+            "url": '',
+            "title": ''
+        }]
+    }
+
+    messages = []
+    message = {
+        "attachment": {
+            "type": "template",
+            "payload": {
+                "template_type": "generic",
+                "elements": elements
+            }
+        }
+    }
+
+    quick_replies = []
+    quick_reply = {
+                "title": '',
+                "url": '',
+                "type": "json_plugin_url"
+            }
 
     if news_type == 'positive' or news_type == 'Positive+News':
+        direction = 'good'
+    else :
+        direction = 'bad'
 
-        response_data = {
-            "messages": [{
-                "attachment": {
-                    "type": "template",
-                    "payload": {
-                        "template_type": "generic",
-                        "elements": [{
-                            "title": "What Amazon knows: 'The war for retail will be won in groceries'",
-                            "image_url": "http://i2.cdn.turner.com/money/dam/assets/170825082748-whole-foods-fresh-fruit-apples-1024x576.jpg",
-                            "subtitle": "Date: 03/09/2017 14:23",
-                            "item_url": "http://money.cnn.com/2017/08/25/technology/business/amazon-whole-foods-strategy/index.html",
-                            "buttons": [{
-                                "type": "web_url",
-                                "url": "http://edition.cnn.com/",
-                                "title": "CNN.COM"
-                            }]
-                        }, {
-                            "title": "Ocado Taps Amazon's Alexa for Voice Ordering in Convenience Push",
-                            "image_url": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/i4GOoR9HbhHg/v0/1000x-1.jpg",
-                            "subtitle": "Date: 03/09/2017 16:59",
-                            "item_url": "https://www.bloomberg.com/news/articles/2017-08-29/ocado-taps-amazon-s-alexa-for-voice-ordering-in-convenience-push",
-                            "buttons": [{
-                                "type": "web_url",
-                                "url": "https://www.bloomberg.com/europe",
-                                "title": "BLOOMBERG.COM"
-                            }]
-                        }]
-                    }
-                },
-                "quick_replies": [
-                    {
-                        "title": "Page {}".format(page_to_show),
-                        "url": "http://146.185.138.240/news/{}/{}/{}".format(company, news_type, page_to_show),
-                        "type": "json_plugin_url"
-                    }
-                ]
-            }]
-        }
+    all_news = news.news
+    positive_news = [new for new in all_news if new.get('direction') == direction]
+    num_of_pages = int(math.ceil(len(positive_news)/3.0))
+    f = lambda A, n=num_of_pages: [A[i:i + n] for i in range(0, len(A), n)]
+    news_per_page = f(positive_news)
+    news_to_show = news_per_page[int(page_num) - 1]
+    all_quick_replies_page_numbers = [i+1 for i, _ in enumerate(news_per_page)]
+    quick_replies_page_numbers_to_show = filter(lambda x: x != 1, all_quick_replies_page_numbers)
 
-    elif news_type == 'negative' or news_type == 'Negative+News':
+    for new in news_to_show:
+        element['title'] = new.get('title')
+        element['image_url'] = new.get('image_url')
+        element['subtitle'] = new.get('subtitle')
+        element['item_url'] = new.get('item_url')
+        element['buttons'][0]['url'] = new.get('website_url')
+        element['buttons'][0]['title'] = new.get('website')
+        elements.append(element)
+        for page_number in quick_replies_page_numbers_to_show:
+            quick_reply['title'] = "Page {}".format(page_number)
+            quick_reply['url'] = "http://146.185.138.240/news/{}/{}/{}".format(company, news_type, page_number)
+            quick_replies.append(quick_reply)
 
-        response_data = {
-            "messages": [{
-                "attachment": {
-                    "type": "template",
-                    "payload": {
-                        "template_type": "generic",
-                        "elements": [{
-                            "title": "Instagram hackers are selling user emails and phone numbers",
-                            "image_url": "http://i2.cdn.turner.com/money/dam/assets/170809095225-mostly-human-instagram-1024x576.jpg",
-                            "subtitle": "Date: 01/09/2017 14:23",
-                            "item_url": "http://money.cnn.com/2017/09/01/technology/business/instagram-hack/index.html",
-                            "buttons": [{
-                                "type": "web_url",
-                                "url": "http://edition.cnn.com/",
-                                "title": "CNN.COM"
-                            }]
-                        }, {
-                            "title": "How VMwares Partnership With Amazon Could End Up Backfiring",
-                            "image_url": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/i0_f6jVS4j68/v1/1000x-1.jpg",
-                            "subtitle": "Customers try the cloud through AWS, but Amazon has a history of competing with its best partners.",
-                            "item_url": "https://www.bloomberg.com/news/articles/2017-09-01/how-vmware-s-partnership-with-amazon-could-end-up-backfiring",
-                            "buttons": [{
-                                "type": "web_url",
-                                "url": "https://www.bloomberg.com/europe",
-                                "title": "BLOOMBERG.COM"
-                            }]
-                        }]
-                    }
-                },
-                "quick_replies": [
-                    {
-                        "title": "Page {}".format(page_to_show),
-                        "url": "http://146.185.138.240/news/{}/{}/{}".format(company, news_type, page_to_show),
-                        "type": "json_plugin_url"
-                    }
-                ]
-            }]
-        }
+        message['quick_replies'] = quick_replies
 
-    else:
-        response_data = {
-            "messages": [{
-                "attachment": {
-                    "type": "template",
-                    "payload": {
-                        "template_type": "generic",
-                        "elements": [{
-                            "title": "SAP & IBM Jointly Offer Solution for Retail, Packaged Goods",
-                            "image_url": "https://staticx-tuner.zacks.com/images/default_article_images/default16.jpg",
-                            "subtitle": "Enterprise application software, SAP SE ...",
-                            "item_url": "https://www.zacks.com/stock/news/273394/sap-amp-ibm-jointly-offer-solution-for-retail-packaged-goods?cid=CS-CNN-HL-273394",
-                            "buttons": [{
-                                "type": "web_url",
-                                "url": "http://edition.cnn.com/",
-                                "title": "CNN.COM"
-                            }]
-                        }, {
-                            "title": "Lenovo Shares Could Fall Another 27%: Top-Ranked Analyst",
-                            "image_url": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/i0_f6jVS4j68/v1/1000x-1.jpg",
-                            "subtitle": "Lenovo Group Ltd., which breathed new life into IBM's personal-computer business...",
-                            "item_url": "https://www.bloomberg.com/news/articles/2017-08-21/top-ranked-analyst-says-lenovo-could-fall-another-27-percent",
-                            "buttons": [{
-                                "type": "web_url",
-                                "url": "https://www.bloomberg.com/europe",
-                                "title": "BLOOMBERG.COM"
-                            }]
-                        }]
-                    }
-                }
-            }]
-        }
+    message['attachment']['payload']['elements'] = elements
+    messages.append(message)
+
+    response_data = {
+        "messages": messages
+    }
 
     print(response_data)
     status = 200 if response_data is not None else 403
