@@ -204,7 +204,7 @@ def user_login(user_id, user_name):
         ]
     }
 
-    print(response_data)
+    # print(response_data)
     status = 200 if response_data is not None else 403
     js = json.dumps(response_data, indent=2)
     return flask.Response(js,
@@ -534,7 +534,7 @@ def get_news(company, news_type, page_num):
         "messages": messages
     }
 
-    print(response_data)
+    # print(response_data)
     status = 200 if response_data is not None else 403
     js = json.dumps(response_data, indent=2)
     return flask.Response(js,
@@ -610,7 +610,7 @@ def get_companies(stocks_type):
         attributes_dict['stocks_type'] = stocks_type
         start = NEXT*4
         for index, company in enumerate(requested_companies[start:]):
-            print(index)
+            # print(index)
             if index < start + 4:
                 element = copy.deepcopy(element)
                 name_net = company.get('company_name').split()[0]
@@ -726,7 +726,7 @@ def get_companies(stocks_type):
         }
 
     NEXT += 1
-    print(response_data)
+    # print(response_data)
     status = 200 if response_data is not None else 403
     js = json.dumps(response_data, indent=2)
     return flask.Response(js,
