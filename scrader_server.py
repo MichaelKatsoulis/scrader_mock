@@ -407,6 +407,7 @@ def specific_company(company):
             dict: A JSON object containing the nfvacc server status information
     """
 
+    print(company)
     response_data = {
           "user_attributes": {
                 "company": company,
@@ -496,12 +497,12 @@ def get_news(company, news_type, page_num):
 
     all_news = news.news
     requested_news = [new for new in all_news if new.get('direction') == direction]
-    print(requested_news)
+    # print(requested_news)
     f = lambda A, n=3: [A[i:i + n] for i in range(0, len(A), n)]
     news_per_page = f(requested_news)
-    print(news_per_page)
+    # print(news_per_page)
     news_to_show = news_per_page[int(page_num) - 1]
-    print(news_to_show)
+    # print(news_to_show)
     all_quick_replies_page_numbers = [i+1 for i, _ in enumerate(news_per_page)]
     print(all_quick_replies_page_numbers)
     quick_replies_page_numbers_to_show = filter(lambda x: x != int(page_num), all_quick_replies_page_numbers)
