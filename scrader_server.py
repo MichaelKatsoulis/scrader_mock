@@ -518,6 +518,7 @@ def get_news(company, news_type, page_num):
         elements.append(element)
 
     for page_number in quick_replies_page_numbers_to_show:
+        quick_reply = copy.deepcopy(quick_reply)
         quick_reply['title'] = "Page {}".format(page_number)
         quick_reply['url'] = "http://146.185.138.240/news/{}/{}/{}".format(company, news_type, page_number)
         quick_replies.append(quick_reply)
