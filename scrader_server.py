@@ -497,9 +497,9 @@ def get_news(company, news_type, page_num):
     all_news = news.news
     positive_news = [new for new in all_news if new.get('direction') == direction]
     print(positive_news)
-    num_of_pages = int(math.ceil(len(positive_news)/3.0))
-    print(num_of_pages)
-    f = lambda A, n=num_of_pages: [A[i:i + n] for i in range(0, len(A), n)]
+    #num_of_pages = int(math.ceil(len(positive_news)/3.0))
+    #print(num_of_pages)
+    f = lambda A, n=3: [A[i:i + n] for i in range(0, len(A), n)]
     news_per_page = f(positive_news)
     print(news_per_page)
     news_to_show = news_per_page[int(page_num) - 1]
