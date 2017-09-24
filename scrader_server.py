@@ -86,13 +86,12 @@ def company_search():
             dict: A JSON object containing the nfvacc server status information
     """
 
-    company_typed = request.args.get('last user freeform input').lower()
+    company_typed = (request.args.get('last user freeform input')).lower()
     first_name = request.args.get('first name')
 
     company_found = company_typed_search(company_typed)
     if company_found is not None:
         print('you mean ' + company_found)
-        
 
     buttons = []
 
@@ -148,7 +147,7 @@ def company_typed_search(company_typed):
     all_companies = companies.all_companies
     for company_type, companies_list in all_companies.items():
         for company_dict in companies_list:
-            if company_typed in company_dict.get('company_name').lower()
+            if company_typed in (company_dict.get('company_name')).lower()
                 company_found = company_dict.get('company_name')
                 return company_found
 
