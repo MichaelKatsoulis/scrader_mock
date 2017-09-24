@@ -86,12 +86,12 @@ def company_search():
             dict: A JSON object containing the nfvacc server status information
     """
 
-    print(request.args)
-    first_name = 'Michael'
+    print(request.args.get('last user freeform input'))
+    first_name = request.args.get('first name')
     buttons = []
 
     message = "I am sorry {}. I couldn't find any match for your " \
-              "request. You could try one of the following options" \
+              "request. You could try one of the following options " \
               "or type any company name to search into our database.".format(first_name)
 
     print(message)
