@@ -86,8 +86,14 @@ def company_search():
             dict: A JSON object containing the nfvacc server status information
     """
 
-    print(request.args.get('last user freeform input'))
+    company_typed = request.args.get('last user freeform input').lower()
     first_name = request.args.get('first name')
+
+    company_found = company_typed_search(company_typed)
+    if company_found is not None:
+        print('you mean ' + company_found)
+        
+
     buttons = []
 
     message = "I am sorry {}. I couldn't find any match for your " \
@@ -135,6 +141,19 @@ def company_search():
                           status=status,
                           mimetype='application/json')
 
+
+def company_typed_search(company_typed):
+
+    company_found = None
+    all_companies = companies.all_companies
+    for company_type, companies_list in all_companies.items():
+        for company_dict in companies_list:
+            if company_typed in company_dict.get('company_name').lower()
+                company_found = company_dict.get('company_name')
+                return company_found
+
+
+    return company_found
 
 @app.route('/scrader/all_websites'.format(methods=['GET']))
 def get_all_websites():
