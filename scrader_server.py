@@ -88,8 +88,9 @@ def company_search():
 
     company_typed = (request.args.get('last user freeform input')).lower()
     first_name = request.args.get('first name')
-
+    print(company_typed)
     company_found = company_typed_search(company_typed)
+    print(company_found)
     if company_found is not None:
         print('you mean ' + company_found)
 
@@ -141,17 +142,17 @@ def company_search():
                           mimetype='application/json')
 
 
-def company_typed_search(company_typed):
+def company_typed_search(company_):
 
     company_found = None
     all_companies = companies.all_companies
     for company_type, companies_list in all_companies.items():
+        print(companies_list)
         for company_dict in companies_list:
             company_name = company_dict.get('company_name')
-            if company_typed in company_name.lower():
-                company_found = company_dict.get('company_name')
-                return company_found
-
+            print(company_name)
+            if company_ in company_name.lower():
+                return company_name
 
     return company_found
 
