@@ -93,7 +93,7 @@ def company_search():
     print(company_found)
     if company_found is not None:
         print(company_typed == company_found)
-        if company_typed != company_found:
+        if company_typed != company_found.lower():
             response_data = {
                   "messages": [
                     {
@@ -105,9 +105,8 @@ def company_search():
                           "type":"json_plugin_url"
                         },
                         {
-                          "content_type":"text",
                           "title": "Not really...",
-                          "payload": "Ok. Continue as you wish"
+                          "block_names": ["Default"]
                         }
                       ]
                     }
