@@ -97,7 +97,7 @@ def company_search():
 
     message = "I am sorry {}. I couldn't find any match for your " \
               "request. You could try one of the following options " \
-              "or type any compan name to search into our database.".format(first_name)
+              "or type any company name to search into our database.".format(first_name)
 
     print(message)
     block = 'Companies'
