@@ -93,6 +93,7 @@ def company_search():
               "request. You could try one of the following options" \
               "or type any company name to search into our database.".format(first_name)
 
+    print(message)
     block = 'Companies'
     button_title = 'Positive News'
     button_dict_tmpl = {
