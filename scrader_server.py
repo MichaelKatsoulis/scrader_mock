@@ -92,6 +92,7 @@ def company_search():
     company_found = company_typed_search(company_typed)
     print(company_found)
     if company_found is not None:
+        print(company_typed == company_found)
         if company_typed != company_found:
             response_data = {
                   "messages": [
@@ -176,7 +177,6 @@ def company_typed_search(company_):
     for company_type, companies_list in all_companies.items():
         for company_dict in companies_list:
             company_name = company_dict.get('company_name').split()[0]
-            print(company_name)
             if company_ in company_name.lower():
                 return company_name
 
