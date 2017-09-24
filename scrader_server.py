@@ -147,9 +147,8 @@ def company_typed_search(company_):
     company_found = None
     all_companies = companies.all_companies
     for company_type, companies_list in all_companies.items():
-        print(companies_list)
         for company_dict in companies_list:
-            company_name = company_dict.get('company_name')
+            company_name = company_dict.get('company_name').split()[0]
             print(company_name)
             if company_ in company_name.lower():
                 return company_name
