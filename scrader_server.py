@@ -105,9 +105,9 @@ def company_search():
                           "type":"json_plugin_url"
                         },
                         {
-                          "content_type":"text"
-                          "title":"Not really...",
-                          "payload":"Ok. Continue as you wish"
+                          "content_type":"text",
+                          "title": "Not really...",
+                          "payload": "Ok. Continue as you wish"
                         }
                       ]
                     }
