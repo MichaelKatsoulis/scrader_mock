@@ -88,9 +88,7 @@ def company_search():
 
     company_typed = (request.args.get('last user freeform input')).lower()
     first_name = request.args.get('first name')
-    print(company_typed)
     company_found = company_typed_search(company_typed)
-    print(company_found)
     if company_found is not None:
         print(company_typed == company_found)
         if company_typed != company_found.lower():
@@ -127,7 +125,6 @@ def company_search():
               "request. You could try one of the following options " \
               "or type any company name to search into our database.".format(first_name)
 
-    print(message)
     block = 'Companies'
     button_title = 'Positive News'
     button_dict_tmpl = {
