@@ -92,7 +92,7 @@ def company_search():
     company_found = company_typed_search(company_typed)
     print(company_found)
     if company_found is not None:
-        print('you mean ' + company_found)
+        return specific_company(company_found)
 
     buttons = []
 
