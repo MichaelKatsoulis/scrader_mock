@@ -78,6 +78,62 @@ def get_all_companies():
                           mimetype='application/json')
 
 
+@app.route('/scrader/search_company'.format(methods=['GET']))
+def company_search():
+    """ GET Server Status API endpoint
+        Args:
+        Returns:
+            dict: A JSON object containing the nfvacc server status information
+    """
+
+    buttons = []
+
+
+    message = "I am sorry {}. I couldn't find any match for your " \
+              "request. You could try one of the following options" \
+              "or type any company name to search into our database.".format(first_name)
+
+    block = 'Companies'
+    button_title = 'Positive News'
+    button_dict_tmpl = {
+        "type": "show_block",
+        "block_name": block,
+        "title": button_title
+    }
+    buttons.append(button_dict_tmpl)
+
+    block = 'Companies'
+    button_title = 'Negative News'
+    button_dict_tmpl = {
+        "type": "show_block",
+        "block_name": block,
+        "title": button_title
+    }
+    buttons.append(button_dict_tmpl)
+
+    response_data = {
+
+        "messages": [
+            {
+                "attachment": {
+                    "type": "template",
+                    "payload": {
+                        "template_type": "button",
+                        "text": message,
+                        "buttons": buttons
+                    }
+                }
+            }
+        ]
+    }
+
+    status = 200 if response_data is not None else 403
+    js = json.dumps(response_data, indent=2)
+    return flask.Response(js,
+                          status=status,
+                          mimetype='application/json')
+
+
 @app.route('/scrader/all_websites'.format(methods=['GET']))
 def get_all_websites():
     """ GET Server Status API endpoint
