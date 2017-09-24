@@ -86,8 +86,9 @@ def company_search():
             dict: A JSON object containing the nfvacc server status information
     """
 
+    print(request.args)
+    first_name = 'Michael'
     buttons = []
-
 
     message = "I am sorry {}. I couldn't find any match for your " \
               "request. You could try one of the following options" \
