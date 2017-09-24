@@ -92,7 +92,34 @@ def company_search():
     company_found = company_typed_search(company_typed)
     print(company_found)
     if company_found is not None:
-        return specific_company(company_found)
+        if company_typed != company_found:
+            response_data = {
+                  "messages": [
+                    {
+                      "text":  "Did you mean {}?".format(company_found),
+                      "quick_replies": [
+                        {
+                          "title":"Yes",
+                          "url": 'http://146.185.138.240/company_specific/{}'.format(company_found),
+                          "type":"json_plugin_url"
+                        },
+                        {
+                          "content_type":"text"
+                          "title":"Not really...",
+                          "payload":"Ok. Continue as you wish"
+                        }
+                      ]
+                    }
+                  ]
+                }
+
+            status = 200 if response_data is not None else 403
+            js = json.dumps(response_data, indent=2)
+            return flask.Response(js,
+                                  status=status,
+                                  mimetype='application/json')
+        else:
+            return specific_company(company_found)
 
     buttons = []
 
