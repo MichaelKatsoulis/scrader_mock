@@ -11,8 +11,6 @@ import config
 import companies
 import websites
 import news
-from scrader_handler import fetch_news_from_db
-import mongo
 
 DEBUG = False  # Enable this to print python crashes and exceptions
 
@@ -67,15 +65,19 @@ def get_all_companies():
             dict: A JSON object containing the nfvacc server status information
     """
 
-    good_company_names = [company['company_name'] for company in companies.all_companies['good_companies']]
-    bad_company_names = [company['company_name'] for company in companies.all_companies['bad_companies']]
+    good_company_names = [
+        company['company_name']
+        for company in companies.all_companies['good_companies']
+    ]
+    bad_company_names = [
+        company['company_name']
+        for company in companies.all_companies['bad_companies']
+    ]
     response_data = good_company_names + bad_company_names
 
     status = 200 if response_data is not None else 403
     js = json.dumps(response_data, indent=2)
-    return flask.Response(js,
-                          status=status,
-                          mimetype='application/json')
+    return flask.Response(js, status=status, mimetype='application/json')
 
 
 @app.route('/scrader/search_company'.format(methods=['GET']))
@@ -90,63 +92,56 @@ def company_search():
     first_name = request.args.get('first name')
     company_found = company_typed_search(company_typed)
     if company_found is not None:
-        print(company_typed == company_found)
         if company_typed != company_found.lower():
             response_data = {
-                  "messages": [
-                    {
-                      "text":  "Did you mean {}?".format(company_found),
-                      "quick_replies": [
-                        {
-                          "title":"Yes",
-                          "url": 'http://146.185.138.240/company_specific/{}'.format(company_found),
-                          "type":"json_plugin_url"
-                        },
-                        {
-                          "title": "Not really...",
-                          "block_names": ["Default"]
-                        }
-                      ]
-                    }
-                  ]
-                }
+                "messages": [{
+                    "text":
+                    "Did you mean {}?".format(company_found),
+                    "quick_replies": [{
+                        "title":
+                        "Yes",
+                        "url":
+                        'http://146.185.138.240/company_specific/{}'.format(
+                            company_found),
+                        "type":
+                        "json_plugin_url"
+                    }, {
+                        "title": "Not really...",
+                        "block_names": ["Default"]
+                    }]
+                }]
+            }
 
-            status = 200 if response_data is not None else 403
-            js = json.dumps(response_data, indent=2)
-            return flask.Response(js,
-                                  status=status,
-                                  mimetype='application/json')
         else:
             return specific_company(company_found)
 
-    buttons = []
+    else:
+        buttons = []
 
-    message = "I am sorry {}. I couldn't find any match for your " \
-              "request. You could try one of the following options " \
-              "or type any company name to search into our database.".format(first_name)
+        message = "I am sorry {}. I couldn't find any match for your " \
+                  "request. You could try one of the following options " \
+                  "or type any company name to search into our database.".format(first_name)
 
-    block = 'Companies'
-    button_title = 'Positive News'
-    button_dict_tmpl = {
-        "type": "show_block",
-        "block_name": block,
-        "title": button_title
-    }
-    buttons.append(button_dict_tmpl)
+        block = 'Companies'
+        button_title = 'Positive News'
+        button_dict_tmpl = {
+            "type": "show_block",
+            "block_name": block,
+            "title": button_title
+        }
+        buttons.append(button_dict_tmpl)
 
-    block = 'Companies'
-    button_title = 'Negative News'
-    button_dict_tmpl = {
-        "type": "show_block",
-        "block_name": block,
-        "title": button_title
-    }
-    buttons.append(button_dict_tmpl)
+        block = 'Companies'
+        button_title = 'Negative News'
+        button_dict_tmpl = {
+            "type": "show_block",
+            "block_name": block,
+            "title": button_title
+        }
+        buttons.append(button_dict_tmpl)
 
-    response_data = {
-
-        "messages": [
-            {
+        response_data = {
+            "messages": [{
                 "attachment": {
                     "type": "template",
                     "payload": {
@@ -155,15 +150,12 @@ def company_search():
                         "buttons": buttons
                     }
                 }
-            }
-        ]
-    }
+            }]
+        }
 
     status = 200 if response_data is not None else 403
     js = json.dumps(response_data, indent=2)
-    return flask.Response(js,
-                          status=status,
-                          mimetype='application/json')
+    return flask.Response(js, status=status, mimetype='application/json')
 
 
 def company_typed_search(company_):
@@ -178,6 +170,7 @@ def company_typed_search(company_):
 
     return company_found
 
+
 @app.route('/scrader/all_websites'.format(methods=['GET']))
 def get_all_websites():
     """ GET Server Status API endpoint
@@ -190,9 +183,7 @@ def get_all_websites():
 
     status = 200 if response_data is not None else 403
     js = json.dumps(response_data, indent=2)
-    return flask.Response(js,
-                          status=status,
-                          mimetype='application/json')
+    return flask.Response(js, status=status, mimetype='application/json')
 
 
 @app.route('/login/<user_id>/<user_name>', methods=['POST', 'GET'])
@@ -289,30 +280,27 @@ def user_login(user_id, user_name):
         buttons.append(button_dict_tmpl)
 
     response_data = {
-
-        "messages": [
-            {
-                "attachment": {
-                    "type": "template",
-                    "payload": {
-                        "template_type": "button",
-                        "text": message,
-                        "buttons": buttons
-                    }
+        "messages": [{
+            "attachment": {
+                "type": "template",
+                "payload": {
+                    "template_type": "button",
+                    "text": message,
+                    "buttons": buttons
                 }
             }
-        ]
+        }]
     }
 
     # print(response_data)
     status = 200 if response_data is not None else 403
     js = json.dumps(response_data, indent=2)
-    return flask.Response(js,
-                          status=status,
-                          mimetype='application/json')
+    return flask.Response(js, status=status, mimetype='application/json')
 
 
-@app.route('/subscribe/<user_id>/<user_last_name>/<user_first_name>', methods=['POST'])
+@app.route(
+    '/subscribe/<user_id>/<user_last_name>/<user_first_name>',
+    methods=['POST'])
 def subscribe(user_id, user_last_name, user_first_name):
     """ GET Server Status API endpoint
         Args:
@@ -328,9 +316,7 @@ def subscribe(user_id, user_last_name, user_first_name):
     response_data = {}
     status = 200 if response_data is not None else 403
     js = json.dumps(response_data, indent=2)
-    return flask.Response(js,
-                          status=status,
-                          mimetype='application/json')
+    return flask.Response(js, status=status, mimetype='application/json')
 
 
 @app.route('/status'.format(methods=['GET']))
@@ -344,9 +330,7 @@ def get_server_status():
     response_data = {'server_status': 'OK'}
     status = 200 if response_data is not None else 403
     js = json.dumps(response_data, indent=2)
-    return flask.Response(js,
-                          status=status,
-                          mimetype='application/json')
+    return flask.Response(js, status=status, mimetype='application/json')
 
 
 @app.route('/scrader/user_companies', methods=['POST'])
@@ -367,9 +351,7 @@ def user_companies_data():
     response_data = {}
     status = 200 if response_data is not None else 403
     js = json.dumps(response_data, indent=2)
-    return flask.Response(js,
-                          status=status,
-                          mimetype='application/json')
+    return flask.Response(js, status=status, mimetype='application/json')
 
 
 @app.route('/scrader/user_websites', methods=['POST'])
@@ -390,9 +372,7 @@ def user_websites_data():
     response_data = {}
     status = 200 if response_data is not None else 403
     js = json.dumps(response_data, indent=2)
-    return flask.Response(js,
-                          status=status,
-                          mimetype='application/json')
+    return flask.Response(js, status=status, mimetype='application/json')
 
 
 @app.route('/companies/<user_id>', methods=['GET'])
@@ -412,9 +392,7 @@ def user_companies(user_id):
     response_data = subscribed_companies
     status = 200 if response_data is not None else 403
     js = json.dumps(response_data, indent=2)
-    return flask.Response(js,
-                          status=status,
-                          mimetype='application/json')
+    return flask.Response(js, status=status, mimetype='application/json')
 
 
 @app.route('/websites/<user_id>', methods=['GET'])
@@ -433,9 +411,7 @@ def user_websites(user_id):
     response_data = subscribed_websites
     status = 200 if response_data is not None else 403
     js = json.dumps(response_data, indent=2)
-    return flask.Response(js,
-                          status=status,
-                          mimetype='application/json')
+    return flask.Response(js, status=status, mimetype='application/json')
 
 
 @app.route('/user_notification/<user_id>/<time_frame>'.format(methods=['GET']))
@@ -457,46 +433,38 @@ def user_notification(user_id, time_frame):
 
         USERS[user_index]['notification_type'] = 'Daily'
         message = "{} you will be notified {}".format(user_name, time_frame)
-        response_data = {
-
-            "messages": [
-                {"text": message}
-            ]
-
-        }
+        response_data = {"messages": [{"text": message}]}
     else:
 
         USERS[user_index]['notification_type'] = 'Companies'
         response_data = {
-          "messages": [
-            {
-              "attachment": {
-                "type": "template",
-                "payload": {
-                    "template_type": "generic",
-                    "elements": [
-                        {
-                          "title": "See scrader's supported companies",
-                          "buttons": [
-                            {
-                              "type": "web_url",
-                              "url": "http://146.185.138.240/scrader/companies/{}".format(user_id),
-                              "title": "Go Now"
-                            }
-                          ]
-                        }
-                  ]
+            "messages": [{
+                "attachment": {
+                    "type": "template",
+                    "payload": {
+                        "template_type":
+                        "generic",
+                        "elements": [{
+                            "title":
+                            "See scrader's supported companies",
+                            "buttons": [{
+                                "type":
+                                "web_url",
+                                "url":
+                                "http://146.185.138.240/scrader/companies/{}".
+                                format(user_id),
+                                "title":
+                                "Go Now"
+                            }]
+                        }]
+                    }
                 }
-              }
-            }
-          ]
+            }]
         }
 
     status = 200 if response_data is not None else 403
     js = json.dumps(response_data, indent=2)
-    return flask.Response(js,
-                          status=status,
-                          mimetype='application/json')
+    return flask.Response(js, status=status, mimetype='application/json')
 
 
 @app.route('/company_specific/<company>'.format(methods=['GET']))
@@ -507,47 +475,40 @@ def specific_company(company):
             dict: A JSON object containing the nfvacc server status information
     """
 
-    print(company)
     response_data = {
-        "set_attributes":
-            {
-                "company_requested": company
-            },
-          "messages": [
-            {
-              "attachment": {
+        "set_attributes": {
+            "company_requested": company
+        },
+        "messages": [{
+            "attachment": {
                 "type": "template",
                 "payload": {
-                  "template_type": "button",
-                  "text": "Which news would you like to see?",
-                  "buttons": [
-                    {
-                      "type": "show_block",
-                      "block_names": ["Fetch news"],
-                      "title": "Positive News"
-                    },
-                    {
-                      "type": "show_block",
-                      "block_names": ["Fetch news"],
-                      "title": "Negative News"
-                    },
-                    {
-                      "type": "show_block",
-                      "block_names": ["Fetch news"],
-                      "title": "Both"
-                    }
-                  ]
+                    "template_type":
+                    "button",
+                    "text":
+                    "Which news would you like to see about {}?".format(
+                        company),
+                    "buttons": [{
+                        "type": "show_block",
+                        "block_names": ["Fetch news"],
+                        "title": "Positive News"
+                    }, {
+                        "type": "show_block",
+                        "block_names": ["Fetch news"],
+                        "title": "Negative News"
+                    }, {
+                        "type": "show_block",
+                        "block_names": ["Fetch news"],
+                        "title": "Both"
+                    }]
                 }
-              }
             }
-          ]
+        }]
     }
 
     status = 200 if response_data is not None else 403
     js = json.dumps(response_data, indent=2)
-    return flask.Response(js,
-                          status=status,
-                          mimetype='application/json')
+    return flask.Response(js, status=status, mimetype='application/json')
 
 
 @app.route('/news/<company>/<news_type>/<page_num>'.format(methods=['GET']))
@@ -558,7 +519,8 @@ def get_news(company, news_type, page_num):
             dict: A JSON object containing the nfvacc server status information
     """
 
-    print("Fetching {} news for {} page {}".format(news_type, company, page_num))
+    print(
+        "Fetching {} news for {} page {}".format(news_type, company, page_num))
 
     elements = []
     element = {
@@ -585,11 +547,7 @@ def get_news(company, news_type, page_num):
     }
 
     quick_replies = []
-    quick_reply = {
-                "title": '',
-                "url": '',
-                "type": "json_plugin_url"
-            }
+    quick_reply = {"title": '', "url": '', "type": "json_plugin_url"}
 
     if news_type == 'positive' or news_type == 'Positive+News':
         direction = 'good'
@@ -597,16 +555,21 @@ def get_news(company, news_type, page_num):
         direction = 'bad'
 
     all_news = news.news
-    requested_news = [new for new in all_news if new.get('direction') == direction]
-    # print(requested_news)
+    requested_news = [
+        new for new in all_news if new.get('direction') == direction
+    ]
+
     f = lambda A, n=3: [A[i:i + n] for i in range(0, len(A), n)]
     news_per_page = f(requested_news)
     # print(news_per_page)
     news_to_show = news_per_page[int(page_num) - 1]
     # print(news_to_show)
-    all_quick_replies_page_numbers = [i+1 for i, _ in enumerate(news_per_page)]
+    all_quick_replies_page_numbers = [
+        i + 1 for i, _ in enumerate(news_per_page)
+    ]
     print(all_quick_replies_page_numbers)
-    quick_replies_page_numbers_to_show = filter(lambda x: x != int(page_num), all_quick_replies_page_numbers)
+    quick_replies_page_numbers_to_show = filter(lambda x: x != int(page_num),
+                                                all_quick_replies_page_numbers)
     print(quick_replies_page_numbers_to_show)
 
     for new in news_to_show:
@@ -622,7 +585,8 @@ def get_news(company, news_type, page_num):
     for page_number in quick_replies_page_numbers_to_show:
         quick_reply = copy.deepcopy(quick_reply)
         quick_reply['title'] = "Page {}".format(page_number)
-        quick_reply['url'] = "http://146.185.138.240/news/{}/{}/{}".format(company, news_type, page_number)
+        quick_reply['url'] = "http://146.185.138.240/news/{}/{}/{}".format(
+            company, news_type, page_number)
         quick_replies.append(quick_reply)
 
     message['quick_replies'] = quick_replies
@@ -630,16 +594,12 @@ def get_news(company, news_type, page_num):
     message['attachment']['payload']['elements'] = elements
     messages.append(message)
 
-    response_data = {
-        "messages": messages
-    }
+    response_data = {"messages": messages}
 
     # print(response_data)
     status = 200 if response_data is not None else 403
     js = json.dumps(response_data, indent=2)
-    return flask.Response(js,
-                          status=status,
-                          mimetype='application/json')
+    return flask.Response(js, status=status, mimetype='application/json')
 
 
 @app.route('/guest_companies/<stocks_type>'.format(methods=['GET']))
@@ -656,36 +616,28 @@ def get_companies(stocks_type):
     print("Fetching companies with {}.".format(stocks_type))
     total_articles = companies.Total_articles
 
-    attributes_dict = {
-        "news_type": '',
-        "stocks_type": ''
-    }
+    attributes_dict = {"news_type": '', "stocks_type": ''}
 
     element = {
         "title": '',
         "image_url": '',
         "subtitle": '',
-        "buttons": [
-            {
-                "type": "json_plugin_url",
-                "url": '',
-                "title": ''
-            }
-        ]
+        "buttons": [{
+            "type": "json_plugin_url",
+            "url": '',
+            "title": ''
+        }]
     }
-    messages = [
-        {
-            "attachment": {
-                "type": "template",
-                "payload": {
-                    "template_type": "list",
-                    "top_element_style": "compact",
-                    "elements": [
-                    ]
-                }
+    messages = [{
+        "attachment": {
+            "type": "template",
+            "payload": {
+                "template_type": "list",
+                "top_element_style": "compact",
+                "elements": []
             }
         }
-    ]
+    }]
     next_button = {
         "type": "show_block",
         "block_name": "Next Company",
@@ -708,7 +660,7 @@ def get_companies(stocks_type):
         four_packets = math.ceil((len(requested_companies) / 4.0))
         attributes_dict['news_type'] = news_type
         attributes_dict['stocks_type'] = stocks_type
-        start = NEXT*4
+        start = NEXT * 4
         for index, company in enumerate(requested_companies[start:]):
             # print(index)
             if index < start + 4:
@@ -720,10 +672,14 @@ def get_companies(stocks_type):
                     "{} out of {} articles".format(company.get('company_articles'),
                                                        total_articles) if company.get(
                     'company_articles') > 1 else "One article Title"
-                element['buttons'][0]['title'] = 'View articles' if company.get(
-                    'company_articles') > 1 else 'View article'
-                element['buttons'][0]['url'] = 'http://146.185.138.240/company_specific/{}'.format(name_net)
-                messages[0]['attachment']['payload']['elements'].append(element)
+                element['buttons'][0][
+                    'title'] = 'View articles' if company.get(
+                        'company_articles') > 1 else 'View article'
+                element['buttons'][0][
+                    'url'] = 'http://146.185.138.240/company_specific/{}'.format(
+                        name_net)
+                messages[0]['attachment']['payload']['elements'].append(
+                    element)
 
         response_data = {
             'set_attributes': attributes_dict,
@@ -731,107 +687,96 @@ def get_companies(stocks_type):
         }
 
         if four_packets > 1:
-            if (NEXT+2) <= four_packets:
-                remaining = len(requested_companies) - (NEXT+1)*4
-                next_button['title'] = "Next {}/{}".format(remaining, len(requested_companies))
-                response_data['messages'][0]['attachment']['payload']['buttons'] = [next_button]
+            if (NEXT + 2) <= four_packets:
+                remaining = len(requested_companies) - (NEXT + 1) * 4
+                next_button['title'] = "Next {}/{}".format(
+                    remaining, len(requested_companies))
+                response_data['messages'][0]['attachment']['payload'][
+                    'buttons'] = [next_button]
 
     else:
 
         response_data = {
-            "set_attributes":
-                {
-                    "news_type": "all"
-                },
-            "messages": [
-                {
-                    "attachment": {
-                        "type": "template",
-                        "payload": {
-                            "template_type": "button",
-                            "text": "These are scrader's supported stocks",
-                            "buttons": [
-                                {
-                                    "type": "show_block",
-                                    "block_name": "Company Specific News",
-                                    "title": "Instagram"
-                                },
-                                {
-                                    "type": "show_block",
-                                    "block_name": "Company Specific News",
-                                    "title": "VMware"
-                                },
-                                {
-                                    "type": "show_block",
-                                    "block_name": "Company Specific News",
-                                    "title": "IBM"
-                                }
-                            ]
-                        }
-                    }
-                },
-                {
-                    "attachment": {
-                        "type": "template",
-                        "payload": {
-                            "template_type": "button",
-                            "text": "...",
-                            "buttons": [
-                                {
-                                    "type": "show_block",
-                                    "block_name": "Company Specific News",
-                                    "title": "Apple"
-                                },
-                                {
-                                    "type": "show_block",
-                                    "block_name": "Company Specific News",
-                                    "title": "Amazon"
-                                },
-                                {
-                                    "type": "show_block",
-                                    "block_name": "Company Specific News",
-                                    "title": "Adidas"
-                                }
-                            ]
-                        }
-                    }
-                },
-                {
-                    "attachment": {
-                        "type": "template",
-                        "payload": {
-                            "template_type": "button",
-                            "text": "...",
-                            "buttons": [
-                                {
-                                    "type": "show_block",
-                                    "block_name": "Company Specific News",
-                                    "title": "Facebook"
-                                },
-                                {
-                                    "type": "show_block",
-                                    "block_name": "Company Specific News",
-                                    "title": "Google"
-                                },
-                                {
-                                    "type": "show_block",
-                                    "block_name": "Company Specific News",
-                                    "title": "Hooli"
-                                }
-                            ]
-                        }
+            "set_attributes": {
+                "news_type": "all"
+            },
+            "messages": [{
+                "attachment": {
+                    "type": "template",
+                    "payload": {
+                        "template_type":
+                        "button",
+                        "text":
+                        "These are scrader's supported stocks",
+                        "buttons": [{
+                            "type": "show_block",
+                            "block_name": "Company Specific News",
+                            "title": "Instagram"
+                        }, {
+                            "type": "show_block",
+                            "block_name": "Company Specific News",
+                            "title": "VMware"
+                        }, {
+                            "type": "show_block",
+                            "block_name": "Company Specific News",
+                            "title": "IBM"
+                        }]
                     }
                 }
-            ]
+            }, {
+                "attachment": {
+                    "type": "template",
+                    "payload": {
+                        "template_type":
+                        "button",
+                        "text":
+                        "...",
+                        "buttons": [{
+                            "type": "show_block",
+                            "block_name": "Company Specific News",
+                            "title": "Apple"
+                        }, {
+                            "type": "show_block",
+                            "block_name": "Company Specific News",
+                            "title": "Amazon"
+                        }, {
+                            "type": "show_block",
+                            "block_name": "Company Specific News",
+                            "title": "Adidas"
+                        }]
+                    }
+                }
+            }, {
+                "attachment": {
+                    "type": "template",
+                    "payload": {
+                        "template_type":
+                        "button",
+                        "text":
+                        "...",
+                        "buttons": [{
+                            "type": "show_block",
+                            "block_name": "Company Specific News",
+                            "title": "Facebook"
+                        }, {
+                            "type": "show_block",
+                            "block_name": "Company Specific News",
+                            "title": "Google"
+                        }, {
+                            "type": "show_block",
+                            "block_name": "Company Specific News",
+                            "title": "Hooli"
+                        }]
+                    }
+                }
+            }]
         }
 
     NEXT += 1
     # print(response_data)
     status = 200 if response_data is not None else 403
     js = json.dumps(response_data, indent=2)
-    return flask.Response(js,
-                          status=status,
-                          mimetype='application/json')
+    return flask.Response(js, status=status, mimetype='application/json')
 
 
 def signal_sigint_handler(rec_signal, rec_frame):
@@ -844,13 +789,12 @@ if __name__ == '__main__':
     # set the flask logger => ERROR: do not print API calls
     import logging
 
-
     log = logging.getLogger('werkzeug')
     log.setLevel(logging.ERROR)
 
     res = mongo.init_database()
     if res is None:
-         os._exit(1)
+        os._exit(1)
 
     # print (res)
     # scrader_poll(companies=config.companies, sources=config.sources)
