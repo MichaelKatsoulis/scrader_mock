@@ -792,9 +792,9 @@ if __name__ == '__main__':
     log = logging.getLogger('werkzeug')
     log.setLevel(logging.ERROR)
 
-    res = mongo.init_database()
-    if res is None:
-        os._exit(1)
+    # res = mongo.init_database()
+    # if res is None:
+    #     os._exit(1)
 
     # print (res)
     # scrader_poll(companies=config.companies, sources=config.sources)
