@@ -11,7 +11,7 @@ GREENLETS = {}
 
 def scrader_poll(companies, sources):
     print companies, sources
-    print 'Hello'
+    print 'Haello'
     global GREENLETS
 
     GREENLETS = gevent. \
