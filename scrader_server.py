@@ -789,9 +789,12 @@ if __name__ == '__main__':
     # set the flask logger => ERROR: do not print API calls
     import logging
 
-    log = logging.getLogger('werkzeug')
-    log.setLevel(logging.ERROR)
-
+    #log = logging.getLogger('werkzeug')
+    #log.setLevel(logging.ERROR)
+    logging.basicConfig(filename='logs.log',level=logging.INFO)
+    logging.debug('This message should go to the log file')
+    logging.info('So should this')
+    logging.warning('And this, too')
     # res = mongo.init_database()
     # if res is None:
     #     os._exit(1)
