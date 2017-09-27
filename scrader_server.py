@@ -11,6 +11,7 @@ import config
 import companies
 import websites
 import news
+import logging
 
 DEBUG = False  # Enable this to print python crashes and exceptions
 
@@ -787,7 +788,7 @@ if __name__ == '__main__':
     signal.signal(signal.SIGINT, signal_sigint_handler)
 
     # set the flask logger => ERROR: do not print API calls
-    import logging
+
 
     #log = logging.getLogger('werkzeug')
     #log.setLevel(logging.ERROR)
@@ -795,10 +796,5 @@ if __name__ == '__main__':
     logging.debug('This message should go to the log file')
     logging.info('So should this')
     logging.warning('And this, too')
-    # res = mongo.init_database()
-    # if res is None:
-    #     os._exit(1)
 
-    # print (res)
-    # scrader_poll(companies=config.companies, sources=config.sources)
     app.run(host=config.HOST, port=config.PORT, debug=DEBUG)
