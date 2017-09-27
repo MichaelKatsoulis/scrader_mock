@@ -193,7 +193,7 @@ def user_login(user_id, user_name):
         Returns:
             dict: A JSON object containing the nfvacc server status information
     """
-    print(USERS)
+    # print(USERS)
     name = user_name
     registered = False
     exists = False
@@ -201,7 +201,7 @@ def user_login(user_id, user_name):
 
     for user in USERS:
         if user.get('user_id') == str(user_id):
-            print('user already exists')
+            # print('user already exists')
             exists = True
             first_time = False
             first_name = user.get('first_name')
@@ -248,7 +248,7 @@ def user_login(user_id, user_name):
         buttons.append(pref_button)
     else:
         if first_time:
-            print('first time loging in')
+            # print('first time loging in')
             message = 'Hi {}! Nice to see you. ' \
                       'I am the Scrader Bot. ' \
                       'My job is to utilize powerful machine ' \
@@ -388,7 +388,7 @@ def user_companies(user_id):
         if user.get('user_id') == user_id:
             subscribed_companies = user.get('companies', [])
 
-    print(subscribed_companies)
+    # print(subscribed_companies)
     response_data = subscribed_companies
     status = 200 if response_data is not None else 403
     js = json.dumps(response_data, indent=2)
@@ -519,8 +519,8 @@ def get_news(company, news_type, page_num):
             dict: A JSON object containing the nfvacc server status information
     """
 
-    print(
-        "Fetching {} news for {} page {}".format(news_type, company, page_num))
+    # print(
+    #     "Fetching {} news for {} page {}".format(news_type, company, page_num))
 
     elements = []
     element = {
@@ -567,10 +567,10 @@ def get_news(company, news_type, page_num):
     all_quick_replies_page_numbers = [
         i + 1 for i, _ in enumerate(news_per_page)
     ]
-    print(all_quick_replies_page_numbers)
+    # print(all_quick_replies_page_numbers)
     quick_replies_page_numbers_to_show = filter(lambda x: x != int(page_num),
                                                 all_quick_replies_page_numbers)
-    print(quick_replies_page_numbers_to_show)
+    # print(quick_replies_page_numbers_to_show)
 
     for new in news_to_show:
         element = copy.deepcopy(element)
@@ -613,7 +613,7 @@ def get_companies(stocks_type):
     global NEXT
     NEXT = 0 if request.args.get('NEXT') is not None else NEXT
 
-    print("Fetching companies with {}.".format(stocks_type))
+    # print("Fetching companies with {}.".format(stocks_type))
     total_articles = companies.Total_articles
 
     attributes_dict = {"news_type": '', "stocks_type": ''}
