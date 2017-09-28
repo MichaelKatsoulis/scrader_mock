@@ -789,9 +789,6 @@ if __name__ == '__main__':
 
     # set the flask logger => ERROR: do not print API calls
 
-
-    #log = logging.getLogger('werkzeug')
-    #log.setLevel(logging.ERROR)
     logging.basicConfig(filename='logs.log',level=logging.INFO)
     logging.debug('This message should go to the log file')
     logging.info('So should this')
