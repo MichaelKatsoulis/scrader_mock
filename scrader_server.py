@@ -623,7 +623,7 @@ def get_news(company, news_type, page_num):
         }]
     }
     messages = [
-        {"text": '{} news for {}'.format(news_type.split[0], company)}
+        {"text": '{} news for {}'.format(news_type.split()[0], company)}
     ]
     message = {
         "attachment": {
