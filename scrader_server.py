@@ -93,6 +93,10 @@ def company_search():
     company_typed = (request.args.get('last user freeform input')).lower()
     first_name = request.args.get('first name')
     user_id = request.args.get('chatfuel user id')
+    for user in Users:
+        if user.get('user_id') == user_id:
+            user.pop('request', None)
+
     # print(user_id)
     company_found = company_typed_search(company_typed)
     if company_found is not None:
@@ -654,8 +658,6 @@ def get_news(company, news_type, page_num):
         direction = 'bad'
         news_message = 'Negative'
 
-    top_message =  {"text": '{} news for {}'.format(news_message, company)}
-    messages.append(top_message)
 
     all_news = news.news
     requested_news = [
@@ -695,6 +697,10 @@ def get_news(company, news_type, page_num):
     message['quick_replies'] = quick_replies
 
     message['attachment']['payload']['elements'] = elements
+
+    top_message = {"text": '{} {} articles found for {}'.format(len(requested_news), news_message, company)}
+    messages.append(top_message)
+
     messages.append(message)
 
     response_data = {"messages": messages}
