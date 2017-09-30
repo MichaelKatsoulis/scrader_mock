@@ -541,10 +541,10 @@ def specific_company(company, user_id):
                 break
 
     print(type_of_news)
-    one_news_type = False
+    one_news_type = True
     if len(type_of_news) > 1:
         type_of_news.sort(reverse=True)
-        one_news_type = True
+        one_news_type = False
 
     print(type_of_news)
     news_buttons = []
