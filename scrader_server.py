@@ -539,6 +539,7 @@ def specific_company(company, user_id):
                 type_of_news.append(type)
                 break
 
+    print(type_of_news)
     type_of_news = type_of_news.sort(reverse=True)
     print(type_of_news)
     news_buttons = []
