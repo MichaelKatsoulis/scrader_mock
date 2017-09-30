@@ -522,7 +522,7 @@ def specific_company(company, user_id):
                     followed = True
             user_request = user.get('request', None)
 
-    print(user_request)
+    # print(user_request)
     extra_button = {}
     if followed:
         extra_button['type'] = "json_plugin_url"
@@ -571,7 +571,7 @@ def specific_company(company, user_id):
     indication_message = {}
     if not one_news_type:
         if user_request is not None:
-            print('user requested before {}'.format(user_request))
+            # print('user requested before {}'.format(user_request))
             if user_request == 'Positive+News':
                 user_request = 'negative'
             else:
@@ -622,8 +622,8 @@ def get_news(company, news_type, page_num):
             dict: A JSON object containing the nfvacc server status information
     """
 
-    print(
-        "Fetching {} news for {} page {}".format(news_type, company, page_num))
+    # print(
+    #     "Fetching {} news for {} page {}".format(news_type, company, page_num))
 
     elements = []
     element = {
@@ -637,7 +637,7 @@ def get_news(company, news_type, page_num):
             "title": ''
         }]
     }
-    print(news_type)
+
     messages = []
     message = {
         "attachment": {
@@ -706,7 +706,7 @@ def get_news(company, news_type, page_num):
 
     response_data = {"messages": messages}
 
-    print(response_data)
+    # print(response_data)
     status = 200 if response_data is not None else 403
     js = json.dumps(response_data, indent=2)
     return flask.Response(js, status=status, mimetype='application/json')
