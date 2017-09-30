@@ -624,7 +624,7 @@ def get_news(company, news_type, page_num):
     }
     print(news_type)
     messages = [
-        {"text": '{} news for {}'.format(news_type, company)}
+        # {"text": '{} news for {}'.format(news_type, company)}
     ]
     message = {
         "attachment": {
@@ -686,7 +686,7 @@ def get_news(company, news_type, page_num):
 
     response_data = {"messages": messages}
 
-    # print(response_data)
+    print(response_data)
     status = 200 if response_data is not None else 403
     js = json.dumps(response_data, indent=2)
     return flask.Response(js, status=status, mimetype='application/json')
