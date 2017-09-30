@@ -93,7 +93,7 @@ def company_search():
     company_typed = (request.args.get('last user freeform input')).lower()
     first_name = request.args.get('first name')
     user_id = request.args.get('chatfuel user id')
-    print(user_id)
+    # print(user_id)
     company_found = company_typed_search(company_typed)
     if company_found is not None:
         if company_typed != company_found.lower():
@@ -197,7 +197,7 @@ def user_login(user_id, user_name):
         Returns:
             dict: A JSON object containing the nfvacc server status information
     """
-    print(USERS)
+    # print(USERS)
     name = user_name
     registered = False
     exists = False
@@ -366,9 +366,6 @@ def modify_user_companies(user_id, company_name, action):
             dict: A JSON object containing the nfvacc server status information
     """
 
-    print(user_id)
-    print(company_name)
-    print(action)
     response_data = {}
     for user in USERS:
         if user.get('user_id') == user_id:
@@ -382,7 +379,7 @@ def modify_user_companies(user_id, company_name, action):
 
             response_data = {"messages": [{"text": message}]}
 
-    print(response_data)
+    # print(response_data)
     status = 200 if response_data is not None else 403
     js = json.dumps(response_data, indent=2)
     return flask.Response(js, status=status, mimetype='application/json')
@@ -536,17 +533,17 @@ def specific_company(company, user_id):
     for type, companies_list in all_companies.items():
         for company_dict in companies_list:
             if company_given == company_dict.get('company_name').split()[0]:
-                print('company ' + company_given + ' found in ' + type)
+                # print('company ' + company_given + ' found in ' + type)
                 type_of_news.append(type)
                 break
 
-    print(type_of_news)
+    # print(type_of_news)
     one_news_type = True
     if len(type_of_news) > 1:
         type_of_news.sort(reverse=True)
         one_news_type = False
 
-    print(type_of_news)
+    # print(type_of_news)
     news_buttons = []
     for news_type in type_of_news:
         if news_type == 'good_companies':
@@ -564,7 +561,7 @@ def specific_company(company, user_id):
             }
             news_buttons.append(new_button)
 
-    print(news_buttons)
+    # print(news_buttons)
     response_data = {
         "set_attributes": {
             "company_requested": company
@@ -604,8 +601,8 @@ def get_news(company, news_type, page_num):
             dict: A JSON object containing the nfvacc server status information
     """
 
-    print(
-        "Fetching {} news for {} page {}".format(news_type, company, page_num))
+    # print(
+    #     "Fetching {} news for {} page {}".format(news_type, company, page_num))
 
     elements = []
     element = {
@@ -698,8 +695,8 @@ def get_companies(stocks_type):
     global NEXT
     NEXT = 0 if request.args.get('NEXT') is not None else NEXT
     user_id = request.args.get('chatfuel user id')
-    print(user_id)
-    print("Fetching companies with {}.".format(stocks_type))
+    # print(user_id)
+    # print("Fetching companies with {}.".format(stocks_type))
     total_articles = companies.Total_articles
 
     attributes_dict = {"news_type": '', "stocks_type": ''}
