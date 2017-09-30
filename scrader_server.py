@@ -357,7 +357,7 @@ def user_companies_data():
     return flask.Response(js, status=status, mimetype='application/json')
 
 
-@app.route('/scrader/<user_id>/<company_name>/<action>', methods=['POST'])
+@app.route('/scrader/modify_user/<user_id>/<company_name>/<action>', methods=['GET'])
 def modify_user_companies(user_id, company_name, action):
     """ GET Server Status API endpoint
         Args:
@@ -522,7 +522,7 @@ def specific_company(company, user_id):
     if followed:
         extra_button['type'] = "json_plugin_url"
         extra_button['title'] = 'Unfollow'
-        extra_button['url'] = "http://146.185.138.240/scrader/{}/{}/remove".format(user_id,company)
+        extra_button['url'] = "http://146.185.138.240/scrader/modify_user/{}/{}/remove".format(user_id,company)
     else:
         if subscribed:
             extra_button['type'] = "json_plugin_url"
