@@ -94,12 +94,15 @@ def company_search():
     first_name = request.args.get('first name')
     user_id = request.args.get('chatfuel user id')
     print(USERS)
+    print(company_typed)
+    print(first_name)
     for user in Users:
         if user.get('user_id') == str(user_id):
             user.pop('request', None)
     print(USERS)
     # print(user_id)
     company_found = company_typed_search(company_typed)
+    print(company_found)
     if company_found is not None:
         if company_typed != company_found.lower():
             response_data = {
