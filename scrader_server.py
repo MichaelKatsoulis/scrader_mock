@@ -91,6 +91,8 @@ def company_search():
 
     company_typed = (request.args.get('last user freeform input')).lower()
     first_name = request.args.get('first name')
+    user_id = request.args.get('chatfuel user id')
+    print(user_id)
     company_found = company_typed_search(company_typed)
     if company_found is not None:
         if company_typed != company_found.lower():
@@ -102,8 +104,8 @@ def company_search():
                         "title":
                         "Yes",
                         "url":
-                        'http://146.185.138.240/company_specific/{}'.format(
-                            company_found),
+                        'http://146.185.138.240/company_specific/{}/{}'.format(
+                            company_found, user_id),
                         "type":
                         "json_plugin_url"
                     }, {
@@ -194,7 +196,7 @@ def user_login(user_id, user_name):
         Returns:
             dict: A JSON object containing the nfvacc server status information
     """
-    # print(USERS)
+    print(USERS)
     name = user_name
     registered = False
     exists = False
@@ -355,6 +357,32 @@ def user_companies_data():
     return flask.Response(js, status=status, mimetype='application/json')
 
 
+@app.route('/scrader/<user_id>/<company_name>/<action>', methods=['POST'])
+def modify_user_companies(user_id, company_name, action):
+    """ GET Server Status API endpoint
+        Args:
+        Returns:
+            dict: A JSON object containing the nfvacc server status information
+    """
+
+    response_data = {}
+    for user in USERS:
+        if user.get('user_id') == user_id:
+            user_name = user.get('first_name')
+            if action == 'add':
+                user['companies'].append(company_name)
+                message = "{} now on you will be notified for {} too.".format(user_name, company_name)
+            else:
+                user['companies'].remove(company_name)
+                message = "{} now on you won't be notified for {}.".format(user_name, company_name)
+
+            response_data = {"messages": [{"text": message}]}
+
+    status = 200 if response_data is not None else 403
+    js = json.dumps(response_data, indent=2)
+    return flask.Response(js, status=status, mimetype='application/json')
+
+
 @app.route('/scrader/user_websites', methods=['POST'])
 def user_websites_data():
     """ GET Server Status API endpoint
@@ -468,13 +496,36 @@ def user_notification(user_id, time_frame):
     return flask.Response(js, status=status, mimetype='application/json')
 
 
-@app.route('/company_specific/<company>'.format(methods=['GET']))
-def specific_company(company):
+@app.route('/company_specific/<company>/<user_id>'.format(methods=['GET']))
+def specific_company(company, user_id):
     """ GET Server Status API endpoint
         Args:
         Returns:
             dict: A JSON object containing the nfvacc server status information
     """
+
+    subscribed = False
+    followed = False
+
+    for user in USERS:
+        if user.get('user_id') == str(user_id):
+            if user.get('notification_type') == 'Companies':
+                subscribed = True
+                if company in user.get('companies'):
+                    followed = True
+
+    extra_button = {}
+    if followed:
+        extra_button['type'] = "json_plugin_url"
+        extra_button['title'] = 'Unfollow'
+        extra_button['url'] = "http://146.185.138.240/scrader/{}/{}/remove".format(user_id,company)
+    else:
+        if subscribed:
+            extra_button['type'] = "json_plugin_url"
+            extra_button['title'] = 'Follow'
+            extra_button['url'] = "http://146.185.138.240/scrader/{}/{}/add".format(user_id,company)
+
+
 
     response_data = {
         "set_attributes": {
@@ -497,15 +548,14 @@ def specific_company(company):
                         "type": "show_block",
                         "block_names": ["Fetch news"],
                         "title": "Negative News"
-                    }, {
-                        "type": "show_block",
-                        "block_names": ["Fetch news"],
-                        "title": "Both"
                     }]
                 }
             }
         }]
     }
+
+    if extra_button:
+        response_data['messages'][0]['attachment']['payload']['buttons'].append(extra_button)
 
     status = 200 if response_data is not None else 403
     js = json.dumps(response_data, indent=2)
@@ -613,8 +663,9 @@ def get_companies(stocks_type):
 
     global NEXT
     NEXT = 0 if request.args.get('NEXT') is not None else NEXT
-
-    # print("Fetching companies with {}.".format(stocks_type))
+    user_id = request.args.get('chatfuel user id')
+    print(user_id)
+    print("Fetching companies with {}.".format(stocks_type))
     total_articles = companies.Total_articles
 
     attributes_dict = {"news_type": '', "stocks_type": ''}
@@ -677,8 +728,8 @@ def get_companies(stocks_type):
                     'title'] = 'View articles' if company.get(
                         'company_articles') > 1 else 'View article'
                 element['buttons'][0][
-                    'url'] = 'http://146.185.138.240/company_specific/{}'.format(
-                        name_net)
+                    'url'] = 'http://146.185.138.240/company_specific/{}/{}'.format(
+                        name_net, user_id)
                 messages[0]['attachment']['payload']['elements'].append(
                     element)
 
