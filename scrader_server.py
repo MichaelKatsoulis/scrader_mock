@@ -514,7 +514,8 @@ def specific_company(company, user_id):
     subscribed = False
     followed = False
     user_request = None
-
+    print(company)
+    print(user_id)
     for user in USERS:
         if user.get('user_id') == str(user_id):
             if user.get('notification_type') == 'Companies':
@@ -523,6 +524,7 @@ def specific_company(company, user_id):
                     followed = True
             user_request = user.get('request', None)
 
+    print(user_request)
     extra_button = {}
     if followed:
         extra_button['type'] = "json_plugin_url"
