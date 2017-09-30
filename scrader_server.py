@@ -591,7 +591,8 @@ def specific_company(company, user_id):
         response_data['messages'][0]['attachment']['payload']['buttons'].append(extra_button)
     else:
         if one_news_type:
-            news_type = news_buttons[0]['title']
+            title_butt = news_buttons[0]['title'].split()
+            news_type = title_butt[0].lower()
             return get_news(company, news_type, 1)
 
     status = 200 if response_data is not None else 403
@@ -624,7 +625,7 @@ def get_news(company, news_type, page_num):
     }
     print(news_type)
     messages = [
-        # {"text": '{} news for {}'.format(news_type, company)}
+        {"text": '{} news for {}'.format(news_type, company)}
     ]
     message = {
         "attachment": {
