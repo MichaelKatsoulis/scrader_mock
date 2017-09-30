@@ -541,8 +541,11 @@ def specific_company(company, user_id):
                 break
 
     print(type_of_news)
+    one_news_type = False
     if len(type_of_news) > 1:
         type_of_news.sort(reverse=True)
+        one_news_type = True
+
     print(type_of_news)
     news_buttons = []
     for news_type in type_of_news:
@@ -583,6 +586,10 @@ def specific_company(company, user_id):
 
     if extra_button:
         response_data['messages'][0]['attachment']['payload']['buttons'].append(extra_button)
+    else:
+        if one_news_type:
+            news_type = news_buttons[0]['title']
+            return get_news(company, news_type, 1)
 
     status = 200 if response_data is not None else 403
     js = json.dumps(response_data, indent=2)
