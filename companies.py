@@ -52,6 +52,21 @@ bad_companies = [
             'company_name': 'Nokia',
             'company_logo': 'http://146.185.138.240/static/images/nokia_logo.jpg',
             'company_articles': 1
+        },
+        {
+            'company_name': 'Twitter',
+            'company_logo': 'http://146.185.138.240/static/images/twitter_logo.jpg',
+            'company_articles': 6
+        },
+        {
+            'company_name': 'Samsung',
+            'company_logo': 'http://146.185.138.240/static/images/samsung_logo.jpg',
+            'company_articles': 6
+        },
+        {
+            'company_name': 'Huawei',
+            'company_logo': 'http://146.185.138.240/static/images/huawei_logo.jpg',
+            'company_articles': 6
         }
     ]
 

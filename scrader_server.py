@@ -532,8 +532,8 @@ def specific_company(company, user_id):
     company_given = company
     all_companies = companies.all_companies
     type_of_news = []
-    for type, companies in all_companies.items():
-        for company_dict in companies:
+    for type, companies_list in all_companies.items():
+        for company_dict in companies_list:
             if company_given == company_dict.get('company_name').split()[0]:
                 print('company ' + company_given + ' found in ' + type)
                 type_of_news.append(type)
