@@ -527,7 +527,7 @@ def specific_company(company, user_id):
         if subscribed:
             extra_button['type'] = "json_plugin_url"
             extra_button['title'] = 'Follow'
-            extra_button['url'] = "http://146.185.138.240/scrader/{}/{}/add".format(user_id,company)
+            extra_button['url'] = "http://146.185.138.240/scrader/modify_user/{}/{}/add".format(user_id,company)
 
 
 
