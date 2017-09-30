@@ -93,10 +93,11 @@ def company_search():
     company_typed = (request.args.get('last user freeform input')).lower()
     first_name = request.args.get('first name')
     user_id = request.args.get('chatfuel user id')
+    print(USERS)
     for user in Users:
-        if user.get('user_id') == user_id:
+        if user.get('user_id') == str(user_id):
             user.pop('request', None)
-
+    print(USERS)
     # print(user_id)
     company_found = company_typed_search(company_typed)
     if company_found is not None:
