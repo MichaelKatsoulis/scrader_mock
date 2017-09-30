@@ -93,16 +93,13 @@ def company_search():
     company_typed = (request.args.get('last user freeform input')).lower()
     first_name = request.args.get('first name')
     user_id = request.args.get('chatfuel user id')
-    print(USERS)
-    print(company_typed)
-    print(first_name)
-    for user in Users:
+
+    for user in USERS:
         if user.get('user_id') == str(user_id):
             user.pop('request', None)
-    print(USERS)
+
     # print(user_id)
     company_found = company_typed_search(company_typed)
-    print(company_found)
     if company_found is not None:
         if company_typed != company_found.lower():
             response_data = {
@@ -177,7 +174,6 @@ def company_typed_search(company_):
     for company_type, companies_list in all_companies.items():
         for company_dict in companies_list:
             company_name = company_dict.get('company_name').split()[0]
-            print(company_name)
             if company_ in company_name.lower():
                 return company_name
 
@@ -518,8 +514,6 @@ def specific_company(company, user_id):
     subscribed = False
     followed = False
     user_request = None
-    print(company)
-    print(user_id)
     for user in USERS:
         if user.get('user_id') == str(user_id):
             if user.get('notification_type') == 'Companies':
