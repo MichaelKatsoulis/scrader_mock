@@ -74,7 +74,8 @@ def get_all_companies():
         company['company_name']
         for company in companies.all_companies['bad_companies']
     ]
-    response_data = good_company_names + bad_company_names
+    companies_dupl = good_company_names + bad_company_names
+    response_data = list(set(companies_dupl))
 
     status = 200 if response_data is not None else 403
     js = json.dumps(response_data, indent=2)
