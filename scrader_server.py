@@ -508,6 +508,7 @@ def specific_company(company, user_id):
 
     subscribed = False
     followed = False
+    user_request = None
 
     for user in USERS:
         if user.get('user_id') == str(user_id):
@@ -515,6 +516,7 @@ def specific_company(company, user_id):
                 subscribed = True
                 if company in user.get('companies'):
                     followed = True
+            user_request = user.get('user_request', None)
 
     extra_button = {}
     if followed:
@@ -560,6 +562,10 @@ def specific_company(company, user_id):
                 "title": "Negative News"
             }
             news_buttons.append(new_button)
+
+    if not one_news_type:
+        if user_request is not None:
+            print('user requested before {}'.format(user_request))
 
     # print(news_buttons)
     response_data = {
@@ -616,8 +622,9 @@ def get_news(company, news_type, page_num):
             "title": ''
         }]
     }
-
-    messages = []
+    messages = [
+        {"text": '{} news for {}'.format(news_type, company)}
+    ]
     message = {
         "attachment": {
             "type": "template",
@@ -695,6 +702,9 @@ def get_companies(stocks_type):
     global NEXT
     NEXT = 0 if request.args.get('NEXT') is not None else NEXT
     user_id = request.args.get('chatfuel user id')
+    for user in USERS:
+        if user.get('user_id') == user_id:
+            user['request'] = stocks_type
     # print(user_id)
     # print("Fetching companies with {}.".format(stocks_type))
     total_articles = companies.Total_articles
