@@ -529,8 +529,35 @@ def specific_company(company, user_id):
             extra_button['title'] = 'Follow'
             extra_button['url'] = "http://146.185.138.240/scrader/modify_user/{}/{}/add".format(user_id,company)
 
+    company_given = company
+    all_companies = companies.all_companies
+    type_of_news = []
+    for type, companies in all_companies.items():
+        for company_dict in companies:
+            if company_given == company_dict.get('company_name').split()[0]:
+                print('company ' + company_given + ' found in ' + type)
+                type_of_news.append(type)
+                break
 
+    print(type_of_news)
+    news_buttons = []
+    for news_type in type_of_news:
+        if news_type == 'good_companies':
+            new_button = {
+                "type": "show_block",
+                "block_names": ["Fetch news"],
+                "title": "Positive News"
+            }
+            news_buttons.append(new_button)
+        else:
+            new_button = {
+                "type": "show_block",
+                "block_names": ["Fetch news"],
+                "title": "Negative News"
+            }
+            news_buttons.append(new_button)
 
+    print(news_buttons)
     response_data = {
         "set_attributes": {
             "company_requested": company
@@ -544,15 +571,7 @@ def specific_company(company, user_id):
                     "text":
                     "Which news would you like to see about {}?".format(
                         company),
-                    "buttons": [{
-                        "type": "show_block",
-                        "block_names": ["Fetch news"],
-                        "title": "Positive News"
-                    }, {
-                        "type": "show_block",
-                        "block_names": ["Fetch news"],
-                        "title": "Negative News"
-                    }]
+                    "buttons": news_buttons
                 }
             }
         }]
