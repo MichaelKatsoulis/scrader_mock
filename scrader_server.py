@@ -563,9 +563,15 @@ def specific_company(company, user_id):
             }
             news_buttons.append(new_button)
 
+    indication_message = {}
     if not one_news_type:
         if user_request is not None:
             print('user requested before {}'.format(user_request))
+            if user_request == 'Positive+News':
+                user_request = 'negative'
+            else:
+                user_request = 'positive'
+            indication_message = {"text": 'There are also {} news for {}'.format(user_request, company)}
 
     # print(news_buttons)
     response_data = {
@@ -594,6 +600,9 @@ def specific_company(company, user_id):
             title_butt = news_buttons[0]['title'].split()
             news_type = title_butt[0].lower()
             return get_news(company, news_type, 1)
+
+    if indication_message:
+        response_data['messages'].insert(0,indication_message)
 
     status = 200 if response_data is not None else 403
     js = json.dumps(response_data, indent=2)
@@ -624,9 +633,7 @@ def get_news(company, news_type, page_num):
         }]
     }
     print(news_type)
-    messages = [
-        {"text": '{} news for {}'.format(news_type, company)}
-    ]
+    messages = []
     message = {
         "attachment": {
             "type": "template",
@@ -641,9 +648,14 @@ def get_news(company, news_type, page_num):
     quick_reply = {"title": '', "url": '', "type": "json_plugin_url"}
 
     if news_type == 'positive' or news_type == 'Positive+News':
+        news_message = 'Positive'
         direction = 'good'
     else:
         direction = 'bad'
+        news_message = 'Negative'
+
+    top_message =  {"text": '{} news for {}'.format(news_message, company)}
+    messages.append(top_message)
 
     all_news = news.news
     requested_news = [
