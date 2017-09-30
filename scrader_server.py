@@ -516,7 +516,7 @@ def specific_company(company, user_id):
                 subscribed = True
                 if company in user.get('companies'):
                     followed = True
-            user_request = user.get('user_request', None)
+            user_request = user.get('request', None)
 
     extra_button = {}
     if followed:
@@ -623,7 +623,7 @@ def get_news(company, news_type, page_num):
         }]
     }
     messages = [
-        {"text": '{} news for {}'.format(news_type, company)}
+        {"text": '{} news for {}'.format(news_type.split[0], company)}
     ]
     message = {
         "attachment": {
