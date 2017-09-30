@@ -365,6 +365,9 @@ def modify_user_companies(user_id, company_name, action):
             dict: A JSON object containing the nfvacc server status information
     """
 
+    print(user_id)
+    print(company_name)
+    print(action)
     response_data = {}
     for user in USERS:
         if user.get('user_id') == user_id:
@@ -378,6 +381,7 @@ def modify_user_companies(user_id, company_name, action):
 
             response_data = {"messages": [{"text": message}]}
 
+    print(response_data)
     status = 200 if response_data is not None else 403
     js = json.dumps(response_data, indent=2)
     return flask.Response(js, status=status, mimetype='application/json')
