@@ -116,7 +116,7 @@ def company_search():
             }
 
         else:
-            return specific_company(company_found)
+            return specific_company(company_found, user_id)
 
     else:
         buttons = []
