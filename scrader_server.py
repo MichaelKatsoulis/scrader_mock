@@ -570,7 +570,7 @@ def specific_company(company, user_id):
 
     if extra_button:
         if one_news_type:
-            arg = news_buttons.get('title').split()[0]
+            arg = new_button.get('title').split()[0]
             return helper_function(extra_button, company, arg.lower())
 
     indication_message = {}
@@ -625,17 +625,19 @@ def helper_function(extra_button, company, news_type):
     print(company)
     print(news_type)
 
-    quick_replies = []
-    quick_reply = {
-        "title": extra_button['title'],
-        "url": extra_button['url'],
-        "type": "json_plugin_url"
-    }
-
     quick_replies.append(quick_reply)
+
     message = {
-        'text': 'Remember you can',
-        'quick_replies': quick_replies
+        "attachment": {
+            "type": "template",
+            "payload": {
+            "template_type": "button",
+            "text": "Remember you can",
+            "buttons": [
+                extra_button
+            ]
+            }
+        }
     }
     print(message)
     return get_news(company, news_type, message)
