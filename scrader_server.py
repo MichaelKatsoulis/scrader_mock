@@ -791,133 +791,52 @@ def get_companies(stocks_type):
         "title": ''
     }
 
-    both = False
     if stocks_type == 'Positive+News':
         companies_type = 'good_companies'
         news_type = 'positive'
 
-    elif stocks_type == 'Negative+News':
+    else:
         companies_type = 'bad_companies'
         news_type = 'negative'
-    else:
-        both = True
 
-    if not both:
-        requested_companies = companies.all_companies.get(companies_type)
-        four_packets = math.ceil((len(requested_companies) / 4.0))
-        attributes_dict['news_type'] = news_type
-        attributes_dict['stocks_type'] = stocks_type
-        start = NEXT * 4
-        for index, company in enumerate(requested_companies[start:]):
-            # print(index)
-            if index < start + 4:
-                element = copy.deepcopy(element)
-                name_net = company.get('company_name').split()[0]
-                element['title'] = company.get('company_name')
-                element['image_url'] = company.get('company_logo')
-                element['subtitle'] = \
-                    "{} out of {} articles".format(company.get('company_articles'),
-                                                       total_articles) if company.get(
-                    'company_articles') > 1 else "One article Title"
-                element['buttons'][0][
-                    'title'] = 'View articles' if company.get(
-                        'company_articles') > 1 else 'View article'
-                element['buttons'][0][
-                    'url'] = 'http://146.185.138.240/company_specific/{}/{}'.format(
-                        name_net, user_id)
-                messages[0]['attachment']['payload']['elements'].append(
-                    element)
+    requested_companies = companies.all_companies.get(companies_type)
+    four_packets = math.ceil((len(requested_companies) / 4.0))
+    attributes_dict['news_type'] = news_type
+    attributes_dict['stocks_type'] = stocks_type
+    start = NEXT * 4
+    for index, company in enumerate(requested_companies[start:]):
 
-        response_data = {
-            'set_attributes': attributes_dict,
-            'messages': messages
-        }
+        if index < start + 4:
+            element = copy.deepcopy(element)
+            name_net = company.get('company_name').split()[0]
+            element['title'] = company.get('company_name')
+            element['image_url'] = company.get('company_logo')
+            element['subtitle'] = \
+                "{} out of {} articles".format(company.get('company_articles'),
+                                                   total_articles) if company.get(
+                'company_articles') > 1 else "One article Title"
+            element['buttons'][0][
+                'title'] = 'View articles' if company.get(
+                    'company_articles') > 1 else 'View article'
+            element['buttons'][0][
+                'url'] = 'http://146.185.138.240/company_specific/{}/{}'.format(
+                    name_net, user_id)
+            messages[0]['attachment']['payload']['elements'].append(
+                element)
 
-        if four_packets > 1:
-            if (NEXT + 2) <= four_packets:
-                remaining = len(requested_companies) - (NEXT + 1) * 4
-                next_button['title'] = "Next {}/{}".format(
-                    remaining, len(requested_companies))
-                response_data['messages'][0]['attachment']['payload'][
-                    'buttons'] = [next_button]
+    response_data = {
+        'set_attributes': attributes_dict,
+        'messages': messages
+    }
 
-    else:
+    if four_packets > 1:
+        if (NEXT + 2) <= four_packets:
+            remaining = len(requested_companies) - (NEXT + 1) * 4
+            next_button['title'] = "Next {}/{}".format(
+                remaining, len(requested_companies))
+            response_data['messages'][0]['attachment']['payload'][
+                'buttons'] = [next_button]
 
-        response_data = {
-            "set_attributes": {
-                "news_type": "all"
-            },
-            "messages": [{
-                "attachment": {
-                    "type": "template",
-                    "payload": {
-                        "template_type":
-                        "button",
-                        "text":
-                        "These are scrader's supported stocks",
-                        "buttons": [{
-                            "type": "show_block",
-                            "block_name": "Company Specific News",
-                            "title": "Instagram"
-                        }, {
-                            "type": "show_block",
-                            "block_name": "Company Specific News",
-                            "title": "VMware"
-                        }, {
-                            "type": "show_block",
-                            "block_name": "Company Specific News",
-                            "title": "IBM"
-                        }]
-                    }
-                }
-            }, {
-                "attachment": {
-                    "type": "template",
-                    "payload": {
-                        "template_type":
-                        "button",
-                        "text":
-                        "...",
-                        "buttons": [{
-                            "type": "show_block",
-                            "block_name": "Company Specific News",
-                            "title": "Apple"
-                        }, {
-                            "type": "show_block",
-                            "block_name": "Company Specific News",
-                            "title": "Amazon"
-                        }, {
-                            "type": "show_block",
-                            "block_name": "Company Specific News",
-                            "title": "Adidas"
-                        }]
-                    }
-                }
-            }, {
-                "attachment": {
-                    "type": "template",
-                    "payload": {
-                        "template_type":
-                        "button",
-                        "text":
-                        "...",
-                        "buttons": [{
-                            "type": "show_block",
-                            "block_name": "Company Specific News",
-                            "title": "Facebook"
-                        }, {
-                            "type": "show_block",
-                            "block_name": "Company Specific News",
-                            "title": "Google"
-                        }, {
-                            "type": "show_block",
-                            "block_name": "Company Specific News",
-                            "title": "Hooli"
-                        }]
-                    }
-                }
-            }]
-        }
 
     NEXT += 1
     # print(response_data)
