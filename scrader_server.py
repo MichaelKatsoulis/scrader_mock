@@ -621,6 +621,10 @@ def specific_company(company, user_id):
 
 def helper_function(extra_button, company, news_type):
 
+    print(extra_button)
+    print(company)
+    print(news_type)
+
     quick_replies = []
     quick_reply = {
         "title": extra_button['title'],
@@ -633,7 +637,7 @@ def helper_function(extra_button, company, news_type):
         'text': 'Remember you can',
         'quick_replies': quick_replies
     }
-
+    print(message)
     return get_news(company, news_type, message)
 
 
