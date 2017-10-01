@@ -625,8 +625,6 @@ def helper_function(extra_button, company, news_type):
     print(company)
     print(news_type)
 
-    quick_replies.append(quick_reply)
-
     message = {
         "attachment": {
             "type": "template",
