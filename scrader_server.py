@@ -621,10 +621,6 @@ def specific_company(company, user_id):
 
 def helper_function(extra_button, company, news_type):
 
-    print(extra_button)
-    print(company)
-    print(news_type)
-
     message = {
         "attachment": {
             "type": "template",
@@ -637,7 +633,7 @@ def helper_function(extra_button, company, news_type):
             }
         }
     }
-    print(message)
+
     return get_news(company, news_type, message)
 
 
@@ -649,8 +645,8 @@ def get_news(company, news_type, page_num):
             dict: A JSON object containing the nfvacc server status information
     """
 
-    print(
-        "Fetching {} news for {} page {}".format(news_type, company, page_num))
+    # print(
+    #     "Fetching {} news for {} page {}".format(news_type, company, page_num))
 
     extra_message = {}
     if isinstance(page_num, dict):
@@ -743,7 +739,7 @@ def get_news(company, news_type, page_num):
 
     response_data = {"messages": messages}
 
-    print(response_data)
+    # print(response_data)
     status = 200 if response_data is not None else 403
     js = json.dumps(response_data, indent=2)
     return flask.Response(js, status=status, mimetype='application/json')
