@@ -1,9 +1,19 @@
+from gevent import monkey
+
+import time
+import gevent
+
 import new_companies
 import new_articles
+
+
+monkey.patch_all()
+
 
 def get_all_companies():
     # returns a list of all companies
     return list(new_companies.all_companies.keys())
+
 
 def company_typed_search(company):
 
@@ -14,6 +24,7 @@ def company_typed_search(company):
             return company_name
 
     return company_found
+
 
 def company_news_type(company_given):
     #list of news type a company has
@@ -27,8 +38,10 @@ def company_news_type(company_given):
 
     return list(set(type_of_news))
 
+
 def total_articles():
     return len(new_articles.articles.keys())
+
 
 def companies_by_type(news_type):
     # list of companies names , type can be good_companies bad_companies
@@ -48,6 +61,7 @@ def companies_by_type(news_type):
 
     return companies_list
 
+
 def get_news_by_direction(direction):
     #list of news by their direction good bad
 
@@ -56,3 +70,20 @@ def get_news_by_direction(direction):
         if new_dict.get('direction') == direction:
             news.append(new_dict)
     return news
+
+
+def update_companies_news(time_interval):
+
+    while True:
+        all_news = new_articles.articles
+        all_companies = new_companies.all_companies
+        for new_id, new_dict in all_news.items():
+            company = new_dict.get('company')
+            if new_id not in all_companies[company]['company_news_ids']:
+                all_companies[company]['company_news_ids'].append(new_id)
+        gevent.sleep(time_interval)
+
+
+def news_poll(poll_time):
+
+    gevent.spawn(update_companies_news, poll_time)
