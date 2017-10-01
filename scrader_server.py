@@ -736,7 +736,8 @@ def get_news(company, news_type, page_num):
     if extra_message:
         messages.append(extra_message)
 
-    messages.append(top_message)
+    if page_num == 1:
+        messages.append(top_message)
 
     messages.append(message)
 
