@@ -568,6 +568,11 @@ def specific_company(company, user_id):
             }
             news_buttons.append(new_button)
 
+    if extra_button:
+        if one_news_type:
+            arg = news_buttons.get('title').split()[0]
+            return helper_function(extra_button, company, arg.lower())
+
     indication_message = {}
     if not one_news_type:
         if user_request is not None:
@@ -614,6 +619,24 @@ def specific_company(company, user_id):
     return flask.Response(js, status=status, mimetype='application/json')
 
 
+def helper_function(extra_button, company, news_type):
+
+    quick_replies = []
+    quick_reply = {
+        "title": extra_button['title'],
+        "url": extra_button['url'],
+        "type": "json_plugin_url"
+    }
+
+    quick_replies.append(quick_reply)
+    message = {
+        'text': 'Remember you can',
+        'quick_replies': quick_replies
+    }
+
+    return get_news(company, news_type, message)
+
+
 @app.route('/news/<company>/<news_type>/<page_num>'.format(methods=['GET']))
 def get_news(company, news_type, page_num):
     """ GET Server Status API endpoint
@@ -622,8 +645,13 @@ def get_news(company, news_type, page_num):
             dict: A JSON object containing the nfvacc server status information
     """
 
-    # print(
-    #     "Fetching {} news for {} page {}".format(news_type, company, page_num))
+    print(
+        "Fetching {} news for {} page {}".format(news_type, company, page_num))
+
+    extra_message = {}
+    if isinstance(page_num, dict):
+        extra_message = page_num
+        page_num = 1
 
     elements = []
     element = {
@@ -700,13 +728,17 @@ def get_news(company, news_type, page_num):
     message['attachment']['payload']['elements'] = elements
 
     top_message = {"text": '{} {} articles found for {}'.format(len(requested_news), news_message, company)}
+
+    if extra_message:
+        messages.append(extra_message)
+
     messages.append(top_message)
 
     messages.append(message)
 
     response_data = {"messages": messages}
 
-    # print(response_data)
+    print(response_data)
     status = 200 if response_data is not None else 403
     js = json.dumps(response_data, indent=2)
     return flask.Response(js, status=status, mimetype='application/json')
