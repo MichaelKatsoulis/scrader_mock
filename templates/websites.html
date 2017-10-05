@@ -120,7 +120,7 @@ $( document ).ready(function() {
 
 function myFunction() {
     element = document.getElementById("myForm");
-    data = {user: '{{ name }}' , websites: ''};
+    data = {user: '{{ user_id }}' , websites: ''};
     websites_list = [];
      for (var i=0; i< element.elements.length - 1; i++){
       name = element.elements[i].id;

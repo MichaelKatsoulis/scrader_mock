@@ -8,10 +8,9 @@ import os
 import signal
 import copy
 import config
-import companies
 import websites
-import news
 import logging
+import utils
 
 DEBUG = False  # Enable this to print python crashes and exceptions
 
@@ -20,7 +19,7 @@ app = flask.Flask(__name__, static_url_path='/static')
 # Make cross-origin AJAX possible (for all domains on all routes)
 CORS(app, resources={r"*": {"origins": "*"}})
 
-USERS = []
+USERS = {}
 NEXT = 0
 
 
@@ -31,14 +30,13 @@ def get_companies_html(user_id):
         Returns:
             dict: A JSON object containing the nfvacc server status information
     """
-    name = "None"
+    first_name = "None"
+    user = USERS.get(user_id, None)
+    if user is not None:
+        last_name = user.get('name')
+        first_name = user.get('first_name', last_name)
 
-    for user in USERS:
-        if user.get('user_id') == user_id:
-            last_name = user.get('name')
-            name = user.get('first_name', last_name)
-
-    return flask.render_template('companies.html', name=name, user_id=user_id)
+    return flask.render_template('companies.html', name=first_name, user_id=user_id)
 
 
 @app.route('/scrader/websites/<user_id>'.format(methods=['GET']))
@@ -48,14 +46,13 @@ def get_websites_html(user_id):
         Returns:
             dict: A JSON object containing the nfvacc server status information
     """
-    name = "None"
+    first_name = "None"
+    user = USERS.get(user_id, None)
+    if user is not None:
+        last_name = user.get('name')
+        first_name = user.get('first_name', last_name)
 
-    for user in USERS:
-        if user.get('user_id') == user_id:
-            last_name = user.get('name')
-            name = user.get('first_name', last_name)
-
-    return flask.render_template('websites.html', name=name, user_id=user_id)
+    return flask.render_template('websites.html', name=first_name, user_id=user_id)
 
 
 @app.route('/scrader/all_companies'.format(methods=['GET']))
@@ -66,16 +63,7 @@ def get_all_companies():
             dict: A JSON object containing the nfvacc server status information
     """
 
-    good_company_names = [
-        company['company_name']
-        for company in companies.all_companies['good_companies']
-    ]
-    bad_company_names = [
-        company['company_name']
-        for company in companies.all_companies['bad_companies']
-    ]
-    companies_dupl = good_company_names + bad_company_names
-    response_data = list(set(companies_dupl))
+    response_data = utils.get_all_companies()
 
     status = 200 if response_data is not None else 403
     js = json.dumps(response_data, indent=2)
@@ -94,12 +82,12 @@ def company_search():
     first_name = request.args.get('first name')
     user_id = request.args.get('chatfuel user id')
 
-    for user in USERS:
-        if user.get('user_id') == str(user_id):
-            user.pop('request', None)
+    user = USERS.get(user_id, None)
+    if user is not None:
+        user.pop('request', None)
 
     # print(user_id)
-    company_found = company_typed_search(company_typed)
+    company_found = utils.company_typed_search(company_typed)
     if company_found is not None:
         if company_typed != company_found.lower():
             response_data = {
@@ -167,19 +155,6 @@ def company_search():
     return flask.Response(js, status=status, mimetype='application/json')
 
 
-def company_typed_search(company_):
-
-    company_found = None
-    all_companies = companies.all_companies
-    for company_type, companies_list in all_companies.items():
-        for company_dict in companies_list:
-            company_name = company_dict.get('company_name').split()[0]
-            if company_ in company_name.lower():
-                return company_name
-
-    return company_found
-
-
 @app.route('/scrader/all_websites'.format(methods=['GET']))
 def get_all_websites():
     """ GET Server Status API endpoint
@@ -208,22 +183,19 @@ def user_login(user_id, user_name):
     exists = False
     first_time = True
 
-    for user in USERS:
-        if user.get('user_id') == str(user_id):
-            # print('user already exists')
-            exists = True
-            first_time = False
-            first_name = user.get('first_name')
-            if user.get('subscribed'):
-                registered = True
+    user = USERS.get(user_id, None)
+    if user is not None:
+        first_time = False
+        first_name = user.get('first_name')
+        if user.get('subscribed'):
+            registered = True
 
-    if not exists:
+    else:
         user_dict = {
-            'user_id': str(user_id),
             'first_name': user_name,
             'subscribed': False
         }
-        USERS.append(user_dict)
+        USERS[user_id] = user_dict
 
     buttons = []
 
@@ -317,10 +289,10 @@ def subscribe(user_id, user_last_name, user_first_name):
             dict: A JSON object containing the nfvacc server status information
     """
 
-    for user in USERS:
-        if user.get('user_id') == str(user_id):
-            user['name'] = user_last_name
-            user['subscribed'] = True
+    user = USERS.get(user_id, None)
+    if user is not None:
+        user['name'] = user_last_name
+        user['subscribed'] = True
 
     response_data = {}
     status = 200 if response_data is not None else 403
@@ -352,11 +324,12 @@ def user_companies_data():
 
     data = flask.request.get_json()
 
-    user_name = data.get('user')
-    for user in USERS:
-        if user.get('first_name') == user_name:
-            user['companies'] = data.get('companies')
-            user['notification_type'] = 'Companies'
+    user_id = data.get('user')
+    user = USERS.get(user_id, None)
+    if user is not None:
+        user['companies'] = data.get('companies')
+        user['notification_type'] = 'Companies'
+
     response_data = {}
     status = 200 if response_data is not None else 403
     js = json.dumps(response_data, indent=2)
@@ -372,17 +345,17 @@ def modify_user_companies(user_id, company_name, action):
     """
 
     response_data = {}
-    for user in USERS:
-        if user.get('user_id') == user_id:
-            user_name = user.get('first_name')
-            if action == 'add':
-                user['companies'].append(company_name)
-                message = "{} now on you will be notified for {} too.".format(user_name, company_name)
-            else:
-                user['companies'].remove(company_name)
-                message = "{} now on you won't be notified for {}.".format(user_name, company_name)
+    user = USERS.get(user_id, None)
+    if user is not None:
+        user_name = user.get('first_name')
+        if action == 'add':
+            user['companies'].append(company_name)
+            message = "{} now on you will be notified for {} too.".format(user_name, company_name)
+        else:
+            user['companies'].remove(company_name)
+            message = "{} now on you won't be notified for {}.".format(user_name, company_name)
 
-            response_data = {"messages": [{"text": message}]}
+        response_data = {"messages": [{"text": message}]}
 
     # print(response_data)
     status = 200 if response_data is not None else 403
@@ -400,10 +373,10 @@ def user_websites_data():
 
     data = flask.request.get_json()
 
-    user_name = data.get('user')
-    for user in USERS:
-        if user.get('first_name') == user_name:
-            user['websites'] = data.get('websites')
+    user_id = data.get('user')
+    user = USERS.get(user_id, None)
+    if user is not None:
+        user['websites'] = data.get('websites')
 
     response_data = {}
     status = 200 if response_data is not None else 403
@@ -420,9 +393,9 @@ def user_companies(user_id):
     """
 
     subscribed_companies = []
-    for user in USERS:
-        if user.get('user_id') == user_id:
-            subscribed_companies = user.get('companies', [])
+    user = USERS.get(user_id, None)
+    if user is not None:
+        subscribed_companies = user.get('companies', [])
 
     # print(subscribed_companies)
     response_data = subscribed_companies
@@ -440,9 +413,9 @@ def user_websites(user_id):
     """
 
     subscribed_websites = []
-    for user in USERS:
-        if user.get('user_id') == user_id:
-            subscribed_websites = user.get('websites', [])
+    user = USERS.get(user_id, None)
+    if user is not None:
+        subscribed_websites = user.get('websites', [])
 
     response_data = subscribed_websites
     status = 200 if response_data is not None else 403
@@ -458,21 +431,17 @@ def user_notification(user_id, time_frame):
             dict: A JSON object containing the nfvacc server status information
     """
 
-    user_name = user_id
-    user_index = 0
-    for ind, user in enumerate(USERS):
-        if user.get('user_id') == user_id:
-            user_name = user.get('first_name')
-            user_index = ind
+    user = USERS.get(user_id, None)
+    user_name = user.get('first_name', user_id)
 
     if time_frame == 'Daily':
 
-        USERS[user_index]['notification_type'] = 'Daily'
+        user['notification_type'] = 'Daily'
         message = "{} you will be notified {}".format(user_name, time_frame)
         response_data = {"messages": [{"text": message}]}
     else:
 
-        USERS[user_index]['notification_type'] = 'Companies'
+        user['notification_type'] = 'Companies'
         response_data = {
             "messages": [{
                 "attachment": {
@@ -514,13 +483,13 @@ def specific_company(company, user_id):
     subscribed = False
     followed = False
     user_request = None
-    for user in USERS:
-        if user.get('user_id') == str(user_id):
-            if user.get('notification_type') == 'Companies':
-                subscribed = True
-                if company in user.get('companies'):
-                    followed = True
-            user_request = user.get('request', None)
+    user = USERS.get(user_id, None)
+    if user is not None:
+        if user.get('notification_type') == 'Companies':
+            subscribed = True
+            if company in user.get('companies'):
+                followed = True
+        user_request = user.get('request', None)
 
     # print(user_request)
     extra_button = {}
@@ -535,14 +504,7 @@ def specific_company(company, user_id):
             extra_button['url'] = "http://146.185.138.240/scrader/modify_user/{}/{}/add".format(user_id,company)
 
     company_given = company
-    all_companies = companies.all_companies
-    type_of_news = []
-    for type, companies_list in all_companies.items():
-        for company_dict in companies_list:
-            if company_given == company_dict.get('company_name').split()[0]:
-                # print('company ' + company_given + ' found in ' + type)
-                type_of_news.append(type)
-                break
+    type_of_news = utils.company_news_type(company_given)
 
     # print(type_of_news)
     one_news_type = True
@@ -682,16 +644,13 @@ def get_news(company, news_type, page_num):
 
     if news_type == 'positive' or news_type == 'Positive+News':
         news_message = 'Positive'
-        direction = 'good'
+        direction = 'POS'
     else:
-        direction = 'bad'
+        direction = 'NEG'
         news_message = 'Negative'
 
 
-    all_news = news.news
-    requested_news = [
-        new for new in all_news if new.get('direction') == direction
-    ]
+    requested_news = utils.get_news_by_direction(direction)
 
     f = lambda A, n=3: [A[i:i + n] for i in range(0, len(A), n)]
     news_per_page = f(requested_news)
@@ -756,12 +715,12 @@ def get_companies(stocks_type):
     global NEXT
     NEXT = 0 if request.args.get('NEXT') is not None else NEXT
     user_id = request.args.get('chatfuel user id')
-    for user in USERS:
-        if user.get('user_id') == user_id:
-            user['request'] = stocks_type
+    user = USERS.get(user_id, None)
+    if user is not None:
+        user['request'] = stocks_type
     # print(user_id)
     # print("Fetching companies with {}.".format(stocks_type))
-    total_articles = companies.Total_articles
+    total_articles = utis.total_articles()
 
     attributes_dict = {"news_type": '', "stocks_type": ''}
 
@@ -799,7 +758,7 @@ def get_companies(stocks_type):
         companies_type = 'bad_companies'
         news_type = 'negative'
 
-    requested_companies = companies.all_companies.get(companies_type)
+    requested_companies = utils.companies_by_type(companies_type)
     four_packets = math.ceil((len(requested_companies) / 4.0))
     attributes_dict['news_type'] = news_type
     attributes_dict['stocks_type'] = stocks_type
@@ -811,10 +770,11 @@ def get_companies(stocks_type):
             name_net = company.get('company_name').split()[0]
             element['title'] = company.get('company_name')
             element['image_url'] = company.get('company_logo')
+            company_number_of_artcles = len(company.get('company_news_ids'))
             element['subtitle'] = \
-                "{} out of {} articles".format(company.get('company_articles'),
-                                                   total_articles) if company.get(
-                'company_articles') > 1 else "One article Title"
+                "{} out of {} articles".format(company_number_of_artcles,
+                                                   total_articles)\
+                    if company_number_of_artcles > 1 else "One article Title"
             element['buttons'][0][
                 'title'] = 'View articles' if company.get(
                     'company_articles') > 1 else 'View article'
@@ -858,5 +818,7 @@ if __name__ == '__main__':
     logging.debug('This message should go to the log file')
     logging.info('So should this')
     logging.warning('And this, too')
+    utils.article_from_excel()
+    utils.news_poll(10)
 
     app.run(host=config.HOST, port=config.PORT, debug=DEBUG)

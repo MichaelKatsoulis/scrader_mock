@@ -143,7 +143,7 @@ $( document ).ready(function() {
 
 function myFunction() {
     element = document.getElementById("myForm");
-    data = {user: '{{ name }}' , companies: ''};
+    data = {user: '{{ user_id }}' , companies: ''};
     companies_list = [];
      for (var i=0; i< element.elements.length - 1; i++){
       name = element.elements[i].id;

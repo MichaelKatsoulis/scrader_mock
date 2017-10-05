@@ -31,9 +31,9 @@ def company_news_type(company_given):
     company_news = new_companies.all_companies.get(company_given)
     type_of_news = []
     for new_id in company_news:
-        if new_articles.articles[new_id]['direction'] == 'good':
+        if new_articles.articles[new_id]['direction'] == 'POS':
             type_of_news.append('good_companies')
-        else:
+        elif new_articles.articles[new_id]['direction'] == 'NEG':
             type_of_news.append('bad_companies')
 
     return list(set(type_of_news))
@@ -48,11 +48,12 @@ def companies_by_type(news_type):
 
     companies_list = []
     if news_type == 'good_companies':
-        news_type = 'good'
-    else:
-        news_type = 'bad'
+        news_type = 'POS'
+    elif news_type == 'bad_companies':
+        news_type = 'NEG'
 
     for company_name, company_dict in new_companies.all_companies.items():
+        updated_company_dict = {}
         for new_id in companies_dict['company_news_ids']:
             if new_articles.articles[new_id]['direction'] == news_type:
                 updated_company_dict['company_name'] = company_name
@@ -87,3 +88,34 @@ def update_companies_news(time_interval):
 def news_poll(poll_time):
 
     gevent.spawn(update_companies_news, poll_time)
+
+def add_article(article):
+    import hashlib
+    id = int(hashlib.md5(article.get('title')).hexdigest(), 16)
+    new_articles.articles[id] = article
+
+
+def get_article_by_id(article_id):
+
+    return new_articles.articles.get(article_id, None)
+
+def article_from_excel():
+
+    from xlrd import open_workbook
+    import copy
+    book = open_workbook('Scrader-Sample_1-10.xlsx')
+    sheet = book.sheet_by_index(0)
+    keys = dict((i, sheet.cell_value(0, i)) for i in range(sheet.ncols))
+    articles = (dict((keys[j], sheet.cell_value(i, j)) for j in keys) for i in range(1, sheet.nrows))
+
+    for article in articles:
+        new_article = {}
+        new_article['title'] = article.get('Title')
+        new_article['image_url'] = article.get('image url')
+        new_article['subtitle'] = '10/5/2017'
+        new_article['item_url'] = article.get('URL')
+        new_article['direction'] = article.get('Sentiment')
+        new_article['company'] = article.get('Company')
+        new_article['website'] = 'cnn.com'
+        new_article['website_url'] = 'http://edition.cnn.com/'
+        add_article(new_article)
