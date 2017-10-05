@@ -96,5 +96,9 @@ all_companies = {
     'Tesla': {
             'company_logo': 'http://146.185.138.240/static/images/nokia_logo.jpg',
             'company_news_ids': []
+    },
+    'Target': {
+            'company_logo': 'http://146.185.138.240/static/images/nokia_logo.jpg',
+            'company_news_ids': []
     }
 }
