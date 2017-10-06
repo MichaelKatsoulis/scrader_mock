@@ -177,7 +177,6 @@ def user_login(user_id, user_name):
         Returns:
             dict: A JSON object containing the nfvacc server status information
     """
-    print(USERS)
     name = user_name
     registered = False
     first_time = True
@@ -651,13 +650,12 @@ def get_news(company, news_type, page_num):
 
     # requested_news = utils.get_news_by_direction(direction)
     requested_news = utils.get_news_by_direction_and_company(direction, company)
-    print(requested_news)
 
     f = lambda A, n=3: [A[i:i + n] for i in range(0, len(A), n)]
     news_per_page = f(requested_news)
     # print(news_per_page)
     news_to_show = news_per_page[int(page_num) - 1]
-    print(news_to_show)
+    # print(news_to_show)
     all_quick_replies_page_numbers = [
         i + 1 for i, _ in enumerate(news_per_page)
     ]
@@ -695,7 +693,7 @@ def get_news(company, news_type, page_num):
     if int(page_num) == 1:
         messages.append(top_message)
 
-    print(message)
+    # print(message)
     messages.append(message)
 
     response_data = {"messages": messages}
@@ -721,7 +719,7 @@ def get_companies(stocks_type):
     if user is not None:
         user['request'] = stocks_type
 
-    print(user)
+    # print(user)
     # print("Fetching companies with {}.".format(stocks_type))
     total_articles = utils.total_articles()
 
@@ -762,6 +760,7 @@ def get_companies(stocks_type):
         news_type = 'negative'
 
     requested_companies = utils.companies_by_type(companies_type)
+    print(requested_companies)
     four_packets = math.ceil((len(requested_companies) / 4.0))
     attributes_dict['news_type'] = news_type
     attributes_dict['stocks_type'] = stocks_type
@@ -802,7 +801,6 @@ def get_companies(stocks_type):
 
 
     NEXT += 1
-    print(response_data)
     status = 200 if response_data is not None else 403
     js = json.dumps(response_data, indent=2)
     return flask.Response(js, status=status, mimetype='application/json')
