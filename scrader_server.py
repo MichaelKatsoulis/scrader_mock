@@ -718,7 +718,8 @@ def get_companies(stocks_type):
     user = USERS.get(user_id, None)
     if user is not None:
         user['request'] = stocks_type
-    # print(user_id)
+
+    print(user)
     # print("Fetching companies with {}.".format(stocks_type))
     total_articles = utis.total_articles()
 
@@ -799,7 +800,7 @@ def get_companies(stocks_type):
 
 
     NEXT += 1
-    # print(response_data)
+    print(response_data)
     status = 200 if response_data is not None else 403
     js = json.dumps(response_data, indent=2)
     return flask.Response(js, status=status, mimetype='application/json')
