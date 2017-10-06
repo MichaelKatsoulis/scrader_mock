@@ -177,10 +177,9 @@ def user_login(user_id, user_name):
         Returns:
             dict: A JSON object containing the nfvacc server status information
     """
-    # print(USERS)
+    print(USERS)
     name = user_name
     registered = False
-    exists = False
     first_time = True
 
     user = USERS.get(user_id, None)
@@ -607,8 +606,8 @@ def get_news(company, news_type, page_num):
             dict: A JSON object containing the nfvacc server status information
     """
 
-    # print(
-    #     "Fetching {} news for {} page {}".format(news_type, company, page_num))
+    print(
+        "Fetching {} news for {} page {}".format(news_type, company, page_num))
 
     extra_message = {}
     if isinstance(page_num, dict):
@@ -650,7 +649,8 @@ def get_news(company, news_type, page_num):
         news_message = 'Negative'
 
 
-    requested_news = utils.get_news_by_direction(direction)
+    # requested_news = utils.get_news_by_direction(direction)
+    requested_news = utils.get_news_by_direction_and_company(direction, company)
 
     f = lambda A, n=3: [A[i:i + n] for i in range(0, len(A), n)]
     news_per_page = f(requested_news)

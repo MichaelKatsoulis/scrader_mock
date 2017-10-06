@@ -72,6 +72,15 @@ def get_news_by_direction(direction):
             news.append(new_dict)
     return news
 
+def get_news_by_direction_and_company(direction, company):
+    #list of news by their direction good bad
+
+    news = []
+    for new_id, new_dict in new_articles.articles.items():
+        if new_dict.get('direction') == direction:
+            if new_dict.get('company') == company:
+                news.append(new_dict)
+    return news
 
 def update_companies_news(time_interval):
 
@@ -92,9 +101,7 @@ def news_poll(poll_time):
 def add_article(article):
     import hashlib
     id = int(hashlib.md5(article.get('image_url')).hexdigest(), 16)
-    print(id)
     new_articles.articles[id] = article
-    print(new_articles.articles)
 
 
 def get_article_by_id(article_id):
@@ -120,5 +127,4 @@ def article_from_excel():
         new_article['company'] = article.get('Company')
         new_article['website'] = 'cnn.com'
         new_article['website_url'] = 'http://edition.cnn.com/'
-        print(new_article)
         add_article(new_article)
