@@ -59,6 +59,7 @@ def companies_by_type(news_type):
                 updated_company_dict['company_name'] = company_name
                 updated_company_dict.update(company_dict)
                 companies_list.append(updated_company_dict)
+                break
 
     return companies_list
 
