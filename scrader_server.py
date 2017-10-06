@@ -766,9 +766,7 @@ def get_companies(stocks_type):
     attributes_dict['stocks_type'] = stocks_type
     start = NEXT * 4
     for index, company in enumerate(requested_companies[start:]):
-        print(index)
         if index < 4 :
-            print(index)
             element = copy.deepcopy(element)
             name_net = company.get('company_name').split()[0]
             print(name_net)
@@ -800,7 +798,7 @@ def get_companies(stocks_type):
             response_data['messages'][0]['attachment']['payload'][
                 'buttons'] = [next_button]
 
-
+    print(response_data)
     NEXT += 1
     status = 200 if response_data is not None else 403
     js = json.dumps(response_data, indent=2)
