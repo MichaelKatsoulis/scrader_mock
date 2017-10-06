@@ -55,7 +55,6 @@ def companies_by_type(news_type):
         updated_company_dict = {}
         for new_id in company_dict['company_news_ids']:
             if news_type in new_articles.articles[new_id]['direction']:
-                print(company_name)
                 updated_company_dict['company_name'] = company_name
                 updated_company_dict.update(company_dict)
                 companies_list.append(updated_company_dict)

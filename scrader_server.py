@@ -760,8 +760,6 @@ def get_companies(stocks_type):
         news_type = 'negative'
 
     requested_companies = utils.companies_by_type(companies_type)
-    print(requested_companies)
-    print(NEXT)
     four_packets = math.ceil((len(requested_companies) / 4.0))
     attributes_dict['news_type'] = news_type
     attributes_dict['stocks_type'] = stocks_type
@@ -801,6 +799,7 @@ def get_companies(stocks_type):
 
 
     NEXT += 1
+    print(response_data)
     status = 200 if response_data is not None else 403
     js = json.dumps(response_data, indent=2)
     return flask.Response(js, status=status, mimetype='application/json')
