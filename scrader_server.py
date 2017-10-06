@@ -768,8 +768,10 @@ def get_companies(stocks_type):
     for index, company in enumerate(requested_companies[start:]):
 
         if index < start + 4:
+            print(index)
             element = copy.deepcopy(element)
             name_net = company.get('company_name').split()[0]
+            print(name_net)
             element['title'] = company.get('company_name')
             element['image_url'] = company.get('company_logo')
             company_number_of_artcles = len(company.get('company_news_ids'))
