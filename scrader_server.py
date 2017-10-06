@@ -779,8 +779,7 @@ def get_companies(stocks_type):
                                                    total_articles)\
                     if company_number_of_artcles > 1 else "One article Title"
             element['buttons'][0][
-                'title'] = 'View articles' if company.get(
-                    'company_articles') > 1 else 'View article'
+                'title'] = 'View articles' if company_number_of_artcles > 1 else 'View article'
             element['buttons'][0][
                 'url'] = 'http://146.185.138.240/company_specific/{}/{}'.format(
                     name_net, user_id)
