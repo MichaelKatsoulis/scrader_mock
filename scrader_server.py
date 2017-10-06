@@ -767,7 +767,7 @@ def get_companies(stocks_type):
     start = NEXT * 4
     for index, company in enumerate(requested_companies[start:]):
         print(index)
-        if index < start + 4:
+        if index < 4 :
             print(index)
             element = copy.deepcopy(element)
             name_net = company.get('company_name').split()[0]
