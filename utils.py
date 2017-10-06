@@ -29,14 +29,12 @@ def company_typed_search(company):
 def company_news_type(company_given):
     #list of news type a company has
     company_news = new_companies.all_companies.get(company_given).get('company_news_ids')
-    print(company_news)
     type_of_news = []
     for new_id in company_news:
         if 'POS' in new_articles.articles[new_id]['direction']:
             type_of_news.append('good_companies')
         elif 'NEG' in new_articles.articles[new_id]['direction']:
             type_of_news.append('bad_companies')
-        print(type_of_news)
     return list(set(type_of_news))
 
 

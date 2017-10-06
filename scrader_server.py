@@ -504,7 +504,6 @@ def specific_company(company, user_id):
 
     company_given = company
     type_of_news = utils.company_news_type(company_given)
-    print(type_of_news)
 
     # print(type_of_news)
     one_news_type = True
@@ -571,7 +570,6 @@ def specific_company(company, user_id):
         if one_news_type:
             title_butt = news_buttons[0]['title'].split()
             news_type = title_butt[0].lower()
-            print('HEEEEEE')
             return get_news(company, news_type, 1)
 
     if indication_message:
@@ -653,12 +651,13 @@ def get_news(company, news_type, page_num):
 
     # requested_news = utils.get_news_by_direction(direction)
     requested_news = utils.get_news_by_direction_and_company(direction, company)
+    print(requested_news)
 
     f = lambda A, n=3: [A[i:i + n] for i in range(0, len(A), n)]
     news_per_page = f(requested_news)
     # print(news_per_page)
     news_to_show = news_per_page[int(page_num) - 1]
-    # print(news_to_show)
+    print(news_to_show)
     all_quick_replies_page_numbers = [
         i + 1 for i, _ in enumerate(news_per_page)
     ]
@@ -696,6 +695,7 @@ def get_news(company, news_type, page_num):
     if int(page_num) == 1:
         messages.append(top_message)
 
+    print(message)
     messages.append(message)
 
     response_data = {"messages": messages}
