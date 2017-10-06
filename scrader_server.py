@@ -766,7 +766,7 @@ def get_companies(stocks_type):
     attributes_dict['stocks_type'] = stocks_type
     start = NEXT * 4
     for index, company in enumerate(requested_companies[start:]):
-
+        print(index)
         if index < start + 4:
             print(index)
             element = copy.deepcopy(element)
@@ -802,7 +802,6 @@ def get_companies(stocks_type):
 
 
     NEXT += 1
-    print(response_data)
     status = 200 if response_data is not None else 403
     js = json.dumps(response_data, indent=2)
     return flask.Response(js, status=status, mimetype='application/json')
