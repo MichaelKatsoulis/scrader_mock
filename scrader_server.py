@@ -504,6 +504,7 @@ def specific_company(company, user_id):
 
     company_given = company
     type_of_news = utils.company_news_type(company_given)
+    print(type_of_news)
 
     # print(type_of_news)
     one_news_type = True
@@ -570,6 +571,7 @@ def specific_company(company, user_id):
         if one_news_type:
             title_butt = news_buttons[0]['title'].split()
             news_type = title_butt[0].lower()
+            print('HEEEEEE')
             return get_news(company, news_type, 1)
 
     if indication_message:
@@ -721,7 +723,7 @@ def get_companies(stocks_type):
 
     print(user)
     # print("Fetching companies with {}.".format(stocks_type))
-    total_articles = utis.total_articles()
+    total_articles = utils.total_articles()
 
     attributes_dict = {"news_type": '', "stocks_type": ''}
 

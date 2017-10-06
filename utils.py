@@ -29,13 +29,14 @@ def company_typed_search(company):
 def company_news_type(company_given):
     #list of news type a company has
     company_news = new_companies.all_companies.get(company_given)
+    print(company_news)
     type_of_news = []
     for new_id in company_news:
-        if new_articles.articles[new_id]['direction'] == 'POS':
+        if 'POS' in new_articles.articles[new_id]['direction']:
             type_of_news.append('good_companies')
-        elif new_articles.articles[new_id]['direction'] == 'NEG':
+        elif 'NEG' in new_articles.articles[new_id]['direction']:
             type_of_news.append('bad_companies')
-
+        print(type_of_news)
     return list(set(type_of_news))
 
 
@@ -54,8 +55,8 @@ def companies_by_type(news_type):
 
     for company_name, company_dict in new_companies.all_companies.items():
         updated_company_dict = {}
-        for new_id in companies_dict['company_news_ids']:
-            if new_articles.articles[new_id]['direction'] == news_type:
+        for new_id in company_dict['company_news_ids']:
+            if news_type in new_articles.articles[new_id]['direction']:
                 updated_company_dict['company_name'] = company_name
                 updated_company_dict.update(company_dict)
                 companies_list.append(updated_company_dict)
