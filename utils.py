@@ -59,7 +59,7 @@ def companies_by_type(news_type):
                 updated_company_dict.update(company_dict)
                 companies_list.append(updated_company_dict)
 
-    return companies_list
+    return list(set(companies_list))
 
 
 def get_news_by_direction(direction):

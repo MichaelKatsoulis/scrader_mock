@@ -761,6 +761,7 @@ def get_companies(stocks_type):
 
     requested_companies = utils.companies_by_type(companies_type)
     print(requested_companies)
+    print(NEXT)
     four_packets = math.ceil((len(requested_companies) / 4.0))
     attributes_dict['news_type'] = news_type
     attributes_dict['stocks_type'] = stocks_type
