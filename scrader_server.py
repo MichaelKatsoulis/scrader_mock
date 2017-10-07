@@ -503,84 +503,82 @@ def specific_company(company, user_id):
 
     company_given = company
     type_of_news = utils.company_news_type(company_given)
-    negative_message = None
     print(type_of_news)
-    if not type_of_news:
-        negative_message = {"text": 'No articles found for {}'.format(company)}
 
-    # print(type_of_news)
-    one_news_type = True
-    if len(type_of_news) > 1:
-        type_of_news.sort(reverse=True)
-        one_news_type = False
+    if type_of_news:
+        # print(type_of_news)
+        one_news_type = True
+        if len(type_of_news) > 1:
+            type_of_news.sort(reverse=True)
+            one_news_type = False
 
-    # print(type_of_news)
-    news_buttons = []
-    for news_type in type_of_news:
-        if news_type == 'good_companies':
-            new_button = {
-                "type": "show_block",
-                "block_names": ["Fetch news"],
-                "title": "Positive News"
-            }
-            news_buttons.append(new_button)
-        else:
-            new_button = {
-                "type": "show_block",
-                "block_names": ["Fetch news"],
-                "title": "Negative News"
-            }
-            news_buttons.append(new_button)
-
-    if extra_button:
-        if one_news_type:
-            arg = new_button.get('title').split()[0]
-            return helper_function(extra_button, company, arg.lower())
-
-    indication_message = {}
-    if not one_news_type:
-        if user_request is not None:
-            # print('user requested before {}'.format(user_request))
-            if user_request == 'Positive+News':
-                user_request = 'negative'
-            else:
-                user_request = 'positive'
-            indication_message = {"text": 'There are also {} news for {}'.format(user_request, company)}
-
-    # print(news_buttons)
-    response_data = {
-        "set_attributes": {
-            "company_requested": company
-        },
-        "messages": [{
-            "attachment": {
-                "type": "template",
-                "payload": {
-                    "template_type":
-                    "button",
-                    "text":
-                    "Which news would you like to see about {}?".format(
-                        company),
-                    "buttons": news_buttons
+        # print(type_of_news)
+        news_buttons = []
+        for news_type in type_of_news:
+            if news_type == 'good_companies':
+                new_button = {
+                    "type": "show_block",
+                    "block_names": ["Fetch news"],
+                    "title": "Positive News"
                 }
-            }
-        }]
-    }
+                news_buttons.append(new_button)
+            else:
+                new_button = {
+                    "type": "show_block",
+                    "block_names": ["Fetch news"],
+                    "title": "Negative News"
+                }
+                news_buttons.append(new_button)
 
-    if extra_button:
-        response_data['messages'][0]['attachment']['payload']['buttons'].append(extra_button)
+        if extra_button:
+            if one_news_type:
+                arg = new_button.get('title').split()[0]
+                return helper_function(extra_button, company, arg.lower())
+
+        indication_message = {}
+        if not one_news_type:
+            if user_request is not None:
+                # print('user requested before {}'.format(user_request))
+                if user_request == 'Positive+News':
+                    user_request = 'negative'
+                else:
+                    user_request = 'positive'
+                indication_message = {"text": 'There are also {} news for {}'.format(user_request, company)}
+
+        # print(news_buttons)
+        response_data = {
+            "set_attributes": {
+                "company_requested": company
+            },
+            "messages": [{
+                "attachment": {
+                    "type": "template",
+                    "payload": {
+                        "template_type":
+                        "button",
+                        "text":
+                        "Which news would you like to see about {}?".format(
+                            company),
+                        "buttons": news_buttons
+                    }
+                }
+            }]
+        }
+
+        if extra_button:
+            response_data['messages'][0]['attachment']['payload']['buttons'].append(extra_button)
+        else:
+            if one_news_type:
+                title_butt = news_buttons[0]['title'].split()
+                news_type = title_butt[0].lower()
+                return get_news(company, news_type, 1)
+
+        if indication_message:
+            response_data['messages'].insert(0,indication_message)
+
     else:
-        if one_news_type:
-            title_butt = news_buttons[0]['title'].split()
-            news_type = title_butt[0].lower()
-            return get_news(company, news_type, 1)
-
-    if indication_message:
-        response_data['messages'].insert(0,indication_message)
-
-    if negative_message is not None:
+        negative_message = {"text": 'No articles found for {}'.format(company)}
         print('entetered')
-        response_data['messages'].insert(0, negative_message)
         response_data = {
             "set_attributes": {
                 "company_requested": company
