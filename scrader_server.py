@@ -503,6 +503,9 @@ def specific_company(company, user_id):
 
     company_given = company
     type_of_news = utils.company_news_type(company_given)
+    negative_message = None
+    if not type_of_news:
+        negative_message = {"text": 'No articles found for {}'.format(company)}
 
     # print(type_of_news)
     one_news_type = True
@@ -573,6 +576,30 @@ def specific_company(company, user_id):
 
     if indication_message:
         response_data['messages'].insert(0,indication_message)
+
+    if negative_message is not None:
+        response_data['messages'].insert(0, negative_message)
+        response_data = {
+            "set_attributes": {
+                "company_requested": company
+            },
+            "messages": [negative_message]
+        }
+        if extra_button:
+            extra_message = {
+                "attachment": {
+                    "type": "template",
+                    "payload": {
+                        "template_type":
+                            "button",
+                        "text":
+                            "Remember you can",
+                        "buttons": [extra_button]
+                    }
+                }
+            }
+            response_data['messages'].append(extra_message)
+
 
     status = 200 if response_data is not None else 403
     js = json.dumps(response_data, indent=2)
