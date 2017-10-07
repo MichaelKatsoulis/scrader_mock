@@ -666,7 +666,7 @@ def get_news(company, news_type, page_num):
 
     for new in news_to_show:
         element = copy.deepcopy(element)
-        element['title'] = str(new.get('title'))[0:78]
+        element['title'] = str(new.get('title'))[0:79]
         element['image_url'] = str(new.get('image_url'))
         element['subtitle'] = new.get('subtitle')
         element['item_url'] = str(new.get('item_url'))
@@ -681,7 +681,8 @@ def get_news(company, news_type, page_num):
             company, news_type, page_number)
         quick_replies.append(quick_reply)
 
-    message['quick_replies'] = quick_replies
+    if quick_replies:
+        message['quick_replies'] = quick_replies
 
     message['attachment']['payload']['elements'] = elements
 
@@ -698,24 +699,6 @@ def get_news(company, news_type, page_num):
 
     response_data = {"messages": messages}
 
-    response_data = \
-        {'messages':
-             [{'text': '1 Positive articles found for Spotify'},
-              {'attachment':
-                   {'type': 'template',
-                    'payload':
-                        {'template_type': 'generic',
-                         'elements': [
-                             {'buttons': [
-                                 {'url': 'http://edition.cnn.com/',
-                                  'type': 'web_url',
-                                  'title': 'cnn.com'}
-                             ],
-                               'image_url': "https://s4.reutersmedia.net/resources/r/?m=02&d=20170927&t=2&i=1203200934&w=&fh=545px&fw=&ll=&pl=&sq=&r=LYNXNPED8Q16S",
-                               'item_url': "http://www.reuters.com/article/us-spotify-listing-exclusive/exclusive-spotifys-valuation-turned-up-to-16-billion-in-private-trades-sources-idUSKCN1C226W",
-                               'subtitle': '10/5/2017',
-                               'title': "Exclusive: Spotify's valuation turned"}]}},
-               }]}
     print(response_data)
     status = 200 if response_data is not None else 403
     js = json.dumps(response_data, indent=2)
