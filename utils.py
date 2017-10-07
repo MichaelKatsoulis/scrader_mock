@@ -93,6 +93,14 @@ def update_companies_news(time_interval):
                 all_companies[company]['company_news_ids'].append(new_id)
         gevent.sleep(time_interval)
 
+def update_companies_news_once():
+
+    all_news = new_articles.articles
+    all_companies = new_companies.all_companies
+    for new_id, new_dict in all_news.items():
+        company = new_dict.get('company')
+        if new_id not in all_companies[company]['company_news_ids']:
+            all_companies[company]['company_news_ids'].append(new_id)
 
 def news_poll(poll_time):
 

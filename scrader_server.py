@@ -816,9 +816,8 @@ if __name__ == '__main__':
 
     logging.basicConfig(filename='logs.log',level=logging.INFO)
     logging.debug('This message should go to the log file')
-    logging.info('So should this')
-    logging.warning('And this, too')
     utils.article_from_excel()
-    utils.news_poll(10)
+    # utils.news_poll(10)
+    utils.update_companies_news_once()
 
     app.run(host=config.HOST, port=config.PORT, debug=DEBUG)
