@@ -503,7 +503,6 @@ def specific_company(company, user_id):
 
     company_given = company
     type_of_news = utils.company_news_type(company_given)
-    print(type_of_news)
 
     if type_of_news:
         # print(type_of_news)
@@ -578,7 +577,6 @@ def specific_company(company, user_id):
 
     else:
         negative_message = {"text": 'No articles found for {}'.format(company)}
-        print('entetered')
         response_data = {
             "set_attributes": {
                 "company_requested": company

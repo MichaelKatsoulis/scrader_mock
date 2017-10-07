@@ -120,7 +120,7 @@ def article_from_excel():
 
     from xlrd import open_workbook
     import copy
-    book = open_workbook('Scrader-Sample_1-10.xlsx')
+    book = open_workbook('Scrader-Sample_1-11.xlsx')
     sheet = book.sheet_by_index(0)
     keys = dict((i, sheet.cell_value(0, i)) for i in range(sheet.ncols))
     articles = (dict((keys[j], sheet.cell_value(i, j)) for j in keys) for i in range(1, sheet.nrows))
@@ -133,6 +133,6 @@ def article_from_excel():
         new_article['item_url'] = article.get('URL')
         new_article['direction'] = article.get('Sentiment')
         new_article['company'] = article.get('Company')
-        new_article['website'] = 'cnn.com'
-        new_article['website_url'] = 'http://edition.cnn.com/'
+        new_article['website'] = article.get('Website')
+        new_article['website_url'] = article.get('Website url')
         add_article(new_article)
