@@ -800,7 +800,7 @@ def get_companies(stocks_type):
 
     if len(response_data['messages'][0]['attachment']['payload']['elements']) == 1:
         response_data['messages'][0]['attachment']['payload']['template_type'] = 'generic'
-        response_data['messages'][0]['attachment']['payload']['template_type'].\
+        response_data['messages'][0]['attachment']['payload'].\
             pop('top_element_style', None)
 
     print(response_data)
