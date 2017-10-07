@@ -666,10 +666,10 @@ def get_news(company, news_type, page_num):
 
     for new in news_to_show:
         element = copy.deepcopy(element)
-        element['title'] = new.get('title')[0:78]
-        element['image_url'] = new.get('image_url')
+        element['title'] = str(new.get('title'))[0:78]
+        element['image_url'] = str(new.get('image_url'))
         element['subtitle'] = new.get('subtitle')
-        element['item_url'] = new.get('item_url')
+        element['item_url'] = str(new.get('item_url'))
         element['buttons'][0]['url'] = new.get('website_url')
         element['buttons'][0]['title'] = new.get('website')
         elements.append(element)
@@ -711,10 +711,10 @@ def get_news(company, news_type, page_num):
                                   'type': 'web_url',
                                   'title': 'cnn.com'}
                              ],
-                               'image_url': u'https://s4.reutersmedia.net/resources/r/?m=02&d=20170927&t=2&i=1203200934&w=&fh=545px&fw=&ll=&pl=&sq=&r=LYNXNPED8Q16S',
-                               'item_url': u'http://www.reuters.com/article/us-spotify-listing-exclusive/exclusive-spotifys-valuation-turned-up-to-16-billion-in-private-trades-sources-idUSKCN1C226W',
+                               'image_url': "https://s4.reutersmedia.net/resources/r/?m=02&d=20170927&t=2&i=1203200934&w=&fh=545px&fw=&ll=&pl=&sq=&r=LYNXNPED8Q16S",
+                               'item_url': "http://www.reuters.com/article/us-spotify-listing-exclusive/exclusive-spotifys-valuation-turned-up-to-16-billion-in-private-trades-sources-idUSKCN1C226W",
                                'subtitle': '10/5/2017',
-                               'title': u"Exclusive: Spotify's valuation turned"}]}},
+                               'title': "Exclusive: Spotify's valuation turned"}]}},
                'quick_replies': []}]}
     print(response_data)
     status = 200 if response_data is not None else 403
