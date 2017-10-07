@@ -805,27 +805,18 @@ def get_companies(stocks_type):
                 'attachment':
                     {'type': 'template',
                      'payload':
-                        {'template_type': 'list',
+                        {'template_type': 'generic',
                          'elements': [{
                             'buttons': [{
                                 'url': 'http://146.185.138.240/company_specific/JPMorgan/1409009692510182',
                                 'type': 'json_plugin_url',
                                 'title': 'View article'
                                 }],
-                                 'image_url': 'http://146.185.138.240/static/images/nokia_logo.jpg',
-                                 'subtitle': 'One article Title', 'title': 'JPMorgan'
-                                 },
-                                 {
-                            'buttons': [{
-                                'url': 'http://146.185.138.240/company_specific/JPMorgan/1409009692510182',
-                                'type': 'json_plugin_url',
-                                'title': 'View article'
-                                }],
-                                 'image_url': 'http://146.185.138.240/static/images/nokia_logo.jpg',
-                                 'subtitle': 'One article Title', 'title': 'JPMorgan'
+                             'image_url': 'http://146.185.138.240/static/images/nokia_logo.jpg',
+                             'subtitle': 'One article Title',
+                              'title': 'JPMorgan'
                                  }
-                                 ],
-                            'top_element_style': 'compact'
+                                 ]
                             }
                          }
                      }
