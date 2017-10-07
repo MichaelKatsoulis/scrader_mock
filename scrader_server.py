@@ -715,7 +715,7 @@ def get_news(company, news_type, page_num):
                                'item_url': "http://www.reuters.com/article/us-spotify-listing-exclusive/exclusive-spotifys-valuation-turned-up-to-16-billion-in-private-trades-sources-idUSKCN1C226W",
                                'subtitle': '10/5/2017',
                                'title': "Exclusive: Spotify's valuation turned"}]}},
-               'quick_replies': []}]}
+               }]}
     print(response_data)
     status = 200 if response_data is not None else 403
     js = json.dumps(response_data, indent=2)
