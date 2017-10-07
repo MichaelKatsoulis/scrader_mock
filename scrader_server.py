@@ -667,7 +667,7 @@ def get_news(company, news_type, page_num):
 
     for new in news_to_show:
         element = copy.deepcopy(element)
-        element['title'] = str(new.get('title'))[0:79]
+        element['title'] = new.get('title')[0:79]
         element['image_url'] = str(new.get('image_url'))
         element['subtitle'] = new.get('subtitle')
         element['item_url'] = str(new.get('item_url'))
