@@ -698,6 +698,24 @@ def get_news(company, news_type, page_num):
 
     response_data = {"messages": messages}
 
+    response_data = \
+        {'messages':
+             [{'text': '1 Positive articles found for Spotify'},
+              {'attachment':
+                   {'type': 'template',
+                    'payload':
+                        {'template_type': 'generic',
+                         'elements': [
+                             {'buttons': [
+                                 {'url': 'http://edition.cnn.com/',
+                                  'type': 'web_url',
+                                  'title': 'cnn.com'}
+                             ],
+                               'image_url': u'https://s4.reutersmedia.net/resources/r/?m=02&d=20170927&t=2&i=1203200934&w=&fh=545px&fw=&ll=&pl=&sq=&r=LYNXNPED8Q16S',
+                               'item_url': u'http://www.reuters.com/article/us-spotify-listing-exclusive/exclusive-spotifys-valuation-turned-up-to-16-billion-in-private-trades-sources-idUSKCN1C226W',
+                               'subtitle': '10/5/2017',
+                               'title': u"Exclusive: Spotify's valuation turned"}]}},
+               'quick_replies': []}]}
     print(response_data)
     status = 200 if response_data is not None else 403
     js = json.dumps(response_data, indent=2)
