@@ -799,28 +799,10 @@ def get_companies(stocks_type):
                 'buttons'] = [next_button]
 
     if len(response_data['messages'][0]['attachment']['payload']['elements']) == 1:
-        response_data = {
-            'set_attributes': {'news_type': 'positive', 'stocks_type': u'Positive+News'},
-             'messages': [{
-                'attachment':
-                    {'type': 'template',
-                     'payload':
-                        {'template_type': 'generic',
-                         'elements': [{
-                            'buttons': [{
-                                'url': 'http://146.185.138.240/company_specific/JPMorgan/1409009692510182',
-                                'type': 'json_plugin_url',
-                                'title': 'View article'
-                                }],
-                             'image_url': 'http://146.185.138.240/static/images/nokia_logo.jpg',
-                             'subtitle': 'One article Title',
-                              'title': 'JPMorgan'
-                                 }
-                                 ]
-                            }
-                         }
-                     }
-                ]}
+        response_data['messages'][0]['attachment']['payload']['template_type'] = 'generic'
+        response_data['messages'][0]['attachment']['payload']['template_type'].\
+            pop('top_element_style', None)
+
     print(response_data)
     NEXT += 1
     status = 200 if response_data is not None else 403
