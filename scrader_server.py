@@ -12,7 +12,7 @@ import websites
 import logging
 import utils
 
-DEBUG = False  # Enable this to print python crashes and exceptions
+DEBUG = not False  # Enable this to print python crashes and exceptions
 
 app = flask.Flask(__name__, static_url_path='/static')
 
@@ -504,6 +504,7 @@ def specific_company(company, user_id):
     company_given = company
     type_of_news = utils.company_news_type(company_given)
     negative_message = None
+    print(type_of_news)
     if not type_of_news:
         negative_message = {"text": 'No articles found for {}'.format(company)}
 
@@ -578,6 +579,7 @@ def specific_company(company, user_id):
         response_data['messages'].insert(0,indication_message)
 
     if negative_message is not None:
+        print('entetered')
         response_data['messages'].insert(0, negative_message)
         response_data = {
             "set_attributes": {
