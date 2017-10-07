@@ -630,8 +630,8 @@ def get_news(company, news_type, page_num):
             dict: A JSON object containing the nfvacc server status information
     """
 
-    print(
-        "Fetching {} news for {} page {}".format(news_type, company, page_num))
+    # print(
+    #     "Fetching {} news for {} page {}".format(news_type, company, page_num))
 
     extra_message = {}
     if isinstance(page_num, dict):
@@ -675,7 +675,7 @@ def get_news(company, news_type, page_num):
 
     # requested_news = utils.get_news_by_direction(direction)
     requested_news = utils.get_news_by_direction_and_company(direction, company)
-    print(requested_news)
+    # print(requested_news)
 
     f = lambda A, n=3: [A[i:i + n] for i in range(0, len(A), n)]
     news_per_page = f(requested_news)
@@ -725,7 +725,7 @@ def get_news(company, news_type, page_num):
 
     response_data = {"messages": messages}
 
-    print(response_data)
+    # print(response_data)
     status = 200 if response_data is not None else 403
     js = json.dumps(response_data, indent=2)
     return flask.Response(js, status=status, mimetype='application/json')
