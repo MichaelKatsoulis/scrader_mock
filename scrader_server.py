@@ -840,18 +840,18 @@ def get_companies(stocks_type):
     return flask.Response(js, status=status, mimetype='application/json')
 
 
-def reorder_companies(companies_dict, user_id):
+def reorder_companies(companies_list, user_id):
 
     user_subscibed_companies = USERS.get(user_id).get('companies', None)
-    sorted_dict = collections.OrderedDict()
+    sorted_list = []
     if user_subscibed_companies is not None:
         for user_company in user_subscibed_companies:
-            if user_company in companies_dict.keys():
-                sorted_dict[user_company] = companies_dict.get(user_company)
-                companies_dict.pop(user_company, None)
+            if user_company in companies_list:
+                sorted_list.append(user_company)
+                companies_list.remove(user_company)
 
-    sorted_dict.update(companies_dict)
-    return sorted_dict
+    sorted_list.extend(companies_list)
+    return sorted_list
 
 
 def signal_sigint_handler(rec_signal, rec_frame):
