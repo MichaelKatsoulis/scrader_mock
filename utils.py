@@ -82,8 +82,9 @@ def get_news_by_direction_and_company(direction, company):
     news = []
     for new_id, new_dict in new_articles.articles.items():
         if direction in new_dict.get('direction'):
-            if new_dict.get('company') == company:
-                news.append(new_dict)
+            if 'NEU' not in new_dict.get('direction'):
+                if new_dict.get('company') == company:
+                    news.append(new_dict)
     return news
 
 def update_companies_news(time_interval):
