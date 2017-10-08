@@ -847,8 +847,6 @@ def reorder_companies(companies_list, user_id):
     if user_subscibed_companies is not None:
         for user_company in user_subscibed_companies:
             for company in companies_list:
-                print(user_company)
-                print(company)
                 if user_company == company.get('company_name'):
                     sorted_list.append(company)
                     companies_list.remove(company)
