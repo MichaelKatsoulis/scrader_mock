@@ -852,6 +852,7 @@ def reorder_companies(companies_list, user_id):
                 if user_company == company.get('company_name'):
                     sorted_list.append(company)
                     companies_list.remove(company)
+                    break
 
     sorted_list.extend(companies_list)
     return sorted_list
