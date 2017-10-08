@@ -39,7 +39,11 @@ def company_news_type(company_given):
 
 
 def total_articles():
-    return len(new_articles.articles.keys())
+    total_number = 0
+    for article in new_articles.articles.values():
+        if 'NEU' not in article.get('direction'):
+            total_number += 1
+    return total_number
 
 
 def companies_by_type(news_type):
@@ -98,6 +102,8 @@ def update_companies_news_once():
     all_news = new_articles.articles
     all_companies = new_companies.all_companies
     for new_id, new_dict in all_news.items():
+        if 'NEU' in new_dict.get('direction'):
+            continue
         company = new_dict.get('company')
         if new_id not in all_companies[company]['company_news_ids']:
             all_companies[company]['company_news_ids'].append(new_id)

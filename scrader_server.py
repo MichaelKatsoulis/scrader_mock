@@ -591,7 +591,7 @@ def specific_company(company, user_id):
                         "template_type":
                             "button",
                         "text":
-                            "Remember you can",
+                            "Remember you can {} {}.".format(extra_button.get('title').lower(), company),
                         "buttons": [extra_button]
                     }
                 }
@@ -712,7 +712,8 @@ def get_news(company, news_type, page_num):
 
     message['attachment']['payload']['elements'] = elements
 
-    top_message = {"text": '{} {} articles found for {}'.format(len(requested_news), news_message, company)}
+    article = 'articles' if len(requested_news) > 1 else 'article'
+    top_message = {"text": '{} {} {} found for {}'.format(len(requested_news), news_message, article, company)}
 
     if extra_message:
         messages.append(extra_message)
@@ -798,10 +799,13 @@ def get_companies(stocks_type):
             element['title'] = company.get('company_name')
             element['image_url'] = company.get('company_logo')
             company_number_of_artcles = len(company.get('company_news_ids'))
+            if company_number_of_artcles == 1:
+                article = utils.get_article_by_id(company.get('company_news_ids')[0])
+                article_title = article.get('title')[0:79]
             element['subtitle'] = \
                 "{} out of {} articles".format(company_number_of_artcles,
                                                    total_articles)\
-                    if company_number_of_artcles > 1 else "One article Title"
+                    if company_number_of_artcles > 1 else article_title
             element['buttons'][0][
                 'title'] = 'View articles' if company_number_of_artcles > 1 else 'View article'
             element['buttons'][0][
