@@ -38,67 +38,67 @@ all_companies = {
             'company_news_ids': []
         },
     'Google': {
-            'company_logo': 'http://146.185.138.240/static/images/nokia_logo.jpg',
+            'company_logo': 'http://146.185.138.240/static/images/google_logo.png',
             'company_news_ids': []
     },
     'Facebook': {
-            'company_logo': 'http://146.185.138.240/static/images/nokia_logo.jpg',
+            'company_logo': 'http://146.185.138.240/static/images/facebook_logo.png',
             'company_news_ids': []
     },
     'UBER': {
-            'company_logo': 'http://146.185.138.240/static/images/nokia_logo.jpg',
+            'company_logo': 'http://146.185.138.240/static/images/uber_logo.png',
             'company_news_ids': []
     },
     'McDonalds': {
-            'company_logo': 'http://146.185.138.240/static/images/nokia_logo.jpg',
+            'company_logo': 'http://146.185.138.240/static/images/mcdonalds_logo.png',
             'company_news_ids': []
     },
     'Netflix': {
-            'company_logo': 'http://146.185.138.240/static/images/nokia_logo.jpg',
+            'company_logo': 'http://146.185.138.240/static/images/netflix_logo.png',
             'company_news_ids': []
     },
     'Ryanair': {
-            'company_logo': 'http://146.185.138.240/static/images/nokia_logo.jpg',
+            'company_logo': 'http://146.185.138.240/static/images/ryanair_logo.png',
             'company_news_ids': []
     },
     'Nestle': {
-            'company_logo': 'http://146.185.138.240/static/images/nokia_logo.jpg',
+            'company_logo': 'http://146.185.138.240/static/images/nestle_logo.png',
             'company_news_ids': []
     },
     'Spotify': {
-            'company_logo': 'http://146.185.138.240/static/images/nokia_logo.jpg',
+            'company_logo': 'http://146.185.138.240/static/images/spotify_logo.png',
             'company_news_ids': []
     },
     'Equifax': {
-            'company_logo': 'http://146.185.138.240/static/images/nokia_logo.jpg',
+            'company_logo': 'http://146.185.138.240/static/images/equifax_logo.png',
             'company_news_ids': []
     },
     'JPMorgan': {
-            'company_logo': 'http://146.185.138.240/static/images/nokia_logo.jpg',
+            'company_logo': 'http://146.185.138.240/static/images/jpmorgan_logo.png',
             'company_news_ids': []
     },
     'Disney': {
-            'company_logo': 'http://146.185.138.240/static/images/nokia_logo.jpg',
+            'company_logo': 'http://146.185.138.240/static/images/disney_logo.png',
             'company_news_ids': []
     },
     "Macy's": {
-            'company_logo': 'http://146.185.138.240/static/images/nokia_logo.jpg',
+            'company_logo': 'http://146.185.138.240/static/images/macy-s_logo.png',
             'company_news_ids': []
     },
     'Monsanto': {
-            'company_logo': 'http://146.185.138.240/static/images/nokia_logo.jpg',
+            'company_logo': 'http://146.185.138.240/static/images/monsanto_logo.png',
             'company_news_ids': []
     },
     'Motorola': {
-            'company_logo': 'http://146.185.138.240/static/images/nokia_logo.jpg',
+            'company_logo': 'http://146.185.138.240/static/images/motorola_logo.png',
             'company_news_ids': []
     },
     'Tesla': {
-            'company_logo': 'http://146.185.138.240/static/images/nokia_logo.jpg',
+            'company_logo': 'http://146.185.138.240/static/images/tesla_logo.png',
             'company_news_ids': []
     },
     'Target': {
-            'company_logo': 'http://146.185.138.240/static/images/nokia_logo.jpg',
+            'company_logo': 'http://146.185.138.240/static/images/target_logo.png',
             'company_news_ids': []
     }
 }
