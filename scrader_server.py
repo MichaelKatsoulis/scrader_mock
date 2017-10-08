@@ -2,6 +2,7 @@ from __future__ import print_function
 import flask
 import json
 import math
+import collections
 from flask.ext.cors import CORS
 from flask import request
 import os
@@ -788,6 +789,7 @@ def get_companies(stocks_type):
         news_type = 'negative'
 
     requested_companies = utils.companies_by_type(companies_type)
+    requested_companies = reorder_companies(requested_companies, user_id)
     four_packets = math.ceil((len(requested_companies) / 4.0))
     attributes_dict['news_type'] = news_type
     attributes_dict['stocks_type'] = stocks_type
@@ -836,6 +838,20 @@ def get_companies(stocks_type):
     status = 200 if response_data is not None else 403
     js = json.dumps(response_data, indent=2)
     return flask.Response(js, status=status, mimetype='application/json')
+
+
+def reorder_companies(companies_dict, user_id):
+
+    user_subscibed_companies = USERS.get(user_id).get('companies', None)
+    sorted_dict = collections.OrderedDict()
+    if user_subscibed_companies is not None:
+        for user_company in user_subscibed_companies:
+            if user_company in companies_dict.keys():
+                sorted_dict[user_company] = companies_dict.get(user_company)
+                companies_dict.pop(user_company, None)
+
+    sorted_dict.update(companies_dict)
+    return sorted_dict
 
 
 def signal_sigint_handler(rec_signal, rec_frame):
