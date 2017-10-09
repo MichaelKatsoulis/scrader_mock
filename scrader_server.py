@@ -498,14 +498,14 @@ def specific_company(company, user_id):
                 followed = True
         user_request = user.get('request', None)
 
-    # print(user_request)
     extra_button = {}
-    if followed:
-        extra_button['type'] = "json_plugin_url"
-        extra_button['title'] = 'Unfollow'
-        extra_button['url'] = "http://146.185.138.240/scrader/modify_user/{}/{}/remove".format(user_id,company)
-    else:
-        if subscribed:
+    # if followed:
+    #     extra_button['type'] = "json_plugin_url"
+    #     extra_button['title'] = 'Unfollow'
+    #     extra_button['url'] = "http://146.185.138.240/scrader/modify_user/{}/{}/remove".format(user_id,company)
+    # else:
+    if subscribed:
+        if not followed:
             extra_button['type'] = "json_plugin_url"
             extra_button['title'] = 'Follow'
             extra_button['url'] = "http://146.185.138.240/scrader/modify_user/{}/{}/add".format(user_id,company)
@@ -546,7 +546,6 @@ def specific_company(company, user_id):
         indication_message = {}
         if not one_news_type:
             if user_request is not None:
-                # print('user requested before {}'.format(user_request))
                 if user_request == 'Positive+News':
                     user_request = 'negative'
                 else:
@@ -620,7 +619,7 @@ def helper_function(extra_button, company, news_type):
             "type": "template",
             "payload": {
             "template_type": "button",
-            "text": "Remember you can",
+            "text": "Remember you can follow {}".format(company),
             "buttons": [
                 extra_button
             ]
