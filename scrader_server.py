@@ -198,10 +198,34 @@ def user_login(user_id, user_name):
 
     buttons = []
 
-    if registered:
-        message = 'Hi again {}. What would you like me to show you? ' \
-                  'Remember you can type any company you want to search for scraped news'.format(first_name)
+    if first_time:
+        # print('first time loging in')
+        message = 'Hi {}! Nice to see you. ' \
+                  'I am the Scrader Bot. ' \
+                  'My job is to utilize powerful machine ' \
+                  'learning algorithms to extract the latest company ' \
+                  'insights from news articles for a valuable ' \
+                  'head start in your trading strategy. ' \
+                  'I am still in development mode so many functions are not stable just yet. ' \
+                  'Please subscribe in order to get notified when I will be fully functional'.format(name)
 
+        block = 'Subscribe'
+        button_title = 'Subscribe'
+        button_dict_tmpl = {
+            "type": "show_block",
+            "block_name": block,
+            "title": button_title
+        }
+        buttons.append(button_dict_tmpl)
+        block = 'Initializition'
+        button_title = 'I am just a guest'
+        button_dict_tmpl = {
+            "type": "show_block",
+            "block_name": block,
+            "title": button_title
+        }
+        buttons.append(button_dict_tmpl)
+    else:
         block = 'Companies'
         button_title = 'Positive News'
         button_dict_tmpl = {
@@ -220,44 +244,28 @@ def user_login(user_id, user_name):
         }
         buttons.append(button_dict_tmpl)
 
-        pref_button = {
-            "type": "show_block",
-            "block_name": "Preferences",
-            "title": "Edit Preferences"
-        }
-        buttons.append(pref_button)
-    else:
-        if first_time:
-            # print('first time loging in')
-            message = 'Hi {}! Nice to see you. ' \
-                      'I am the Scrader Bot. ' \
-                      'My job is to utilize powerful machine ' \
-                      'learning algorithms to extract the latest company ' \
-                      'insights from news articles for a valuable ' \
-                      'head start in your trading strategy. ' \
-                      'I am still in development mode so many functions are not stable just yet. ' \
-                      'Please subscribe in order to get notified when I will be fully functional'.format(name)
+        if registered:
+            message = 'Hi again {}. What would you like me to show you? ' \
+                      'Remember you can type any company you want to search for scraped news'.format(first_name)
 
+            pref_button = {
+                "type": "show_block",
+                "block_name": "Preferences",
+                "title": "Edit Preferences"
+            }
+            buttons.append(pref_button)
         else:
             message = 'Hi again {}. What would you like me to show you? ' \
                       'Remember you can type any company you want to search for scraped news'.format(name)
 
-        block = 'Subscribe'
-        button_title = 'Subscribe'
-        button_dict_tmpl = {
-            "type": "show_block",
-            "block_name": block,
-            "title": button_title
-        }
-        buttons.append(button_dict_tmpl)
-        block = 'Initializition'
-        button_title = 'I am just a guest'
-        button_dict_tmpl = {
-            "type": "show_block",
-            "block_name": block,
-            "title": button_title
-        }
-        buttons.append(button_dict_tmpl)
+            block = 'Subscribe'
+            button_title = 'Subscribe'
+            button_dict_tmpl = {
+                "type": "show_block",
+                "block_name": block,
+                "title": button_title
+            }
+            buttons.append(button_dict_tmpl)
 
     response_data = {
         "messages": [{
