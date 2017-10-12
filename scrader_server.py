@@ -40,6 +40,23 @@ def get_companies_html(user_id):
     return flask.render_template('companies.html', name=first_name, user_id=user_id)
 
 
+@app.route('/scrader/datetime/<user_id>'.format(methods=['GET']))
+def get_datetime_html(user_id):
+    """ GET Server Status API endpoint
+        Args:
+        Returns:
+            dict: A JSON object containing the nfvacc server status information
+    """
+    print('enetered')
+    first_name = "None"
+    user = USERS.get(user_id, None)
+    if user is not None:
+        last_name = user.get('name')
+        first_name = user.get('first_name', last_name)
+
+    return flask.render_template('time.html', name=first_name, user_id=user_id)
+
+
 @app.route('/scrader/websites/<user_id>'.format(methods=['GET']))
 def get_websites_html(user_id):
     """ GET Server Status API endpoint
@@ -342,6 +359,26 @@ def user_companies_data():
     js = json.dumps(response_data, indent=2)
     return flask.Response(js, status=status, mimetype='application/json')
 
+
+@app.route('/scrader/user_datetime', methods=['POST'])
+def user_datetime_data():
+    """ GET Server Status API endpoint
+        Args:
+        Returns:
+            dict: A JSON object containing the nfvacc server status information
+    """
+
+    data = flask.request.get_json()
+    print(data)
+    user_id = data.get('user')
+    user = USERS.get(user_id, None)
+    if user is not None:
+        user['datetime'] = data.get('datetime')
+
+    response_data = {}
+    status = 200 if response_data is not None else 403
+    js = json.dumps(response_data, indent=2)
+    return flask.Response(js, status=status, mimetype='application/json')
 
 @app.route('/scrader/modify_user/<user_id>/<company_name>/<action>', methods=['GET'])
 def modify_user_companies(user_id, company_name, action):
