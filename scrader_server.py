@@ -47,7 +47,6 @@ def get_datetime_html(user_id):
         Returns:
             dict: A JSON object containing the nfvacc server status information
     """
-    print('enetered')
     first_name = "None"
     user = USERS.get(user_id, None)
     if user is not None:
@@ -369,7 +368,6 @@ def user_datetime_data():
     """
 
     data = flask.request.get_json()
-    print(data)
     user_id = data.get('user')
     user = USERS.get(user_id, None)
     if user is not None:
