@@ -514,6 +514,57 @@ def user_notification(user_id, time_frame):
     return flask.Response(js, status=status, mimetype='application/json')
 
 
+@app.route('/user_daily_notification/<user_id>'.format(methods=['GET']))
+def user_daily_notification(user_id):
+    """ GET Server Status API endpoint
+        Args:
+        Returns:
+            dict: A JSON object containing the nfvacc server status information
+    """
+
+    user = USERS.get(user_id, None)
+    datetime = user.get('datetime')
+
+    message = 'You will be notified daily @ {}. You can also' \
+              ' be notified whenever companies you choose appear on our feed.'.format(datetime)
+
+    buttons = []
+    block = 'News'
+    button_title = "Today's News"
+    button_dict_tmpl = {
+        "type": "show_block",
+        "block_name": block,
+        "title": button_title
+    }
+    buttons.append(button_dict_tmpl)
+
+    extra_button = {}
+    extra_button['type'] = "json_plugin_url"
+    extra_button['title'] = 'Select Companies'
+    extra_button['url'] = "http://146.185.138.240/scrader/websites/{}".format(user_id)
+    buttons.append(extra_button)
+
+    response_data = {
+        "messages": [
+            {"text": message},
+            {"attachment": {
+                "type": "template",
+                "payload": {
+                    "template_type":
+                        "button",
+                    "text":
+                        "Now how would you like to continue?",
+                    "buttons": buttons
+                }
+            }
+        }]
+    }
+
+    status = 200 if response_data is not None else 403
+    js = json.dumps(response_data, indent=2)
+    return flask.Response(js, status=status, mimetype='application/json')
+
+
 @app.route('/company_specific/<company>/<user_id>'.format(methods=['GET']))
 def specific_company(company, user_id):
     """ GET Server Status API endpoint
