@@ -539,7 +539,7 @@ def user_daily_notification(user_id):
     buttons.append(button_dict_tmpl)
 
     extra_button = {}
-    extra_button['type'] = "json_plugin_url"
+    extra_button['type'] = "web_url"
     extra_button['title'] = 'Select Companies'
     extra_button['url'] = "http://146.185.138.240/scrader/websites/{}".format(user_id)
     buttons.append(extra_button)
