@@ -81,11 +81,12 @@
 			</div>
 			<div class="row">
 				<div class="col-md-6">
-					<div class="form-control-wrapper">
+					<div class="form-control-wrapper" id="datetimepicker1">
 						<input type="text" id="time" class="form-control floating-label" placeholder="Time">
 					</div>
 				</div>
 			</div>
+			<input type="button" onclick="myFunction()" value="Done" class="btn btn-large btn-block  btn-success">
 		</div>
 		<script type="text/javascript">
 		$(document).ready(function()
@@ -133,6 +134,55 @@
 
 			$.material.init()
 		});
+		</script>
+
+		<script>
+
+			function myFunction() {
+
+			    time =  $("#datetimepicker1").find("input").val();
+			    console.log(time);
+			    data = {user: '{{ user_id }}' , datetime: ''};
+			    data.datetime = time;
+			    var jsonString = JSON.stringify(data);
+			    url = "http://146.185.138.240/scrader/user_datetime"
+			    $.ajax({
+			    type: "POST",
+			    contentType: "application/json; charset=utf-8",
+			    url: url,
+			    data: jsonString,
+			    success: success,
+			    dataType: 'json'
+			    });
+
+			}
+
+			function success() {    
+			  /*
+			  Broadcast API
+			  http://docs.chatfuel.com/broadcasting/broadcasting-documentation/broadcasting-api
+
+			  -----------------------------------------------------
+			  https://api.chatfuel.com/bots/%3CBOT_ID%3E/users/%3CUSER_ID%3E/send?chatfuel_token=%3CTOKEN%3E&chatfuel_block_name=%3CBLOCK_NAME%3E&%3CUSER_ATTRIBUTE_1%3E=%3CVALUE_1%3E&%3CUSER_ATTRIBUTE_2%3E=%3CVALUE_2 */
+			 console.log('{{name}}'); 
+			 url = "https://api.chatfuel.com/bots/591189a0e4b0772d3373542b/users/{{user_id}}/send?chatfuel_token=vnbqX6cpvXUXFcOKr5RHJ7psSpHDRzO1hXBY8dkvn50ZkZyWML3YdtoCnKH7FSjC&chatfuel_block_id=59dfab4fe4b0662e54344b62&last%20name={{name}}"
+			 console.log(url);
+			 $.ajax({ 
+			      type: "POST",
+			      contentType: "application/json; charset=utf-8",
+			      url: url,
+			      success: windowclose,
+			      dataType: 'json'
+			    }); 
+
+			};
+
+			function windowclose() { 
+			 
+			    window.close();
+			    $('.form_time').hide();
+			}
+
 		</script>
 	</body>
 </html>
