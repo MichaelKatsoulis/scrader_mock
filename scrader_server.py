@@ -53,7 +53,7 @@ def get_datetime_html(user_id):
         last_name = user.get('name')
         first_name = user.get('first_name', last_name)
 
-    return flask.render_template('time.html', name=first_name, user_id=user_id)
+    return flask.render_template('new_time.html', name=first_name, user_id=user_id)
 
 
 @app.route('/scrader/websites/<user_id>'.format(methods=['GET']))
