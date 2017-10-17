@@ -388,10 +388,11 @@ def get_user_datetime_data(user_id):
     """
 
     user = USERS.get(user_id, None)
-    response_data = {}
+    datetime = ''
     if user is not None:
-        response_data = user.get('datetime')
+        datetime = user.get('datetime')
 
+    response_data = datetime
     status = 200 if response_data is not None else 403
     js = json.dumps(response_data, indent=2)
     return flask.Response(js, status=status, mimetype='application/json')
