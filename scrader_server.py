@@ -378,6 +378,25 @@ def user_datetime_data():
     js = json.dumps(response_data, indent=2)
     return flask.Response(js, status=status, mimetype='application/json')
 
+
+@app.route('/scrader/user_datetime/<user_id>', methods=['GET'])
+def get_user_datetime_data(user_id):
+    """ GET Server Status API endpoint
+        Args:
+        Returns:
+            dict: A JSON object containing the nfvacc server status information
+    """
+
+    user = USERS.get(user_id, None)
+    response_data = {}
+    if user is not None:
+        response_data = user.get('datetime')
+
+    status = 200 if response_data is not None else 403
+    js = json.dumps(response_data, indent=2)
+    return flask.Response(js, status=status, mimetype='application/json')
+
+
 @app.route('/scrader/modify_user/<user_id>/<company_name>/<action>', methods=['GET'])
 def modify_user_companies(user_id, company_name, action):
     """ GET Server Status API endpoint
@@ -541,7 +560,7 @@ def user_daily_notification(user_id):
     extra_button = {}
     extra_button['type'] = "web_url"
     extra_button['title'] = 'Select Companies'
-    extra_button['url'] = "http://146.185.138.240/scrader/websites/{}".format(user_id)
+    extra_button['url'] = "http://146.185.138.240/scrader/companies/{}".format(user_id)
     buttons.append(extra_button)
 
     response_data = {
