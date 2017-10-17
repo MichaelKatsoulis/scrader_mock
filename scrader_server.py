@@ -390,7 +390,7 @@ def get_user_datetime_data(user_id):
     user = USERS.get(user_id, None)
     datetime = ''
     if user is not None:
-        datetime = user.get('datetime')
+        datetime = user.get('datetime', '')
 
     response_data = datetime
     status = 200 if response_data is not None else 403
