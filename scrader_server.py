@@ -229,12 +229,12 @@ def user_login(user_id, user_name):
         first_time = False
         first_name = [item['first_name'] for item in cursor][0]
         print(first_name)
-        subscr = [item['subscribed'] for item in cursor][0]
-        print(subscr)
-        if subscr:
-            registered = True
-            print('in')
-            print(registered)
+        subscr_list = [item['subscribed'] for item in cursor]
+        print(subscr_list)
+        # if subscr:
+        #     registered = True
+        #     print('in')
+        #     print(registered)
 
     buttons = []
 
