@@ -212,8 +212,15 @@ def user_login(user_id, user_name):
             'subscribed': False
         }
         USERS[user_id] = user_dict
-        mongo.insert_one('users', {user_id: user_dict})
-        mongo.fetch_collection('users')
+        col_dict = {
+            'first_name': user_name,
+            'subscribed': False,
+            'user_id': user_id
+        }
+        mongo.insert_one('users', col_dict)
+        col = mongo.fetch_collection('users')
+        for user in col:
+            print(user)
 
     buttons = []
 
@@ -315,10 +322,21 @@ def subscribe(user_id, user_last_name, user_first_name):
             dict: A JSON object containing the nfvacc server status information
     """
 
+    cursor = mongo.find_one('users', {"user_id": user_id})
+    for document in cursor:
+        print(document)
+
+    mongo.insert_one_in('users', {"user_id": user_id}, {'name': user_last_name})
+
+    cursor = mongo.find_one('users', {"user_id": user_id})
+    for document in cursor:
+        print(document)
+
     user = USERS.get(user_id, None)
     if user is not None:
         user['name'] = user_last_name
         user['subscribed'] = True
+
 
     response_data = {}
     status = 200 if response_data is not None else 403

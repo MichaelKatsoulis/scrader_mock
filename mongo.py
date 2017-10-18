@@ -27,3 +27,13 @@ def count(collection_name):
 def fetch_collection(collection_name):
     collection = db[collection_name]
     return collection.find({}, {'_id': False})
+
+
+def find_one(collection_name, to_match):
+    collection = db[collection_name]
+    return collection.find(to_match)
+
+
+def insert_one_in(collection_name, to_match, new_data):
+    collection = db[collection_name]
+    return collection.update(to_match, {'$set': new_data})
