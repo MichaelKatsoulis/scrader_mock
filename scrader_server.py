@@ -11,6 +11,7 @@ import copy
 import config
 import websites
 import logging
+import mongo
 import utils
 
 DEBUG = not False  # Enable this to print python crashes and exceptions
@@ -211,6 +212,8 @@ def user_login(user_id, user_name):
             'subscribed': False
         }
         USERS[user_id] = user_dict
+        mongo.insert_one('users', {user_id: user_dict})
+        mongo.fetch_collection('users')
 
     buttons = []
 
@@ -983,5 +986,6 @@ if __name__ == '__main__':
     utils.article_from_excel()
     # utils.news_poll(10)
     utils.update_companies_news_once()
+    mongo.init_database()
 
     app.run(host=config.HOST, port=config.PORT, debug=DEBUG)
