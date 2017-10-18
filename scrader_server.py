@@ -227,9 +227,9 @@ def user_login(user_id, user_name):
         # for document in cursor:
         #     print(document)
         first_time = False
-        first_name = next(item['first_name'] for item in cursor)
+        first_name = [item['first_name'] for item in cursor][0]
         print(first_name)
-        if next(item['subscribed'] for item in cursor):
+        if [item['subscribed'] for item in cursor][0]:
             registered = True
             print('in')
             print(registered)
