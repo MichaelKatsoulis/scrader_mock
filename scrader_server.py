@@ -227,12 +227,12 @@ def user_login(user_id, user_name):
         # for document in cursor:
         #     print(document)
         first_time = False
-        for doc in cursor:
-            first_name = doc.get('first_name')
-            if doc.get('subscribed'):
-                registered = True
+        first_name = next(item['first_name'] for item in cursor)
         print(first_name)
-        print(registered)
+        if next(item['subscribed'] for item in cursor):
+            registered = True
+            print('in')
+            print(registered)
 
     buttons = []
 
@@ -336,8 +336,8 @@ def subscribe(user_id, user_last_name, user_first_name):
 
     cursor = mongo.find_one('users', {"user_id": user_id})
     if cursor.count() > 0:
-        for document in cursor:
-            print(document)
+        # for document in cursor:
+        #     print(document)
         mongo.insert_one_in('users', {"user_id": user_id}, {'name': user_last_name})
         mongo.insert_one_in('users', {"user_id": user_id}, {'subscribed': True})
 
