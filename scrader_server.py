@@ -334,6 +334,7 @@ def subscribe(user_id, user_last_name, user_first_name):
             print(document)
         mongo.insert_one_in('users', {"user_id": user_id}, {'name': user_last_name})
         mongo.insert_one_in('users', {"user_id": user_id}, {'subscribed': True})
+        cursor = mongo.find_one('users', {"user_id": user_id})
         for document in cursor:
             print(document)
 
