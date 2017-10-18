@@ -229,7 +229,9 @@ def user_login(user_id, user_name):
         first_time = False
         first_name = [item['first_name'] for item in cursor][0]
         print(first_name)
-        if [item['subscribed'] for item in cursor][0]:
+        subscr = [item['subscribed'] for item in cursor][0]
+        print(subscr)
+        if subscr:
             registered = True
             print('in')
             print(registered)
