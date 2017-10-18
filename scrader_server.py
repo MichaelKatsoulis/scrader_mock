@@ -224,8 +224,8 @@ def user_login(user_id, user_name):
         # for document in cursor:
         #     print(document)
     else:
-        # for document in cursor:
-        #     print(document)
+        for document in cursor:
+            print(document)
         first_time = False
         first_name = [item['first_name'] for item in cursor][0]
         print(first_name)
