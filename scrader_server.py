@@ -11,7 +11,7 @@ import copy
 import config
 import websites
 import logging
-# import mongo
+import mongo
 import utils
 
 DEBUG = not False  # Enable this to print python crashes and exceptions
@@ -213,25 +213,26 @@ def user_login(user_id, user_name):
         }
         USERS[user_id] = user_dict
 
-    # cursor = mongo.find_one('users', {"user_id": user_id})
-    # if cursor.count() == 0:
-    #     col_dict = {
-    #         'first_name': user_name,
-    #         'subscribed': False,
-    #         'user_id': user_id
-    #     }
-    #     mongo.insert_one('users', col_dict)
-    #     # for document in cursor:
-    #     #     print(document)
-    # else:
-    #     # for document in cursor:
-    #     #     print(document)
-    #     first_time = False
-    #     first_name = next(item['first_name'] for item in cursor)
-    #     for doc in cursor:
-    #         first_name = doc.get('first_name')
-    #         if doc.get('subscribed'):
-    #             registered = True
+    cursor = mongo.find_matches('users', {"user_id": user_id})
+    print(mongo.find_one_match('users', {"user_id": user_id}))
+    if cursor.count() == 0:
+        col_dict = {
+            'first_name': user_name,
+            'subscribed': False,
+            'user_id': user_id
+        }
+        mongo.insert_one('users', col_dict)
+        # for document in cursor:
+        #     print(document)
+    else:
+        for document in cursor:
+            print(document)
+        first_time = False
+        first_name = next(item['first_name'] for item in cursor)
+        for doc in cursor:
+            first_name = doc.get('first_name')
+            if doc.get('subscribed'):
+                registered = True
 
     buttons = []
 
@@ -333,12 +334,12 @@ def subscribe(user_id, user_last_name, user_first_name):
             dict: A JSON object containing the nfvacc server status information
     """
 
-    # cursor = mongo.find_one('users', {"user_id": user_id})
-    # if cursor.count() > 0:
-    #     # for document in cursor:
-    #     #     print(document)
-    #     mongo.insert_one_in('users', {"user_id": user_id}, {'name': user_last_name})
-    #     mongo.insert_one_in('users', {"user_id": user_id}, {'subscribed': True})
+    cursor = mongo.find_matches('users', {"user_id": user_id})
+    if cursor.count() > 0:
+        # for document in cursor:
+        #     print(document)
+        mongo.insert_one_in('users', {"user_id": user_id}, {'name': user_last_name})
+        mongo.insert_one_in('users', {"user_id": user_id}, {'subscribed': True})
 
     user = USERS.get(user_id, None)
     if user is not None:
@@ -1012,6 +1013,6 @@ if __name__ == '__main__':
     utils.article_from_excel()
     # utils.news_poll(10)
     utils.update_companies_news_once()
-    # mongo.init_database()
+    mongo.init_database()
 
     app.run(host=config.HOST, port=config.PORT, debug=DEBUG)

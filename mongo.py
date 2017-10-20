@@ -29,9 +29,13 @@ def fetch_collection(collection_name):
     return collection.find({}, {'_id': False})
 
 
-def find_one(collection_name, to_match):
+def find_matches(collection_name, to_match):
     collection = db[collection_name]
     return collection.find(to_match)
+
+def find_one_match(collection_name, to_match):
+    collection = db[collection_name]
+    return collection.find_one(to_match)
 
 
 def insert_one_in(collection_name, to_match, new_data):
