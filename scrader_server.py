@@ -11,7 +11,7 @@ import copy
 import config
 import websites
 import logging
-import mongo
+# import mongo
 import utils
 
 DEBUG = not False  # Enable this to print python crashes and exceptions
@@ -1012,6 +1012,6 @@ if __name__ == '__main__':
     utils.article_from_excel()
     # utils.news_poll(10)
     utils.update_companies_news_once()
-    mongo.init_database()
+    # mongo.init_database()
 
     app.run(host=config.HOST, port=config.PORT, debug=DEBUG)
