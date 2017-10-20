@@ -1,4 +1,5 @@
 from pymongo import MongoClient
+import companies
 
 
 def init_database():
@@ -7,6 +8,14 @@ def init_database():
     client = MongoClient()
     global db
     db = client['scrader']
+    companies_stored = db['companies']
+    if companies_stored.count() == 0:
+        print('adding')
+        insert_many('companies', companies.all_companies)
+    else:
+        print('exist')
+        print(companies_stored.count())
+
     return db
 
 
@@ -47,5 +56,10 @@ def insert_one_in(collection_name, to_match, new_data):
 def remove_one_from(collection_name, to_match, data_to_remove):
     collection = db[collection_name]
     return collection.update(to_match, {'$unset': data_to_remove})
+
+def insert_many(collection_name, to_add):
+    collection = db[collection_name]
+    return collection.insert_many(to_add)
+
 
 
