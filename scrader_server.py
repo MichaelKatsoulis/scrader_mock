@@ -21,7 +21,6 @@ app = flask.Flask(__name__, static_url_path='/static')
 # Make cross-origin AJAX possible (for all domains on all routes)
 CORS(app, resources={r"*": {"origins": "*"}})
 
-USERS = {}
 NEXT = 0
 
 
@@ -33,7 +32,7 @@ def get_companies_html(user_id):
             dict: A JSON object containing the nfvacc server status information
     """
     first_name = "None"
-    user = USERS.get(user_id, None)
+    user = mongo.find_one_match('users', {"user_id": user_id})
     if user is not None:
         last_name = user.get('name')
         first_name = user.get('first_name', last_name)
@@ -49,7 +48,7 @@ def get_datetime_html(user_id):
             dict: A JSON object containing the nfvacc server status information
     """
     first_name = "None"
-    user = USERS.get(user_id, None)
+    user = mongo.find_one_match('users', {"user_id": user_id})
     if user is not None:
         last_name = user.get('name')
         first_name = user.get('first_name', last_name)
@@ -65,7 +64,7 @@ def get_websites_html(user_id):
             dict: A JSON object containing the nfvacc server status information
     """
     first_name = "None"
-    user = USERS.get(user_id, None)
+    user = mongo.find_one_match('users', {"user_id": user_id})
     if user is not None:
         last_name = user.get('name')
         first_name = user.get('first_name', last_name)
@@ -100,9 +99,9 @@ def company_search():
     first_name = request.args.get('first name')
     user_id = request.args.get('chatfuel user id')
 
-    user = USERS.get(user_id, None)
+    user = mongo.find_one_match('users', {"user_id": user_id})
     if user is not None:
-        user.pop('request', None)
+        mongo.remove_one_from('users', {"user_id": user_id}, {'request': 1})
 
     # print(user_id)
     company_found = utils.company_typed_search(company_typed)
@@ -199,40 +198,19 @@ def user_login(user_id, user_name):
     registered = False
     first_time = True
 
-    user = USERS.get(user_id, None)
+    user = mongo.find_one_match('users', {"user_id": user_id})
     if user is not None:
         first_time = False
         first_name = user.get('first_name')
         if user.get('subscribed'):
             registered = True
-
     else:
         user_dict = {
-            'first_name': user_name,
-            'subscribed': False
-        }
-        USERS[user_id] = user_dict
-
-    cursor = mongo.find_matches('users', {"user_id": user_id})
-    print(mongo.find_one_match('users', {"user_id": user_id}))
-    if cursor.count() == 0:
-        col_dict = {
             'first_name': user_name,
             'subscribed': False,
             'user_id': user_id
         }
-        mongo.insert_one('users', col_dict)
-        # for document in cursor:
-        #     print(document)
-    else:
-        for document in cursor:
-            print(document)
-        first_time = False
-        first_name = next(item['first_name'] for item in cursor)
-        for doc in cursor:
-            first_name = doc.get('first_name')
-            if doc.get('subscribed'):
-                registered = True
+        mongo.insert_one('users', user_dict)
 
     buttons = []
 
@@ -334,18 +312,10 @@ def subscribe(user_id, user_last_name, user_first_name):
             dict: A JSON object containing the nfvacc server status information
     """
 
-    cursor = mongo.find_matches('users', {"user_id": user_id})
-    if cursor.count() > 0:
-        # for document in cursor:
-        #     print(document)
+    user = mongo.find_one_match('users', {"user_id": user_id})
+    if user is not None:
         mongo.insert_one_in('users', {"user_id": user_id}, {'name': user_last_name})
         mongo.insert_one_in('users', {"user_id": user_id}, {'subscribed': True})
-
-    user = USERS.get(user_id, None)
-    if user is not None:
-        user['name'] = user_last_name
-        user['subscribed'] = True
-
 
     response_data = {}
     status = 200 if response_data is not None else 403
@@ -378,10 +348,11 @@ def user_companies_data():
     data = flask.request.get_json()
 
     user_id = data.get('user')
-    user = USERS.get(user_id, None)
+
+    user = mongo.find_one_match('users', {"user_id": user_id})
     if user is not None:
-        user['companies'] = data.get('companies')
-        user['notification_type'] = 'Companies'
+        mongo.insert_one_in('users', {"user_id": user_id}, {'companies': data.get('companies')})
+        mongo.insert_one_in('users', {"user_id": user_id}, {'notification_type': 'Companies'})
 
     response_data = {}
     status = 200 if response_data is not None else 403
@@ -399,9 +370,10 @@ def user_datetime_data():
 
     data = flask.request.get_json()
     user_id = data.get('user')
-    user = USERS.get(user_id, None)
+
+    user = mongo.find_one_match('users', {"user_id": user_id})
     if user is not None:
-        user['datetime'] = data.get('datetime')
+        mongo.insert_one_in('users', {"user_id": user_id}, {'datetime': data.get('datetime')})
 
     response_data = {}
     status = 200 if response_data is not None else 403
@@ -417,7 +389,7 @@ def get_user_datetime_data(user_id):
             dict: A JSON object containing the nfvacc server status information
     """
 
-    user = USERS.get(user_id, None)
+    user = mongo.find_one_match('users', {"user_id": user_id})
     datetime = ''
     if user is not None:
         datetime = user.get('datetime', '')
@@ -437,7 +409,8 @@ def modify_user_companies(user_id, company_name, action):
     """
 
     response_data = {}
-    user = USERS.get(user_id, None)
+
+    user = mongo.find_one_match('users', {"user_id": user_id})
     if user is not None:
         user_name = user.get('first_name')
         if action == 'add':
@@ -446,6 +419,8 @@ def modify_user_companies(user_id, company_name, action):
         else:
             user['companies'].remove(company_name)
             message = "{} now on you won't be notified for {}.".format(user_name, company_name)
+
+        mongo.insert_one_in('users', {"user_id": user_id}, {'companies': user['companies']})
 
         response_data = {"messages": [{"text": message}]}
 
@@ -466,9 +441,9 @@ def user_websites_data():
     data = flask.request.get_json()
 
     user_id = data.get('user')
-    user = USERS.get(user_id, None)
+    user = mongo.find_one_match('users', {"user_id": user_id})
     if user is not None:
-        user['websites'] = data.get('websites')
+        mongo.insert_one_in('users', {"user_id": user_id}, {'websites': user['websites']})
 
     response_data = {}
     status = 200 if response_data is not None else 403
@@ -485,7 +460,7 @@ def user_companies(user_id):
     """
 
     subscribed_companies = []
-    user = USERS.get(user_id, None)
+    user = mongo.find_one_match('users', {"user_id": user_id})
     if user is not None:
         subscribed_companies = user.get('companies', [])
 
@@ -505,7 +480,7 @@ def user_websites(user_id):
     """
 
     subscribed_websites = []
-    user = USERS.get(user_id, None)
+    user = mongo.find_one_match('users', {"user_id": user_id})
     if user is not None:
         subscribed_websites = user.get('websites', [])
 
@@ -523,17 +498,16 @@ def user_notification(user_id, time_frame):
             dict: A JSON object containing the nfvacc server status information
     """
 
-    user = USERS.get(user_id, None)
+    user = mongo.find_one_match('users', {"user_id": user_id})
     user_name = user.get('first_name', user_id)
 
     if time_frame == 'Daily':
-
-        user['notification_type'] = 'Daily'
+        mongo.insert_one_in('users', {"user_id": user_id}, {'notification_type': 'Daily'})
         message = "{} you will be notified {}".format(user_name, time_frame)
         response_data = {"messages": [{"text": message}]}
     else:
 
-        user['notification_type'] = 'Companies'
+        mongo.insert_one_in('users', {"user_id": user_id}, {'notification_type': 'Companies'})
         response_data = {
             "messages": [{
                 "attachment": {
@@ -572,7 +546,7 @@ def user_daily_notification(user_id):
             dict: A JSON object containing the nfvacc server status information
     """
 
-    user = USERS.get(user_id, None)
+    user = mongo.find_one_match('users', {"user_id": user_id})
     datetime = user.get('datetime')
 
     message = 'You will be notified daily @ {}. You can also' \
@@ -626,7 +600,7 @@ def specific_company(company, user_id):
     subscribed = False
     followed = False
     user_request = None
-    user = USERS.get(user_id, None)
+    user = mongo.find_one_match('users', {"user_id": user_id})
     if user is not None:
         if user.get('notification_type') == 'Companies':
             subscribed = True
@@ -635,11 +609,7 @@ def specific_company(company, user_id):
         user_request = user.get('request', None)
 
     extra_button = {}
-    # if followed:
-    #     extra_button['type'] = "json_plugin_url"
-    #     extra_button['title'] = 'Unfollow'
-    #     extra_button['url'] = "http://146.185.138.240/scrader/modify_user/{}/{}/remove".format(user_id,company)
-    # else:
+
     if subscribed:
         if not followed:
             extra_button['type'] = "json_plugin_url"
@@ -887,9 +857,9 @@ def get_companies(stocks_type):
     global NEXT
     NEXT = 0 if request.args.get('NEXT') is not None else NEXT
     user_id = request.args.get('chatfuel user id')
-    user = USERS.get(user_id, None)
+    user = mongo.find_one_match('users', {"user_id": user_id})
     if user is not None:
-        user['request'] = stocks_type
+        mongo.insert_one_in('users', {"user_id": user_id}, {'request': stocks_type})
 
     # print(user)
     # print("Fetching companies with {}.".format(stocks_type))
@@ -985,7 +955,9 @@ def get_companies(stocks_type):
 
 def reorder_companies(companies_list, user_id):
 
-    user_subscibed_companies = USERS.get(user_id).get('companies', None)
+    user = mongo.find_one_match('users', {"user_id": user_id})
+    user_subscibed_companies = user.get('companies', None)
+
     sorted_list = []
     if user_subscibed_companies is not None:
         for user_company in user_subscibed_companies:
