@@ -10,11 +10,7 @@ def init_database():
     db = client['scrader']
     companies_stored = db['companies']
     if companies_stored.count() == 0:
-        print('adding')
         insert_many('companies', companies.all_companies)
-    else:
-        print('exist')
-        print(companies_stored.count())
 
     return db
 
