@@ -984,7 +984,7 @@ if __name__ == '__main__':
     logging.debug('This message should go to the log file')
     utils.article_from_excel()
     # utils.news_poll(10)
-    utils.update_companies_news_once()
     mongo.init_database()
+    utils.update_companies_news_once()
 
     app.run(host=config.HOST, port=config.PORT, debug=DEBUG)
