@@ -127,7 +127,7 @@ def news_poll(poll_time):
 
 def add_article(article):
     import hashlib
-    id = hashlib.md5(article.get('title'))
+    id = hashlib.md5(article.get('title').encode('utf-8'))
     new_articles.articles[id] = article
 
 
