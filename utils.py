@@ -3,7 +3,6 @@ from gevent import monkey
 import time
 import gevent
 
-import new_companies
 import new_articles
 import mongo
 
@@ -32,7 +31,8 @@ def company_typed_search(company):
 
 def company_news_type(company_given):
     #list of news type a company has
-    company_news = new_companies.all_companies.get(company_given).get('company_news_ids')
+    company_dict = mongo.find_one_match('companies', {"name": company_given})
+    company_news = company_dict.get('company_news_ids')
     type_of_news = []
     for new_id in company_news:
         if 'POS' in new_articles.articles[new_id]['direction']:
@@ -59,13 +59,12 @@ def companies_by_type(news_type):
     elif news_type == 'bad_companies':
         news_type = 'NEG'
 
-    for company_name, company_dict in new_companies.all_companies.items():
-        updated_company_dict = {}
+    companies = mongo.fetch_collection('companies')
+    for company_dict in companies:
         for new_id in company_dict['company_news_ids']:
             if news_type in new_articles.articles[new_id]['direction']:
-                updated_company_dict['company_name'] = company_name
-                updated_company_dict.update(company_dict)
-                companies_list.append(updated_company_dict)
+                company_dict['company_name'] = company_dict.pop('name')
+                companies_list.append(company_dict)
                 break
 
     return companies_list
@@ -95,29 +94,36 @@ def update_companies_news(time_interval):
 
     while True:
         all_news = new_articles.articles
-        all_companies = new_companies.all_companies
         for new_id, new_dict in all_news.items():
+            if 'NEU' in new_dict.get('direction'):
+                continue
             company = new_dict.get('company')
-            if new_id not in all_companies[company]['company_news_ids']:
-                all_companies[company]['company_news_ids'].append(new_id)
+            company_dict = mongo.find_one_match('companies', {"name": company})
+            if new_id not in company_dict['company_news_ids']:
+                company_dict['company_news_ids'].append(new_id)
+                mongo.insert_one_in('companies', {"name": company},
+                                    {'company_news_ids': company_dict['company_news_ids']})
         gevent.sleep(time_interval)
+
 
 def update_companies_news_once():
 
     all_news = new_articles.articles
-    all_companies = new_companies.all_companies
     for new_id, new_dict in all_news.items():
         if 'NEU' in new_dict.get('direction'):
             continue
         company = new_dict.get('company')
         company_dict = mongo.find_one_match('companies', {"name": company})
-        print(company_dict)
-        if new_id not in all_companies[company]['company_news_ids']:
-            all_companies[company]['company_news_ids'].append(new_id)
+        if new_id not in company_dict['company_news_ids']:
+            company_dict['company_news_ids'].append(new_id)
+            mongo.insert_one_in('companies', {"name": company},
+                                {'company_news_ids': company_dict['company_news_ids']})
+
 
 def news_poll(poll_time):
 
     gevent.spawn(update_companies_news, poll_time)
+
 
 def add_article(article):
     import hashlib
@@ -128,6 +134,7 @@ def add_article(article):
 def get_article_by_id(article_id):
 
     return new_articles.articles.get(article_id, None)
+
 
 def article_from_excel():
 
