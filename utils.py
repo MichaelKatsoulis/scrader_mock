@@ -14,7 +14,6 @@ monkey.patch_all()
 def get_all_companies():
     # returns a list of all companies
     companies = mongo.fetch_collection('companies')
-    # return list(new_companies.all_companies.keys())
     return [comp['name'] for comp in companies]
 
 
@@ -22,8 +21,8 @@ def company_typed_search(company):
 
     company_found = None
     companies = mongo.fetch_collection('companies')
-    print([comp['name'] for comp in companies])
-    for company_name in new_companies.all_companies.keys():
+    all_companies = [comp['name'] for comp in companies]
+    for company_name in all_companies:
         company_name_net = company_name.split()[0]
         if company in company_name_net.lower():
             return company_name
@@ -111,6 +110,8 @@ def update_companies_news_once():
         if 'NEU' in new_dict.get('direction'):
             continue
         company = new_dict.get('company')
+        company_dict = mongo.find_one_match('companies', {"name": company})
+        print(company_dict)
         if new_id not in all_companies[company]['company_news_ids']:
             all_companies[company]['company_news_ids'].append(new_id)
 
