@@ -156,7 +156,7 @@ def article_from_excel():
     sheet = book.sheet_by_index(0)
     keys = dict((i, sheet.cell_value(0, i)) for i in range(sheet.ncols))
     articles = (dict((keys[j], sheet.cell_value(i, j)) for j in keys) for i in range(1, sheet.nrows))
-
+    mongo.delete_many('articles')
     for article in articles:
         new_article = {}
         new_article['title'] = article.get('Title')
