@@ -915,9 +915,10 @@ def get_companies(stocks_type):
             name_net = company.get('company_name').split()[0]
             element['title'] = company.get('company_name')
             element['image_url'] = company.get('company_logo')
-            company_number_of_artcles = len(company.get('company_news_ids'))
+            company_articles = utils.get_companies_articles(name_net)
+            company_number_of_artcles = len(company_articles)
             if company_number_of_artcles == 1:
-                article = utils.get_article_by_id(company.get('company_news_ids')[0])
+                article = utils.get_article_by_id(company_articles[0])
                 article_title = article.get('title')[0:79]
             element['subtitle'] = \
                 "{} out of {} articles".format(company_number_of_artcles,
@@ -987,6 +988,6 @@ if __name__ == '__main__':
     # utils.news_poll(10)
     mongo.init_database()
     utils.article_from_excel()
-    utils.update_companies_news_once()
+    # utils.update_companies_news_once()
 
     app.run(host=config.HOST, port=config.PORT, debug=DEBUG)
