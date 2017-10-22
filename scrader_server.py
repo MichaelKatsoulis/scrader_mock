@@ -782,13 +782,15 @@ def get_news(company, news_type, page_num):
     if news_type == 'positive' or news_type == 'Positive+News':
         news_message = 'Positive'
         direction = 'POS'
+        direction_list = ['POS', 'POSITIVE']
     else:
         direction = 'NEG'
         news_message = 'Negative'
+        direction_list = ['NEG', 'NEGATIVE']
 
 
     # requested_news = utils.get_news_by_direction(direction)
-    requested_news = utils.get_news_by_direction_and_company(direction, company)
+    requested_news = utils.get_news_by_direction_and_company(direction, company, direction_list)
     # print(requested_news)
 
     f = lambda A, n=3: [A[i:i + n] for i in range(0, len(A), n)]

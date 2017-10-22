@@ -76,9 +76,8 @@ def companies_by_type(news_type):
     for article in articles_cursor:
         comp_dict= mongo.find_one_match('companies', {'name': article.get('company')})
         if comp_dict not in companies_new_list:
+            comp_dict['company_name'] = comp_dict.pop('name')
             companies_new_list.append(comp_dict)
-
-    print(companies_new_list)
 
     companies = mongo.fetch_collection('companies')
     for company_dict in companies:
@@ -87,7 +86,6 @@ def companies_by_type(news_type):
                 company_dict['company_name'] = company_dict.pop('name')
                 companies_list.append(company_dict)
                 break
-    print(companies_list)
     return companies_list
 
 
@@ -100,15 +98,18 @@ def get_news_by_direction(direction):
             news.append(new_dict)
     return news
 
-def get_news_by_direction_and_company(direction, company):
+def get_news_by_direction_and_company(direction, company, direction_list):
     #list of news by their direction good bad
 
+    news_list = list(mongo.find_matches_two_fields('articles', 'company', company, 'direction', direction_list))
+    print(news_list)
     news = []
     for new_id, new_dict in new_articles.articles.items():
         if direction in new_dict.get('direction'):
             if 'NEU' not in new_dict.get('direction'):
                 if new_dict.get('company') == company:
                     news.append(new_dict)
+    print(news)
     return news
 
 def update_companies_news(time_interval):
