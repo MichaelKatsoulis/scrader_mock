@@ -67,7 +67,7 @@ def companies_by_type(news_type):
             comp_dict['company_name'] = comp_dict.pop('name')
             companies_new_list.append(comp_dict)
 
-    return companies_list
+    return companies_new_list
 
 
 def get_news_by_direction_and_company(direction, company, direction_list):
