@@ -101,7 +101,7 @@ def get_news_by_direction(direction):
 def get_news_by_direction_and_company(direction, company, direction_list):
     #list of news by their direction good bad
 
-    news_list = list(mongo.find_matches_two_fields('articles', 'company', company, 'direction', direction_list))
+    news_list = list(mongo.find_matches_two_fields('articles', 'company', [company], 'direction', direction_list))
     print(news_list)
     news = []
     for new_id, new_dict in new_articles.articles.items():
