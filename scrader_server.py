@@ -918,7 +918,7 @@ def get_companies(stocks_type):
             company_articles = utils.get_companies_articles(name_net)
             company_number_of_artcles = len(company_articles)
             if company_number_of_artcles == 1:
-                article = utils.get_article_by_id(company_articles[0])
+                article = company_articles[0]
                 article_title = article.get('title')[0:79]
             element['subtitle'] = \
                 "{} out of {} articles".format(company_number_of_artcles,
