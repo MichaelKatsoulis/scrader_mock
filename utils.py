@@ -102,14 +102,12 @@ def get_news_by_direction_and_company(direction, company, direction_list):
     #list of news by their direction good bad
 
     news_list = list(mongo.find_matches_two_fields('articles', 'company', [company], 'direction', direction_list))
-    print(news_list)
     news = []
     for new_id, new_dict in new_articles.articles.items():
         if direction in new_dict.get('direction'):
             if 'NEU' not in new_dict.get('direction'):
                 if new_dict.get('company') == company:
                     news.append(new_dict)
-    print(news)
     return news
 
 def update_companies_news(time_interval):
@@ -157,6 +155,9 @@ def add_article(article):
 def get_article_by_id(article_id):
 
     return new_articles.articles.get(article_id, None)
+
+def get_companies_articles(company):
+    return list(mongo.find_matches('articles', {'company': company}))
 
 
 def article_from_excel():
