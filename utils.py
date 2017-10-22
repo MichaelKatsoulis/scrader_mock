@@ -39,8 +39,6 @@ def company_news_type(company_given):
         elif 'NEG' in new['direction']:
             comp_type_of_news.append('bad_companies')
 
-    print(list(set(comp_type_of_news)))
-
     company_dict = mongo.find_one_match('companies', {"name": company_given})
     company_news = company_dict.get('company_news_ids')
     type_of_news = []
@@ -49,15 +47,17 @@ def company_news_type(company_given):
             type_of_news.append('good_companies')
         elif 'NEG' in new_articles.articles[new_id]['direction']:
             type_of_news.append('bad_companies')
-    print(list(set(type_of_news)))
     return list(set(type_of_news))
 
 
 def total_articles():
     total_number = 0
+    total_cursor = mongo.find_matches_not_containing('articles', 'direction', ['NEU', 'NEUTRAL'])
+    print(total_cursor.count())
     for article in new_articles.articles.values():
         if 'NEU' not in article.get('direction'):
             total_number += 1
+    print(total_number)
     return total_number
 
 
