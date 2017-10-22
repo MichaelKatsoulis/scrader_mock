@@ -152,7 +152,7 @@ def article_from_excel():
 
     from xlrd import open_workbook
     import copy
-    book = open_workbook('Scrader-Sample_1-11.xlsx')
+    book = open_workbook('Scrader-Sample_1-12.xlsx')
     sheet = book.sheet_by_index(0)
     keys = dict((i, sheet.cell_value(0, i)) for i in range(sheet.ncols))
     articles = (dict((keys[j], sheet.cell_value(i, j)) for j in keys) for i in range(1, sheet.nrows))
