@@ -982,9 +982,9 @@ if __name__ == '__main__':
 
     logging.basicConfig(filename='logs.log',level=logging.INFO)
     logging.debug('This message should go to the log file')
-    utils.article_from_excel()
     # utils.news_poll(10)
     mongo.init_database()
+    utils.article_from_excel()
     utils.update_companies_news_once()
 
     app.run(host=config.HOST, port=config.PORT, debug=DEBUG)

@@ -31,6 +31,16 @@ def company_typed_search(company):
 
 def company_news_type(company_given):
     #list of news type a company has
+    news_cursor = mongo.find_matches('articles', {'company': company_given})
+    my_list = []
+    for new in news_cursor:
+        if 'POS' in new['direction']:
+            my_list.append('good_companies')
+        elif 'NEG' in new['direction']:
+            my_list.append('bad_companies')
+
+    print(my_list)
+
     company_dict = mongo.find_one_match('companies', {"name": company_given})
     company_news = company_dict.get('company_news_ids')
     type_of_news = []
@@ -39,6 +49,7 @@ def company_news_type(company_given):
             type_of_news.append('good_companies')
         elif 'NEG' in new_articles.articles[new_id]['direction']:
             type_of_news.append('bad_companies')
+    print(list(set(type_of_news)))
     return list(set(type_of_news))
 
 
@@ -157,3 +168,4 @@ def article_from_excel():
         new_article['website'] = article.get('Website')
         new_article['website_url'] = article.get('Website url')
         add_article(new_article)
+        mongo.insert_one('articles', new_article)
