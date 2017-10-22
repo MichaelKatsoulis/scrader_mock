@@ -53,11 +53,10 @@ def company_news_type(company_given):
 def total_articles():
     total_number = 0
     total_cursor = mongo.find_matches_not_containing('articles', 'direction', ['NEU', 'NEUTRAL'])
-    print(total_cursor.count())
+    # print(total_cursor.count())
     for article in new_articles.articles.values():
         if 'NEU' not in article.get('direction'):
             total_number += 1
-    print(total_number)
     return total_number
 
 
@@ -67,8 +66,13 @@ def companies_by_type(news_type):
     companies_list = []
     if news_type == 'good_companies':
         news_type = 'POS'
+        match = ['POS', 'POSITIVE']
     elif news_type == 'bad_companies':
         news_type = 'NEG'
+        match = ['NEG', 'NEGATIVE']
+
+    companies_cursor = list(mongo.find_matches_containing_many('articles', 'direction', match))
+    print(companies_cursor)
 
     companies = mongo.fetch_collection('companies')
     for company_dict in companies:
@@ -77,7 +81,7 @@ def companies_by_type(news_type):
                 company_dict['company_name'] = company_dict.pop('name')
                 companies_list.append(company_dict)
                 break
-
+    print(companies_list)
     return companies_list
 
 

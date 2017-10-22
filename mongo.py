@@ -39,9 +39,14 @@ def find_matches(collection_name, to_match):
     return collection.find(to_match)
 
 
-def find_matches_not_containing(collection_name, key, value):
+def find_matches_containing_many(collection_name, field, match):
     collection = db[collection_name]
-    return collection.find({key: {'$nin': value}})
+    return collection.find({field: {'$in': match}})
+
+
+def find_matches_not_containing(collection_name, field, value):
+    collection = db[collection_name]
+    return collection.find({field: {'$nin': value}})
 
 
 def find_one_match(collection_name, to_match):
