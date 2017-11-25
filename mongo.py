@@ -68,6 +68,7 @@ def remove_one_from(collection_name, to_match, data_to_remove):
     collection = db[collection_name]
     return collection.update(to_match, {'$unset': data_to_remove})
 
+
 def insert_many(collection_name, to_add):
     collection = db[collection_name]
     return collection.insert_many(to_add)

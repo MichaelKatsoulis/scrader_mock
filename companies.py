@@ -101,5 +101,169 @@ all_companies = [
     {
         'name': 'Target',
         'company_logo': 'http://146.185.138.240/static/images/target_logo.png'
+    },
+    {
+        'name': '3m',
+        'company_logo': 'http://146.185.138.240/static/images/3m_logo.png'
+    },
+    {
+        'name': 'Accenture',
+        'company_logo': 'http://146.185.138.240/static/images/accenture_logo.png'
+    },
+    {
+        'name': 'Aig',
+        'company_logo': 'http://146.185.138.240/static/images/aig_logo.png'
+    },
+    {
+        'name': 'Apache',
+        'company_logo': 'http://146.185.138.240/static/images/apache_logo.png'
+    },
+    {
+        'name': 'At&t',
+        'company_logo': 'http://146.185.138.240/static/images/at&t_logo.png'
+    },
+    {
+        'name': 'Axa',
+        'company_logo': 'http://146.185.138.240/static/images/axa_logo.png'
+    },
+    {
+        'name': 'Baidu',
+        'company_logo': 'http://146.185.138.240/static/images/baidu_logo.png'
+    },
+    {
+        'name': 'Barclays',
+        'company_logo': 'http://146.185.138.240/static/images/barclays_logo.png'
+    },
+    {
+        'name': 'Bnp-paribas',
+        'company_logo': 'http://146.185.138.240/static/images/bnp-paribas_logo.png'
+    },
+    {
+        'name': 'Boeing',
+        'company_logo': 'http://146.185.138.240/static/images/boeing_logo.png'
+    },
+    {
+        'name': 'Bp',
+        'company_logo': 'http://146.185.138.240/static/images/bp_logo.png'
+    },
+    {
+        'name': 'Canon',
+        'company_logo': 'http://146.185.138.240/static/images/canon_logo.png'
+    },
+    {
+        'name': 'Christian-dior',
+        'company_logo': 'http://146.185.138.240/static/images/christian-dior_logo.png'
+    },
+    {
+        'name': 'Daimler',
+        'company_logo': 'http://146.185.138.240/static/images/daimler_logo.png'
+    },
+    {
+        'name': 'Ebay',
+        'company_logo': 'http://146.185.138.240/static/images/ebay_logo.png'
+    },
+    {
+        'name': 'Exxon',
+        'company_logo': 'http://146.185.138.240/static/images/exxon_logo.png'
+    },
+    {
+        'name': 'Ford',
+        'company_logo': 'http://146.185.138.240/static/images/ford_logo.png'
+    },
+    {
+        'name': 'General-motors',
+        'company_logo': 'http://146.185.138.240/static/images/general-motors_logo.png'
+    },
+    {
+        'name': 'Ibm',
+        'company_logo': 'http://146.185.138.240/static/images/ibm_logo.png'
+    },
+    {
+        'name': 'Intel',
+        'company_logo': 'http://146.185.138.240/static/images/intel_logo.png'
+    },
+    {
+        'name': 'Hsbc',
+        'company_logo': 'http://146.185.138.240/static/images/hsbc_logo.png'
+    },
+    {
+        'name': 'Kia',
+        'company_logo': 'http://146.185.138.240/static/images/kia_logo.png'
+    },
+    {
+        'name': 'Intel',
+        'company_logo': 'http://146.185.138.240/static/images/intel_logo.png'
+    },
+    {
+        'name': 'Mercedes-Benz',
+        'company_logo': 'http://146.185.138.240/static/images/mercedes-benz_logo.png'
+    },
+    {
+        'name': 'Metlife',
+        'company_logo': 'http://146.185.138.240/static/images/metlife_logo.png'
+    },
+    {
+        'name': 'Microsoft',
+        'company_logo': 'http://146.185.138.240/static/images/microsoft_logo.png'
+    },
+    {
+        'name': 'Morgan-Stanley',
+        'company_logo': 'http://146.185.138.240/static/images/morgan-stanley_logo.png'
+    },
+    {
+        'name': 'Nintendo',
+        'company_logo': 'http://146.185.138.240/static/images/nintendo_logo.png'
+    },
+    {
+        'name': 'P&G',
+        'company_logo': 'http://146.185.138.240/static/images/p&g_logo.png'
+    },
+    {
+        'name': 'Panasonic',
+        'company_logo': 'http://146.185.138.240/static/images/panasonic_logo.png'
+    },
+    {
+        'name': 'Philips',
+        'company_logo': 'http://146.185.138.240/static/images/philips_logo.png'
+    },
+    {
+        'name': 'Oracle',
+        'company_logo': 'http://146.185.138.240/static/images/oracle_logo.png'
+    },
+    {
+        'name': 'Renault',
+        'company_logo': 'http://146.185.138.240/static/images/renault_logo.png'
+    },
+    {
+        'name': 'Sky-news',
+        'company_logo': 'http://146.185.138.240/static/images/sky-news_logo.png'
+    },
+    {
+        'name': 'Toshiba',
+        'company_logo': 'http://146.185.138.240/static/images/toshiba_logo.png'
+    },
+    {
+        'name': 'Toyota',
+        'company_logo': 'http://146.185.138.240/static/images/toyota_logo.png'
+    },
+    {
+        'name': 'Unilever',
+        'company_logo': 'http://146.185.138.240/static/images/unilever_logo.png'
+    },
+    {
+        'name': 'Volkswagen',
+        'company_logo': 'http://146.185.138.240/static/images/volkswagen_logo.png'
+    },
+    {
+        'name': 'Vodafone',
+        'company_logo': 'http://146.185.138.240/static/images/vodafone_logo.png'
+    },
+    {
+        'name': 'Wells-Fargo',
+        'company_logo': 'http://146.185.138.240/static/images/wells-fargo_logo.png'
+    },
+    {
+        'name': 'BMW',
+        'company_logo': 'http://146.185.138.240/static/images/bmw_logo.png'
     }
 ]

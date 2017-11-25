@@ -2,7 +2,6 @@ from __future__ import print_function
 import flask
 import json
 import math
-import collections
 from flask.ext.cors import CORS
 from flask import request
 import os
@@ -781,17 +780,12 @@ def get_news(company, news_type, page_num):
 
     if news_type == 'positive' or news_type == 'Positive+News':
         news_message = 'Positive'
-        direction = 'POS'
         direction_list = ['POS', 'POSITIVE']
     else:
-        direction = 'NEG'
         news_message = 'Negative'
         direction_list = ['NEG', 'NEGATIVE']
 
-
-    # requested_news = utils.get_news_by_direction(direction)
-    requested_news = utils.get_news_by_direction_and_company(direction, company, direction_list)
-    # print(requested_news)
+    requested_news = utils.get_news_by_direction_and_company(company, direction_list)
 
     f = lambda A, n=3: [A[i:i + n] for i in range(0, len(A), n)]
     news_per_page = f(requested_news)

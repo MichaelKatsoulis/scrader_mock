@@ -1,13 +1,4 @@
-from gevent import monkey
-
-import time
-import gevent
-
-import new_articles
 import mongo
-
-
-monkey.patch_all()
 
 
 def get_all_companies():
@@ -30,7 +21,7 @@ def company_typed_search(company):
 
 
 def company_news_type(company_given):
-    #list of news type a company has
+    # list of news type a company has
     news_cursor = mongo.find_matches('articles', {'company': company_given})
     comp_type_of_news = []
     for new in news_cursor:
@@ -51,12 +42,9 @@ def total_articles():
 def companies_by_type(news_type):
     # list of companies names , type can be good_companies bad_companies
 
-    companies_list = []
     if news_type == 'good_companies':
-        news_type = 'POS'
         match = ['POS', 'POSITIVE']
     elif news_type == 'bad_companies':
-        news_type = 'NEG'
         match = ['NEG', 'NEGATIVE']
 
     articles_cursor = list(mongo.find_matches_containing_many('articles', 'direction', match))
@@ -70,57 +58,12 @@ def companies_by_type(news_type):
     return companies_new_list
 
 
-def get_news_by_direction_and_company(direction, company, direction_list):
-    #list of news by their direction good bad
+def get_news_by_direction_and_company(company, direction_list):
+    # list of news by their direction good bad
 
     news_list = list(mongo.find_matches_two_fields('articles', 'company', [company], 'direction', direction_list))
     return news_list
 
-def update_companies_news(time_interval):
-
-    while True:
-        all_news = new_articles.articles
-        for new_id, new_dict in all_news.items():
-            if 'NEU' in new_dict.get('direction'):
-                continue
-            company = new_dict.get('company')
-            company_dict = mongo.find_one_match('companies', {"name": company})
-            if new_id not in company_dict['company_news_ids']:
-                company_dict['company_news_ids'].append(new_id)
-                mongo.insert_one_in('companies', {"name": company},
-                                    {'company_news_ids': company_dict['company_news_ids']})
-        gevent.sleep(time_interval)
-
-
-def update_companies_news_once():
-
-    all_news = new_articles.articles
-    for new_id, new_dict in all_news.items():
-        if 'NEU' in new_dict.get('direction'):
-            continue
-        company = new_dict.get('company')
-        company_dict = mongo.find_one_match('companies', {"name": company})
-        if new_id not in company_dict['company_news_ids']:
-            company_dict['company_news_ids'].append(new_id)
-            mongo.insert_one_in('companies', {"name": company},
-                                {'company_news_ids': company_dict['company_news_ids']})
-
-
-def news_poll(poll_time):
-
-    gevent.spawn(update_companies_news, poll_time)
-
-
-def add_article(article):
-    import hashlib
-    title = article.get('title').encode('utf-8')
-    id = str(hashlib.md5(title).hexdigest())
-    new_articles.articles[id] = article
-
-
-def get_article_by_id(article_id):
-
-    return new_articles.articles.get(article_id, None)
 
 def get_companies_articles(company):
     return list(mongo.find_matches('articles', {'company': company}))
@@ -129,7 +72,6 @@ def get_companies_articles(company):
 def article_from_excel():
 
     from xlrd import open_workbook
-    import copy
     book = open_workbook('Scrader-Sample_1-12.xlsx')
     sheet = book.sheet_by_index(0)
     keys = dict((i, sheet.cell_value(0, i)) for i in range(sheet.ncols))
@@ -145,7 +87,6 @@ def article_from_excel():
         new_article['company'] = article.get('Company')
         new_article['website'] = article.get('Website')
         new_article['website_url'] = article.get('Website url')
-        # add_article(new_article)
         mongo.insert_one('articles', new_article)
 
 
@@ -161,6 +102,5 @@ def article_from_csv():
             new_article['image_url'] = article.get('Image')
             new_article['subtitle'] = article.get('Date')
             new_article['item_url'] = article.get('Article')
-            # add_article(new_article)
             articles.append(new_article)
     return articles
