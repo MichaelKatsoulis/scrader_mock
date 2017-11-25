@@ -147,3 +147,20 @@ def article_from_excel():
         new_article['website_url'] = article.get('Website url')
         # add_article(new_article)
         mongo.insert_one('articles', new_article)
+
+
+def article_from_csv():
+
+    import csv
+    articles = []
+    with open('Scrader4.csv') as csvfile:
+        reader = csv.DictReader(csvfile)
+        for article in reader:
+            new_article = {}
+            new_article['title'] = article.get('Title')
+            new_article['image_url'] = article.get('Image')
+            new_article['subtitle'] = article.get('Date')
+            new_article['item_url'] = article.get('Article')
+            # add_article(new_article)
+            articles.append(new_article)
+    return articles
