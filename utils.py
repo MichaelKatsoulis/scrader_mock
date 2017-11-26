@@ -2,7 +2,6 @@ import gevent
 import mongo
 import schedule
 import time
-import pickle
 import requests
 
 from gevent import monkey
@@ -117,22 +116,20 @@ def article_from_csv():
 
 def send_user_news(user_id):
     user = mongo.find_one_match('users', {"user_id": user_id})
-    print("sending staff for user" + user.get('name'))
+    # print("sending staff for user" + user.get('name'))
     url = 'https://api.chatfuel.com/bots/#/bot/591189a0e4b0772d3373542b/' \
           'users/{}/' \
           'send?chatfuel_token=vnbqX6cpvXUXFcOKr5RHJ7psSpHDRzO1hXBY8dkvn50ZkZyWML3YdtoCnKH7FSjC' \
           '&chatfuel_block_id=59b7ff1ae4b07955ad7993b2&last%20name={}'.format(user_id, user.get('name'))
-    print(url)
+    # print(url)
     # requests.post(url)
 
 
 def start_scheduler(datetime, user_id):
-    print(datetime)
     hour = datetime.split(':')[0]
     minute = datetime.split(':')[1]
     utc_hour = str(int(hour) - 2)
     datetime = utc_hour + ':' + minute
-    print(datetime)
     schedule.every().day.at(datetime).do(send_user_news, user_id)
     while True:
         schedule.run_pending()
@@ -142,12 +139,6 @@ def start_scheduler(datetime, user_id):
 def start_scheduler_task(user):
     datetime = user.get('datetime')
     user_id = user.get('user_id')
-    if user.get('task_id') is not None:
-        task_ob = pickle.loads(user.get('task_id'))
-        print(task_ob)
-        gevent.kill(task_ob)
-
     task_ob = gevent.spawn(start_scheduler, datetime, user_id)
-    task_id = pickle.dumps(task_ob)
     mongo.insert_one_in('users', {"user_id": user_id}, {'task_id': task_id})
 
