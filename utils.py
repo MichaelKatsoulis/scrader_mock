@@ -113,14 +113,9 @@ def article_from_csv():
     return articles
 
 
-def start_scheduler_task(user):
-    datetime = user.get('datetime')
-    user_id = user.get('user_id')
-    if user.get('task_id') is not None:
-        gevent.kill(user.get('task_id'))
-
-    task_id = gevent.spawn(start_scheduler, datetime, user_id)
-    mongo.insert_one_in('users', {"user_id": user_id}, {'task_id': task_id})
+def send_user_news(user_id):
+    user = mongo.find_one_match('users', {"user_id": user_id})
+    print("sending staff for user" + user.get('name'))
 
 
 def start_scheduler(datetime, user_id):
@@ -130,6 +125,12 @@ def start_scheduler(datetime, user_id):
         time.sleep(1)
 
 
-def send_user_news(user_id):
-    user = mongo.find_one_match('users', {"user_id": user_id})
-    print("sending staff for user" + user.get('name'))
+def start_scheduler_task(user):
+    datetime = user.get('datetime')
+    user_id = user.get('user_id')
+    if user.get('task_id') is not None:
+        gevent.kill(user.get('task_id'))
+
+    task_id = gevent.spawn(start_scheduler, datetime, user_id)
+    mongo.insert_one_in('users', {"user_id": user_id}, {'task_id': task_id})
+
