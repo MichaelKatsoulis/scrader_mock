@@ -374,6 +374,7 @@ def user_datetime_data():
     if user is not None:
         mongo.insert_one_in('users', {"user_id": user_id}, {'datetime': data.get('datetime')})
 
+    utils.start_scheduler_task(user)
     response_data = {}
     status = 200 if response_data is not None else 403
     js = json.dumps(response_data, indent=2)
@@ -442,7 +443,7 @@ def user_websites_data():
     user_id = data.get('user')
     user = mongo.find_one_match('users', {"user_id": user_id})
     if user is not None:
-        mongo.insert_one_in('users', {"user_id": user_id}, {'websites':data.get('websites')})
+        mongo.insert_one_in('users', {"user_id": user_id}, {'websites': data.get('websites')})
 
     response_data = {}
     status = 200 if response_data is not None else 403

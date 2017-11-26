@@ -1,4 +1,11 @@
+import gevent
 import mongo
+import schedule
+import time
+
+from gevent import monkey
+
+monkey.patch_all()
 
 
 def get_all_companies():
@@ -104,3 +111,25 @@ def article_from_csv():
             new_article['item_url'] = article.get('Article')
             articles.append(new_article)
     return articles
+
+
+def start_scheduler_task(user):
+    datetime = user.get('datetime')
+    user_id = user.get('user_id')
+    if user.get('task_id') is not None:
+        gevent.kill(user.get('task_id'))
+
+    task_id = gevent.spawn(start_scheduler, datetime, user_id)
+    mongo.insert_one_in('users', {"user_id": user_id}, {'task_id': task_id})
+
+
+def start_scheduler(datetime, user_id):
+    schedule.every().day.at(datetime).do(send_user_news, user_id)
+    while True:
+        schedule.run_pending()
+        time.sleep(1)
+
+
+def send_user_news(user_id):
+    user = mongo.find_one_match('users', {"user_id": user_id})
+    print("sending staff for user" + user.get('name'))
