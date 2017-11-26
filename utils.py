@@ -122,10 +122,17 @@ def send_user_news(user_id):
           'users/{}/' \
           'send?chatfuel_token=vnbqX6cpvXUXFcOKr5RHJ7psSpHDRzO1hXBY8dkvn50ZkZyWML3YdtoCnKH7FSjC' \
           '&chatfuel_block_id=59b7ff1ae4b07955ad7993b2&last%20name={}'.format(user_id, user.get('name'))
-    requests.post(url)
+    print(url)
+    # requests.post(url)
 
 
 def start_scheduler(datetime, user_id):
+    print(datetime)
+    hour = datetime.split(':')[0]
+    minute = datetime.split(':')[1]
+    utc_hour = str(int(hour) - 2)
+    datetime = utc_hour + ':' + minute
+    print(datetime)
     schedule.every().day.at(datetime).do(send_user_news, user_id)
     while True:
         schedule.run_pending()
