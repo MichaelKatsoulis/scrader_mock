@@ -374,6 +374,7 @@ def user_datetime_data():
     if user is not None:
         mongo.insert_one_in('users', {"user_id": user_id}, {'datetime': data.get('datetime')})
 
+    user = mongo.find_one_match('users', {"user_id": user_id})
     utils.start_scheduler_task(user)
     response_data = {}
     status = 200 if response_data is not None else 403

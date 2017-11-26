@@ -129,8 +129,9 @@ def start_scheduler_task(user):
     datetime = user.get('datetime')
     user_id = user.get('user_id')
     if user.get('task_id') is not None:
+        print(user.get('task_id'))
         gevent.kill(user.get('task_id'))
 
     task_id = gevent.spawn(start_scheduler, datetime, user_id)
-    mongo.insert_one_in('users', {"user_id": user_id}, {'task_id': task_id})
+    mongo.insert_one_in('users', {"user_id": user_id}, {'task_id': str(task_id)})
 
