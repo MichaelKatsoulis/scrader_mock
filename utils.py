@@ -2,6 +2,7 @@ import gevent
 import mongo
 import schedule
 import time
+import pickle
 
 from gevent import monkey
 
@@ -129,9 +130,11 @@ def start_scheduler_task(user):
     datetime = user.get('datetime')
     user_id = user.get('user_id')
     if user.get('task_id') is not None:
-        print(user.get('task_id'))
-        gevent.kill(user.get('task_id'))
+        task_ob = pickle.loads(user.get('task_id'))
+        print(task_ob)
+        gevent.kill(task_ob)
 
-    task_id = gevent.spawn(start_scheduler, datetime, user_id)
-    mongo.insert_one_in('users', {"user_id": user_id}, {'task_id': str(task_id)})
+    task_ob = gevent.spawn(start_scheduler, datetime, user_id)
+    task_id = pickle.dumps(task_ob)
+    mongo.insert_one_in('users', {"user_id": user_id}, {'task_id': task_id})
 
