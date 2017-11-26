@@ -3,6 +3,7 @@ import mongo
 import schedule
 import time
 import pickle
+import requests
 
 from gevent import monkey
 
@@ -117,6 +118,11 @@ def article_from_csv():
 def send_user_news(user_id):
     user = mongo.find_one_match('users', {"user_id": user_id})
     print("sending staff for user" + user.get('name'))
+    url = 'https://api.chatfuel.com/bots/#/bot/591189a0e4b0772d3373542b/' \
+          'users/{}/' \
+          'send?chatfuel_token=vnbqX6cpvXUXFcOKr5RHJ7psSpHDRzO1hXBY8dkvn50ZkZyWML3YdtoCnKH7FSjC' \
+          '&chatfuel_block_id=59b7ff1ae4b07955ad7993b2&last%20name={}'.format(user_id, user.get('name'))
+    requests.post(url)
 
 
 def start_scheduler(datetime, user_id):
