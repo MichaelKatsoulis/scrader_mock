@@ -58,8 +58,8 @@ def companies_by_type(news_type):
     articles_cursor = list(mongo.find_matches_containing_many('articles', 'direction', match))
     companies_new_list = []
     for article in articles_cursor:
-        comp_dict= mongo.find_one_match('companies', {'name': article.get('company')})
-        if comp_dict not in companies_new_list:
+        comp_dict = mongo.find_one_match('companies', {'name': article.get('company')})
+        if not any(d['company_name'] == comp_dict.get('name') for d in companies_new_list):
             comp_dict['company_name'] = comp_dict.pop('name')
             companies_new_list.append(comp_dict)
 
