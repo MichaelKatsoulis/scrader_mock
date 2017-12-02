@@ -987,4 +987,4 @@ if __name__ == '__main__':
     utils.start_scheduler_task()
     # utils.update_companies_news_once()
 
-    app.run(host=config.HOST, port=config.PORT, debug=DEBUG)
+    app.run(host=config.HOST, port=config.PORT, debug=True, use_reloader=False)
