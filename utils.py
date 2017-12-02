@@ -121,7 +121,6 @@ def send_user_news(user):
           'send?chatfuel_token=vnbqX6cpvXUXFcOKr5RHJ7psSpHDRzO1hXBY8dkvn50ZkZyWML3YdtoCnKH7FSjC' \
           '&chatfuel_block_id=5a1aae94e4b0c921e2a89115&last%20name={}'.format(user.get('user_id'), user.get('name'))
 
-    requests.post(url)
     try:
         r = requests.post(url)
     except requests.exceptions.RequestException as e:
