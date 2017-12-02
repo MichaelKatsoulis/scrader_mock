@@ -2,6 +2,7 @@ import gevent
 import mongo
 import schedule
 import time
+import datetime
 import requests
 
 from gevent import monkey
@@ -114,31 +115,27 @@ def article_from_csv():
     return articles
 
 
-def send_user_news(user_id):
-    user = mongo.find_one_match('users', {"user_id": user_id})
-    # print("sending staff for user" + user.get('name'))
+def send_user_news(user):
+    print("sending staff for user" + user.get('name'))
     url = 'https://api.chatfuel.com/bots/#/bot/591189a0e4b0772d3373542b/' \
           'users/{}/' \
           'send?chatfuel_token=vnbqX6cpvXUXFcOKr5RHJ7psSpHDRzO1hXBY8dkvn50ZkZyWML3YdtoCnKH7FSjC' \
-          '&chatfuel_block_id=59b7ff1ae4b07955ad7993b2&last%20name={}'.format(user_id, user.get('name'))
-    # print(url)
-    # requests.post(url)
+          '&chatfuel_block_id=59b7ff1ae4b07955ad7993b2&last%20name={}'.format(user.get('user_id'), user.get('name'))
+    print(url)
+    requests.post(url)
 
 
-def start_scheduler(datetime, user_id):
-    hour = datetime.split(':')[0]
-    minute = datetime.split(':')[1]
-    utc_hour = str(int(hour) - 2)
-    datetime = utc_hour + ':' + minute
-    schedule.every().day.at(datetime).do(send_user_news, user_id)
+def start_scheduler():
     while True:
-        schedule.run_pending()
-        time.sleep(1)
+        time_now = str(datetime.datetime.now().time())
+        formatted_time = (str(int(time_now.split(':')[0]) + 2)) + ":" + (time_now.split(':')[1])
+        print(formatted_time)
+        users = mongo.find_matches('users', {'datetime': formatted_time})
+        for user in users:
+            send_user_news(user)
+        time.sleep(60)
 
 
-def start_scheduler_task(user):
-    datetime = user.get('datetime')
-    user_id = user.get('user_id')
-    task_ob = gevent.spawn(start_scheduler, datetime, user_id)
-    mongo.insert_one_in('users', {"user_id": user_id}, {'task_id': task_id})
+def start_scheduler_task():
+    gevent.spawn(start_scheduler)
 
