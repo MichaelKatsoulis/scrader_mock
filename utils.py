@@ -1,6 +1,5 @@
 import gevent
 import mongo
-import schedule
 import time
 import datetime
 import requests
@@ -116,21 +115,24 @@ def article_from_csv():
 
 
 def send_user_news(user):
-    print("sending staff for user" + user.get('name'))
+    # print("sending staff for user" + user.get('name'))
     url = 'https://api.chatfuel.com/bots/591189a0e4b0772d3373542b/' \
           'users/{}/' \
           'send?chatfuel_token=vnbqX6cpvXUXFcOKr5RHJ7psSpHDRzO1hXBY8dkvn50ZkZyWML3YdtoCnKH7FSjC' \
           '&chatfuel_block_id=5a1aae94e4b0c921e2a89115&last%20name={}'.format(user.get('user_id'), user.get('name'))
-    print(url)
-    r = requests.post(url)
-    print r.text()
+
+    requests.post(url)
+    try:
+        r = requests.post(url)
+    except requests.exceptions.RequestException as e:
+        pass
 
 
 def start_scheduler():
     while True:
         time_now = str(datetime.datetime.now().time())
         formatted_time = (str(int(time_now.split(':')[0]) + 2)) + ":" + (time_now.split(':')[1])
-        print(formatted_time)
+        # print(formatted_time)
         users = mongo.find_matches('users', {'datetime': formatted_time})
         for user in users:
             send_user_news(user)

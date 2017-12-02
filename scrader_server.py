@@ -13,7 +13,7 @@ import logging
 import mongo
 import utils
 
-DEBUG = not False  # Enable this to print python crashes and exceptions
+DEBUG = False  # Enable this to print python crashes and exceptions
 
 app = flask.Flask(__name__, static_url_path='/static')
 
