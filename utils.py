@@ -117,12 +117,13 @@ def article_from_csv():
 
 def send_user_news(user):
     print("sending staff for user" + user.get('name'))
-    url = 'https://api.chatfuel.com/bots/#/bot/591189a0e4b0772d3373542b/' \
+    url = 'https://api.chatfuel.com/bots/591189a0e4b0772d3373542b/' \
           'users/{}/' \
           'send?chatfuel_token=vnbqX6cpvXUXFcOKr5RHJ7psSpHDRzO1hXBY8dkvn50ZkZyWML3YdtoCnKH7FSjC' \
-          '&chatfuel_block_id=59b7ff1ae4b07955ad7993b2&last%20name={}'.format(user.get('user_id'), user.get('name'))
+          '&chatfuel_block_id=5a1aae94e4b0c921e2a89115&last%20name={}'.format(user.get('user_id'), user.get('name'))
     print(url)
-    requests.post(url)
+    r = requests.post(url)
+    print r.text()
 
 
 def start_scheduler():
