@@ -133,11 +133,6 @@ for url in scraping_list:
                     # print "No image in " + url
                     pass
 
-
-                    # the following needs to be scraped as well
-                    # url_image=soup.find("meta",  property="og:image")
-                    # time=[meta.get('content') for meta in soup.find_all('meta', itemprop='datePublished')]
-                    # date=time[(time.find("-")+1):time.find("T")]
 print(len(url_list))
 print(len(image_list))
 print(len(title_list))
