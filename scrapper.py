@@ -6,6 +6,7 @@ import httplib
 import socket
 import unicodedata
 import ssl
+import datetime
 
 timeout = 10
 socket.setdefaulttimeout(timeout)
@@ -113,7 +114,8 @@ for url in scraping_list:
                 if time:
                     date = time[0][:time[0].find("T")]
                 else:
-                    date = ''
+                    today = datetime.date.today()
+                    date = '{}/{}/{}'.format(today.month, today.day, today.year)
                 # date= time[(time.find("-")+1):time.find("T")]
                 #                     print date
                 if url_image is not None:
