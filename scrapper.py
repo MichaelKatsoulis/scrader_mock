@@ -67,7 +67,7 @@ for url in scraping_list:
         print "Bad URL or timeout"
         print url
         continue
-    soup = BeautifulSoup(content, "html5lib")
+    soup = BeautifulSoup(content, "html.parser")
     # print soup.prettify()
 
     # vriskei ola ta links
@@ -107,7 +107,7 @@ for url in scraping_list:
                     print h_link
                     continue
 
-                h_link_soup = BeautifulSoup(h_link_content, "html5lib")
+                h_link_soup = BeautifulSoup(h_link_content, "html.parser")
                 url_image = h_link_soup.find("meta", property="og:image")
                 time = [meta.get('content') for meta in h_link_soup.find_all('meta', itemprop='datePublished')]
                 if time:
