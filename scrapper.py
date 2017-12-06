@@ -174,12 +174,12 @@ print(len(url_list))
 print(len(image_list))
 print(len(title_list))
 print(len(date_list))
-print(len(company_list))
+print(len(companies_list))
 print(len(website_url_list))
 print(len(websites_list))
 
 data = pd.DataFrame({"Article": url_list, "Title": title_list, "Image": image_list, "Date": date_list,
-                     "Company": company_list, "Website": websites_list, "Website url": website_url_list})
+                     "Company": companies_list, "Website": websites_list, "Website url": website_url_list})
 print(len(data))
 
 try:

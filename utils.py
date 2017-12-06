@@ -111,8 +111,10 @@ def article_from_csv():
             new_article['subtitle'] = article.get('Date')
             new_article['item_url'] = article.get('Article')
             new_article['direction'] = article.get('Sentiment')
-            articles.append(new_article)
-    return articles
+            new_article['company'] = article.get('Company')
+            new_article['website'] = article.get('Website')
+            new_article['website_url'] = article.get('Website url')
+            mongo.insert_one('articles', new_article)
 
 
 def send_user_news(user):
