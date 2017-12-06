@@ -82,7 +82,7 @@ title_list = []
 url_list = []
 image_list = []
 date_list = []
-company_list = []
+companies_list = []
 website_url_list = []
 websites_list = []
 user_agent = 'Mozilla/5.0 (Windows NT 6.1; Win64; x64)'
@@ -163,7 +163,7 @@ for index, url in enumerate(scraping_list):
                         image_list.append(image)
                         title_list.append(url_title)
                         date_list.append(date)
-                        company_list.append(company)
+                        companies_list.append(company)
                         website_url_list.append(url)
                         websites_list.append(website)
                 else:
