@@ -24,31 +24,32 @@ company_list = ["aig-",
 ]
 
 
-scraping_list = ["https://www.nytimes.com/section/business?action=click&pgtype=Homepage&region=TopBar&module=HPMiniNav&contentCollection=Business&WT.nav=page",
+scraping_list = [
+               "https://www.nytimes.com/section/business?action=click&pgtype=Homepage&region=TopBar&module=HPMiniNav&contentCollection=Business&WT.nav=page",
                "http://www.businessinsider.com/enterprise",
                "http://money.cnn.com/technology",
                "http://www.reuters.com/news/archive/businessNews?view=page"
                "https://www.forbes.com/home_usa/#62fa69d6324b",
                "http://www.bbc.com/news/business",
-              "http://abcnews.go.com/Technology",
+               "http://abcnews.go.com/Technology",
                "http://nypost.com/business/",
-              "http://www.chicagotribune.com/business/",
+               "http://www.chicagotribune.com/business/",
                "http://www.foxbusiness.com/",
                "https://finance.yahoo.com/tech/",
                "https://www.nbcnews.com/business",
                "https://www.huffingtonpost.com/section/business/",
                "http://www.newser.com",
-                "http://www.newsweek.com/business",
-                "https://www.usatoday.com/money/business/",
+               "http://www.newsweek.com/business",
+               "https://www.usatoday.com/money/business/",
                "https://www.washingtonpost.com/business/",
-                "https://www.wsj.com/news/business/",
-                "https://www.usatoday.com",
-              "http://www.telegraph.co.uk/business/companies",
+               "https://www.wsj.com/news/business/",
+               "https://www.usatoday.com",
+               "http://www.telegraph.co.uk/business/companies",
                "https://www.bloomberg.com/europe",
                "https://www.theguardian.com/uk/business",
-              "https://www.npr.org/sections/business/",
+               "https://www.npr.org/sections/business/",
                "https://www.nbcnews.com/business"
-]
+                ]
 
 title_list = []
 url_list = []
