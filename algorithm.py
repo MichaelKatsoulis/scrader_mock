@@ -1,3 +1,4 @@
+import os
 import pandas as pd
 
 from sklearn.feature_extraction.text import TfidfVectorizer
@@ -92,8 +93,13 @@ titles = g.transform(real_data['Title']).toarray()
 results = clf.predict(titles)
 print results
 probabilities = clf.predict_proba(titles)
+print probabilities
 real_data['Sentiment'] = results
-real_data['Probability'] = probabilities
+
+try:
+    os.remove("./ScraderwithSentiment.csv")
+except OSError:
+    pass
 real_data.to_csv("./ScraderwithSentiment.csv", encoding='utf-8')
 
 

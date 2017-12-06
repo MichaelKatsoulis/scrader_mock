@@ -110,6 +110,7 @@ def article_from_csv():
             new_article['image_url'] = article.get('Image')
             new_article['subtitle'] = article.get('Date')
             new_article['item_url'] = article.get('Article')
+            new_article['direction'] = article.get('Sentiment')
             articles.append(new_article)
     return articles
 

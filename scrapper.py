@@ -1,11 +1,11 @@
 from bs4 import BeautifulSoup
 import urllib2
-import requests
 import pandas as pd
 import httplib
 import socket
 import unicodedata
 import ssl
+import os
 import datetime
 
 timeout = 10
@@ -21,7 +21,7 @@ company_list = ["aig-",
             "disney","prudencial","qualcomm","honeywell","abb-","astrazeneca","carrefour","aetna",
               "edf","pfizer","statoil","facebook","twitter","general-motors","gm-","honda","cisco",
                "hyundai", "cnooc-","unilever","eon-","bayer","hitachi","lockheed","deloitte"
-]
+                ]
 
 
 scraping_list = [
@@ -51,12 +51,43 @@ scraping_list = [
                "https://www.nbcnews.com/business"
                 ]
 
+website_list = [
+    "nytimes.com",
+    "businessinsider.com",
+    "cnn.com",
+    "reuters.com",
+    "forbes.com",
+    "bbc.com",
+    "abcnews.go.com",
+    "nypost.com",
+    "chicagotribune.com",
+    "foxbusiness.com",
+    "finance.yahoo.com",
+    "nbcnews.com",
+    "huffingtonpost.com",
+    "newser.com",
+    "newsweek.com",
+    "www.usatoday.com/money",
+    "washingtonpost.com",
+    "wsj.com",
+    "usatoday.com",
+    "telegraph.co.uk",
+    "bloomberg.com",
+    "theguardian.com",
+    "npr.org",
+    "nbcnews.com"
+]
+
 title_list = []
 url_list = []
 image_list = []
 date_list = []
+company_list = []
+website_url_list = []
+websites_list = []
 user_agent = 'Mozilla/5.0 (Windows NT 6.1; Win64; x64)'
-for url in scraping_list:
+for index, url in enumerate(scraping_list):
+    website = website_list[index]
     url_slice_no_http = url[:(url.find(":") + 1)]
     if url.find(".com") == -1:
         url_slice_no_link = url[:(url.find("co.uk") + 5)]
@@ -132,6 +163,9 @@ for url in scraping_list:
                         image_list.append(image)
                         title_list.append(url_title)
                         date_list.append(date)
+                        company_list.append(company)
+                        website_url_list.append(url)
+                        websites_list.append(website)
                 else:
                     # print "No image in " + url
                     pass
@@ -140,7 +174,16 @@ print(len(url_list))
 print(len(image_list))
 print(len(title_list))
 print(len(date_list))
+print(len(company_list))
+print(len(website_url_list))
+print(len(websites_list))
 
-data = pd.DataFrame({"Article": url_list, "Title": title_list, "Image": image_list, "Date": date_list})
+data = pd.DataFrame({"Article": url_list, "Title": title_list, "Image": image_list, "Date": date_list,
+                     "Company": company_list, "Website": websites_list, "Website url": website_url_list})
 print(len(data))
+
+try:
+    os.remove("./Scraderlatestnews.csv")
+except OSError:
+    pass
 data.to_csv("./Scraderlatestnews.csv", encoding='utf-8')
