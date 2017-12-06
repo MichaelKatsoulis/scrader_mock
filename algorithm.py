@@ -87,4 +87,12 @@ print y_pred
 print clf.predict_proba(X_test)
 
 
+real_data = pd.read_csv('./Scraderlatestnews.csv', sep=',', encoding='utf-8')
+titles = g.transform(real_data['Title']).toarray()
+results = clf.predict(titles)
+print results
+print clf.predict_proba(titles)
+real_data['Sentiment'] = results
+real_data.to_csv("./ScraderwithSentiment.csv", encoding='utf-8')
+
 
