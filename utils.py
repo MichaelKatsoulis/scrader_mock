@@ -4,6 +4,9 @@ import time
 import datetime
 import requests
 
+from bson.objectid import ObjectId
+
+
 from gevent import monkey
 
 monkey.patch_all()
@@ -77,6 +80,15 @@ def get_companies_articles(company):
     return list(mongo.find_matches('articles', {'company': company}))
 
 
+def manually_tag_article(article_id):
+    article = mongo.find_one_match('articles', {"_id": ObjectId(article_id)})
+    print(article)
+    new_false_estimations = article.get('false_estims') + 1
+    mongo.insert_one_in('articles', {"_id": ObjectId(article_id)}, {'false_estims': new_false_estimations})
+    article = mongo.find_one_match('articles', {"_id": ObjectId(article_id)})
+    print(article)
+
+
 def article_from_excel():
 
     from xlrd import open_workbook
@@ -95,6 +107,7 @@ def article_from_excel():
         new_article['company'] = article.get('Company')
         new_article['website'] = article.get('Website')
         new_article['website_url'] = article.get('Website url')
+        new_article['false_estims'] = 0
         mongo.insert_one('articles', new_article)
 
 
