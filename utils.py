@@ -82,11 +82,8 @@ def get_companies_articles(company):
 
 def manually_tag_article(article_id):
     article = mongo.find_one_match('articles', {"_id": ObjectId(article_id)})
-    print(article)
     new_false_estimations = article.get('false_estims') + 1
     mongo.insert_one_in('articles', {"_id": ObjectId(article_id)}, {'false_estims': new_false_estimations})
-    article = mongo.find_one_match('articles', {"_id": ObjectId(article_id)})
-    print(article)
 
 
 def article_from_excel():
