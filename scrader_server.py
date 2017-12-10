@@ -803,7 +803,6 @@ def get_news(company, news_type, page_num):
     # print(quick_replies_page_numbers_to_show)
 
     for new in news_to_show:
-        print(new)
         element = copy.deepcopy(element)
         element['title'] = new.get('title')[0:79]
         element['image_url'] = str(new.get('image_url'))
@@ -811,7 +810,9 @@ def get_news(company, news_type, page_num):
         element['item_url'] = str(new.get('item_url'))
         # element['buttons'][0]['url'] = new.get('website_url')
         # element['buttons'][0]['title'] = new.get('website')
-        element['buttons'][0]['url'] = "http://146.185.138.240/taged_article/{}".format(new.get('item_url'))
+        id = str(new.get('_id'))
+        print(id)
+        element['buttons'][0]['url'] = "http://146.185.138.240/taged_article/id"
         element['buttons'][0]['title'] = "Wrong Sentiment?"
         element['buttons'][0]['type'] = "json_plugin_url"
         elements.append(element)
