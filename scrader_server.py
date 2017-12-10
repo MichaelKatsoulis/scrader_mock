@@ -812,7 +812,6 @@ def get_news(company, news_type, page_num):
         # element['buttons'][0]['title'] = new.get('website')
         element['buttons'][0]['url'] = "http://146.185.138.240/taged_article/{}".format(str(new.get('item_url')))
         element['buttons'][0]['title'] = "Wrong"
-        element['buttons'][0]['type'] = "json_plugin_url"
         elements.append(element)
 
     for page_number in quick_replies_page_numbers_to_show:
