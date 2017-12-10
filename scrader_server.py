@@ -811,7 +811,8 @@ def get_news(company, news_type, page_num):
         # element['buttons'][0]['url'] = new.get('website_url')
         # element['buttons'][0]['title'] = new.get('website')
         element['buttons'][0]['url'] = "http://146.185.138.240/taged_article/{}".format(str(new.get('item_url')))
-        element['buttons'][0]['title'] = "Wrong"
+        element['buttons'][0]['title'] = "Wrong Sentiment Prediction?"
+        element['buttons'][0]['type'] = "json_plugin_url"
         elements.append(element)
 
     for page_number in quick_replies_page_numbers_to_show:
@@ -855,7 +856,7 @@ def tag_article(new_url):
     """
 
     print(new_url)
-    response_data = {}
+    response_data = {"messages": [{"text": "Thank you! I promise i will get better"}]}
     status = 200 if response_data is not None else 403
     js = json.dumps(response_data, indent=2)
     return flask.Response(js, status=status, mimetype='application/json')
