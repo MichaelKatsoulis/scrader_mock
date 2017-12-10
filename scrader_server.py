@@ -856,6 +856,10 @@ def tag_article(new_url):
     """
 
     print(new_url)
+    response_data = {}
+    status = 200 if response_data is not None else 403
+    js = json.dumps(response_data, indent=2)
+    return flask.Response(js, status=status, mimetype='application/json')
 
 
 @app.route('/guest_companies/<stocks_type>'.format(methods=['GET']))
