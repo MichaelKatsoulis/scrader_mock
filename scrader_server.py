@@ -812,7 +812,7 @@ def get_news(company, news_type, page_num):
         # element['buttons'][0]['title'] = new.get('website')
         id = str(new.get('_id'))
         print(id)
-        element['buttons'][0]['url'] = "http://146.185.138.240/taged_article/id"
+        element['buttons'][0]['url'] = "http://146.185.138.240/taged_article/{}".format(id)
         element['buttons'][0]['title'] = "Wrong Sentiment?"
         element['buttons'][0]['type'] = "json_plugin_url"
         elements.append(element)
@@ -849,15 +849,15 @@ def get_news(company, news_type, page_num):
     return flask.Response(js, status=status, mimetype='application/json')
 
 
-@app.route('/taged_article/new_url'.format(methods=['GET']))
-def tag_article(new_url):
+@app.route('/taged_article/<new_id>'.format(methods=['GET']))
+def tag_article(new_id):
     """ GET Server Status API endpoint
         Args:
         Returns:
             dict: A JSON object containing the nfvacc server status information
     """
 
-    print(new_url)
+    print(new_id)
     response_data = {"messages": [{"text": "Thank you! I promise i will get better"}]}
     status = 200 if response_data is not None else 403
     js = json.dumps(response_data, indent=2)
