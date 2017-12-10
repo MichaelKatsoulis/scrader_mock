@@ -4,6 +4,7 @@ import json
 import math
 from flask.ext.cors import CORS
 from flask import request
+from pymongo.objectid import ObjectId
 import os
 import signal
 import copy
@@ -811,7 +812,6 @@ def get_news(company, news_type, page_num):
         # element['buttons'][0]['url'] = new.get('website_url')
         # element['buttons'][0]['title'] = new.get('website')
         id = str(new.get('_id'))
-        print(id)
         element['buttons'][0]['url'] = "http://146.185.138.240/taged_article/{}".format(id)
         element['buttons'][0]['title'] = "Wrong Sentiment?"
         element['buttons'][0]['type'] = "json_plugin_url"
@@ -857,7 +857,8 @@ def tag_article(new_id):
             dict: A JSON object containing the nfvacc server status information
     """
 
-    print(new_id)
+    article = mongo.find_one_match('articles', {"_id": ObjectId(new_id)})
+    print(article)
     response_data = {"messages": [{"text": "Thank you! I promise i will get better"}]}
     status = 200 if response_data is not None else 403
     js = json.dumps(response_data, indent=2)
