@@ -4,7 +4,6 @@ import json
 import math
 from flask.ext.cors import CORS
 from flask import request
-from bson.objectid import ObjectId
 import os
 import signal
 import copy
@@ -857,8 +856,7 @@ def tag_article(new_id):
             dict: A JSON object containing the nfvacc server status information
     """
 
-    article = mongo.find_one_match('articles', {"_id": ObjectId(new_id)})
-    print(article)
+    utils.manually_tag_article(new_id)
     response_data = {"messages": [{"text": "Thank you! I promise i will get better"}]}
     status = 200 if response_data is not None else 403
     js = json.dumps(response_data, indent=2)
