@@ -93,8 +93,13 @@ def run_algorithm(filename):
     print results
     probabilities = clf.predict_proba(titles)
     print probabilities
-    type(probabilities)
+    list_probabilities = probabilities.tolist()
+    best_probs = []
+    for prob_combo in list_probabilities:
+        best_probs.append(max(prob_combo))
+
     real_data['Sentiment'] = results
+    real_data['Probability'] = best_probs
 
     try:
         os.remove("./ScraderwithSentiment.csv")
