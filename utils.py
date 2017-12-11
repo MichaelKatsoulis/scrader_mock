@@ -46,7 +46,8 @@ def company_news_type(company_given):
 
 def total_articles():
 
-    total_cursor = mongo.find_matches_not_containing('articles', 'direction', ['NEU', 'NEUTRAL'])
+    total_cursor = mongo.find_matches_not_containing('articles', 'direction',
+                                                     ['NEU', 'NEUTRAL'])
     return total_cursor.count()
 
 
@@ -58,10 +59,13 @@ def companies_by_type(news_type):
     elif news_type == 'bad_companies':
         match = ['NEG', 'NEGATIVE']
 
-    articles_cursor = list(mongo.find_matches_containing_many('articles', 'direction', match))
+    articles_cursor = list(mongo.find_matches_containing_many('articles',
+                                                              'direction',
+                                                              match))
     companies_new_list = []
     for article in articles_cursor:
-        comp_dict = mongo.find_one_match('companies', {'name': article.get('company')})
+        comp_dict = mongo.find_one_match('companies',
+                                         {'name': article.get('company')})
         if not any(d['company_name'] == comp_dict.get('name') for d in companies_new_list):
             comp_dict['company_name'] = comp_dict.pop('name')
             companies_new_list.append(comp_dict)
@@ -72,7 +76,9 @@ def companies_by_type(news_type):
 def get_news_by_direction_and_company(company, direction_list):
     # list of news by their direction good bad
 
-    news_list = list(mongo.find_matches_two_fields('articles', 'company', [company], 'direction', direction_list))
+    news_list = list(mongo.find_matches_two_fields('articles', 'company',
+                                                   [company], 'direction',
+                                                   direction_list))
     return news_list
 
 
@@ -83,7 +89,8 @@ def get_companies_articles(company):
 def manually_tag_article(article_id):
     article = mongo.find_one_match('articles', {"_id": ObjectId(article_id)})
     new_false_estimations = article.get('false_estims') + 1
-    mongo.insert_one_in('articles', {"_id": ObjectId(article_id)}, {'false_estims': new_false_estimations})
+    mongo.insert_one_in('articles', {"_id": ObjectId(article_id)},
+                                    {'false_estims': new_false_estimations})
 
 
 def article_from_excel():
@@ -111,7 +118,6 @@ def article_from_excel():
 def article_from_csv():
 
     import csv
-    articles = []
     with open('Scrader4.csv') as csvfile:
         reader = csv.DictReader(csvfile)
         for article in reader:
@@ -131,11 +137,13 @@ def send_user_news(user):
     # print("sending staff for user" + user.get('name'))
     url = 'https://api.chatfuel.com/bots/591189a0e4b0772d3373542b/' \
           'users/{}/' \
-          'send?chatfuel_token=vnbqX6cpvXUXFcOKr5RHJ7psSpHDRzO1hXBY8dkvn50ZkZyWML3YdtoCnKH7FSjC' \
-          '&chatfuel_block_id=5a1aae94e4b0c921e2a89115&last%20name={}'.format(user.get('user_id'), user.get('name'))
+          'send?chatfuel_token=' \
+          'vnbqX6cpvXUXFcOKr5RHJ7psSpHDRzO1hXBY8dkvn50ZkZyWML3YdtoCnKH7FSjC' \
+          '&chatfuel_block_id=5a1aae94e4b0c921e2a89115&last%20name={}'.\
+           format(user.get('user_id'), user.get('name'))
 
     try:
-        r = requests.post(url)
+        requests.post(url)
     except requests.exceptions.RequestException as e:
         pass
 
@@ -143,7 +151,10 @@ def send_user_news(user):
 def start_scheduler():
     while True:
         time_now = str(datetime.datetime.now().time())
-        formatted_time = (str(int(time_now.split(':')[0]) + 2)) + ":" + (time_now.split(':')[1])
+        formatted_time = (
+            str(
+                int(time_now.split(':')[0]) + 2
+                )) + ":" + (time_now.split(':')[1])
         # print(formatted_time)
         users = mongo.find_matches('users', {'datetime': formatted_time})
         for user in users:
@@ -153,4 +164,3 @@ def start_scheduler():
 
 def start_scheduler_task():
     gevent.spawn(start_scheduler)
-

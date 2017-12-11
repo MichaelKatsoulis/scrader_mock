@@ -36,7 +36,9 @@ def get_companies_html(user_id):
         last_name = user.get('name')
         first_name = user.get('first_name', last_name)
 
-    return flask.render_template('companies.html', name=first_name, user_id=user_id)
+    return flask.render_template(
+        'companies.html', name=first_name, user_id=user_id
+    )
 
 
 @app.route('/scrader/datetime/<user_id>'.format(methods=['GET']))
@@ -52,7 +54,9 @@ def get_datetime_html(user_id):
         last_name = user.get('name')
         first_name = user.get('first_name', last_name)
 
-    return flask.render_template('new_time.html', name=first_name, user_id=user_id)
+    return flask.render_template(
+        'new_time.html', name=first_name, user_id=user_id
+    )
 
 
 @app.route('/scrader/websites/<user_id>'.format(methods=['GET']))
@@ -68,7 +72,9 @@ def get_websites_html(user_id):
         last_name = user.get('name')
         first_name = user.get('first_name', last_name)
 
-    return flask.render_template('websites.html', name=first_name, user_id=user_id)
+    return flask.render_template(
+        'websites.html', name=first_name, user_id=user_id
+    )
 
 
 @app.route('/scrader/all_companies'.format(methods=['GET']))
@@ -133,7 +139,8 @@ def company_search():
 
         message = "I am sorry {}. I couldn't find any match for your " \
                   "request. You could try one of the following options " \
-                  "or type any company name to search into our database.".format(first_name)
+                  "or type any company name to search into our database.".\
+                  format(first_name)
 
         block = 'Companies'
         button_title = 'Positive News'
@@ -221,8 +228,10 @@ def user_login(user_id, user_name):
                   'learning algorithms to extract the latest company ' \
                   'insights from news articles for a valuable ' \
                   'head start in your trading strategy. ' \
-                  'I am still in development mode so many functions are not stable just yet. ' \
-                  'Please subscribe in order to get notified when I will be fully functional'.format(name)
+                  'I am still in development mode so many functions are not ' \
+                  'stable just yet. ' \
+                  'Please subscribe in order to get notified when I will be ' \
+                  'fully functional'.format(name)
 
         block = 'Subscribe'
         button_title = 'Subscribe'
@@ -261,7 +270,8 @@ def user_login(user_id, user_name):
 
         if registered:
             message = 'Hi again {}. What would you like me to show you? ' \
-                      'Remember you can type any company you want to search for scraped news'.format(first_name)
+                      'Remember you can type any company you want to search ' \
+                      'for scraped news'.format(first_name)
 
             pref_button = {
                 "type": "show_block",
@@ -271,7 +281,8 @@ def user_login(user_id, user_name):
             buttons.append(pref_button)
         else:
             message = 'Hi again {}. What would you like me to show you? ' \
-                      'Remember you can type any company you want to search for scraped news'.format(name)
+                      'Remember you can type any company you want to search ' \
+                      'for scraped news'.format(name)
 
             block = 'Subscribe'
             button_title = 'Subscribe'
@@ -313,8 +324,10 @@ def subscribe(user_id, user_last_name, user_first_name):
 
     user = mongo.find_one_match('users', {"user_id": user_id})
     if user is not None:
-        mongo.insert_one_in('users', {"user_id": user_id}, {'name': user_last_name})
-        mongo.insert_one_in('users', {"user_id": user_id}, {'subscribed': True})
+        mongo.insert_one_in('users', {"user_id": user_id},
+                                     {'name': user_last_name})
+        mongo.insert_one_in('users', {"user_id": user_id},
+                                     {'subscribed': True})
 
     response_data = {}
     status = 200 if response_data is not None else 403
@@ -350,8 +363,10 @@ def user_companies_data():
 
     user = mongo.find_one_match('users', {"user_id": user_id})
     if user is not None:
-        mongo.insert_one_in('users', {"user_id": user_id}, {'companies': data.get('companies')})
-        mongo.insert_one_in('users', {"user_id": user_id}, {'notification_type': 'Companies'})
+        mongo.insert_one_in('users', {"user_id": user_id},
+                                     {'companies': data.get('companies')})
+        mongo.insert_one_in('users', {"user_id": user_id},
+                                     {'notification_type': 'Companies'})
 
     response_data = {}
     status = 200 if response_data is not None else 403
@@ -372,7 +387,8 @@ def user_datetime_data():
 
     user = mongo.find_one_match('users', {"user_id": user_id})
     if user is not None:
-        mongo.insert_one_in('users', {"user_id": user_id}, {'datetime': data.get('datetime')})
+        mongo.insert_one_in('users', {"user_id": user_id},
+                                     {'datetime': data.get('datetime')})
 
     # user = mongo.find_one_match('users', {"user_id": user_id})
     # utils.start_scheduler_task(user)
@@ -401,7 +417,9 @@ def get_user_datetime_data(user_id):
     return flask.Response(js, status=status, mimetype='application/json')
 
 
-@app.route('/scrader/modify_user/<user_id>/<company_name>/<action>', methods=['GET'])
+@app.route(
+    '/scrader/modify_user/<user_id>/<company_name>/<action>', methods=['GET']
+)
 def modify_user_companies(user_id, company_name, action):
     """ GET Server Status API endpoint
         Args:
@@ -416,12 +434,15 @@ def modify_user_companies(user_id, company_name, action):
         user_name = user.get('first_name')
         if action == 'add':
             user['companies'].append(company_name)
-            message = "{} now on you will be notified for {} too.".format(user_name, company_name)
+            message = "{} now on you will be notified for {} too.".\
+                format(user_name, company_name)
         else:
             user['companies'].remove(company_name)
-            message = "{} now on you won't be notified for {}.".format(user_name, company_name)
+            message = "{} now on you won't be notified for {}.".\
+                format(user_name, company_name)
 
-        mongo.insert_one_in('users', {"user_id": user_id}, {'companies': user['companies']})
+        mongo.insert_one_in('users', {"user_id": user_id},
+                                     {'companies': user['companies']})
 
         response_data = {"messages": [{"text": message}]}
 
@@ -444,7 +465,8 @@ def user_websites_data():
     user_id = data.get('user')
     user = mongo.find_one_match('users', {"user_id": user_id})
     if user is not None:
-        mongo.insert_one_in('users', {"user_id": user_id}, {'websites': data.get('websites')})
+        mongo.insert_one_in('users', {"user_id": user_id},
+                                     {'websites': data.get('websites')})
 
     response_data = {}
     status = 200 if response_data is not None else 403
@@ -503,12 +525,14 @@ def user_notification(user_id, time_frame):
     user_name = user.get('first_name', user_id)
 
     if time_frame == 'Daily':
-        mongo.insert_one_in('users', {"user_id": user_id}, {'notification_type': 'Daily'})
+        mongo.insert_one_in('users', {"user_id": user_id},
+                                     {'notification_type': 'Daily'})
         message = "{} you will be notified {}".format(user_name, time_frame)
         response_data = {"messages": [{"text": message}]}
     else:
 
-        mongo.insert_one_in('users', {"user_id": user_id}, {'notification_type': 'Companies'})
+        mongo.insert_one_in('users', {"user_id": user_id},
+                                     {'notification_type': 'Companies'})
         response_data = {
             "messages": [{
                 "attachment": {
@@ -551,7 +575,8 @@ def user_daily_notification(user_id):
     datetime = user.get('datetime')
 
     message = 'You will be notified daily @ {}. You can also' \
-              ' be notified whenever companies you choose appear on our feed.'.format(datetime)
+              ' be notified whenever companies you choose ' \
+              'appear on our feed.'.format(datetime)
 
     buttons = []
     block = 'News'
@@ -566,7 +591,8 @@ def user_daily_notification(user_id):
     extra_button = {}
     extra_button['type'] = "web_url"
     extra_button['title'] = 'Select Companies'
-    extra_button['url'] = "http://146.185.138.240/scrader/companies/{}".format(user_id)
+    extra_button['url'] = "http://146.185.138.240/scrader/companies/{}".\
+        format(user_id)
     buttons.append(extra_button)
 
     response_data = {
@@ -582,7 +608,8 @@ def user_daily_notification(user_id):
                     "buttons": buttons
                 }
             }
-        }]
+            }
+        ]
     }
 
     status = 200 if response_data is not None else 403
@@ -615,7 +642,8 @@ def specific_company(company, user_id):
         if not followed:
             extra_button['type'] = "json_plugin_url"
             extra_button['title'] = 'Follow'
-            extra_button['url'] = "http://146.185.138.240/scrader/modify_user/{}/{}/add".format(user_id,company)
+            extra_button['url'] = "http://146.185.138.240/" \
+                "scrader/modify_user/{}/{}/add".format(user_id, company)
 
     company_given = company
     type_of_news = utils.company_news_type(company_given)
@@ -657,7 +685,8 @@ def specific_company(company, user_id):
                     user_request = 'negative'
                 else:
                     user_request = 'positive'
-                indication_message = {"text": 'There are also {} news for {}'.format(user_request, company)}
+                indication_message = {"text": 'There are also {} news for {}'.
+                                      format(user_request, company)}
 
         # print(news_buttons)
         response_data = {
@@ -680,7 +709,8 @@ def specific_company(company, user_id):
         }
 
         if extra_button:
-            response_data['messages'][0]['attachment']['payload']['buttons'].append(extra_button)
+            response_data['messages'][0]['attachment']['payload']['buttons'].\
+                append(extra_button)
         else:
             if one_news_type:
                 title_butt = news_buttons[0]['title'].split()
@@ -688,7 +718,7 @@ def specific_company(company, user_id):
                 return get_news(company, news_type, 1)
 
         if indication_message:
-            response_data['messages'].insert(0,indication_message)
+            response_data['messages'].insert(0, indication_message)
 
     else:
         negative_message = {"text": 'No articles found for {}'.format(company)}
@@ -706,13 +736,13 @@ def specific_company(company, user_id):
                         "template_type":
                             "button",
                         "text":
-                            "Remember you can {} {}.".format(extra_button.get('title').lower(), company),
+                            "Remember you can {} {}.".
+                            format(extra_button.get('title').lower(), company),
                         "buttons": [extra_button]
                     }
                 }
             }
             response_data['messages'].append(extra_message)
-
 
     status = 200 if response_data is not None else 403
     js = json.dumps(response_data, indent=2)
@@ -725,11 +755,11 @@ def helper_function(extra_button, company, news_type):
         "attachment": {
             "type": "template",
             "payload": {
-            "template_type": "button",
-            "text": "Remember you can follow {}".format(company),
-            "buttons": [
-                extra_button
-            ]
+                "template_type": "button",
+                "text": "Remember you can follow {}".format(company),
+                "buttons": [
+                    extra_button
+                ]
             }
         }
     }
@@ -744,9 +774,6 @@ def get_news(company, news_type, page_num):
         Returns:
             dict: A JSON object containing the nfvacc server status information
     """
-
-    # print(
-    #     "Fetching {} news for {} page {}".format(news_type, company, page_num))
 
     extra_message = {}
     if isinstance(page_num, dict):
@@ -787,7 +814,8 @@ def get_news(company, news_type, page_num):
         news_message = 'Negative'
         direction_list = ['NEG', 'NEGATIVE']
 
-    requested_news = utils.get_news_by_direction_and_company(company, direction_list)
+    requested_news = utils.get_news_by_direction_and_company(company,
+                                                             direction_list)
 
     f = lambda A, n=3: [A[i:i + n] for i in range(0, len(A), n)]
     news_per_page = f(requested_news)
@@ -811,7 +839,8 @@ def get_news(company, news_type, page_num):
         # element['buttons'][0]['url'] = new.get('website_url')
         # element['buttons'][0]['title'] = new.get('website')
         id = str(new.get('_id'))
-        element['buttons'][0]['url'] = "http://146.185.138.240/taged_article/{}".format(id)
+        element['buttons'][0]['url'] = "http://146.185.138.240/" \
+            "taged_article/{}".format(id)
         element['buttons'][0]['title'] = "Wrong Sentiment?"
         element['buttons'][0]['type'] = "json_plugin_url"
         elements.append(element)
@@ -829,7 +858,8 @@ def get_news(company, news_type, page_num):
     message['attachment']['payload']['elements'] = elements
 
     article = 'articles' if len(requested_news) > 1 else 'article'
-    top_message = {"text": '{} {} {} found for {}'.format(len(requested_news), news_message, article, company)}
+    top_message = {"text": '{} {} {} found for {}'.
+                   format(len(requested_news), news_message, article, company)}
 
     if extra_message:
         messages.append(extra_message)
@@ -857,7 +887,9 @@ def tag_article(new_id):
     """
 
     utils.manually_tag_article(new_id)
-    response_data = {"messages": [{"text": "Thank you! I promise i will get better"}]}
+    response_data = {
+        "messages": [{"text": "Thank you! I promise i will get better"}]
+    }
     status = 200 if response_data is not None else 403
     js = json.dumps(response_data, indent=2)
     return flask.Response(js, status=status, mimetype='application/json')
@@ -876,7 +908,8 @@ def get_companies(stocks_type):
     user_id = request.args.get('chatfuel user id')
     user = mongo.find_one_match('users', {"user_id": user_id})
     if user is not None:
-        mongo.insert_one_in('users', {"user_id": user_id}, {'request': stocks_type})
+        mongo.insert_one_in('users', {"user_id": user_id},
+                                     {'request': stocks_type})
 
     # print(user)
     # print("Fetching companies with {}.".format(stocks_type))
@@ -925,7 +958,7 @@ def get_companies(stocks_type):
     attributes_dict['stocks_type'] = stocks_type
     start = NEXT * 4
     for index, company in enumerate(requested_companies[start:]):
-        if index < 4 :
+        if index < 4:
             element = copy.deepcopy(element)
             name_net = company.get('company_name').split()[0]
             element['title'] = company.get('company_name')
@@ -937,13 +970,13 @@ def get_companies(stocks_type):
                 article_title = article.get('title')[0:79]
             element['subtitle'] = \
                 "{} out of {} articles".format(company_number_of_artcles,
-                                                   total_articles)\
-                    if company_number_of_artcles > 1 else article_title
+                                               total_articles)\
+                if company_number_of_artcles > 1 else article_title
             element['buttons'][0][
                 'title'] = 'View articles' if company_number_of_artcles > 1 else 'View article'
             element['buttons'][0][
-                'url'] = 'http://146.185.138.240/company_specific/{}/{}'.format(
-                    name_net, user_id)
+                'url'] = 'http://146.185.138.240/company_specific/{}/{}'.\
+                         format(name_net, user_id)
             messages[0]['attachment']['payload']['elements'].append(
                 element)
 
@@ -960,8 +993,12 @@ def get_companies(stocks_type):
             response_data['messages'][0]['attachment']['payload'][
                 'buttons'] = [next_button]
 
-    if len(response_data['messages'][0]['attachment']['payload']['elements']) == 1:
-        response_data['messages'][0]['attachment']['payload']['template_type'] = 'generic'
+    remaining = len(
+        response_data['messages'][0]['attachment']['payload']['elements']
+    )
+    if remaining == 1:
+        (response_data['messages'][0]
+            ['attachment']['payload']['template_type']) = 'generic'
         response_data['messages'][0]['attachment']['payload'].\
             pop('top_element_style', None)
 
@@ -998,7 +1035,7 @@ if __name__ == '__main__':
 
     # set the flask logger => ERROR: do not print API calls
 
-    logging.basicConfig(filename='logs.log',level=logging.INFO)
+    logging.basicConfig(filename='logs.log', level=logging.INFO)
     logging.debug('This message should go to the log file')
     # utils.news_poll(10)
     mongo.init_database()

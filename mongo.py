@@ -46,7 +46,9 @@ def find_matches_containing_many(collection_name, field, match):
 
 def find_matches_two_fields(collection_name, field1, match1, field2, match2):
     collection = db[collection_name]
-    return collection.find({'$and': [{field1: {'$in': match1}}, {field2: {'$in': match2}}]})
+    return collection.find(
+        {'$and': [{field1: {'$in': match1}}, {field2: {'$in': match2}}]}
+    )
 
 
 def find_matches_not_containing(collection_name, field, value):
@@ -72,6 +74,3 @@ def remove_one_from(collection_name, to_match, data_to_remove):
 def insert_many(collection_name, to_add):
     collection = db[collection_name]
     return collection.insert_many(to_add)
-
-
-
