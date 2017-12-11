@@ -28,6 +28,12 @@ def convert_to_df(url_list, image_list, title_list, date_list, companies_list,
     algorithm.run_algorithm(abs_filename)
 
 
+def rchop(thestring, ending):
+    if thestring.endswith(ending):
+        return thestring[:-len(ending)]
+    return thestring
+
+
 def main():
     company_list = scraper_constants.company_list
     scraping_list = scraper_constants.scraping_list
@@ -122,6 +128,7 @@ def main():
                             image_list.append(image)
                             title_list.append(url_title)
                             date_list.append(date)
+                            company = rchop(company, '-')
                             companies_list.append(company)
                             website_url_list.append(url)
                             websites_list.append(website)
