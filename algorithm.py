@@ -93,6 +93,7 @@ def run_algorithm(filename):
     print results
     probabilities = clf.predict_proba(titles)
     print probabilities
+    type(probabilities)
     real_data['Sentiment'] = results
 
     try:
@@ -100,3 +101,9 @@ def run_algorithm(filename):
     except OSError:
         pass
     real_data.to_csv("./ScraderwithSentiment.csv", encoding='utf-8')
+
+
+if __name__ == '__main__':
+    # run as script
+    _file = "./Scraderlatestnews.csv"
+    run_algorithm(_file)
