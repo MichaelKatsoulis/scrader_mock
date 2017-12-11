@@ -100,6 +100,7 @@ def run_algorithm(filename):
 
     real_data['Sentiment'] = results
     real_data['Probability'] = best_probs
+    real_data = real_data[real_data.Probability >= 0.7]
 
     try:
         os.remove("./ScraderwithSentiment.csv")
