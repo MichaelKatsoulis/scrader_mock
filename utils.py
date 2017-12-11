@@ -111,7 +111,6 @@ def article_from_excel():
 def article_from_csv():
 
     import csv
-    articles = []
     with open('Scrader4.csv') as csvfile:
         reader = csv.DictReader(csvfile)
         for article in reader:
@@ -124,6 +123,7 @@ def article_from_csv():
             new_article['company'] = article.get('Company')
             new_article['website'] = article.get('Website')
             new_article['website_url'] = article.get('Website url')
+            new_article['false_estims'] = 0
             mongo.insert_one('articles', new_article)
 
 
@@ -153,4 +153,3 @@ def start_scheduler():
 
 def start_scheduler_task():
     gevent.spawn(start_scheduler)
-
