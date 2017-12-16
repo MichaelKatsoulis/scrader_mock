@@ -202,7 +202,6 @@ def get_development_news(news_type, page_num):
                                                         'direction',
                                                         [news_type]))
 
-    print(requested_news)
 
     f = lambda A, n=3: [A[i:i + n] for i in range(0, len(A), n)]
     news_per_page = f(requested_news)
