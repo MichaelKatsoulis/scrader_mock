@@ -7,7 +7,6 @@ from sklearn.metrics import f1_score
 from sklearn.svm import SVC
 from time import time
 from pymongo import MongoClient
-import mongo
 
 
 def store_to_database(data):
@@ -27,8 +26,8 @@ def store_to_database(data):
         new_article['website'] = article.get('Website')
         new_article['website_url'] = article.get('Website url')
         new_article['checked'] = False
-        exists = mongo.find_one_match('dev_articles',
-                                      {"item_url": article.get('Article')})
+        exists = development_articles.find_one(
+            {"item_url": article.get('Article')})
         if exists is None:
             development_articles.insert_one(new_article)
 
