@@ -230,8 +230,11 @@ def get_development_news(page_num):
         element['buttons'][1]['title'] = "Wrong Estim"
         element['buttons'][1]['type'] = "json_plugin_url"
         elements.append(element)
-
+    num = 0
     for page_number in quick_replies_page_numbers_to_show:
+        num += 1
+        if num > 11:
+            break
         quick_reply = copy.deepcopy(quick_reply)
         quick_reply['title'] = "Page {}".format(page_number)
         quick_reply['url'] = "http://146.185.138.240/dev_news/{}".format(

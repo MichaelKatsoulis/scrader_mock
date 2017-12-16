@@ -182,6 +182,7 @@ def development_mode(user):
     print(response_data)
     status = 200 if response_data is not None else 403
     js = json.dumps(response_data, indent=2)
+    print(js)
     return flask.Response(js, status=status, mimetype='application/json')
 
 
