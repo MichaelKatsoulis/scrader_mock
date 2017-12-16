@@ -3,6 +3,7 @@ import mongo
 import time
 import datetime
 import requests
+import copy
 
 from bson.objectid import ObjectId
 
@@ -80,10 +81,18 @@ def get_companies_articles(company):
     return list(mongo.find_matches('articles', {'company': company}))
 
 
-def manually_tag_article(article_id):
-    article = mongo.find_one_match('articles', {"_id": ObjectId(article_id)})
-    new_false_estimations = article.get('false_estims') + 1
-    mongo.insert_one_in('articles', {"_id": ObjectId(article_id)}, {'false_estims': new_false_estimations})
+def manually_tag_article(article_id, value):
+    article = mongo.find_one_match('dev_articles',
+                                   {"_id": ObjectId(article_id)})
+    if value == 'Wrong':
+        if article.get('direction') == "POS":
+            mongo.insert_one_in('dev_articles', {"_id": ObjectId(article_id)},
+                                                {'direction': 'NEG'})
+        else:
+            mongo.insert_one_in('dev_articles', {"_id": ObjectId(article_id)},
+                                                {'direction': 'POS'})
+    mongo.insert_one_in('dev_articles', {"_id": ObjectId(article_id)},
+                                        {'checked': True})
 
 
 def article_from_excel():
@@ -153,3 +162,93 @@ def start_scheduler():
 
 def start_scheduler_task():
     gevent.spawn(start_scheduler)
+
+
+def get_development_news(page_num):
+    elements = []
+    element = {
+        "title": '',
+        "image_url": '',
+        "subtitle": '',
+        "item_url": '',
+        "buttons": [{
+            "type": "web_url",
+            "url": '',
+            "title": ''
+        },
+         {
+            "type": "web_url",
+            "url": '',
+            "title": ''
+        }]
+    }
+
+    messages = []
+    message = {
+        "attachment": {
+            "type": "template",
+            "payload": {
+                "template_type": "generic",
+                "elements": elements
+            }
+        }
+    }
+
+    quick_replies = []
+    quick_reply = {"title": '', "url": '', "type": "json_plugin_url"}
+
+    requested_news = list(mongo.find_matches('dev_articles',
+                                             {'checked': False}))
+
+    f = lambda A, n=3: [A[i:i + n] for i in range(0, len(A), n)]
+    news_per_page = f(requested_news)
+    # print(news_per_page)
+    news_to_show = news_per_page[int(page_num) - 1]
+    # print(news_to_show)
+    all_quick_replies_page_numbers = [
+        i + 1 for i, _ in enumerate(news_per_page)
+    ]
+    # print(all_quick_replies_page_numbers)
+    quick_replies_page_numbers_to_show = filter(lambda x: x != int(page_num),
+                                                all_quick_replies_page_numbers)
+    # print(quick_replies_page_numbers_to_show)
+
+    for new in news_to_show:
+        element = copy.deepcopy(element)
+        element['title'] = new.get('title')[0:79]
+        element['image_url'] = str(new.get('image_url'))
+        element['subtitle'] = new.get('subtitle')
+        element['item_url'] = str(new.get('item_url'))
+        id = str(new.get('_id'))
+        element['buttons'][0]['url'] = "http://146.185.138.240/checked_article/{}/{}/{}".\
+            format(id, 'Correct', page_num)
+        element['buttons'][0]['title'] = "Correct Estim"
+        element['buttons'][0]['type'] = "json_plugin_url"
+        element['buttons'][1]['url'] = "http://146.185.138.240/checked_article/{}/{}/{}".\
+            format(id, 'Wrong', page_num)
+        element['buttons'][1]['title'] = "Wrong Estim"
+        element['buttons'][1]['type'] = "json_plugin_url"
+        elements.append(element)
+
+    for page_number in quick_replies_page_numbers_to_show:
+        quick_reply = copy.deepcopy(quick_reply)
+        quick_reply['title'] = "Page {}".format(page_number)
+        quick_reply['url'] = "http://146.185.138.240/dev_news/{}".format(
+            page_number)
+        quick_replies.append(quick_reply)
+
+    if quick_replies:
+        message['quick_replies'] = quick_replies
+
+    message['attachment']['payload']['elements'] = elements
+
+    top_message = {"text": '{} unchecked articles found'.
+                   format(len(requested_news))}
+
+    if int(page_num) == 1:
+        messages.append(top_message)
+
+    # print(message)
+    messages.append(message)
+    response_data = {"messages": messages}
+    return response_data

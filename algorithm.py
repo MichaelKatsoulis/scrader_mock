@@ -7,6 +7,7 @@ from sklearn.metrics import f1_score
 from sklearn.svm import SVC
 from time import time
 from pymongo import MongoClient
+import mongo
 
 
 def store_to_database(data):
@@ -15,6 +16,21 @@ def store_to_database(data):
     development_articles = scrader_db['dev_articles']
     dev_articles = data.to_dict('records')
     print(dev_articles)
+    for article in dev_articles:
+        new_article = {}
+        new_article['title'] = article.get('Title')
+        new_article['image_url'] = article.get('Image')
+        new_article['subtitle'] = article.get('Date')
+        new_article['item_url'] = article.get('Article')
+        new_article['direction'] = article.get('Sentiment')
+        new_article['company'] = article.get('Company')
+        new_article['website'] = article.get('Website')
+        new_article['website_url'] = article.get('Website url')
+        new_article['checked'] = False
+        exists = mongo.find_one_match('dev_articles',
+                                      {"item_url": article.get('Article')})
+        if exists is None:
+            development_articles.insert_one(new_article)
 
 
 def train_classifier(clf, X_train, y_train):

@@ -99,6 +99,9 @@ def company_search():
     user_id = request.args.get('chatfuel user id')
 
     user = mongo.find_one_match('users', {"user_id": user_id})
+    if company_typed == 'dev':
+        return development_mode(user)
+
     if user is not None:
         mongo.remove_one_from('users', {"user_id": user_id}, {'request': 1})
 
@@ -166,6 +169,30 @@ def company_search():
             }]
         }
 
+    status = 200 if response_data is not None else 403
+    js = json.dumps(response_data, indent=2)
+    return flask.Response(js, status=status, mimetype='application/json')
+
+
+def development_mode(user):
+    print(user.get('name'))
+    # response_data = {"messages": [{"text": "Just got into development mode."
+    #                                "Only superusers belong here."}]}
+    response_data = utils.get_development_news(1)
+    status = 200 if response_data is not None else 403
+    js = json.dumps(response_data, indent=2)
+    return flask.Response(js, status=status, mimetype='application/json')
+
+
+@app.route('/dev_news/<page_num>'.format(methods=['GET']))
+def get_development_news(page_num):
+    """ GET Server Status API endpoint
+        Args:
+        Returns:
+            dict: A JSON object containing the nfvacc server status information
+    """
+
+    response_data = utils.get_development_news(page_num)
     status = 200 if response_data is not None else 403
     js = json.dumps(response_data, indent=2)
     return flask.Response(js, status=status, mimetype='application/json')
@@ -808,12 +835,12 @@ def get_news(company, news_type, page_num):
         element['image_url'] = str(new.get('image_url'))
         element['subtitle'] = new.get('subtitle')
         element['item_url'] = str(new.get('item_url'))
-        # element['buttons'][0]['url'] = new.get('website_url')
-        # element['buttons'][0]['title'] = new.get('website')
-        id = str(new.get('_id'))
-        element['buttons'][0]['url'] = "http://146.185.138.240/taged_article/{}".format(id)
-        element['buttons'][0]['title'] = "Wrong Sentiment?"
-        element['buttons'][0]['type'] = "json_plugin_url"
+        element['buttons'][0]['url'] = new.get('website_url')
+        element['buttons'][0]['title'] = new.get('website')
+        # id = str(new.get('_id'))
+        # element['buttons'][0]['url'] = "http://146.185.138.240/taged_article/{}".format(id)
+        # element['buttons'][0]['title'] = "Wrong Sentiment?"
+        # element['buttons'][0]['type'] = "json_plugin_url"
         elements.append(element)
 
     for page_number in quick_replies_page_numbers_to_show:
@@ -848,19 +875,18 @@ def get_news(company, news_type, page_num):
     return flask.Response(js, status=status, mimetype='application/json')
 
 
-@app.route('/taged_article/<new_id>'.format(methods=['GET']))
-def tag_article(new_id):
+@app.route(
+    '/checked_article/<new_id>/<value>/<page_num>'.format(methods=['GET'])
+)
+def tag_article(new_id, value, page_num):
     """ GET Server Status API endpoint
         Args:
         Returns:
             dict: A JSON object containing the nfvacc server status information
     """
 
-    utils.manually_tag_article(new_id)
-    response_data = {"messages": [{"text": "Thank you! I promise i will get better"}]}
-    status = 200 if response_data is not None else 403
-    js = json.dumps(response_data, indent=2)
-    return flask.Response(js, status=status, mimetype='application/json')
+    utils.manually_tag_article(new_id, value)
+    return get_development_news(page_num)
 
 
 @app.route('/guest_companies/<stocks_type>'.format(methods=['GET']))
