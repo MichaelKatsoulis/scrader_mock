@@ -176,25 +176,51 @@ def company_search():
 
 def development_mode(user):
     print(user.get('name'))
-    # response_data = {"messages": [{"text": "Just got into development mode."
-    #                                "Only superusers belong here."}]}
-    response_data = utils.get_development_news(1)
-    print(response_data)
+    message = 'Just got into development mode. ' \
+              'Which articles you want to check?'
+    buttons = []
+    button_dict_tmpl = {
+        'type': "json_plugin_url",
+        'title': 'Positive Predictions',
+        'url': "http://146.185.138.240/dev_news/{}/{}".format('POS', 1)
+    }
+    buttons.append(button_dict_tmpl)
+    button_dict_tmpl = {
+        'type': "json_plugin_url",
+        'title': 'Negative Predictions',
+        'url': "http://146.185.138.240/dev_news/{}/{}".format('NEG', 1)
+    }
+    buttons.append(button_dict_tmpl)
+
+    response_data = {
+        "messages": [{
+            "attachment": {
+                "type": "template",
+                "payload": {
+                    "template_type": "button",
+                    "text": message,
+                    "buttons": buttons
+                }
+            }
+        }]
+    }
+    # response_data = utils.get_development_news(1)
+    # print(response_data)
     status = 200 if response_data is not None else 403
     js = json.dumps(response_data, indent=2)
     print(js)
     return flask.Response(js, status=status, mimetype='application/json')
 
 
-@app.route('/dev_news/<page_num>'.format(methods=['GET']))
-def get_development_news(page_num):
+@app.route('/dev_news/<news_type>/<page_num>'.format(methods=['GET']))
+def get_development_news(news_type, page_num):
     """ GET Server Status API endpoint
         Args:
         Returns:
             dict: A JSON object containing the nfvacc server status information
     """
 
-    response_data = utils.get_development_news(page_num)
+    response_data = utils.get_development_news(news_type, page_num)
     status = 200 if response_data is not None else 403
     js = json.dumps(response_data, indent=2)
     return flask.Response(js, status=status, mimetype='application/json')

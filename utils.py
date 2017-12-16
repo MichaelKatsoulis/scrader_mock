@@ -164,7 +164,7 @@ def start_scheduler_task():
     gevent.spawn(start_scheduler)
 
 
-def get_development_news(page_num):
+def get_development_news(news_type, page_num):
     elements = []
     element = {
         "title": '',
@@ -197,8 +197,11 @@ def get_development_news(page_num):
     quick_replies = []
     quick_reply = {"title": '', "url": '', "type": "json_plugin_url"}
 
-    requested_news = list(mongo.find_matches('dev_articles',
-                                             {'checked': False}))
+    requested_news = list(mongo.find_matches_two_fields('dev_articles',
+                                                        'checked', [False],
+                                                        'direction',
+                                                        [news_type]))
+
     print(requested_news)
 
     f = lambda A, n=3: [A[i:i + n] for i in range(0, len(A), n)]
