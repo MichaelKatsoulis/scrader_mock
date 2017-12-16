@@ -175,7 +175,7 @@ def company_search():
 
 
 def development_mode(user):
-    print(user.get('name'))
+    # print(user.get('name'))
     message = 'Just got into development mode. ' \
               'Which articles you want to check?'
     buttons = []
@@ -208,7 +208,7 @@ def development_mode(user):
     # print(response_data)
     status = 200 if response_data is not None else 403
     js = json.dumps(response_data, indent=2)
-    print(js)
+    # print(js)
     return flask.Response(js, status=status, mimetype='application/json')
 
 
