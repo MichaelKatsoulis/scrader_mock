@@ -224,12 +224,12 @@ def get_development_news(news_type, page_num):
         element['subtitle'] = new.get('subtitle')
         element['item_url'] = str(new.get('item_url'))
         id = str(new.get('_id'))
-        element['buttons'][0]['url'] = "http://146.185.138.240/checked_article/{}/{}/{}".\
-            format(id, 'Correct', page_num)
+        element['buttons'][0]['url'] = "http://146.185.138.240/checked_article/{}/{}/{}/{}".\
+            format(news_type, id, 'Correct', page_num)
         element['buttons'][0]['title'] = "Correct Estim"
         element['buttons'][0]['type'] = "json_plugin_url"
-        element['buttons'][1]['url'] = "http://146.185.138.240/checked_article/{}/{}/{}".\
-            format(id, 'Wrong', page_num)
+        element['buttons'][1]['url'] = "http://146.185.138.240/checked_article/{}/{}/{}/{}".\
+            format(news_type, id, 'Wrong', page_num)
         element['buttons'][1]['title'] = "Wrong Estim"
         element['buttons'][1]['type'] = "json_plugin_url"
         elements.append(element)

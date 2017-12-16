@@ -904,9 +904,9 @@ def get_news(company, news_type, page_num):
 
 
 @app.route(
-    '/checked_article/<new_id>/<value>/<page_num>'.format(methods=['GET'])
+    '/checked_article/<news_type>/<new_id>/<value>/<page_num>'.format(methods=['GET'])
 )
-def tag_article(new_id, value, page_num):
+def tag_article(news_type, new_id, value, page_num):
     """ GET Server Status API endpoint
         Args:
         Returns:
@@ -914,7 +914,7 @@ def tag_article(new_id, value, page_num):
     """
 
     utils.manually_tag_article(new_id, value)
-    return get_development_news(page_num)
+    return get_development_news(news_type, page_num)
 
 
 @app.route('/guest_companies/<stocks_type>'.format(methods=['GET']))
