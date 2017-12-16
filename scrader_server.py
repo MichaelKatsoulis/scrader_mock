@@ -179,6 +179,7 @@ def development_mode(user):
     # response_data = {"messages": [{"text": "Just got into development mode."
     #                                "Only superusers belong here."}]}
     response_data = utils.get_development_news(1)
+    print(response_data)
     status = 200 if response_data is not None else 403
     js = json.dumps(response_data, indent=2)
     return flask.Response(js, status=status, mimetype='application/json')

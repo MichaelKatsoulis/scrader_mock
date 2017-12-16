@@ -199,6 +199,7 @@ def get_development_news(page_num):
 
     requested_news = list(mongo.find_matches('dev_articles',
                                              {'checked': False}))
+    print(requested_news)
 
     f = lambda A, n=3: [A[i:i + n] for i in range(0, len(A), n)]
     news_per_page = f(requested_news)
