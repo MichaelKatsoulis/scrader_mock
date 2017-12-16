@@ -6,6 +6,15 @@ from sklearn.metrics import confusion_matrix
 from sklearn.metrics import f1_score
 from sklearn.svm import SVC
 from time import time
+from pymongo import MongoClient
+
+
+def store_to_database(data):
+    dbcli = MongoClient()
+    scrader_db = dbcli['scrader']
+    development_articles = scrader_db['dev_articles']
+    dev_articles = data.to_dict('records')
+    print(dev_articles)
 
 
 def train_classifier(clf, X_train, y_train):
@@ -101,6 +110,8 @@ def run_algorithm(filename):
     real_data['Sentiment'] = results
     real_data['Probability'] = best_probs
     real_data = real_data[real_data.Probability >= 0.7]
+
+    store_to_database(real_data)
 
     try:
         os.remove("./ScraderwithSentiment.csv")
