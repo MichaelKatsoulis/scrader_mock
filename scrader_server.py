@@ -223,8 +223,6 @@ def get_development_news(news_type, page_num, user):
         Returns:
             dict: A JSON object containing the nfvacc server status information
     """
-    print('got inside')
-    print(user)
     response_data = utils.get_development_news(news_type, page_num, user)
     status = 200 if response_data is not None else 403
     js = json.dumps(response_data, indent=2)
