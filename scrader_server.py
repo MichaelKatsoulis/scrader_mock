@@ -226,7 +226,7 @@ def get_development_news(news_type, page_num, user):
     response_data = utils.get_development_news(news_type, page_num, user)
     status = 200 if response_data is not None else 403
     js = json.dumps(response_data, indent=2)
-    print(js)
+    # print(js)
     return flask.Response(js, status=status, mimetype='application/json')
 
 

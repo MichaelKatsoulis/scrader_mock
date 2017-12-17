@@ -11,10 +11,11 @@ def convert_collection_to_df(mongo_cli, collection, field1, match1,
     cursor = scrader_db[collection].find({'$and': [{field1: {'$in': match1}},
                                          {field2: {'$in': match2}}]},
                                          {'_id': False})
+    print(list(cursor))
     scrader_db[collection].update({'$and': [{field1: {'$in': match1}},
                                             {field2: {'$in': match2}}]},
                                   {'$set': {'appended': True}},
-                                  {"upsert": True, "multi": True})
+                                  False, True)
     return pd.DataFrame(list(cursor))
 
 

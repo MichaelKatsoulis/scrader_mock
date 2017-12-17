@@ -203,7 +203,7 @@ def get_development_news(news_type, page_num, user):
                                                         'checked', [False],
                                                         'direction',
                                                         [news_type]))
-    print(len(requested_news))
+    # print(len(requested_news))
 
     f = lambda A, n=3: [A[i:i + n] for i in range(0, len(A), n)]
     news_per_page = f(requested_news)
