@@ -241,8 +241,8 @@ def get_development_news(news_type, page_num, user):
             break
         quick_reply = copy.deepcopy(quick_reply)
         quick_reply['title'] = "Page {}".format(page_number)
-        quick_reply['url'] = "http://146.185.138.240/dev_news/{}/{}".format(
-            news_type, page_number)
+        quick_reply['url'] = "http://146.185.138.240/dev_news/{}/{}/{}".format(
+            news_type, page_number, user)
         quick_replies.append(quick_reply)
 
     if quick_replies:
