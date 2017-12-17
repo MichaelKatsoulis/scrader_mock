@@ -167,6 +167,7 @@ def start_scheduler_task():
 
 
 def get_development_news(news_type, page_num, user):
+    print(user)
     elements = []
     element = {
         "title": '',
@@ -231,6 +232,7 @@ def get_development_news(news_type, page_num, user):
         element['buttons'][0]['type'] = "json_plugin_url"
         element['buttons'][1]['url'] = "http://146.185.138.240/checked_article/{}/{}/{}/{}/{}".\
             format(news_type, id, 'Wrong', page_num, user)
+        print(element['buttons'][1]['url'])
         element['buttons'][1]['title'] = "Wrong Estim"
         element['buttons'][1]['type'] = "json_plugin_url"
         elements.append(element)
@@ -256,7 +258,7 @@ def get_development_news(news_type, page_num, user):
     if int(page_num) == 1:
         messages.append(top_message)
 
-    # print(message)
+    print(message)
     messages.append(message)
     response_data = {"messages": messages}
     return response_data
