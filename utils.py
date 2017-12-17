@@ -81,7 +81,7 @@ def get_companies_articles(company):
     return list(mongo.find_matches('articles', {'company': company}))
 
 
-def manually_tag_article(article_id, value):
+def manually_tag_article(article_id, value, user):
     article = mongo.find_one_match('dev_articles',
                                    {"_id": ObjectId(article_id)})
     if value == 'Wrong':
@@ -93,6 +93,8 @@ def manually_tag_article(article_id, value):
                                                 {'direction': 'POS'})
     mongo.insert_one_in('dev_articles', {"_id": ObjectId(article_id)},
                                         {'checked': True})
+    mongo.insert_one_in('dev_articles', {"_id": ObjectId(article_id)},
+                                        {'User': user})
 
 
 def article_from_excel():
@@ -164,7 +166,7 @@ def start_scheduler_task():
     gevent.spawn(start_scheduler)
 
 
-def get_development_news(news_type, page_num):
+def get_development_news(news_type, page_num, user):
     elements = []
     element = {
         "title": '',
@@ -223,12 +225,12 @@ def get_development_news(news_type, page_num):
         element['subtitle'] = new.get('subtitle')
         element['item_url'] = str(new.get('item_url'))
         id = str(new.get('_id'))
-        element['buttons'][0]['url'] = "http://146.185.138.240/checked_article/{}/{}/{}/{}".\
-            format(news_type, id, 'Correct', page_num)
+        element['buttons'][0]['url'] = "http://146.185.138.240/checked_article/{}/{}/{}/{}/{}".\
+            format(news_type, id, 'Correct', page_num, user)
         element['buttons'][0]['title'] = "Correct Estim"
         element['buttons'][0]['type'] = "json_plugin_url"
-        element['buttons'][1]['url'] = "http://146.185.138.240/checked_article/{}/{}/{}/{}".\
-            format(news_type, id, 'Wrong', page_num)
+        element['buttons'][1]['url'] = "http://146.185.138.240/checked_article/{}/{}/{}/{}/{}".\
+            format(news_type, id, 'Wrong', page_num, user)
         element['buttons'][1]['title'] = "Wrong Estim"
         element['buttons'][1]['type'] = "json_plugin_url"
         elements.append(element)

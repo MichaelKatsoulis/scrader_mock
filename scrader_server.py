@@ -182,13 +182,17 @@ def development_mode(user):
     button_dict_tmpl = {
         'type': "json_plugin_url",
         'title': 'Positive Predictions',
-        'url': "http://146.185.138.240/dev_news/{}/{}".format('POS', 1)
+        'url': "http://146.185.138.240/dev_news/{}/{}/{}".format('POS', 1,
+                                                                 user.
+                                                                 get('name'))
     }
     buttons.append(button_dict_tmpl)
     button_dict_tmpl = {
         'type': "json_plugin_url",
         'title': 'Negative Predictions',
-        'url': "http://146.185.138.240/dev_news/{}/{}".format('NEG', 1)
+        'url': "http://146.185.138.240/dev_news/{}/{}/{}".format('NEG', 1,
+                                                                 user.
+                                                                 get('name'))
     }
     buttons.append(button_dict_tmpl)
 
@@ -212,15 +216,15 @@ def development_mode(user):
     return flask.Response(js, status=status, mimetype='application/json')
 
 
-@app.route('/dev_news/<news_type>/<page_num>'.format(methods=['GET']))
-def get_development_news(news_type, page_num):
+@app.route('/dev_news/<news_type>/<page_num>/<user>'.format(methods=['GET']))
+def get_development_news(news_type, page_num, user):
     """ GET Server Status API endpoint
         Args:
         Returns:
             dict: A JSON object containing the nfvacc server status information
     """
 
-    response_data = utils.get_development_news(news_type, page_num)
+    response_data = utils.get_development_news(news_type, page_num, user)
     status = 200 if response_data is not None else 403
     js = json.dumps(response_data, indent=2)
     return flask.Response(js, status=status, mimetype='application/json')
@@ -904,16 +908,17 @@ def get_news(company, news_type, page_num):
 
 
 @app.route(
-    '/checked_article/<news_type>/<new_id>/<value>/<page_num>'.format(methods=['GET'])
+    '/checked_article/<news_type>/<new_id>/<value>/<page_num>/<user>'.
+    format(methods=['GET'])
 )
-def tag_article(news_type, new_id, value, page_num):
+def tag_article(news_type, new_id, value, page_num, user):
     """ GET Server Status API endpoint
         Args:
         Returns:
             dict: A JSON object containing the nfvacc server status information
     """
 
-    utils.manually_tag_article(new_id, value)
+    utils.manually_tag_article(new_id, value, user)
     return get_development_news(news_type, page_num)
 
 
