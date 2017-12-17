@@ -919,7 +919,7 @@ def tag_article(news_type, new_id, value, page_num, user):
     """
 
     utils.manually_tag_article(new_id, value, user)
-    return get_development_news(news_type, page_num)
+    return get_development_news(news_type, page_num, user)
 
 
 @app.route('/guest_companies/<stocks_type>'.format(methods=['GET']))
