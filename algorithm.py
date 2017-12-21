@@ -68,18 +68,18 @@ def train_predict(clf, X_train, y_train, X_test, y_test):
 
 
 def run_algorithm(filename):
-    data = pd.read_csv('./comb8.csv', sep=',', encoding='utf-8')
-    data1 = data['Article']
-    data2 = data['Sentiment']
+    data = pd.read_csv('./scraderdata.csv', sep=',', encoding='utf-8')
+    data1 = data['title']
+    data2 = data['direction']
 
     print 'Data read Successfully'
     data = pd.concat([data1.reset_index(drop=True), data2], axis=1)
-    data.columns = ['Articles', 'Sentiment']
-    data.groupby(['Sentiment']).count().reset_index()
-    ntrain = len(data['Articles'])*0.8
+    data.columns = ['title', 'direction']
+    data.groupby(['direction']).count().reset_index()
+    ntrain = len(data['title'])*0.8
     ntrain = int(round(ntrain))
     train_set = data[:ntrain]
-    train_set.groupby(['Sentiment']).count().reset_index()
+    train_set.groupby(['direction']).count().reset_index()
     data = data.sample(frac=1)
 
     g = TfidfVectorizer(min_df=5, max_df=1000, ngram_range=(1, 6), stop_words=[
@@ -97,10 +97,10 @@ def run_algorithm(filename):
      "Qualcomm", "Honeywell", "ABB", "Astrazeneca", "Carrefour", "Canon",
      "Canon", "Aetna"
     ], analyzer=u'word', max_features=5000)
-    X_train = g.fit_transform(data['Articles'][:ntrain]).toarray()
-    X_test = g.transform(data['Articles'][ntrain:]).toarray()
-    y_train = data['Sentiment'][:ntrain]
-    y_test = data['Sentiment'][ntrain:]
+    X_train = g.fit_transform(data['title'][:ntrain]).toarray()
+    X_test = g.transform(data['title'][ntrain:]).toarray()
+    y_train = data['direction'][:ntrain]
+    y_test = data['direction'][ntrain:]
 
     clf = SVC(kernel='linear', probability=True)
     train_predict(clf, X_train, y_train, X_test, y_test)

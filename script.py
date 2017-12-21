@@ -17,7 +17,7 @@ def convert_collection_to_df(mongo_cli, collection, field1, match1,
     scrader_db[collection].update({'$and': [{field1: {'$in': match1}},
                                             {field2: {'$in': match2}}]},
                                   {'$set': {'appended': True}},
-                                  False, True)
+                                  True, True)
     return pd.DataFrame(cursor_list)
 
 
