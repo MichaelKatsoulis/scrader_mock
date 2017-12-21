@@ -26,8 +26,8 @@ if __name__ == '__main__':
                                                         'checked', [True],
                                                         'appended', [False])
     # if file does not exist write header
-    if not os.path.isfile('TrainingData.csv'):
-        dataframe.to_csv('TrainingData.csv', encoding='utf-8')
+    if not os.path.isfile('scraderdata.csv'):
+        dataframe.to_csv('scraderdata.csv', encoding='utf-8')
     else:  # else it exists so append without writing the header
-        dataframe.to_csv('TrainingData.csv', mode='a', header=False,
+        dataframe.to_csv('scraderdata.csv', mode='a', header=False,
                          encoding='utf-8')
