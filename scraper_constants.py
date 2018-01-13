@@ -17,6 +17,25 @@ company_list = [
     "deloitte"
 ]
 
+company_names_list = [
+    "aig", "amazon", "uber", "netflix", "google", "boeing", "ibm",
+    "apple", "ryanair", "motorolla", "equifax", "microsoft", "spotify",
+    "exxon", "wells-fargo", "toyota", "hsbc", "bp", "volkswagen",
+    "bnp-paribas", "daimler", "samsung", "axa", "vodafone", "nestle",
+    "ford", "metlife", "general-motors", "intel", "oracle", "unilever",
+    "morgan-stanley", "barclays", "christian-dior", "3m", "target", "canon",
+    "nintendo", "tesla", "panasonic", "ebay", "kia", "renault", "apache",
+    "philips", "monsanto", "accenture", "toshiba", "baidu", "sky-news",
+    "jpmorgan", "jp-morgan", "p&g", "vw", "bmw", "benz", "mercedes",
+    "at&t", "renault", "alibaba", "citi", "chevron", "wal-mart", "gazprom",
+    "verizon", "santander", "siemens", "novartis", "goldman", "metlife",
+    "hyundai", "disney", "prudencial", "qualcomm", "honeywell", "abb-",
+    "astrazeneca", "carrefour", "aetna", "edf", "pfizer", "statoil",
+    "facebook", "twitter", "general-motors", "gm", "honda", "cisco",
+    "hyundai", "cnooc", "unilever", "eon", "bayer", "hitachi", "lockheed",
+    "deloitte"
+]
+
 scraping_list = [
     "https://www.nytimes.com/section/business?action=click&pgtype=Homepage&region=TopBar&module=HPMiniNav&contentCollection=Business&WT.nav=page",
     "http://www.businessinsider.com/enterprise",
