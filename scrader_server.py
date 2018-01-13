@@ -178,7 +178,7 @@ def development_mode(user):
     # print(user.get('name'))
     num_positive, num_negative = utils.find_num_of_tagged()
     message = 'Just got into development mode. ' \
-              'Until now there are {} positively manually tagged articles' \
+              'Until now there are {} positive manually tagged articles' \
               ' and {} negative manually tagged articles in our database.' \
               ' Try to keep these two values balanced in order Scrader to be' \
               ' trained correctly!' \
