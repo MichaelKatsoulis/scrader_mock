@@ -4,6 +4,7 @@ import time
 import datetime
 import requests
 import copy
+import csv
 
 from bson.objectid import ObjectId
 
@@ -73,7 +74,8 @@ def companies_by_type(news_type):
 def get_news_by_direction_and_company(company, direction_list):
     # list of news by their direction good bad
 
-    news_list = list(mongo.find_matches_two_fields('articles', 'company', [company], 'direction', direction_list))
+    news_list = list(mongo.find_matches_two_fields('articles', 'company',
+                     [company], 'direction', direction_list))
     return news_list
 
 
@@ -84,17 +86,41 @@ def get_companies_articles(company):
 def manually_tag_article(article_id, value, user):
     article = mongo.find_one_match('dev_articles',
                                    {"_id": ObjectId(article_id)})
-    if value == 'Wrong':
-        if article.get('direction') == "POS":
-            mongo.insert_one_in('dev_articles', {"_id": ObjectId(article_id)},
-                                                {'direction': 'NEG'})
-        else:
-            mongo.insert_one_in('dev_articles', {"_id": ObjectId(article_id)},
-                                                {'direction': 'POS'})
-    mongo.insert_one_in('dev_articles', {"_id": ObjectId(article_id)},
-                                        {'checked': True})
-    mongo.insert_one_in('dev_articles', {"_id": ObjectId(article_id)},
-                                        {'User': user})
+
+    if value == 'Skip':
+        mongo.delete_one_from('dev_articles', article)
+    else:
+        if value == 'Wrong':
+            if article.get('direction') == "POS":
+                mongo.insert_one_in('dev_articles',
+                                    {"_id": ObjectId(article_id)},
+                                    {'direction': 'NEG'})
+            else:
+                mongo.insert_one_in('dev_articles',
+                                    {"_id": ObjectId(article_id)},
+                                    {'direction': 'POS'})
+        mongo.insert_one_in('dev_articles', {"_id": ObjectId(article_id)},
+                                            {'checked': True})
+        mongo.insert_one_in('dev_articles', {"_id": ObjectId(article_id)},
+                                            {'User': user})
+
+
+def find_num_of_tagged():
+    num_of_positive = 0
+    num_of_negative = 0
+    with open('scraderdata.csv') as csvfile:
+        reader = csv.DictReader(csvfile)
+        for article in reader:
+            if article.get('direction') == 'POS':
+                num_of_positive += 1
+            else:
+                num_of_negative += 1
+
+    positive_cursor = ('dev_articles', {'direction': 'POS'})
+    num_of_positive += positive_cursor.count()
+    negative_cursor = ('dev_articles', {'direction': 'NEG'})
+    num_of_negative += negative_cursor.count()
+    return positive_cursor, num_of_negative
 
 
 def article_from_excel():
@@ -121,7 +147,6 @@ def article_from_excel():
 
 def article_from_csv():
 
-    import csv
     with open('Scrader4.csv') as csvfile:
         reader = csv.DictReader(csvfile)
         for article in reader:
@@ -233,6 +258,10 @@ def get_development_news(news_type, page_num, user):
             format(news_type, id, 'Wrong', page_num, user)
         # print(element['buttons'][1]['url'])
         element['buttons'][1]['title'] = "Wrong Estim"
+        element['buttons'][1]['type'] = "json_plugin_url"
+        element['buttons'][2]['url'] = "http://146.185.138.240/checked_article/{}/{}/{}/{}/{}".\
+            format(news_type, id, 'Skip', page_num, user)
+        element['buttons'][1]['title'] = "Skip Estim"
         element['buttons'][1]['type'] = "json_plugin_url"
         elements.append(element)
     num = 0

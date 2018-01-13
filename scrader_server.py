@@ -176,8 +176,13 @@ def company_search():
 
 def development_mode(user):
     # print(user.get('name'))
+    num_positive, num_negative = utils.find_num_of_tagged()
     message = 'Just got into development mode. ' \
-              'Which articles you want to check?'
+              'Until now there are {} positively manually tagged articles' \
+              ' and {} negative manually tagged articles in our database.' \
+              ' Try to keep these two values balanced in order Scrader to be' \
+              ' trained correctly!' \
+              'Now which articles you want to check?'
     buttons = []
     button_dict_tmpl = {
         'type': "json_plugin_url",
