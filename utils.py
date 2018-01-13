@@ -88,7 +88,7 @@ def manually_tag_article(article_id, value, user):
                                    {"_id": ObjectId(article_id)})
 
     if value == 'Skip':
-        mongo.delete_one_from('dev_articles', article)
+        mongo.delete_one_from('dev_articles', ObjectId(article_id))
     else:
         if value == 'Wrong':
             if article.get('direction') == "POS":
