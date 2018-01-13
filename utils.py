@@ -116,9 +116,9 @@ def find_num_of_tagged():
             else:
                 num_of_negative += 1
 
-    positive_cursor = ('dev_articles', {'direction': 'POS'})
+    positive_cursor = mongo.find_matches('dev_articles', {'direction': 'POS'})
     num_of_positive += positive_cursor.count()
-    negative_cursor = ('dev_articles', {'direction': 'NEG'})
+    negative_cursor = mongo.find_matches('dev_articles', {'direction': 'NEG'})
     num_of_negative += negative_cursor.count()
     return positive_cursor, num_of_negative
 
