@@ -48,7 +48,7 @@ def skip_unwanted(h_link):
 def two_companies_in_title(url_title):
     num_of_comps = 0
     for company in scraper_constants.company_list:
-        if company in url_title:
+        if company in url_title.lower():
             num_of_comps += 1
             if num_of_comps >= 2:
                 print(url_title)
