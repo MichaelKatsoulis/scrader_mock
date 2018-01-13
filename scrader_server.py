@@ -182,7 +182,8 @@ def development_mode(user):
               ' and {} negative manually tagged articles in our database.' \
               ' Try to keep these two values balanced in order Scrader to be' \
               ' trained correctly!' \
-              'Now which articles you want to check?'
+              'Now which articles you want to check?'.\
+              format(num_positive, num_negative)
     buttons = []
     button_dict_tmpl = {
         'type': "json_plugin_url",
