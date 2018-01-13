@@ -261,8 +261,8 @@ def get_development_news(news_type, page_num, user):
         element['buttons'][1]['type'] = "json_plugin_url"
         element['buttons'][2]['url'] = "http://146.185.138.240/checked_article/{}/{}/{}/{}/{}".\
             format(news_type, id, 'Skip', page_num, user)
-        element['buttons'][1]['title'] = "Skip Estim"
-        element['buttons'][1]['type'] = "json_plugin_url"
+        element['buttons'][2]['title'] = "Skip Estim"
+        element['buttons'][2]['type'] = "json_plugin_url"
         elements.append(element)
     num = 0
     for page_number in quick_replies_page_numbers_to_show:
