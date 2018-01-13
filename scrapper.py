@@ -51,6 +51,7 @@ def two_companies_in_title(url_title):
         if company in url_title:
             num_of_comps += 1
             if num_of_comps >= 2:
+                print(url_title)
                 return True
     return False
 
