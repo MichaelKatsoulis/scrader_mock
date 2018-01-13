@@ -120,7 +120,7 @@ def find_num_of_tagged():
     num_of_positive += positive_cursor.count()
     negative_cursor = mongo.find_matches('dev_articles', {'direction': 'NEG'})
     num_of_negative += negative_cursor.count()
-    return positive_cursor, num_of_negative
+    return num_of_positive, num_of_negative
 
 
 def article_from_excel():
