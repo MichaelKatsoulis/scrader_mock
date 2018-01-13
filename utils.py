@@ -207,6 +207,11 @@ def get_development_news(news_type, page_num, user):
             "type": "web_url",
             "url": '',
             "title": ''
+        },
+         {
+           "type": "web_url",
+           "url": '',
+           "title": ''
         }]
     }
 
