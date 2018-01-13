@@ -9,6 +9,7 @@ import os
 import datetime
 import scraper_constants
 import algorithm
+import script
 
 
 def convert_to_df(url_list, image_list, title_list, date_list, companies_list,
@@ -25,6 +26,7 @@ def convert_to_df(url_list, image_list, title_list, date_list, companies_list,
     except OSError:
         pass
     data.to_csv(abs_filename, encoding='utf-8')
+    script.main()
     algorithm.run_algorithm(abs_filename)
 
 
@@ -32,6 +34,25 @@ def rchop(thestring, ending):
     if thestring.endswith(ending):
         return thestring[:-len(ending)]
     return thestring
+
+
+def skip_unwanted(h_link):
+    unwanted_list = ["://itunes.apple.com/", "//www.facebook.com/",
+                     "//facebook.com/", "//apps.microsoft.com"]
+    for item in unwanted_list:
+        if item in h_link:
+            return True
+    return False
+
+
+def two_companies_in_title(url_title):
+    num_of_comps = 0
+    for company in scraper_constants.company_list:
+        if company in url_title:
+            num_of_comps += 1
+            if num_of_comps >= 2:
+                return True
+    return False
 
 
 def main():
@@ -70,6 +91,8 @@ def main():
             for link in links:
                 h_link = link.get("href", False)
                 if not h_link:
+                    continue
+                if skip_unwanted(h_link):
                     continue
                 if company in h_link:
                     h_link = h_link.encode('utf-8')
@@ -122,6 +145,8 @@ def main():
                         url_title = h_link_soup.title.string
                         url_title = unicodedata.normalize('NFKD', url_title).\
                             encode('ascii', 'ignore')
+                        if two_companies_in_title(url_title):
+                            continue
                         # print url_title
                         if h_link not in url_list:
                             url_list.append(h_link)

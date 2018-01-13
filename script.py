@@ -21,7 +21,7 @@ def convert_collection_to_df(mongo_cli, collection, field1, match1,
     return pd.DataFrame(cursor_list)
 
 
-if __name__ == '__main__':
+def main():
     dataframe = convert_collection_to_df(MongoClient(), 'dev_articles',
                                                         'checked', [True],
                                                         'appended', [False])
@@ -31,3 +31,7 @@ if __name__ == '__main__':
     else:  # else it exists so append without writing the header
         dataframe.to_csv('scraderdata.csv', mode='a', header=False,
                          encoding='utf-8')
+
+
+if __name__ == '__main__':
+    main()
