@@ -1,6 +1,7 @@
 import os
 from pymongo import MongoClient
 import pandas as pd
+from bson.objectid import ObjectId
 # converts mongodb collection to csv
 
 
@@ -10,14 +11,19 @@ def convert_collection_to_df(mongo_cli, collection, field1, match1,
     scrader_db = dbcli['scrader']
     cursor = scrader_db[collection].find({'$and': [{field1: {'$in': match1}},
                                          {field2: {'$in': match2}}]},
-                                         {'_id': False})
+                                         {'_id': True})
 
     cursor_list = list(cursor)
-    print(cursor_list)
-    scrader_db[collection].update({'$and': [{field1: {'$in': match1}},
-                                            {field2: {'$in': match2}}]},
-                                  {'$set': {'appended': True}},
-                                  True, True)
+    print(len(cursor_list))
+    for article in cursor_list:
+        scrader_db[collection].\
+            update({"_id": ObjectId(article['_id'])},
+                   {'$set': {'appended': True}})
+
+    # scrader_db[collection].update({'$and': [{field1: {'$in': match1}},
+    #                                         {field2: {'$in': match2}}]},
+    #                               {'$set': {'appended': True}},
+    #                               True, True)
     return pd.DataFrame(cursor_list)
 
 
