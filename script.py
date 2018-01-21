@@ -10,8 +10,7 @@ def convert_collection_to_df(mongo_cli, collection, field1, match1,
     dbcli = mongo_cli
     scrader_db = dbcli['scrader']
     cursor = scrader_db[collection].find({'$and': [{field1: {'$in': match1}},
-                                         {field2: {'$in': match2}}]},
-                                         {'_id': True})
+                                         {field2: {'$in': match2}}]})
 
     cursor_list = list(cursor)
     print(len(cursor_list))
@@ -19,6 +18,7 @@ def convert_collection_to_df(mongo_cli, collection, field1, match1,
         scrader_db[collection].\
             update({"_id": ObjectId(article['_id'])},
                    {'$set': {'appended': True}})
+        article.pop('_id', None)
 
     # scrader_db[collection].update({'$and': [{field1: {'$in': match1}},
     #                                         {field2: {'$in': match2}}]},
