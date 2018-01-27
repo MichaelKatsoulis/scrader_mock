@@ -46,6 +46,8 @@ def skip_unwanted(h_link):
 
 
 def two_companies_in_title(url_title):
+    if url_title == '':
+        return True
     num_of_comps = 0
     for company in scraper_constants.company_names_list:
         if company in url_title.lower():
@@ -141,7 +143,10 @@ def main():
                     if url_image is not None:
                         image = url_image['content']
                         if not (image.startswith("http") or image.startswith("https")):
+                            img_before = image
                             image = 'https:' + image
+                            if not (image.startswith("https://")):
+                                image = "https://" + img_before
                         # print image
                         url_title = h_link_soup.title.string
                         url_title = unicodedata.normalize('NFKD', url_title).\
