@@ -6,6 +6,7 @@ import socket
 import unicodedata
 import ssl
 import os
+import re
 import datetime
 import scraper_constants
 import algorithm
@@ -50,12 +51,25 @@ def two_companies_in_title(url_title):
         return True
     num_of_comps = 0
     for company in scraper_constants.company_names_list:
-        if company in url_title.lower():
+        result = findWholeWord(company)(url_title)
+        if result is not None:
             num_of_comps += 1
             if num_of_comps >= 2:
                 print(url_title)
                 return True
+    if num_of_comps == 0:
+        print(url_title)
+        return True
+        # if company in url_title.lower():
+        #     num_of_comps += 1
+        #     if num_of_comps >= 2:
+        #         print(url_title)
+        #         return True
     return False
+
+
+def findWholeWord(w):
+    return re.compile(r'\b({0})\b'.format(w), flags=re.IGNORECASE).search
 
 
 def main():
@@ -97,6 +111,7 @@ def main():
                     continue
                 if skip_unwanted(h_link):
                     continue
+
                 if company in h_link:
                     h_link = h_link.encode('utf-8')
                     if not (h_link.startswith("http") or h_link.startswith("https")):
