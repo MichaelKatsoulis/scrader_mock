@@ -31,9 +31,9 @@ company_names_list = [
     "verizon", "santander", "siemens", "novartis", "goldman", "metlife",
     "hyundai", "disney", "prudencial", "qualcomm", "honeywell", "abb-",
     "astrazeneca", "carrefour", "aetna", "edf", "pfizer", "statoil",
-    "facebook", "twitter", "general-motors", "gm", "honda", "cisco",
-    "hyundai", "cnooc", "unilever", "eon", "bayer", "hitachi", "lockheed",
-    "deloitte"
+    "facebook", "twitter", "general-motors",  "general motors", "gm", "honda",
+    "cisco", "hyundai", "cnooc", "unilever", "eon", "bayer", "hitachi",
+    "lockheed", "deloitte"
 ]
 
 scraping_list = [
