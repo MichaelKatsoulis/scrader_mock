@@ -9,7 +9,7 @@ import signal
 import copy
 import config
 import websites
-import logging
+from scrader_logger import LOG
 import mongo
 import utils
 
@@ -1060,11 +1060,7 @@ def signal_sigint_handler(rec_signal, rec_frame):
 
 if __name__ == '__main__':
     signal.signal(signal.SIGINT, signal_sigint_handler)
-
-    # set the flask logger => ERROR: do not print API calls
-
-    logging.basicConfig(filename='logs.log',level=logging.INFO)
-    logging.debug('This message should go to the log file')
+    LOG.info('scrader server started')
     # utils.news_poll(10)
     mongo.init_database()
     utils.article_from_excel()

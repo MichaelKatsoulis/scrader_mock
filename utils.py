@@ -7,7 +7,7 @@ import copy
 import csv
 
 from bson.objectid import ObjectId
-
+from scrader_logger import LOG
 
 from gevent import monkey
 
@@ -297,6 +297,7 @@ def get_development_news(news_type, page_num, user):
     if int(page_num) == 1:
         messages.append(top_message)
 
+    LOG.info(message)
     # print(message)
     messages.append(message)
     response_data = {"messages": messages}
