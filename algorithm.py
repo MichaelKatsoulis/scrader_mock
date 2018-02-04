@@ -28,7 +28,7 @@ def store_to_database(data):
         new_article['checked'] = False
         new_article['appended'] = False
         exists = development_articles.find_one(
-            {"item_url": article.get('Article')})
+            {"title": article.get('Title')})
         if exists is None:
             development_articles.insert_one(new_article)
 
