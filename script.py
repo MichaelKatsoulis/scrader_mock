@@ -28,13 +28,20 @@ def convert_collection_to_df(mongo_cli, collection, field1, match1,
                     break
 
     print(len(copied_list))
+    reduced_list = []
+    sampledict = {'direction': '',
+                  'title': ''}
+
     for article in copied_list:
         scrader_db[collection].\
             update({"_id": ObjectId(article['_id'])},
                    {'$set': {'appended': True}})
-        article.pop('_id', None)
+        newarticle = copy.deepcopy(sampledict)
+        newarticle['direction'] = article.get('direction')
+        newarticle['title'] = article.get('title')
+        reduced_list.append(newarticle)
 
-    return pd.DataFrame(copied_list)
+    return pd.DataFrame(reduced_list)
 
 
 def main():
@@ -43,10 +50,10 @@ def main():
                                                         'appended', [False])
     # if file does not exist write header
     if not os.path.isfile('scraderdata.csv'):
-        dataframe.to_csv('scraderdata.csv', encoding='utf-8')
+        dataframe.to_csv('scraderdata.csv', encoding='utf-8', index=False)
     else:  # else it exists so append without writing the header
         dataframe.to_csv('scraderdata.csv', mode='a', header=False,
-                         encoding='utf-8')
+                         index=False, encoding='utf-8')
 
 
 if __name__ == '__main__':
