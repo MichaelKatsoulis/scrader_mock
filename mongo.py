@@ -49,6 +49,12 @@ def find_matches_two_fields(collection_name, field1, match1, field2, match2):
     return collection.find({'$and': [{field1: {'$in': match1}}, {field2: {'$in': match2}}]})
 
 
+def find_matches_three_fields(collection_name, field1, match1, field2, match2, field3, match3):
+    collection = db[collection_name]
+    return collection.find({'$and': [{field1: {'$in': match1}}, {field2: {'$in': match2}},
+                                     {field3: {'$in': match3}}]})
+
+
 def find_matches_not_containing(collection_name, field, value):
     collection = db[collection_name]
     return collection.find({field: {'$nin': value}})
