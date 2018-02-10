@@ -123,7 +123,7 @@ def find_num_of_tagged():
                                                       'appended',
                                                       ['False'])
     num_of_positive += positive_cursor.count()
-    negative_cursor = mongo.find_matches_two_fields('dev_articles',
+    negative_cursor = mongo.find_matches_three_fields('dev_articles',
                                                     'checked', [True],
                                                     'direction',
                                                     ['NEG'],
