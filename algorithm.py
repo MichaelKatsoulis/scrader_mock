@@ -65,9 +65,19 @@ def run_algorithm(filename):
     train_set.groupby(['direction']).count().reset_index()
     data = data.sample(frac=1)
 
-    g = TfidfVectorizer(encoding='utf-8', min_df=3, max_df=10000,
-                        ngram_range=(1, 2000), analyzer=u'char',
-                        max_features=20000)
+    # g = TfidfVectorizer(encoding='utf-8', min_df=3, max_df=10000,
+    #                     ngram_range=(1, 2000), analyzer=u'char',
+    #                     max_features=20000)
+    g = TfidfVectorizer(min_df=5, max_df=1000, ngram_range=(1, 6), stop_words=[
+         "Amazon", "Uber", "Netflix", "Google", "Boeing", "IBM", "Aig", "Apple", "Ryanair", "Motorolla",
+         "Equifax", "Microsoft", "Spotify", "Exxon", "Wells Fargo", "Toyota", "HSBC", "BP",
+         "Volkswagen", "BnP Paribas", "Daimler", "Samsung", "AXA", "Vodafone", "Nestle", "Ford", "Metlife",
+         "General Motors", "Intel", "Oracle", "Unilever", "Morgan Stanley", "Barclays", "Christian Dior", "3M",
+         "Target", "Nintendo", "Tesla", "Panasonic", "ebay", "Kia", "Renault", "Apache", "Philips", "Monsanto",
+         "Accenture", "Toshiba", "Baidu", "SKY", "JPMorgan", "JP-Morgan", "P&G", "VW", "BMW", "Benz", "Mercedes",
+         "AT&T","Renault","Alibaba",  "Citi","Chevron","Wal-mart","Gazprom","Verizon", "Santander","Siemens","Novartis",
+         "Goldman","Metlife","Hyundai", "Disney","Prudencial","Qualcomm","Honeywell","ABB","Astrazeneca","Carrefour","Canon",
+         "Canon","Aetna"], analyzer=u'word', max_features=5000)
     X_train = g.fit_transform(data['title']).toarray()
     y_train = data['direction']
 
