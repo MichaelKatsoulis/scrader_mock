@@ -115,6 +115,7 @@ def main():
         # vriskei ola ta links
         links = soup.find_all("a")
         for company in company_list:
+            print(company)
             for link in links:
                 h_link = link.get("href", False)
                 if not h_link:
@@ -166,7 +167,9 @@ def main():
                     # date= time[(time.find("-")+1):time.find("T")]
                     #                     print date
                     if url_image is not None:
-                        image = url_image['content']
+                        image = url_image.get('content')
+                        if image is None:
+                            continue
                         if not (image.startswith("http") or image.startswith("https")):
                             img_before = image
                             image = 'https:' + image
