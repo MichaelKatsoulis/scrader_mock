@@ -48,6 +48,8 @@ def main():
     dataframe = convert_collection_to_df(MongoClient(), 'dev_articles',
                                                         'checked', [True],
                                                         'appended', [False])
+    if dataframe.empty:
+        pass
     # if file does not exist write header
     if not os.path.isfile('scraderdata.csv'):
         dataframe.to_csv('scraderdata.csv', encoding='utf-8', index=False)
