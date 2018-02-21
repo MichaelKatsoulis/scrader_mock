@@ -11,6 +11,7 @@ import datetime
 import scraper_constants
 import algorithm
 import script
+import csv
 
 
 def convert_to_df(url_list, image_list, title_list, date_list, companies_list,
@@ -46,11 +47,11 @@ def skip_unwanted(h_link):
     return False
 
 
-def two_companies_in_title(url_title):
+def two_companies_in_title(url_title, company_names):
     if url_title == '':
         return True
     num_of_comps = 0
-    for company in scraper_constants.company_names_list:
+    for company in company_names:
         result = findWholeWord(company)(url_title)
         if result is not None:
             num_of_comps += 1
@@ -73,7 +74,16 @@ def findWholeWord(w):
 
 
 def main():
-    company_list = scraper_constants.company_list
+
+    with open('company_list_18-2.csv') as csvfile:
+        reader = csv.DictReader(csvfile)
+        company_names = []
+        company_list = []
+        for company in reader:
+            if company.get('COMPANY LIST') != '':
+                company_names.append(company.get('COMPANY LIST'))
+                company_list.append(company.get('URL TERM'))
+    # company_list = scraper_constants.company_list
     scraping_list = scraper_constants.scraping_list
     website_list = scraper_constants.website_list
 
@@ -166,7 +176,7 @@ def main():
                         url_title = h_link_soup.title.string
                         url_title = unicodedata.normalize('NFKD', url_title).\
                             encode('ascii', 'ignore')
-                        if two_companies_in_title(url_title):
+                        if two_companies_in_title(url_title, company_names):
                             continue
                         # print url_title
                         if h_link not in url_list:
