@@ -106,6 +106,9 @@ def main():
         req = urllib2.Request(url, headers={'User-Agent': user_agent})
         try:
             content = urllib2.urlopen(req).read()
+        except ssl.SSLError:
+            print "ssl error"
+            continue     
         except urllib2.URLError:
             print "Bad URL or timeout"
             print url

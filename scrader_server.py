@@ -93,7 +93,7 @@ def company_search():
         Returns:
             dict: A JSON object containing the nfvacc server status information
     """
-
+    LOG.info('request received')
     company_typed = (request.args.get('last user freeform input')).lower()
     first_name = request.args.get('first name')
     user_id = request.args.get('chatfuel user id')
@@ -229,6 +229,7 @@ def get_development_news(news_type, page_num, user):
         Returns:
             dict: A JSON object containing the nfvacc server status information
     """
+    LOG.info('request received')
     response_data = utils.get_development_news(news_type, page_num, user)
     status = 200 if response_data is not None else 403
     js = json.dumps(response_data, indent=2)
