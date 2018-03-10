@@ -171,7 +171,7 @@ def main():
                     #                     print date
                     if url_image is not None:
                         image = url_image.get('content')
-                        if image is None:
+                        if image is None or image == '':
                             continue
                         if not (image.startswith("http") or image.startswith("https")):
                             img_before = image
