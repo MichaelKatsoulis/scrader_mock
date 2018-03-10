@@ -12,7 +12,13 @@ import scraper_constants
 import algorithm
 import script
 import csv
-
+import logging
+logger = logging.getLogger('myapp')
+hdlr = logging.FileHandler('scraper_logs.log')
+formatter = logging.Formatter('%(asctime)s %(levelname)s %(message)s')
+hdlr.setFormatter(formatter)
+logger.addHandler(hdlr) 
+logger.setLevel(logging.INFO)
 
 def convert_to_df(url_list, image_list, title_list, date_list, companies_list,
                   website_url_list, websites_list):
@@ -21,7 +27,7 @@ def convert_to_df(url_list, image_list, title_list, date_list, companies_list,
                          "Image": image_list, "Date": date_list,
                          "Company": companies_list, "Website": websites_list,
                          "Website url": website_url_list})
-    print(len(data))
+    logger.info('found {} new articles'.format(len(data)))
     abs_filename = "./Scraderlatestnews.csv"
     try:
         os.remove(abs_filename)
@@ -56,10 +62,10 @@ def two_companies_in_title(url_title, company_names):
         if result is not None:
             num_of_comps += 1
             if num_of_comps >= 2:
-                print(url_title)
+                # print(url_title)
                 return True
     if num_of_comps == 0:
-        print(url_title)
+        # print(url_title)
         return True
         # if company in url_title.lower():
         #     num_of_comps += 1
@@ -107,18 +113,16 @@ def main():
         try:
             content = urllib2.urlopen(req).read()
         except ssl.SSLError:
-            print "ssl error"
+            logger.warning('ssl error')
             continue     
         except urllib2.URLError:
-            print "Bad URL or timeout"
-            print url
+            logger.warning('Bad URL: {}'.format(url))
             continue
         soup = BeautifulSoup(content, "html.parser")
 
         # vriskei ola ta links
         links = soup.find_all("a")
         for company in company_list:
-            print(company)
             for link in links:
                 h_link = link.get("href", False)
                 if not h_link:
@@ -140,23 +144,19 @@ def main():
                     try:
                         h_link_content = urllib2.urlopen(h_link_req).read()
                     except urllib2.HTTPError, e:
-                        print h_link
-                        print e
+                        logger.warning('{}: {}'.format(h_link, e))
                         continue
                     except urllib2.URLError, e:
-                        print h_link
-                        print e
+                        logger.warning('{}: {}'.format(h_link, e))
                         continue
                     except httplib.HTTPException, e:
-                        print h_link
-                        print e
+                        logger.warning('{}: {}'.format(h_link, e))
                         continue
                     except ssl.SSLError, e:
-                        print h_link
-                        print e
+                        logger.warning('{}: {}'.format(h_link, e))
                         continue
                     except Exception:
-                        print h_link
+                        logger.warning('{}'.format(h_link))
                         continue
 
                     h_link_soup = BeautifulSoup(h_link_content, "html.parser")
@@ -198,13 +198,13 @@ def main():
                         # print "No image in " + url
                         pass
 
-    print(len(url_list))
-    print(len(image_list))
-    print(len(title_list))
-    print(len(date_list))
-    print(len(companies_list))
-    print(len(website_url_list))
-    print(len(websites_list))
+    # print(len(url_list))
+    # print(len(image_list))
+    # print(len(title_list))
+    # print(len(date_list))
+    # print(len(companies_list))
+    # print(len(website_url_list))
+    # print(len(websites_list))
     convert_to_df(url_list, image_list, title_list, date_list, companies_list,
                   website_url_list, websites_list)
 
@@ -212,4 +212,5 @@ def main():
 if __name__ == '__main__':
     timeout = 10
     socket.setdefaulttimeout(timeout)
+    logger.info('new scraping started')
     main()
