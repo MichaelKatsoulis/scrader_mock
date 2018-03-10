@@ -19,7 +19,8 @@ def store_to_database(data):
     scrader_db = dbcli['scrader']
     development_articles = scrader_db['dev_articles']
     dev_articles = data.to_dict('records')
-    logger.info('storing {} to database'.format(len(dev_articles)))
+    logger.info('checking to store {} artciles to database'.format(len(dev_articles)))
+    articles_stored = 0
     for article in dev_articles:
         new_article = {}
         new_article['title'] = article.get('Title')
@@ -35,7 +36,9 @@ def store_to_database(data):
         exists = development_articles.find_one(
             {"title": article.get('Title')})
         if exists is None:
+            articles_stored += 1
             development_articles.insert_one(new_article)
+    logger.info('storing {} to database'.format(articles_stored)
 
 
 def train_classifier(clf, X_train, y_train):
