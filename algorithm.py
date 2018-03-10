@@ -6,6 +6,7 @@ from sklearn.metrics import f1_score
 from sklearn.svm import SVC
 from time import time
 from pymongo import MongoClient
+import logging
 logger = logging.getLogger('myapp')
 hdlr = logging.FileHandler('algorithm.log')
 formatter = logging.Formatter('%(asctime)s %(levelname)s %(message)s')
