@@ -6,14 +6,19 @@ from sklearn.metrics import f1_score
 from sklearn.svm import SVC
 from time import time
 from pymongo import MongoClient
-
+logger = logging.getLogger('myapp')
+hdlr = logging.FileHandler('algorithm.log')
+formatter = logging.Formatter('%(asctime)s %(levelname)s %(message)s')
+hdlr.setFormatter(formatter)
+logger.addHandler(hdlr) 
+logger.setLevel(logging.INFO)
 
 def store_to_database(data):
     dbcli = MongoClient()
     scrader_db = dbcli['scrader']
     development_articles = scrader_db['dev_articles']
     dev_articles = data.to_dict('records')
-    print(dev_articles)
+    logger.info('storing {} to database'.format(len(dev_articles)))
     for article in dev_articles:
         new_article = {}
         new_article['title'] = article.get('Title')
@@ -38,7 +43,7 @@ def train_classifier(clf, X_train, y_train):
     start = time()
     clf.fit(X_train, y_train)
     end = time()
-    print "Trained model in {:.4f} seconds".format(end - start)
+    logger.info("Trained model in {:.4f} seconds".format(end - start))
     return clf
 
 
@@ -47,8 +52,7 @@ def predict_labels(clf, features):
     start = time()
     y_pred = clf.predict(features)
     end = time()
-    # Print and return results
-    print "Made predictions in {:.4f} seconds.".format(end - start)
+    logger.info("Made predictions in {:.4f} seconds.".format(end - start))
     return y_pred
 
 
@@ -57,7 +61,6 @@ def run_algorithm(filename):
     data1 = data['title']
     data2 = data['direction']
 
-    print 'Data read Successfully'
     data = pd.concat([data1.reset_index(drop=True), data2], axis=1)
     data.columns = ['title', 'direction']
     data.groupby(['direction']).count().reset_index()
@@ -87,9 +90,7 @@ def run_algorithm(filename):
                             encoding='utf-8')
     titles = g.transform(real_data['Title']).toarray()
     results = predict_labels(clf, titles)
-    print results
     probabilities = clf.predict_proba(titles)
-    print probabilities
     list_probabilities = probabilities.tolist()
     best_probs = []
     for prob_combo in list_probabilities:

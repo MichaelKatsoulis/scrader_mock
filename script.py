@@ -14,7 +14,6 @@ def convert_collection_to_df(mongo_cli, collection, field1, match1,
                                          {field2: {'$in': match2}}]})
 
     cursor_list = list(cursor)
-    print(len(cursor_list))
     copied_list = copy.deepcopy(cursor_list)
     for d in cursor_list:
         title = d['title']
@@ -23,11 +22,9 @@ def convert_collection_to_df(mongo_cli, collection, field1, match1,
             if dic['title'] == title:
                 times += 1
                 if times == 2:
-                    print(title)
                     copied_list.remove(dic)
                     break
 
-    print(len(copied_list))
     reduced_list = []
     sampledict = {'direction': '',
                   'title': ''}
