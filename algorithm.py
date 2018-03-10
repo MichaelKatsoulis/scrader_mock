@@ -7,7 +7,7 @@ from sklearn.svm import SVC
 from time import time
 from pymongo import MongoClient
 import logging
-logger = logging.getLogger('myapp')
+logger = logging.getLogger('newapp')
 hdlr = logging.FileHandler('algorithm.log')
 formatter = logging.Formatter('%(asctime)s %(levelname)s %(message)s')
 hdlr.setFormatter(formatter)
