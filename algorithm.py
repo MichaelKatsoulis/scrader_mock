@@ -38,7 +38,7 @@ def store_to_database(data):
         if exists is None:
             articles_stored += 1
             development_articles.insert_one(new_article)
-    logger.info('storing {} to database'.format(articles_stored)
+    logger.info('storing {} to database'.format(articles_stored))
 
 
 def train_classifier(clf, X_train, y_train):
