@@ -1,4 +1,5 @@
 from bs4 import BeautifulSoup
+from pymongo import MongoClient
 import urllib2
 import pandas as pd
 import httplib
@@ -12,7 +13,11 @@ import scraper_constants
 import algorithm
 import script
 import csv
+import copy
 import logging
+
+dbcli = MongoClient()
+db = dbcli['scrader']
 logger = logging.getLogger('myapp')
 hdlr = logging.FileHandler('scraper_logs.log')
 formatter = logging.Formatter('%(asctime)s %(levelname)s %(message)s')
@@ -34,8 +39,8 @@ def convert_to_df(url_list, image_list, title_list, date_list, companies_list,
     except OSError:
         pass
     data.to_csv(abs_filename, encoding='utf-8')
-    script.main()
-    algorithm.run_algorithm(abs_filename)
+    #script.main()
+    #algorithm.run_algorithm(abs_filename)
 
 
 def rchop(thestring, ending):
@@ -53,26 +58,33 @@ def skip_unwanted(h_link):
     return False
 
 
-def two_companies_in_title(url_title, company_names):
+def companies_in_title(url_title, scraper_companies, url_term):
     if url_title == '':
-        return True
-    num_of_comps = 0
-    for company in company_names:
-        result = findWholeWord(company)(url_title)
-        if result is not None:
-            num_of_comps += 1
+        return None
+    collection = db['scraper_companies']
+    company_dict = list(collection.find({'url_terms': url_term}, {'_id': False}))[0]
+    company_synonims = company_dict.get('synonims')
+    res = None
+    for synonim in company_synonims:
+        res = findWholeWord(synonim)(url_title)
+            if res is not None:
+                res = company_dict.get('company_name')
+                break
+    if res is None:
+        return None
+    
+    num_of_comps = 1
+    for company in scraper_companies:
+        if company.get('company_name') != res:
+            for synonim in company.get('synonims'):
+                result = findWholeWord(synonim)(url_title)
+                if result is not None:
+                    num_of_comps += 1
+                    break
             if num_of_comps >= 2:
-                # print(url_title)
-                return True
-    if num_of_comps == 0:
-        # print(url_title)
-        return True
-        # if company in url_title.lower():
-        #     num_of_comps += 1
-        #     if num_of_comps >= 2:
-        #         print(url_title)
-        #         return True
-    return False
+                return None
+ 
+    return res
 
 
 def findWholeWord(w):
@@ -89,7 +101,14 @@ def main():
             if company.get('COMPANY LIST') != '':
                 company_names.append(company.get('COMPANY LIST'))
                 company_list.append(company.get('URL TERM'))
-    # company_list = scraper_constants.company_list
+    
+    collection = db['url_terms']
+    url_collection = list(collection.find({}, {'_id': False}))
+    urls_list = url_collection[0].get('url_terms')
+
+    collection = db['scraper_companies']
+    scraper_companies = list(collection.find({}, {'_id': False}))
+
     scraping_list = scraper_constants.scraping_list
     website_list = scraper_constants.website_list
 
@@ -122,7 +141,7 @@ def main():
 
         # vriskei ola ta links
         links = soup.find_all("a")
-        for company in company_list:
+        for url_term in urls_list:
             for link in links:
                 h_link = link.get("href", False)
                 if not h_link:
@@ -130,7 +149,7 @@ def main():
                 if skip_unwanted(h_link):
                     continue
 
-                if company in h_link:
+                if url_term in h_link:
                     h_link = h_link.encode('utf-8')
                     if not (h_link.startswith("http") or h_link.startswith("https")):
                         if h_link.startswith("//"):
@@ -182,7 +201,8 @@ def main():
                         url_title = h_link_soup.title.string
                         url_title = unicodedata.normalize('NFKD', url_title).\
                             encode('ascii', 'ignore')
-                        if two_companies_in_title(url_title, company_names):
+                        company_name = companies_in_title(url_title, scraper_companies, url_term)
+                        if company_name is None:
                             continue
                         # print url_title
                         if h_link not in url_list:
@@ -190,8 +210,7 @@ def main():
                             image_list.append(image)
                             title_list.append(url_title)
                             date_list.append(date)
-                            company = rchop(company, '-')
-                            companies_list.append(company)
+                            companies_list.append(company_name)
                             website_url_list.append(url)
                             websites_list.append(website)
                     else:
