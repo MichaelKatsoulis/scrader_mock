@@ -39,8 +39,8 @@ def convert_to_df(url_list, image_list, title_list, date_list, companies_list,
     except OSError:
         pass
     data.to_csv(abs_filename, encoding='utf-8')
-    #script.main()
-    #algorithm.run_algorithm(abs_filename)
+    script.main()
+    algorithm.run_algorithm(abs_filename)
 
 
 def rchop(thestring, ending):
@@ -61,15 +61,19 @@ def skip_unwanted(h_link):
 def companies_in_title(url_title, scraper_companies, url_term):
     if url_title == '':
         return None
+
+    if 'CBS New York' in url_title:
+        return None
+
     collection = db['scraper_companies']
     company_dict = list(collection.find({'url_terms': url_term}, {'_id': False}))[0]
     company_synonims = company_dict.get('synonims')
     res = None
     for synonim in company_synonims:
         res = findWholeWord(synonim)(url_title)
-            if res is not None:
-                res = company_dict.get('company_name')
-                break
+        if res is not None:
+            res = company_dict.get('company_name')
+            break
     if res is None:
         return None
     
@@ -93,15 +97,6 @@ def findWholeWord(w):
 
 def main():
 
-    with open('company_list_18-2.csv') as csvfile:
-        reader = csv.DictReader(csvfile)
-        company_names = []
-        company_list = []
-        for company in reader:
-            if company.get('COMPANY LIST') != '':
-                company_names.append(company.get('COMPANY LIST'))
-                company_list.append(company.get('URL TERM'))
-    
     collection = db['url_terms']
     url_collection = list(collection.find({}, {'_id': False}))
     urls_list = url_collection[0].get('url_terms')
