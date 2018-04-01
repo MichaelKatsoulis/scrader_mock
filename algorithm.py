@@ -1,18 +1,26 @@
 import os
 import pandas as pd
-
+import Stemmer
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics import f1_score
 from sklearn.svm import SVC
 from time import time
 from pymongo import MongoClient
 import logging
+
+
 logger = logging.getLogger('newapp')
 hdlr = logging.FileHandler('algorithm.log')
 formatter = logging.Formatter('%(asctime)s %(levelname)s %(message)s')
 hdlr.setFormatter(formatter)
 logger.addHandler(hdlr) 
 logger.setLevel(logging.INFO)
+
+english_stemmer = Stemmer.Stemmer('en')
+class StemmedTfidfVectorizer(TfidfVectorizer):
+    def build_analyzer(self):
+       analyzer = super(TfidfVectorizer, self).build_analyzer()
+       return lambda doc: english_stemmer.stemWords(analyzer(doc))
 
 def store_to_database(data):
     dbcli = MongoClient()
@@ -61,6 +69,14 @@ def predict_labels(clf, features):
 
 
 def run_algorithm(filename):
+    dbcli = MongoClient()
+    db = dbcli['scrader']
+    collection = db['scraper_companies']
+    scraper_companies = list(collection.find({}, {'_id': False}))
+    stop_words_list = []
+    for comp in scraper_companies:
+        stop_words_list.extend(comp.get('synonims'))
+
     data = pd.read_csv('./scraderdata.csv', sep=',', encoding='utf-8')
     data1 = data['title']
     data2 = data['direction']
@@ -75,16 +91,18 @@ def run_algorithm(filename):
     # g = TfidfVectorizer(encoding='utf-8', min_df=3, max_df=10000,
     #                     ngram_range=(1, 2000), analyzer=u'char',
     #                     max_features=20000)
-    g = TfidfVectorizer(min_df=5, max_df=1000, ngram_range=(1, 6), stop_words=[
-         "Amazon", "Uber", "Netflix", "Google", "Boeing", "IBM", "Aig", "Apple", "Ryanair", "Motorolla",
-         "Equifax", "Microsoft", "Spotify", "Exxon", "Wells Fargo", "Toyota", "HSBC", "BP",
-         "Volkswagen", "BnP Paribas", "Daimler", "Samsung", "AXA", "Vodafone", "Nestle", "Ford", "Metlife",
-         "General Motors", "Intel", "Oracle", "Unilever", "Morgan Stanley", "Barclays", "Christian Dior", "3M",
-         "Target", "Nintendo", "Tesla", "Panasonic", "ebay", "Kia", "Renault", "Apache", "Philips", "Monsanto",
-         "Accenture", "Toshiba", "Baidu", "SKY", "JPMorgan", "JP-Morgan", "P&G", "VW", "BMW", "Benz", "Mercedes",
-         "AT&T","Renault","Alibaba",  "Citi","Chevron","Wal-mart","Gazprom","Verizon", "Santander","Siemens","Novartis",
-         "Goldman","Metlife","Hyundai", "Disney","Prudencial","Qualcomm","Honeywell","ABB","Astrazeneca","Carrefour","Canon",
-         "Canon","Aetna"], analyzer=u'word', max_features=5000)
+    # g = StemmedTfidfVectorizer(min_df=5, max_df=1000, ngram_range=(1, 6), stop_words=[
+    #      "Amazon", "Uber", "Netflix", "Google", "Boeing", "IBM", "Aig", "Apple", "Ryanair", "Motorolla",
+    #      "Equifax", "Microsoft", "Spotify", "Exxon", "Wells Fargo", "Toyota", "HSBC", "BP",
+    #      "Volkswagen", "BnP Paribas", "Daimler", "Samsung", "AXA", "Vodafone", "Nestle", "Ford", "Metlife",
+    #      "General Motors", "Intel", "Oracle", "Unilever", "Morgan Stanley", "Barclays", "Christian Dior", "3M",
+    #      "Target", "Nintendo", "Tesla", "Panasonic", "ebay", "Kia", "Renault", "Apache", "Philips", "Monsanto",
+    #      "Accenture", "Toshiba", "Baidu", "SKY", "JPMorgan", "JP-Morgan", "P&G", "VW", "BMW", "Benz", "Mercedes",
+    #      "AT&T","Renault","Alibaba",  "Citi","Chevron","Wal-mart","Gazprom","Verizon", "Santander","Siemens","Novartis",
+    #      "Goldman","Metlife","Hyundai", "Disney","Prudencial","Qualcomm","Honeywell","ABB","Astrazeneca","Carrefour","Canon",
+    #      "Canon","Aetna"], analyzer=u'word', max_features=5000)
+    g = StemmedTfidfVectorizer(min_df=5, max_df=1000, ngram_range=(1, 6), stop_words=stop_words_list,
+                               analyzer=u'word', max_features=5000)
     X_train = g.fit_transform(data['title']).toarray()
     y_train = data['direction']
 
