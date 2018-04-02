@@ -60,7 +60,9 @@ scraping_list = [
     "https://www.bloomberg.com/europe",
     "https://www.theguardian.com/uk/business",
     "https://www.npr.org/sections/business/",
-    "https://www.nbcnews.com/business"
+    "https://www.nbcnews.com/business",
+    "https://www.cnbc.com/technology/",
+    "https://www.cnbc.com/finance/"
 ]
 
 website_list = [
