@@ -89,5 +89,6 @@ website_list = [
     "bloomberg.com",
     "theguardian.com",
     "npr.org",
-    "nbcnews.com"
+    "nbcnews.com",
+    "cnbc.com"
 ]
