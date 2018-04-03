@@ -1067,5 +1067,5 @@ if __name__ == '__main__':
     utils.article_from_excel()
     utils.start_scheduler_task()
     # utils.update_companies_news_once()
-
-    app.run(host=config.HOST, port=config.PORT, debug=True, use_reloader=False)
+    # app.run(host=config.HOST, port=config.PORT, debug=True, use_reloader=False)
+    app.run(host='0.0.0.0', port="8000", debug=True, use_reloader=False)

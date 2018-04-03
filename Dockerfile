@@ -5,7 +5,7 @@ RUN apt-get update
 RUN apt-get install -y python2.7 python-dev python-distribute python-pip curl openssh-client openssh-server
 RUN pip install ipython==5.0
 RUN python -m pip install --upgrade pip
-RUN pip install --user numpy scipy ipython
+RUN pip install --user numpy scipy ipython --no-cache-dir
 RUN mkdir /code
 WORKDIR /code
 ADD requirements.txt /code/
