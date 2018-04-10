@@ -196,6 +196,8 @@ def main():
                         url_title = h_link_soup.title.string
                         url_title = unicodedata.normalize('NFKD', url_title).\
                             encode('ascii', 'ignore')
+                        url_title = url_title.replace("&apos;","'")
+                        
                         company_name = companies_in_title(url_title, scraper_companies, url_term)
                         if company_name is None:
                             continue
