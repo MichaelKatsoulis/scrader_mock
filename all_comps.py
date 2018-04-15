@@ -1,4 +1,4 @@
-[
+all_companies = [
   {
     "company_logo": "http://146.185.138.240/static/images/google_logo.jpg", 
     "name": "Heineken Holding"
