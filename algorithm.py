@@ -41,7 +41,7 @@ def store_to_database(data, coll):
         new_article['website_url'] = article.get('Website url')
         new_article['checked'] = False
         new_article['appended'] = False
-        exists = development_articles.find_one(
+        exists = existing_articles.find_one(
             {"title": article.get('Title')})
         if exists is None:
             articles_stored += 1
