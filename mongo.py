@@ -1,5 +1,5 @@
 from pymongo import MongoClient
-import companies
+import all_comps
 
 
 def init_database():
@@ -10,7 +10,7 @@ def init_database():
     db = client['scrader']
     companies_stored = db['companies']
     if companies_stored.count() == 0:
-        insert_many('companies', companies.all_companies)
+        insert_many('companies', all_comps.all_companies)
 
     return db
 

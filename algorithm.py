@@ -22,14 +22,14 @@ class StemmedTfidfVectorizer(TfidfVectorizer):
        analyzer = super(TfidfVectorizer, self).build_analyzer()
        return lambda doc: english_stemmer.stemWords(analyzer(doc))
 
-def store_to_database(data):
+def store_to_database(data, coll):
     dbcli = MongoClient()
     scrader_db = dbcli['scrader']
-    development_articles = scrader_db['dev_articles']
-    dev_articles = data.to_dict('records')
-    logger.info('checking to store {} artciles to database'.format(len(dev_articles)))
+    existing_articles = scrader_db[coll]
+    all_articles = data.to_dict('records')
+    logger.info('checking to store {} artciles to database'.format(len(all_articles)))
     articles_stored = 0
-    for article in dev_articles:
+    for article in all_articles:
         new_article = {}
         new_article['title'] = article.get('Title')
         new_article['image_url'] = article.get('Image')
@@ -45,7 +45,7 @@ def store_to_database(data):
             {"title": article.get('Title')})
         if exists is None:
             articles_stored += 1
-            development_articles.insert_one(new_article)
+            existing_articles.insert_one(new_article)
     logger.info('storing {} to database'.format(articles_stored))
 
 
@@ -120,9 +120,10 @@ def run_algorithm(filename):
 
     real_data['Sentiment'] = results
     real_data['Probability'] = best_probs
-    # real_data = real_data[real_data.Probability >= 0.7]
+    live_data = real_data[real_data.Probability >= 0.7]
 
-    store_to_database(real_data)
+    store_to_database(real_data, 'dev_articles')
+    store_to_database(live_data, 'articles')
 
     try:
         os.remove("./ScraderwithSentiment.csv")

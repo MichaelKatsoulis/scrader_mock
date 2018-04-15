@@ -64,6 +64,8 @@ def companies_by_type(news_type):
     companies_new_list = []
     for article in articles_cursor:
         comp_dict = mongo.find_one_match('companies', {'name': article.get('company')})
+        if comp_dict is None:
+            continue
         if not any(d['company_name'] == comp_dict.get('name') for d in companies_new_list):
             comp_dict['company_name'] = comp_dict.pop('name')
             companies_new_list.append(comp_dict)
@@ -131,6 +133,7 @@ def find_num_of_tagged():
                                                     ['False'])
     num_of_negative += negative_cursor.count()
     return num_of_positive, num_of_negative
+
 
 
 def article_from_excel():

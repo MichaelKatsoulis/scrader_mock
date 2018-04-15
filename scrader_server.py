@@ -996,7 +996,7 @@ def get_companies(stocks_type):
             name_net = company.get('company_name').split()[0]
             element['title'] = company.get('company_name')
             element['image_url'] = company.get('company_logo')
-            company_articles = utils.get_companies_articles(name_net)
+            company_articles = utils.get_companies_articles(company.get('company_name'))
             company_number_of_artcles = len(company_articles)
             if company_number_of_artcles == 1:
                 article = company_articles[0]
@@ -1064,7 +1064,7 @@ if __name__ == '__main__':
     LOG.info('scrader server started')
     # utils.news_poll(10)
     mongo.init_database()
-    utils.article_from_excel()
+    #utils.article_from_excel()
     utils.start_scheduler_task()
     # utils.update_companies_news_once()
     # app.run(host=config.HOST, port=config.PORT, debug=True, use_reloader=False)
