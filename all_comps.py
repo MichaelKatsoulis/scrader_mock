@@ -4,15 +4,15 @@ all_companies = [
     "name": "Heineken Holding"
   }, 
   {
-    "company_logo": "http://146.185.138.240/static/images/facebook_logo.jpg", 
+    "company_logo": "http://146.185.138.240/static/images/facebook_logo.png", 
     "name": "Facebook"
   }, 
   {
-    "company_logo": "http://146.185.138.240/static/images/equifax_logo.jpg", 
+    "company_logo": "http://146.185.138.240/static/images/equifax_logo.png", 
     "name": "Equifax"
   }, 
   {
-    "company_logo": "http://146.185.138.240/static/images/uber_logo.jpg", 
+    "company_logo": "http://146.185.138.240/static/images/uber_logo.png", 
     "name": "UBER"
   }, 
   {
@@ -36,7 +36,7 @@ all_companies = [
     "name": "Deutsche Bank"
   }, 
   {
-    "company_logo": "http://146.185.138.240/static/images/nestle_logo.jpg", 
+    "company_logo": "http://146.185.138.240/static/images/nestle_logo.png", 
     "name": "Nestle"
   }, 
   {
@@ -48,7 +48,7 @@ all_companies = [
     "name": "Softbank"
   }, 
   {
-    "company_logo": "http://146.185.138.240/static/images/tesla_logo.jpg", 
+    "company_logo": "http://146.185.138.240/static/images/tesla_logo.png", 
     "name": "Tesla Motors"
   }, 
   {
@@ -248,7 +248,7 @@ all_companies = [
     "name": "BMW Group"
   }, 
   {
-    "company_logo": "http://146.185.138.240/static/images/mcdonalds_logo.jpg", 
+    "company_logo": "http://146.185.138.240/static/images/mcdonalds_logo.png", 
     "name": "McDonald's"
   }, 
   {
@@ -276,7 +276,7 @@ all_companies = [
     "name": "Baidu"
   }, 
   {
-    "company_logo": "http://146.185.138.240/static/images/spotify_logo.jpg", 
+    "company_logo": "http://146.185.138.240/static/images/spotify_logo.png", 
     "name": "Spotify"
   }, 
   {
@@ -288,7 +288,7 @@ all_companies = [
     "name": "Aon"
   }, 
   {
-    "company_logo": "http://146.185.138.240/static/images/jpmorgan_logo.jpg", 
+    "company_logo": "http://146.185.138.240/static/images/jpmorgan_logo.png", 
     "name": "JPMorgan Chase"
   }, 
   {
@@ -400,11 +400,11 @@ all_companies = [
     "name": "OMV Group"
   }, 
   {
-    "company_logo": "http://146.185.138.240/static/images/ryanair_logo.jpg", 
+    "company_logo": "http://146.185.138.240/static/images/ryanair_logo.png", 
     "name": "Ryanair Holdings"
   }, 
   {
-    "company_logo": "http://146.185.138.240/static/images/google_logo.jpg", 
+    "company_logo": "http://146.185.138.240/static/images/google_logo.png", 
     "name": "Cognizant Technology"
   }, 
   {
@@ -656,7 +656,7 @@ all_companies = [
     "name": "Deloitte Touche Tohmatsu Limited"
   }, 
   {
-    "company_logo": "http://146.185.138.240/static/images/monsanto_logo.jpg", 
+    "company_logo": "http://146.185.138.240/static/images/monsanto_logo.png", 
     "name": "Monsanto"
   }, 
   {
