@@ -996,7 +996,7 @@ def get_companies(stocks_type):
     for index, company in enumerate(requested_companies[start:]):
         if index < 4 :
             element = copy.deepcopy(element)
-            # name_net = '_'.join((company.get('company_name')).split())
+            name_net = '+'.join((company.get('company_name')).split())
             company_name = company.get('company_name')
             element['title'] = company.get('company_name')
             element['image_url'] = company.get('company_logo')
@@ -1013,7 +1013,7 @@ def get_companies(stocks_type):
                 'title'] = 'View articles' if company_number_of_artcles > 1 else 'View article'
             element['buttons'][0][
                 'url'] = 'http://146.185.138.240/company_specific/{}/{}'.format(
-                    company_name, user_id)
+                    name_net, user_id)
             messages[0]['attachment']['payload']['elements'].append(
                 element)
 
