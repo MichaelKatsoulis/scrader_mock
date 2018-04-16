@@ -898,7 +898,7 @@ def get_news(company, news_type, page_num):
     message['attachment']['payload']['elements'] = elements
 
     article = 'articles' if len(requested_news) > 1 else 'article'
-    top_message = {"text": '{} {} {} found for {}'.format(len(requested_news), news_message, article, company)}
+    top_message = {"text": '{} {} {} found for {}'.format(len(requested_news), news_message, article, company_net)}
 
     if extra_message:
         messages.append(extra_message)
