@@ -474,18 +474,18 @@ def modify_user_companies(user_id, company_name, action):
         Returns:
             dict: A JSON object containing the nfvacc server status information
     """
-
+    company_net = " ".join(company_name.split('+'))
     response_data = {}
 
     user = mongo.find_one_match('users', {"user_id": user_id})
     if user is not None:
         user_name = user.get('first_name')
         if action == 'add':
-            user['companies'].append(company_name)
-            message = "{} now on you will be notified for {} too.".format(user_name, company_name)
+            user['companies'].append(company_net)
+            message = "{} now on you will be notified for {} too.".format(user_name, company_net)
         else:
-            user['companies'].remove(company_name)
-            message = "{} now on you won't be notified for {}.".format(user_name, company_name)
+            user['companies'].remove(company_net)
+            message = "{} now on you won't be notified for {}.".format(user_name, company_net)
 
         mongo.insert_one_in('users', {"user_id": user_id}, {'companies': user['companies']})
 
@@ -663,8 +663,9 @@ def specific_company(company, user_id):
         Returns:
             dict: A JSON object containing the nfvacc server status information
     """
-
-    company = " ".join(company.split('_'))
+    LOG.info("Fetching for company {}.".format(company))
+    company_for_url = company
+    company = " ".join(company.split('+'))
     subscribed = False
     followed = False
     user_request = None
@@ -682,7 +683,7 @@ def specific_company(company, user_id):
         if not followed:
             extra_button['type'] = "json_plugin_url"
             extra_button['title'] = 'Follow'
-            extra_button['url'] = "http://146.185.138.240/scrader/modify_user/{}/{}/add".format(user_id,company)
+            extra_button['url'] = "http://146.185.138.240/scrader/modify_user/{}/{}/add".format(user_id,company_for_url)
 
     company_given = company
     type_of_news = utils.company_news_type(company_given)
@@ -800,7 +801,7 @@ def helper_function(extra_button, company, news_type):
             }
         }
     }
-
+    company = "+".join(company.split())
     return get_news(company, news_type, message)
 
 
@@ -995,10 +996,11 @@ def get_companies(stocks_type):
     for index, company in enumerate(requested_companies[start:]):
         if index < 4 :
             element = copy.deepcopy(element)
-            name_net = '_'.join((company.get('company_name')).split())
+            # name_net = '_'.join((company.get('company_name')).split())
+            company_name = company.get('company_name')
             element['title'] = company.get('company_name')
             element['image_url'] = company.get('company_logo')
-            company_articles = utils.get_companies_articles(company.get('company_name'))
+            company_articles = utils.get_companies_articles(company_name)
             company_number_of_artcles = len(company_articles)
             if company_number_of_artcles == 1:
                 article = company_articles[0]
@@ -1011,7 +1013,7 @@ def get_companies(stocks_type):
                 'title'] = 'View articles' if company_number_of_artcles > 1 else 'View article'
             element['buttons'][0][
                 'url'] = 'http://146.185.138.240/company_specific/{}/{}'.format(
-                    name_net, user_id)
+                    company_name, user_id)
             messages[0]['attachment']['payload']['elements'].append(
                 element)
 
