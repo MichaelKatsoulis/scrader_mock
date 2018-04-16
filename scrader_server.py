@@ -664,6 +664,7 @@ def specific_company(company, user_id):
             dict: A JSON object containing the nfvacc server status information
     """
 
+    company = " ".join(company.split('_'))
     subscribed = False
     followed = False
     user_request = None
@@ -813,7 +814,8 @@ def get_news(company, news_type, page_num):
 
     # print(
     #     "Fetching {} news for {} page {}".format(news_type, company, page_num))
-
+    company_net = " ".join(company.split('+'))
+    LOG.info("Fetching {} news for {} page {}".format(news_type, company, page_num))
     extra_message = {}
     if isinstance(page_num, dict):
         extra_message = page_num
@@ -993,7 +995,7 @@ def get_companies(stocks_type):
     for index, company in enumerate(requested_companies[start:]):
         if index < 4 :
             element = copy.deepcopy(element)
-            name_net = company.get('company_name').split()[0]
+            name_net = '_'.join((company.get('company_name')).split())
             element['title'] = company.get('company_name')
             element['image_url'] = company.get('company_logo')
             company_articles = utils.get_companies_articles(company.get('company_name'))
@@ -1068,4 +1070,4 @@ if __name__ == '__main__':
     utils.start_scheduler_task()
     # utils.update_companies_news_once()
     # app.run(host=config.HOST, port=config.PORT, debug=True, use_reloader=False)
-    app.run(host='0.0.0.0', port="8000", debug=True, use_reloader=False)
+    app.run(host='0.0.0.0', port=8000, debug=True)
