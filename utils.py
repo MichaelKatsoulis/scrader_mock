@@ -26,8 +26,8 @@ def company_typed_search(company):
     companies = mongo.fetch_collection('companies')
     all_companies = [comp['name'] for comp in companies]
     for company_name in all_companies:
-        company_name_net = company_name.split()[0]
-        if company in company_name_net.lower():
+        # company_name_net = company_name.split()[0]
+        if company in company_name.lower():
             return company_name
 
     return company_found
