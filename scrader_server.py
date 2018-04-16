@@ -2,6 +2,7 @@ from __future__ import print_function
 import flask
 import json
 import math
+import socket
 from flask.ext.cors import CORS
 from flask import request
 import os
@@ -95,7 +96,7 @@ def company_search():
     """
     LOG.info('request received')
     company_typed = (request.args.get('last user freeform input')).lower()
-    LOG.info('searchin for {}'.format(company_typed))
+    LOG.info('searching for {}'.format(company_typed))
     first_name = request.args.get('first name')
     user_id = request.args.get('chatfuel user id')
 
@@ -261,6 +262,7 @@ def user_login(user_id, user_name):
         Returns:
             dict: A JSON object containing the nfvacc server status information
     """
+    LOG.info("Hi from {}".format(socket.gethostname()))
     name = user_name
     registered = False
     first_time = True
