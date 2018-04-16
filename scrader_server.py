@@ -856,7 +856,7 @@ def get_news(company, news_type, page_num):
         news_message = 'Negative'
         direction_list = ['NEG', 'NEGATIVE']
 
-    requested_news = utils.get_news_by_direction_and_company(company, direction_list)
+    requested_news = utils.get_news_by_direction_and_company(company_net, direction_list)
 
     f = lambda A, n=3: [A[i:i + n] for i in range(0, len(A), n)]
     news_per_page = f(requested_news)
