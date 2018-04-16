@@ -95,6 +95,7 @@ def company_search():
     """
     LOG.info('request received')
     company_typed = (request.args.get('last user freeform input')).lower()
+    LOG.info('searchin for {}'.format(company_typed))
     first_name = request.args.get('first name')
     user_id = request.args.get('chatfuel user id')
 
