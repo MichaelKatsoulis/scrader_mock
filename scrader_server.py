@@ -108,6 +108,7 @@ def company_search():
     # print(user_id)
     company_found = utils.company_typed_search(company_typed)
     if company_found is not None:
+        company_for_url = "+".join(company_found.split())
         if company_typed != company_found.lower():
             response_data = {
                 "messages": [{
@@ -118,7 +119,7 @@ def company_search():
                         "Yes",
                         "url":
                         'http://146.185.138.240/company_specific/{}/{}'.format(
-                            company_found, user_id),
+                            company_for_url, user_id),
                         "type":
                         "json_plugin_url"
                     }, {
@@ -129,7 +130,7 @@ def company_search():
             }
 
         else:
-            return specific_company(company_found, user_id)
+            return specific_company(company_for_url, user_id)
 
     else:
         buttons = []
