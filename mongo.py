@@ -5,7 +5,7 @@ import all_comps
 def init_database():
 
     global client
-    client = MongoClient()
+    client = MongoClient("mongodb://db:27017")
     global db
     db = client['scrader']
     companies_stored = db['companies']
