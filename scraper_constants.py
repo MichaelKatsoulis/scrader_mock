@@ -62,7 +62,23 @@ scraping_list = [
     "https://www.npr.org/sections/business/",
     "https://www.nbcnews.com/business",
     "https://www.cnbc.com/technology/",
-    "https://www.cnbc.com/finance/"
+    "https://www.cnbc.com/finance/",
+    "https://www.cnbc.com/investing/",
+    "https://www.cnbc.com/markets/",
+    "https://www.cnbc.com/autos/",
+    "https://news.sky.com/business",
+    "https://www.fin24.com/Companies/",
+    "https://www.wsj.com/news/technology",
+    "https://www.wsj.com/news/markets",
+    "https://www.ft.com/companies",
+    "https://www.marketwatch.com/",
+    "https://www.usatoday.com/money/markets/",
+    "http://www.londonstockexchange.com/exchange/news/alliance-news/archive.html?nameCode=&type=collapsed&tagCode=ALLCOS",
+    "https://www.forbes.com/business/#19a2399c535f",
+    "https://www.forbes.com/technology/#10c33c0b4bad",
+    "https://www.fnlondon.com/",
+    "http://money.cnn.com/news/",
+    "http://www.morningstar.co.uk/uk/equities/default.aspx"
 ]
 
 website_list = [
@@ -90,5 +106,22 @@ website_list = [
     "theguardian.com",
     "npr.org",
     "nbcnews.com",
-    "cnbc.com"
+    "cnbc.com",
+    "cnbc.com",
+    "cnbc.com",
+    "cnbc.com",
+    "cnbc.com",
+    "news.sky.com",
+    "fin24.com",
+    "wsj.com",
+    "wsj.com",
+    "ft.com",
+    "marketwatch.com",
+    "usatoday.com",
+    "londonstockexchange.com",
+    "forbes.com",
+    "forbes.com",
+    "fnlondon.com",
+    "cnn.com",
+    "morningstar.co.uk"
 ]

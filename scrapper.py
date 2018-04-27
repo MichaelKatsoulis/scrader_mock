@@ -51,7 +51,8 @@ def rchop(thestring, ending):
 
 def skip_unwanted(h_link):
     unwanted_list = ["://itunes.apple.com/", "//www.facebook.com/",
-                     "//facebook.com/", "//apps.microsoft.com"]
+                     "//facebook.com/", "//apps.microsoft.com", "yahoo.com",
+                     "//yahoofinance.tumblr.com", "//play.google.com"]
     for item in unwanted_list:
         if item in h_link:
             return True
