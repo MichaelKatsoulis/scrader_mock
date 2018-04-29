@@ -128,13 +128,13 @@ def main():
         try:
             content = urllib2.urlopen(req).read()
         except ssl.SSLError:
-            logger.error('ssl error. Bad URL: {}'.format(url))
+            logger.error('Bad URL given: {}'.format(url))
             continue     
         except urllib2.URLError:
-            logger.error('Bad URL: {}'.format(url))
+            logger.error('Bad URL given: {}'.format(url))
             continue
         except Exception:
-            logger.error('Bad URL: {}'.format(url))
+            logger.error('Bad URL given: {}'.format(url))
             continue
         soup = BeautifulSoup(content, "html.parser")
 
@@ -146,19 +146,19 @@ def main():
                 if not h_link:
                     continue
                 if skip_unwanted(h_link):
-                    logger.error('skiping unwanted {}'.format(h_link))
+                    # logger.error('skiping unwanted {}'.format(h_link))
                     continue
 
                 if url_term in h_link:
                     h_link = h_link.encode('utf-8')
                     if not (h_link.startswith("http") or h_link.startswith("https")):
-                        logger.warning('url before: {}'.format(h_link))
+                        # logger.warning('url before: {}'.format(h_link))
                         if h_link.startswith("//"):
                             h_link = url_slice_no_http + h_link
-                            logger.warning('url after: {}'.format(h_link))
+                            # logger.warning('url after: {}'.format(h_link))
                         elif h_link.startswith("/"):
                             h_link = url_slice_no_link + h_link
-                            logger.warning('url after: {}'.format(h_link))
+                            # logger.warning('url after: {}'.format(h_link))
 
                     h_link_req = urllib2.Request(
                         h_link, headers={'User-Agent': user_agent}
@@ -166,19 +166,19 @@ def main():
                     try:
                         h_link_content = urllib2.urlopen(h_link_req).read()
                     except urllib2.HTTPError, e:
-                        logger.warning('{}: {}'.format(h_link, url))
+                        logger.warning('Bad hyperlink: {}: {}'.format(h_link, url))
                         continue
                     except urllib2.URLError, e:
-                        logger.warning('{}: {}'.format(h_link, url))
+                        logger.warning('Bad hyperlink: {}: {}'.format(h_link, url))
                         continue
                     except httplib.HTTPException, e:
-                        logger.warning('{}: {}'.format(h_link, url))
+                        logger.warning('Bad hyperlink: {}: {}'.format(h_link, url))
                         continue
                     except ssl.SSLError, e:
-                        logger.warning('{}: {}'.format(h_link, url))
+                        logger.warning('Bad hyperlink: {}: {}'.format(h_link, url))
                         continue
                     except Exception:
-                        logger.warning('{}: {}'.format(h_link, url))
+                        logger.warning('Bad hyperlink: {}: {}'.format(h_link, url))
                         continue
 
                     h_link_soup = BeautifulSoup(h_link_content, "html.parser")
