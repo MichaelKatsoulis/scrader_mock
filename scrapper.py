@@ -118,6 +118,7 @@ def main():
     user_agent = 'Mozilla/5.0 (Windows NT 6.1; Win64; x64)'
 
     for index, url in enumerate(scraping_list):
+        logger.info('Opening URL: {}'.format(url))
         website = website_list[index]
         url_slice_no_http = url[:(url.find(":") + 1)]
         if url.find(".com") == -1:
