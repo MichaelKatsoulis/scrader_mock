@@ -128,10 +128,13 @@ def main():
         try:
             content = urllib2.urlopen(req).read()
         except ssl.SSLError:
-            logger.warning('ssl error')
+            logger.error('ssl error')
             continue     
         except urllib2.URLError:
-            logger.warning('Bad URL: {}'.format(url))
+            logger.error('Bad URL: {}'.format(url))
+            continue
+        except Exception:
+            logger.error('Bad URL: {}'.format(url))
             continue
         soup = BeautifulSoup(content, "html.parser")
 
