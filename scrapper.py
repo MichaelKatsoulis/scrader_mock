@@ -202,6 +202,8 @@ def main():
                                 image = "https://" + img_before
                         # print image
                         url_title = h_link_soup.title.string
+                        if url_title is None:
+                            continue
                         url_title = unicodedata.normalize('NFKD', url_title).\
                             encode('ascii', 'ignore')
                         url_title = url_title.replace("&apos;","'")
