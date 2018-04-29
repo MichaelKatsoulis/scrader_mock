@@ -223,6 +223,7 @@ def main():
                             companies_list.append(company_name)
                             website_url_list.append(url)
                             websites_list.append(website)
+                            logger.info('Found new article for {}'.format(company_name))
                     else:
                         # print "No image in " + url
                         pass
