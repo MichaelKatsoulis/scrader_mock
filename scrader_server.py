@@ -808,6 +808,42 @@ def helper_function(extra_button, company, news_type):
     company = "+".join(company.split())
     return get_news(company, news_type, message)
 
+@app.route('/get_latest_new/<user_id>/<new_id>'.format(methods=['GET']))
+def get_specific_new(user_id, new_id):
+    LOG.info('Finding new with id {}'.format(new_id))
+    article = utils.find_one_article(new_id)
+    LOG.info(article)
+    elements = [{
+        "title": article.get('title')[0:79],
+        "image_url": str(article.get('image_url')),
+        "subtitle": article.get('subtitle'),
+        "item_url": str(article.get('item_url')),
+        "buttons": [{
+            "type": "web_url",
+            "url": article.get('website_url'),
+            "title": article.get('website')
+        }]
+    }]
+
+    top_message = {"text": 'One new {} article found for {}'.\
+        format(article.get('direction'), article.get('company'))}
+    messages = [
+    top_message,
+    {
+        "attachment": {
+            "type": "template",
+            "payload": {
+                "template_type": "generic",
+                "elements": elements
+            }
+        }
+    }]
+
+    response_data = {"messages": messages}
+    status = 200 if response_data is not None else 403
+    js = json.dumps(response_data, indent=2)
+    return flask.Response(js, status=status, mimetype='application/json')
+
 
 @app.route('/news/<company>/<news_type>/<page_num>'.format(methods=['GET']))
 def get_news(company, news_type, page_num):

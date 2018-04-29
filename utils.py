@@ -64,6 +64,7 @@ def companies_by_type(news_type):
     companies_new_list = []
     for article in articles_cursor:
         comp_dict = mongo.find_one_match('companies', {'name': article.get('company')})
+        #TODO find a solution for this. Add this company to our companies list
         if comp_dict is None:
             continue
         if not any(d['company_name'] == comp_dict.get('name') for d in companies_new_list):
@@ -106,6 +107,10 @@ def manually_tag_article(article_id, value, user):
         mongo.insert_one_in('dev_articles', {"_id": ObjectId(article_id)},
                                             {'User': user})
 
+def find_one_article(art_id):
+    article = mongo.find_one_match('articles',
+                                   {"_id": ObjectId(art_id)})
+    return article
 
 def find_num_of_tagged():
     num_of_positive = 0

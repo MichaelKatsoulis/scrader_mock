@@ -7,6 +7,7 @@ from sklearn.svm import SVC
 from time import time
 from pymongo import MongoClient
 import logging
+import requests
 
 
 logger = logging.getLogger('newapp')
@@ -21,6 +22,23 @@ class StemmedTfidfVectorizer(TfidfVectorizer):
     def build_analyzer(self):
        analyzer = super(TfidfVectorizer, self).build_analyzer()
        return lambda doc: english_stemmer.stemWords(analyzer(doc))
+
+def send_users_notification(database, company_name, article_id):
+    users_collection = database['users']
+    query = {'notification_type': 'Companies'}
+    users = users_collection.find(query)
+    for user in users:
+        if company_name in user.get('companies'):
+            url = 'https://api.chatfuel.com/bots/591189a0e4b0772d3373542b/' \
+                  'users/{}/' \
+                  'send?chatfuel_token=vnbqX6cpvXUXFcOKr5RHJ7psSpHDRzO1hXBY8dkvn50ZkZyWML3YdtoCnKH7FSjC' \
+                  '&chatfuel_block_id=5ae5a2d9e4b0f617d6a06eee&last%20name={}&article={}'.\
+                    format(user.get('user_id'), user.get('name'), article_id)
+            logger.info(url)
+            try:
+                r = requests.post(url)
+            except requests.exceptions.RequestException as e:
+                pass
 
 def store_to_database(data, coll):
     dbcli = MongoClient()
@@ -45,7 +63,14 @@ def store_to_database(data, coll):
             {"title": article.get('Title')})
         if exists is None:
             articles_stored += 1
-            existing_articles.insert_one(new_article)
+            art_id = existing_articles.insert_one(new_article).inserted_id
+
+            if coll == 'articles':
+                send_users_notification(
+                    scrader_db, 
+                    article.get('Company'),
+                    art_id
+                )
     logger.info('storing {} to database'.format(articles_stored))
 
 

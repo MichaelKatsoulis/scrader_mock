@@ -40,7 +40,7 @@ scraping_list = [
     "https://www.nytimes.com/section/business?action=click&pgtype=Homepage&region=TopBar&module=HPMiniNav&contentCollection=Business&WT.nav=page",
     "http://www.businessinsider.com/enterprise",
     "http://money.cnn.com/technology",
-    "http://www.reuters.com/news/archive/businessNews?view=page"
+    "http://www.reuters.com/news/archive/businessNews?view=page",
     "https://www.forbes.com/home_usa/#62fa69d6324b",
     "http://www.bbc.com/news/business",
     "http://abcnews.go.com/Technology",
