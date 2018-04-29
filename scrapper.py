@@ -97,6 +97,8 @@ def findWholeWord(w):
 
 
 def main():
+    now = datetime.datetime.now()
+    started_time = now.hour + ':' + now.minute
 
     collection = db['url_terms']
     url_collection = list(collection.find({}, {'_id': False}))
@@ -235,6 +237,10 @@ def main():
     # print(len(companies_list))
     # print(len(website_url_list))
     # print(len(websites_list))
+    now = datetime.datetime.now()
+    end_time = now.hour + ':' + now.minute
+    logger.info('Scraper started at {} and finished at {}'.\
+        format(started_time, end_time))
     convert_to_df(url_list, image_list, title_list, date_list, companies_list,
                   website_url_list, websites_list)
 
