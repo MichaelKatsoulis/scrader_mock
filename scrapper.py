@@ -124,7 +124,10 @@ def main():
         website = website_list[index]
         url_slice_no_http = url[:(url.find(":") + 1)]
         if url.find(".com") == -1:
-            url_slice_no_link = url[:(url.find("co.uk") + 5)]
+            if url.find(".org") == -1:
+                url_slice_no_link = url[:(url.find("co.uk") + 5)]
+            else:
+                url_slice_no_link = url[:(url.find(".org") + 4)]    
             logger.info('url_slice_no_link is: {}'.format(url_slice_no_link))
         else:
             url_slice_no_link = url[:(url.find(".com") + 4)]
