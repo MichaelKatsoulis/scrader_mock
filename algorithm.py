@@ -27,6 +27,7 @@ def send_users_notification(database, company_name, article_id):
     users_collection = database['users']
     query = {'notification_type': 'Companies'}
     users = users_collection.find(query)
+    logger.info('Checking if user follows {}'.format(company_name))
     for user in users:
         if company_name in user.get('companies'):
             url = 'https://api.chatfuel.com/bots/591189a0e4b0772d3373542b/' \
@@ -34,7 +35,7 @@ def send_users_notification(database, company_name, article_id):
                   'send?chatfuel_token=vnbqX6cpvXUXFcOKr5RHJ7psSpHDRzO1hXBY8dkvn50ZkZyWML3YdtoCnKH7FSjC' \
                   '&chatfuel_block_id=5ae5a2d9e4b0f617d6a06eee&last%20name={}&article={}'.\
                     format(user.get('user_id'), user.get('name'), article_id)
-            logger.info(url)
+            logger.info(user.get('name'))
             try:
                 r = requests.post(url)
             except requests.exceptions.RequestException as e:
