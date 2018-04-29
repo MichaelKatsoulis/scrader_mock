@@ -123,8 +123,10 @@ def main():
         url_slice_no_http = url[:(url.find(":") + 1)]
         if url.find(".com") == -1:
             url_slice_no_link = url[:(url.find("co.uk") + 5)]
+            logger.info('url_slice_no_link is: {}'.format(url_slice_no_link))
         else:
             url_slice_no_link = url[:(url.find(".com") + 4)]
+            logger.info('url_slice_no_link is: {}'.format(url_slice_no_link))
         req = urllib2.Request(url, headers={'User-Agent': user_agent})
         try:
             content = urllib2.urlopen(req).read()
