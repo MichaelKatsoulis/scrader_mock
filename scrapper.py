@@ -188,14 +188,15 @@ def main():
 
                     h_link_soup = BeautifulSoup(h_link_content, "html.parser")
                     url_image = h_link_soup.find("meta", property="og:image")
-                    time = [meta.get('content') for meta in h_link_soup.find_all('meta', itemprop='datePublished')]
-                    if time:
-                        date = time[0][:time[0].find("T")]
-                    else:
-                        today = datetime.date.today()
-                        date = '{}/{}/{}'.format(today.month, today.day, today.year)
-                    # date= time[(time.find("-")+1):time.find("T")]
-                    #                     print date
+                    today = datetime.date.today()
+                    date = '{}/{}/{}'.format(today.month, today.day, today.year)
+                    # time = [meta.get('content') for meta in h_link_soup.find_all('meta', itemprop='datePublished')]
+                    # if time:
+                    #     date = time[0][:time[0].find("T")]
+                    # else:
+                    #     today = datetime.date.today()
+                    #     date = '{}/{}/{}'.format(today.month, today.day, today.year)
+                    
                     if url_image is not None:
                         image = url_image.get('content')
                         if image is None or image == '':
