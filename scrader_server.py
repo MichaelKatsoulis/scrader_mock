@@ -120,8 +120,8 @@ def company_search():
                         "title":
                         "Yes",
                         "url":
-                        'http://146.185.138.240/company_specific/{}/{}'.format(
-                            company_for_url, user_id),
+                        'http://146.185.138.240/company_specific/{}/{}/{}'.format(
+                            company_for_url, user_id, 'all_news'),
                         "type":
                         "json_plugin_url"
                     }, {
@@ -132,7 +132,7 @@ def company_search():
             }
 
         else:
-            return specific_company(company_for_url, user_id)
+            return specific_company(company_for_url, user_id, 'all_news')
 
     else:
         buttons = []
@@ -660,8 +660,8 @@ def user_daily_notification(user_id):
     return flask.Response(js, status=status, mimetype='application/json')
 
 
-@app.route('/company_specific/<company>/<user_id>'.format(methods=['GET']))
-def specific_company(company, user_id):
+@app.route('/company_specific/<company>/<user_id>/<news_time>'.format(methods=['GET']))
+def specific_company(company, user_id, news_time):
     """ GET Server Status API endpoint
         Args:
         Returns:
@@ -690,7 +690,7 @@ def specific_company(company, user_id):
             extra_button['url'] = "http://146.185.138.240/scrader/modify_user/{}/{}/add".format(user_id,company_for_url)
 
     company_given = company
-    type_of_news = utils.company_news_type(company_given)
+    type_of_news = utils.company_news_type(company_given, news_time)
 
     if type_of_news:
         # print(type_of_news)
@@ -720,7 +720,7 @@ def specific_company(company, user_id):
         if extra_button:
             if one_news_type:
                 arg = new_button.get('title').split()[0]
-                return helper_function(extra_button, company, arg.lower())
+                return helper_function(extra_button, company, arg.lower(), news_time)
 
         indication_message = {}
         if not one_news_type:
@@ -757,7 +757,7 @@ def specific_company(company, user_id):
             if one_news_type:
                 title_butt = news_buttons[0]['title'].split()
                 news_type = title_butt[0].lower()
-                return get_news(company, news_type, 1)
+                return get_news(company, news_type, 1, news_time)
 
         if indication_message:
             response_data['messages'].insert(0,indication_message)
@@ -791,7 +791,7 @@ def specific_company(company, user_id):
     return flask.Response(js, status=status, mimetype='application/json')
 
 
-def helper_function(extra_button, company, news_type):
+def helper_function(extra_button, company, news_type, news_time):
 
     message = {
         "attachment": {
@@ -806,7 +806,7 @@ def helper_function(extra_button, company, news_type):
         }
     }
     company = "+".join(company.split())
-    return get_news(company, news_type, message)
+    return get_news(company, news_type, message, news_time)
 
 @app.route('/get_latest_new/<user_id>/<new_id>'.format(methods=['GET']))
 def get_specific_new(user_id, new_id):
@@ -844,9 +844,8 @@ def get_specific_new(user_id, new_id):
     js = json.dumps(response_data, indent=2)
     return flask.Response(js, status=status, mimetype='application/json')
 
-
-@app.route('/news/<company>/<news_type>/<page_num>'.format(methods=['GET']))
-def get_news(company, news_type, page_num):
+@app.route('/news/<company>/<news_type>/<page_num>/<date>'.format(methods=['GET']))
+def get_news(company, news_type, page_num, date):
     """ GET Server Status API endpoint
         Args:
         Returns:
@@ -896,7 +895,7 @@ def get_news(company, news_type, page_num):
         news_message = 'Negative'
         direction_list = ['NEG', 'NEGATIVE']
 
-    requested_news = utils.get_news_by_direction_and_company(company_net, direction_list)
+    requested_news = utils.get_news_by_direction_and_company(company_net, direction_list, date)
 
     f = lambda A, n=3: [A[i:i + n] for i in range(0, len(A), n)]
     news_per_page = f(requested_news)
@@ -928,8 +927,8 @@ def get_news(company, news_type, page_num):
     for page_number in quick_replies_page_numbers_to_show:
         quick_reply = copy.deepcopy(quick_reply)
         quick_reply['title'] = "Page {}".format(page_number)
-        quick_reply['url'] = "http://146.185.138.240/news/{}/{}/{}".format(
-            company, news_type, page_number)
+        quick_reply['url'] = "http://146.185.138.240/news/{}/{}/{}/{}".format(
+            company, news_type, page_number, date)
         quick_replies.append(quick_reply)
 
     if quick_replies:
@@ -1052,8 +1051,8 @@ def get_companies(stocks_type):
             element['buttons'][0][
                 'title'] = 'View articles' if company_number_of_artcles > 1 else 'View article'
             element['buttons'][0][
-                'url'] = 'http://146.185.138.240/company_specific/{}/{}'.format(
-                    name_net, user_id)
+                'url'] = 'http://146.185.138.240/company_specific/{}/{}/{}'.format(
+                    name_net, user_id, 'today')
             messages[0]['attachment']['payload']['elements'].append(
                 element)
 

@@ -33,9 +33,15 @@ def company_typed_search(company):
     return company_found
 
 
-def company_news_type(company_given):
+def company_news_type(company_given, news_time):
     # list of news type a company has
-    news_cursor = mongo.find_matches('articles', {'company': company_given})
+    if news_time == 'all_news':
+        news_cursor = mongo.find_matches('articles', {'company': company_given})
+    else:
+        today = datetime.date.today()
+        today_date = '{}/{}/{}'.format(today.month, today.day, today.year)
+        news_cursor = mongo.find_matches_two_fields('articles', 'company', [company_given],
+                                                         'subtitle', [today_date])
     comp_type_of_news = []
     for new in news_cursor:
         if 'POS' in new['direction']:
@@ -60,7 +66,11 @@ def companies_by_type(news_type):
     elif news_type == 'bad_companies':
         match = ['NEG', 'NEGATIVE']
 
-    articles_cursor = list(mongo.find_matches_containing_many('articles', 'direction', match))
+    # articles_cursor = list(mongo.find_matches_containing_many('articles', 'direction', match))
+    today = datetime.date.today()
+    today_date = '{}/{}/{}'.format(today.month, today.day, today.year)
+    articles_cursor = list(mongo.find_matches_two_fields('articles', 'direction', match,
+                                                         'subtitle', [today_date]))
     companies_new_list = []
     for article in articles_cursor:
         comp_dict = mongo.find_one_match('companies', {'name': article.get('company')})
@@ -74,11 +84,17 @@ def companies_by_type(news_type):
     return companies_new_list
 
 
-def get_news_by_direction_and_company(company, direction_list):
+def get_news_by_direction_and_company(company, direction_list, date):
     # list of news by their direction good bad
-
-    news_list = list(mongo.find_matches_two_fields('articles', 'company',
-                     [company], 'direction', direction_list))
+    if date == 'all_news':
+        news_list = list(mongo.find_matches_two_fields('articles', 'company',
+                         [company], 'direction', direction_list))
+    else:
+        today = datetime.date.today()
+        today_date = '{}/{}/{}'.format(today.month, today.day, today.year)
+        news_list = list(mongo.find_matches_three_fields('articles', 'company',
+                         [company], 'direction', direction_list,
+                         'subtitle', [today_date]))
     return news_list
 
 
