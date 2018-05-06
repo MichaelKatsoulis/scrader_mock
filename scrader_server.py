@@ -730,7 +730,6 @@ def specific_company(company, user_id, news_time):
                 else:
                     user_request = 'positive'
                 indication_message = {"text": 'There are also {} news for {}'.format(user_request, company)}
-
         # print(news_buttons)
         response_data = {
             "set_attributes": {
@@ -925,6 +924,8 @@ def get_news(company, news_type, page_num, date):
         # element['buttons'][0]['type'] = "json_plugin_url"
         elements.append(element)
 
+    LOG.info('quick_replies_page_numbers_to_show: {}'.\
+        format(quick_replies_page_numbers_to_show))
     for page_number in quick_replies_page_numbers_to_show:
         quick_reply = copy.deepcopy(quick_reply)
         quick_reply['title'] = "Page {}".format(page_number)
