@@ -734,7 +734,8 @@ def specific_company(company, user_id, news_time):
         # print(news_buttons)
         response_data = {
             "set_attributes": {
-                "company_requested": company
+                "company_requested": company,
+                "news_time": news_time,
             },
             "messages": [{
                 "attachment": {
