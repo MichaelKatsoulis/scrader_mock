@@ -926,6 +926,9 @@ def get_news(company, news_type, page_num, date):
 
     LOG.info('quick_replies_page_numbers_to_show: {}'.\
         format(quick_replies_page_numbers_to_show))
+    # quick replies cannot be over 11
+    if len(quick_replies_page_numbers_to_show) > 11:
+        quick_replies_page_numbers_to_show = quick_replies_page_numbers_to_show[:11]
     for page_number in quick_replies_page_numbers_to_show:
         quick_reply = copy.deepcopy(quick_reply)
         quick_reply['title'] = "Page {}".format(page_number)
