@@ -5,8 +5,6 @@ import datetime
 import requests
 import copy
 import csv
-import locale
-from functools import cmp_to_key
 from bson.objectid import ObjectId
 from scrader_logger import LOG
 
@@ -19,9 +17,7 @@ def get_all_companies():
     # returns a list of all companies
     companies = mongo.fetch_collection('companies')
     companies_list = [comp['name'] for comp in companies]
-    locale.setlocale(locale.LC_ALL, 'en_US.UTF-8')
-    sorted_comps = sorted(companies_list, key=cmp_to_key(locale.strcoll))
-    return sorted_comps
+    return sorted(companies_list)
 
 
 def company_typed_search(company):
