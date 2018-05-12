@@ -1102,6 +1102,8 @@ def reorder_companies(companies_list, user_id):
                     break
 
     sorted_list.extend(companies_list)
+    sorted_list = sorted(sorted_list, key=lambda k: len(utils.get_companies_articles(k['company_name'])), reverse=True)
+
     return sorted_list
 
 
