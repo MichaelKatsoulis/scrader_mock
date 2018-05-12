@@ -1052,8 +1052,8 @@ def get_companies(stocks_type):
                 article = company_articles[0]
                 article_title = article.get('title')[0:79]
             element['subtitle'] = \
-                "{} out of {} articles".format(company_number_of_artcles,
-                                               total_articles)\
+                "{} articles found for {}.".format(company_number_of_artcles,
+                                                   company_name)\
                     if company_number_of_artcles > 1 else article_title
             element['buttons'][0][
                 'title'] = 'View articles' if company_number_of_artcles > 1 else 'View article'
