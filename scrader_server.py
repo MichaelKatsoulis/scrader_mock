@@ -995,7 +995,6 @@ def get_companies(stocks_type):
 
     # print(user)
     # print("Fetching companies with {}.".format(stocks_type))
-    total_articles = utils.total_articles()
 
     attributes_dict = {"news_type": '', "stocks_type": ''}
 
@@ -1102,8 +1101,10 @@ def reorder_companies(companies_list, user_id):
                     break
 
     sorted_list.extend(companies_list)
-    sorted_list = sorted(sorted_list, key=lambda k: len(utils.get_companies_articles(k['company_name'])), reverse=True)
-
+    sorted_list = sorted(sorted_list,
+                         key=lambda k: len(utils.
+                                           get_companies_articles(k['company_name'])),
+                         reverse=True)
     return sorted_list
 
 
