@@ -9,6 +9,7 @@ import ssl
 import os
 import re
 import datetime
+import time
 import scraper_constants
 import algorithm
 import script
@@ -16,8 +17,9 @@ import csv
 import copy
 import logging
 
-dbcli = MongoClient()
+dbcli = MongoClient('127.0.0.1', 8080)
 db = dbcli['scrader']
+db.authenticate('scrader', 'scr@d3r')
 logger = logging.getLogger('myapp')
 hdlr = logging.FileHandler('scraper_logs.log')
 formatter = logging.Formatter('%(asctime)s %(levelname)s %(message)s')

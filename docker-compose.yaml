@@ -20,11 +20,13 @@ services:
     db:
       image: mongo:3.0.2
       ports:
-        - "27017:27017"
+        - "8080:27017"
       volumes:
         - ./dbdata:/data/db
+        - ./mongod.conf:/etc/mongod.conf
       networks:
         - web
+      command: mongod --auth
     proxy:
       image: dockercloud/haproxy
       depends_on:

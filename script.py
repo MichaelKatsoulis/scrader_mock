@@ -10,6 +10,7 @@ def convert_collection_to_df(mongo_cli, collection, field1, match1,
                              field2, match2):
     dbcli = mongo_cli
     scrader_db = dbcli['scrader']
+    scrader_db.authenticate('scrader', 'scr@d3r')
     cursor = scrader_db[collection].find({'$and': [{field1: {'$in': match1}},
                                          {field2: {'$in': match2}}]})
 
@@ -42,9 +43,10 @@ def convert_collection_to_df(mongo_cli, collection, field1, match1,
 
 
 def main():
-    dataframe = convert_collection_to_df(MongoClient(), 'dev_articles',
-                                                        'checked', [True],
-                                                        'appended', [False])
+    client = MongoClient('127.0.0.1', 8080)
+    dataframe = convert_collection_to_df(client, 'dev_articles',
+                                                 'checked', [True],
+                                                 'appended', [False])
     if dataframe.empty:
         pass
     # if file does not exist write header

@@ -42,8 +42,9 @@ def send_users_notification(database, company_name, article_id):
                 pass
 
 def store_to_database(data, coll):
-    dbcli = MongoClient()
+    dbcli = MongoClient('127.0.0.1', 8080)
     scrader_db = dbcli['scrader']
+    scrader_db.authenticate('scrader', 'scr@d3r')
     existing_articles = scrader_db[coll]
     all_articles = data.to_dict('records')
     logger.info('checking to store {} artciles to database'.format(len(all_articles)))
@@ -95,8 +96,9 @@ def predict_labels(clf, features):
 
 
 def run_algorithm(filename):
-    dbcli = MongoClient()
+    dbcli = MongoClient('127.0.0.1', 8080)
     db = dbcli['scrader']
+    db.authenticate('scrader', 'scr@d3r')
     collection = db['scraper_companies']
     scraper_companies = list(collection.find({}, {'_id': False}))
     stop_words_list = []

@@ -8,6 +8,7 @@ def init_database():
     client = MongoClient("mongodb://db:27017")
     global db
     db = client['scrader']
+    db.authenticate('scrader', 'scr@d3r')
     companies_stored = db['companies']
     if companies_stored.count() == 0:
         insert_many('companies', all_comps.all_companies)
