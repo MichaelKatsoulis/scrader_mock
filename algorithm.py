@@ -2,7 +2,7 @@ import os
 import pandas as pd
 import Stemmer
 from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.metrics import f1_score
+# from sklearn.metrics import f1_score
 from sklearn.svm import SVC
 from time import time
 from pymongo import MongoClient
@@ -14,14 +14,18 @@ logger = logging.getLogger('newapp')
 hdlr = logging.FileHandler('algorithm.log')
 formatter = logging.Formatter('%(asctime)s %(levelname)s %(message)s')
 hdlr.setFormatter(formatter)
-logger.addHandler(hdlr) 
+logger.addHandler(hdlr)
 logger.setLevel(logging.INFO)
 
 english_stemmer = Stemmer.Stemmer('en')
+
+
 class StemmedTfidfVectorizer(TfidfVectorizer):
+
     def build_analyzer(self):
-       analyzer = super(TfidfVectorizer, self).build_analyzer()
-       return lambda doc: english_stemmer.stemWords(analyzer(doc))
+        analyzer = super(TfidfVectorizer, self).build_analyzer()
+        return lambda doc: english_stemmer.stemWords(analyzer(doc))
+
 
 def send_users_notification(database, company_name, article_id):
     users_collection = database['users']
@@ -34,12 +38,13 @@ def send_users_notification(database, company_name, article_id):
                   'users/{}/' \
                   'send?chatfuel_token=vnbqX6cpvXUXFcOKr5RHJ7psSpHDRzO1hXBY8dkvn50ZkZyWML3YdtoCnKH7FSjC' \
                   '&chatfuel_block_id=5ae5a2d9e4b0f617d6a06eee&last%20name={}&article={}'.\
-                    format(user.get('user_id'), user.get('name'), article_id)
+                  format(user.get('user_id'), user.get('name'), article_id)
             logger.info(user.get('name'))
             try:
-                r = requests.post(url)
-            except requests.exceptions.RequestException as e:
+                requests.post(url)
+            except requests.exceptions.RequestException:
                 pass
+
 
 def store_to_database(data, coll):
     dbcli = MongoClient('127.0.0.1', 8080)
@@ -69,7 +74,7 @@ def store_to_database(data, coll):
 
             if coll == 'articles':
                 send_users_notification(
-                    scrader_db, 
+                    scrader_db,
                     article.get('Company'),
                     art_id
                 )

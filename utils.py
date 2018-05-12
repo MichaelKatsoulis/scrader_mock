@@ -5,7 +5,8 @@ import datetime
 import requests
 import copy
 import csv
-
+import locale
+from functools import cmp_to_key
 from bson.objectid import ObjectId
 from scrader_logger import LOG
 
@@ -17,7 +18,10 @@ monkey.patch_all()
 def get_all_companies():
     # returns a list of all companies
     companies = mongo.fetch_collection('companies')
-    return [comp['name'] for comp in companies]
+    companies_list = [comp['name'] for comp in companies]
+    locale.setlocale(locale.LC_ALL, 'en_US.UTF-8')
+    sorted_comps = sorted(companies_list, key=cmp_to_key(locale.strcoll))
+    return sorted_comps
 
 
 def company_typed_search(company):
@@ -41,7 +45,7 @@ def company_news_type(company_given, news_time):
         today = datetime.date.today()
         today_date = '{}/{}/{}'.format(today.month, today.day, today.year)
         news_cursor = mongo.find_matches_two_fields('articles', 'company', [company_given],
-                                                         'subtitle', [today_date])
+                                                    'subtitle', [today_date])
     comp_type_of_news = []
     for new in news_cursor:
         if 'POS' in new['direction']:
@@ -74,7 +78,7 @@ def companies_by_type(news_type):
     companies_new_list = []
     for article in articles_cursor:
         comp_dict = mongo.find_one_match('companies', {'name': article.get('company')})
-        #TODO find a solution for this. Add this company to our companies list
+        # TODO find a solution for this. Add this company to our companies list
         if comp_dict is None:
             continue
         if not any(d['company_name'] == comp_dict.get('name') for d in companies_new_list):
@@ -123,10 +127,12 @@ def manually_tag_article(article_id, value, user):
         mongo.insert_one_in('dev_articles', {"_id": ObjectId(article_id)},
                                             {'User': user})
 
+
 def find_one_article(art_id):
     article = mongo.find_one_match('articles',
                                    {"_id": ObjectId(art_id)})
     return article
+
 
 def find_num_of_tagged():
     num_of_positive = 0
@@ -147,14 +153,13 @@ def find_num_of_tagged():
                                                       ['False'])
     num_of_positive += positive_cursor.count()
     negative_cursor = mongo.find_matches_three_fields('dev_articles',
-                                                    'checked', [True],
-                                                    'direction',
-                                                    ['NEG'],
-                                                    'appended',
-                                                    ['False'])
+                                                      'checked', [True],
+                                                      'direction',
+                                                      ['NEG'],
+                                                      'appended',
+                                                      ['False'])
     num_of_negative += negative_cursor.count()
     return num_of_positive, num_of_negative
-
 
 
 def article_from_excel():
@@ -205,8 +210,8 @@ def send_user_news(user):
           '&chatfuel_block_id=5a1aae94e4b0c921e2a89115&last%20name={}'.format(user.get('user_id'), user.get('name'))
 
     try:
-        r = requests.post(url)
-    except requests.exceptions.RequestException as e:
+        requests.post(url)
+    except requests.exceptions.RequestException:
         pass
 
 
@@ -232,21 +237,23 @@ def get_development_news(news_type, page_num, user):
         "image_url": '',
         "subtitle": '',
         "item_url": '',
-        "buttons": [{
-            "type": "web_url",
-            "url": '',
-            "title": ''
-        },
-         {
-            "type": "web_url",
-            "url": '',
-            "title": ''
-        },
-         {
-           "type": "web_url",
-           "url": '',
-           "title": ''
-        }]
+        "buttons": [
+            {
+                "type": "web_url",
+                "url": '',
+                "title": ''
+            },
+            {
+                "type": "web_url",
+                "url": '',
+                "title": ''
+            },
+            {
+                "type": "web_url",
+                "url": '',
+                "title": ''
+            }
+        ]
     }
 
     messages = []

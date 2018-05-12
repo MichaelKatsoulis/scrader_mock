@@ -9,12 +9,12 @@ import ssl
 import os
 import re
 import datetime
-import time
+# import time
 import scraper_constants
 import algorithm
 import script
-import csv
-import copy
+# import csv
+# import copy
 import logging
 
 dbcli = MongoClient('127.0.0.1', 8080)
@@ -24,8 +24,9 @@ logger = logging.getLogger('myapp')
 hdlr = logging.FileHandler('scraper_logs.log')
 formatter = logging.Formatter('%(asctime)s %(levelname)s %(message)s')
 hdlr.setFormatter(formatter)
-logger.addHandler(hdlr) 
+logger.addHandler(hdlr)
 logger.setLevel(logging.INFO)
+
 
 def convert_to_df(url_list, image_list, title_list, date_list, companies_list,
                   website_url_list, websites_list):
@@ -79,7 +80,7 @@ def companies_in_title(url_title, scraper_companies, url_term):
             break
     if res is None:
         return None
-    
+
     num_of_comps = 1
     for company in scraper_companies:
         if company.get('company_name') != res:
@@ -90,7 +91,7 @@ def companies_in_title(url_title, scraper_companies, url_term):
                     break
             if num_of_comps >= 2:
                 return None
- 
+
     return res
 
 
@@ -129,7 +130,7 @@ def main():
             if url.find(".org") == -1:
                 url_slice_no_link = url[:(url.find("co.uk") + 5)]
             else:
-                url_slice_no_link = url[:(url.find(".org") + 4)]    
+                url_slice_no_link = url[:(url.find(".org") + 4)]
             logger.info('url_slice_no_link is: {}'.format(url_slice_no_link))
         else:
             url_slice_no_link = url[:(url.find(".com") + 4)]
@@ -139,7 +140,7 @@ def main():
             content = urllib2.urlopen(req).read()
         except ssl.SSLError:
             logger.error('Bad URL given: {}'.format(url))
-            continue     
+            continue
         except urllib2.URLError:
             logger.error('Bad URL given: {}'.format(url))
             continue
@@ -201,7 +202,7 @@ def main():
                     # else:
                     #     today = datetime.date.today()
                     #     date = '{}/{}/{}'.format(today.month, today.day, today.year)
-                    
+
                     if url_image is not None:
                         image = url_image.get('content')
                         if image is None or image == '':
@@ -217,8 +218,8 @@ def main():
                             continue
                         url_title = unicodedata.normalize('NFKD', url_title).\
                             encode('ascii', 'ignore')
-                        url_title = url_title.replace("&apos;","'")
-                        
+                        url_title = url_title.replace("&apos;", "'")
+
                         company_name = companies_in_title(url_title, scraper_companies, url_term)
                         if company_name is None:
                             continue
@@ -245,8 +246,8 @@ def main():
     # print(len(websites_list))
     now = datetime.datetime.now()
     end_time = str(now.hour) + ':' + str(now.minute)
-    logger.info('Scraper started at {} and finished at {}'.\
-        format(started_time, end_time))
+    logger.info('Scraper started at {} and finished at {}'.
+                format(started_time, end_time))
     convert_to_df(url_list, image_list, title_list, date_list, companies_list,
                   website_url_list, websites_list)
 

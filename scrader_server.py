@@ -8,7 +8,6 @@ from flask import request
 import os
 import signal
 import copy
-import config
 import websites
 from scrader_logger import LOG
 import mongo
@@ -652,7 +651,8 @@ def user_daily_notification(user_id):
                     "buttons": buttons
                 }
             }
-        }]
+            }
+        ]
     }
 
     status = 200 if response_data is not None else 403
@@ -687,7 +687,7 @@ def specific_company(company, user_id, news_time):
         if not followed:
             extra_button['type'] = "json_plugin_url"
             extra_button['title'] = 'Follow'
-            extra_button['url'] = "http://146.185.138.240/scrader/modify_user/{}/{}/add".format(user_id,company_for_url)
+            extra_button['url'] = "http://146.185.138.240/scrader/modify_user/{}/{}/add".format(user_id, company_for_url)
 
     company_given = company
     type_of_news = utils.company_news_type(company_given, news_time)
@@ -760,7 +760,7 @@ def specific_company(company, user_id, news_time):
                 return get_news(company, news_type, 1, news_time)
 
         if indication_message:
-            response_data['messages'].insert(0,indication_message)
+            response_data['messages'].insert(0, indication_message)
 
     else:
         negative_message = {"text": 'No articles found for {}'.format(company)}
@@ -785,7 +785,6 @@ def specific_company(company, user_id, news_time):
             }
             response_data['messages'].append(extra_message)
 
-
     status = 200 if response_data is not None else 403
     js = json.dumps(response_data, indent=2)
     return flask.Response(js, status=status, mimetype='application/json')
@@ -797,16 +796,17 @@ def helper_function(extra_button, company, news_type, news_time):
         "attachment": {
             "type": "template",
             "payload": {
-            "template_type": "button",
-            "text": "Remember you can follow {}".format(company),
-            "buttons": [
-                extra_button
-            ]
+                "template_type": "button",
+                "text": "Remember you can follow {}".format(company),
+                "buttons": [
+                    extra_button
+                ]
             }
         }
     }
     company = "+".join(company.split())
     return get_news(company, news_type, message, news_time)
+
 
 @app.route('/get_latest_new/<user_id>/<new_id>'.format(methods=['GET']))
 def get_specific_new(user_id, new_id):
@@ -825,24 +825,26 @@ def get_specific_new(user_id, new_id):
         }]
     }]
 
-    top_message = {"text": 'One new {} article found for {}'.\
-        format(article.get('direction'), article.get('company'))}
+    top_message = {"text": 'One new {} article found for {}'.
+                   format(article.get('direction'), article.get('company'))}
     messages = [
-    top_message,
-    {
-        "attachment": {
-            "type": "template",
-            "payload": {
-                "template_type": "generic",
-                "elements": elements
+        top_message,
+        {
+            "attachment": {
+                "type": "template",
+                "payload": {
+                    "template_type": "generic",
+                    "elements": elements
+                }
             }
         }
-    }]
+    ]
 
     response_data = {"messages": messages}
     status = 200 if response_data is not None else 403
     js = json.dumps(response_data, indent=2)
     return flask.Response(js, status=status, mimetype='application/json')
+
 
 @app.route('/news/<company>/<news_type>/<page_num>/<date>'.format(methods=['GET']))
 def get_news(company, news_type, page_num, date):
@@ -924,8 +926,8 @@ def get_news(company, news_type, page_num, date):
         # element['buttons'][0]['type'] = "json_plugin_url"
         elements.append(element)
 
-    LOG.info('quick_replies_page_numbers_to_show: {}'.\
-        format(quick_replies_page_numbers_to_show))
+    LOG.info('quick_replies_page_numbers_to_show: {}'.
+             format(quick_replies_page_numbers_to_show))
     # quick replies cannot be over 11
     if len(quick_replies_page_numbers_to_show) > 11:
         quick_replies_page_numbers_to_show = quick_replies_page_numbers_to_show[:11]
@@ -1038,7 +1040,7 @@ def get_companies(stocks_type):
     attributes_dict['stocks_type'] = stocks_type
     start = NEXT * 4
     for index, company in enumerate(requested_companies[start:]):
-        if index < 4 :
+        if index < 4:
             element = copy.deepcopy(element)
             name_net = '+'.join((company.get('company_name')).split())
             company_name = company.get('company_name')
@@ -1051,7 +1053,7 @@ def get_companies(stocks_type):
                 article_title = article.get('title')[0:79]
             element['subtitle'] = \
                 "{} out of {} articles".format(company_number_of_artcles,
-                                                   total_articles)\
+                                               total_articles)\
                     if company_number_of_artcles > 1 else article_title
             element['buttons'][0][
                 'title'] = 'View articles' if company_number_of_artcles > 1 else 'View article'
@@ -1112,7 +1114,7 @@ if __name__ == '__main__':
     LOG.info('scrader server started')
     # utils.news_poll(10)
     mongo.init_database()
-    #utils.article_from_excel()
+    # utils.article_from_excel()
     utils.start_scheduler_task()
     # utils.update_companies_news_once()
     # app.run(host=config.HOST, port=config.PORT, debug=True, use_reloader=False)
