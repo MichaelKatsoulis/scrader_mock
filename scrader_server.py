@@ -253,8 +253,8 @@ def get_all_websites():
     return flask.Response(js, status=status, mimetype='application/json')
 
 
-@app.route('/login/<user_id>/<user_name>', methods=['POST', 'GET'])
-def user_login(user_id, user_name):
+@app.route('/login/<user_id>/<user_name>/<last_name>', methods=['POST', 'GET'])
+def user_login(user_id, user_name, last_name):
     """ GET Server Status API endpoint
         Args:
         Returns:
@@ -274,6 +274,7 @@ def user_login(user_id, user_name):
     else:
         user_dict = {
             'first_name': user_name,
+            'last_name': last_name,
             'subscribed': False,
             'user_id': user_id
         }
@@ -292,13 +293,13 @@ def user_login(user_id, user_name):
                   'I am still in development mode so many functions are not stable just yet. ' \
                   'Please subscribe in order to get notified when I will be fully functional'.format(name)
 
-        block = 'Subscribe'
-        button_title = 'Subscribe'
+        button_title = 'Notifications'
         button_dict_tmpl = {
-            "type": "show_block",
-            "block_name": block,
+            "type": "web_url",
+            "url": "{}/scrader/companies/{}".format(Server_url, user_id),
             "title": button_title
         }
+
         buttons.append(button_dict_tmpl)
         block = 'Initializition'
         button_title = 'I am just a guest'
@@ -329,26 +330,26 @@ def user_login(user_id, user_name):
 
         if registered:
             message = 'Hi again {}. What would you like me to show you? ' \
-                      'Remember you can type any company you want to search for scraped news'.format(first_name)
+                      'Remember you can type any company you want to search for scraped news'.\
+                      format(first_name)
 
-            pref_button = {
-                "type": "show_block",
-                "block_name": "Preferences",
-                "title": "Edit Preferences"
+            notifications_button = {
+                "type": "web_url",
+                "url": "{}/scrader/companies/{}".format(Server_url, user_id),
+                "title": "Edit Notifications"
             }
-            buttons.append(pref_button)
+            buttons.append(notifications_button)
         else:
             message = 'Hi again {}. What would you like me to show you? ' \
-                      'Remember you can type any company you want to search for scraped news'.format(name)
+                      'Remember you can type any company you want to search for scraped news'.\
+                      format(name)
 
-            block = 'Subscribe'
-            button_title = 'Subscribe'
-            button_dict_tmpl = {
-                "type": "show_block",
-                "block_name": block,
-                "title": button_title
+            notifications_button = {
+                "type": "web_url",
+                "url": "{}/scrader/companies/{}".format(Server_url, user_id),
+                "title": "Notifications"
             }
-            buttons.append(button_dict_tmpl)
+            buttons.append(notifications_button)
 
     response_data = {
         "messages": [{
@@ -418,6 +419,7 @@ def user_companies_data():
 
     user = mongo.find_one_match('users', {"user_id": user_id})
     if user is not None:
+        mongo.insert_one_in('users', {"user_id": user_id}, {'subscribed': True})
         mongo.insert_one_in('users', {"user_id": user_id}, {'companies': data.get('companies')})
         mongo.insert_one_in('users', {"user_id": user_id}, {'notification_type': 'Companies'})
 
