@@ -175,8 +175,9 @@ function success() {
   -----------------------------------------------------
   https://api.chatfuel.com/bots/%3CBOT_ID%3E/users/%3CUSER_ID%3E/send?chatfuel_token=%3CTOKEN%3E&chatfuel_block_name=%3CBLOCK_NAME%3E&%3CUSER_ATTRIBUTE_1%3E=%3CVALUE_1%3E&%3CUSER_ATTRIBUTE_2%3E=%3CVALUE_2 */
  console.log('{{name}}'); 
- url = "https://api.chatfuel.com/bots/591189a0e4b0772d3373542b/users/{{user_id}}/send?chatfuel_token=vnbqX6cpvXUXFcOKr5RHJ7psSpHDRzO1hXBY8dkvn50ZkZyWML3YdtoCnKH7FSjC&chatfuel_block_id=59b7ff1ae4b07955ad7993b2&last%20name={{name}}"
- console.log(url);
+ // url = "https://api.chatfuel.com/bots/591189a0e4b0772d3373542b/users/{{user_id}}/send?chatfuel_token=vnbqX6cpvXUXFcOKr5RHJ7psSpHDRzO1hXBY8dkvn50ZkZyWML3YdtoCnKH7FSjC&chatfuel_block_id=59b7ff1ae4b07955ad7993b2&last%20name={{name}}"
+ // console.log(url);
+ url = "http://146.185.138.240/scrader/datetime/'{{ user_id }}'"
  $.ajax({ 
       type: "POST",
       contentType: "application/json; charset=utf-8",

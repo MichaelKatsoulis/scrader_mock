@@ -252,7 +252,6 @@ def get_all_websites():
     js = json.dumps(response_data, indent=2)
     return flask.Response(js, status=status, mimetype='application/json')
 
-
 @app.route('/login/<user_id>/<user_name>/<last_name>', methods=['POST', 'GET'])
 def user_login(user_id, user_name, last_name):
     """ GET Server Status API endpoint
@@ -620,8 +619,8 @@ def user_daily_notification(user_id):
     user = mongo.find_one_match('users', {"user_id": user_id})
     datetime = user.get('datetime')
 
-    message = 'You will be notified daily @ {}. You can also' \
-              ' be notified whenever companies you choose appear on our feed.'.format(datetime)
+    message = 'You will be notified daily @ {} for the companies you have selected'.\
+              format(datetime)
 
     buttons = []
     block = 'News'
@@ -635,7 +634,7 @@ def user_daily_notification(user_id):
 
     extra_button = {}
     extra_button['type'] = "web_url"
-    extra_button['title'] = 'Select Companies'
+    extra_button['title'] = 'Edit Notifications'
     extra_button['url'] = "{}/scrader/companies/{}".format(Server_url, user_id)
     buttons.append(extra_button)
 
