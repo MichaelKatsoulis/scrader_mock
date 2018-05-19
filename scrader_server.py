@@ -21,6 +21,7 @@ app = flask.Flask(__name__, static_url_path='/static')
 CORS(app, resources={r"*": {"origins": "*"}})
 
 NEXT = 0
+Server_url = "http://146.185.138.240"
 
 
 @app.route('/scrader/companies/<user_id>'.format(methods=['GET']))
@@ -119,8 +120,8 @@ def company_search():
                         "title":
                         "Yes",
                         "url":
-                        'http://146.185.138.240/company_specific/{}/{}/{}'.format(
-                            company_for_url, user_id, 'all_news'),
+                        '{}/company_specific/{}/{}/{}'.format(
+                            Server_url, company_for_url, user_id, 'all_news'),
                         "type":
                         "json_plugin_url"
                     }, {
@@ -190,17 +191,15 @@ def development_mode(user):
     button_dict_tmpl = {
         'type': "json_plugin_url",
         'title': 'Positive Predictions',
-        'url': "http://146.185.138.240/dev_news/{}/{}/{}".format('POS', 1,
-                                                                 user.
-                                                                 get('name'))
+        'url': "{}/dev_news/{}/{}/{}".format(Server_url, 'POS', 1,
+                                             user.get('name'))
     }
     buttons.append(button_dict_tmpl)
     button_dict_tmpl = {
         'type': "json_plugin_url",
         'title': 'Negative Predictions',
-        'url': "http://146.185.138.240/dev_news/{}/{}/{}".format('NEG', 1,
-                                                                 user.
-                                                                 get('name'))
+        'url': "{}/dev_news/{}/{}/{}".format(Server_url, 'NEG', 1,
+                                             user.get('name'))
     }
     buttons.append(button_dict_tmpl)
 
@@ -592,8 +591,8 @@ def user_notification(user_id, time_frame):
                                 "type":
                                 "web_url",
                                 "url":
-                                "http://146.185.138.240/scrader/companies/{}".
-                                format(user_id),
+                                "{}/scrader/companies/{}".
+                                format(Server_url, user_id),
                                 "title":
                                 "Go Now"
                             }]
@@ -635,7 +634,7 @@ def user_daily_notification(user_id):
     extra_button = {}
     extra_button['type'] = "web_url"
     extra_button['title'] = 'Select Companies'
-    extra_button['url'] = "http://146.185.138.240/scrader/companies/{}".format(user_id)
+    extra_button['url'] = "{}/scrader/companies/{}".format(Server_url, user_id)
     buttons.append(extra_button)
 
     response_data = {
@@ -687,7 +686,8 @@ def specific_company(company, user_id, news_time):
         if not followed:
             extra_button['type'] = "json_plugin_url"
             extra_button['title'] = 'Follow'
-            extra_button['url'] = "http://146.185.138.240/scrader/modify_user/{}/{}/add".format(user_id, company_for_url)
+            extra_button['url'] = "{}/scrader/modify_user/{}/{}/add".\
+                format(Server_url, user_id, company_for_url)
 
     company_given = company
     type_of_news = utils.company_news_type(company_given, news_time)
@@ -934,8 +934,8 @@ def get_news(company, news_type, page_num, date):
     for page_number in quick_replies_page_numbers_to_show:
         quick_reply = copy.deepcopy(quick_reply)
         quick_reply['title'] = "Page {}".format(page_number)
-        quick_reply['url'] = "http://146.185.138.240/news/{}/{}/{}/{}".format(
-            company, news_type, page_number, date)
+        quick_reply['url'] = "{}/news/{}/{}/{}/{}".format(
+            Server_url, company, news_type, page_number, date)
         quick_replies.append(quick_reply)
 
     if quick_replies:
@@ -944,7 +944,8 @@ def get_news(company, news_type, page_num, date):
     message['attachment']['payload']['elements'] = elements
 
     article = 'articles' if len(requested_news) > 1 else 'article'
-    top_message = {"text": '{} {} {} found for {}'.format(len(requested_news), news_message, article, company_net)}
+    top_message = {"text": '{} {} {} found for {}'.
+                   format(len(requested_news), news_message, article, company_net)}
 
     if extra_message:
         messages.append(extra_message)
@@ -1053,12 +1054,12 @@ def get_companies(stocks_type):
             element['subtitle'] = \
                 "{} articles found for {}.".format(company_number_of_artcles,
                                                    company_name)\
-                    if company_number_of_artcles > 1 else article_title
+                if company_number_of_artcles > 1 else article_title
             element['buttons'][0][
                 'title'] = 'View articles' if company_number_of_artcles > 1 else 'View article'
             element['buttons'][0][
-                'url'] = 'http://146.185.138.240/company_specific/{}/{}/{}'.format(
-                    name_net, user_id, 'today')
+                'url'] = '{}/company_specific/{}/{}/{}'.format(
+                    Server_url, name_net, user_id, 'today')
             messages[0]['attachment']['payload']['elements'].append(
                 element)
 
