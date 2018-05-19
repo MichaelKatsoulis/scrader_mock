@@ -1,3 +1,14 @@
 *.swp
 .idea/
 *.pyc
+algorithm.log
+cleardb.py
+dbdata/
+lakas.py
+lakis.py
+mock.py
+scrader.log
+scraper_logs.log
+tsak.py
+
+

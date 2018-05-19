@@ -1,243 +1,796 @@
-,User,appended,checked,company,direction,image_url,item_url,subtitle,title,website,website_url
-,,TRUE,TRUE,,POS,,,,HP's stock set a new 52-week high on Friday after delivering a strong profit forecast,,
-,,TRUE,TRUE,,POS,,,,This Google engineer teaches his coworkers how to fly airplanes ... and it's changed his career in surprising ways,,
-,,TRUE,TRUE,,POS,,,,"Dropbox just signed the biggest office space deal in San Francisco history — 736,000 square feet",,
-,,TRUE,TRUE,,POS,,,,"The CEO of GitHub, which caters to coders, thinks automation will bring an end to traditional software programming",,
-,,TRUE,TRUE,,POS,,,,"Bill.com is the latest fintech heavyweight, with a $742.8 million valuation and big-name backers",,
-,,TRUE,TRUE,,POS,,,,Microsoft is holding a $3.5 million competition to find the next great garage startup — 'like American Idol',,
-,,TRUE,TRUE,,NEG,,,,Microsoft's dream of Windows on phones is officially dead — now it's time for Plan B,,
-,,TRUE,TRUE,,POS,,,,A top Microsoft exec says the idea it will kill its Surface gadget business is 'so far from the truth',,
-,,TRUE,TRUE,,POS,,,,IBM wants lawmakers to protect dreamers by the end of the year and is going all out to persuade them,,
-,,TRUE,TRUE,,NEG,,,,$1.6 billion startup MongoDB could be worth less than $1 billion when its IPO happens next week,,
-,,TRUE,TRUE,,POS,,,,An underground Silicon Valley sensation just got $20 million from Google's venture arm to take over the world,,
-,,TRUE,TRUE,,NEG,,,,Amazon Top Exec Roy Price on Leave After Sexual Harassment Allegations,,
-,,TRUE,TRUE,,NEG,,,,Couple Finds Hidden Camera in Their Airbnb,,
-,,TRUE,TRUE,,NEG,,,,'I’m Not Just Some Silent Victim.' The Model Featured in Dove's Controversial Ad Speaks Out,,
-,,TRUE,TRUE,,NEG,,,,Dove's 'Racist' Ad Isn't the First Time the Company Was Criticized for Being Offensive,,
-,,TRUE,TRUE,,POS,,,,IRS Gives Equifax Multimillion-Dollar Deal Despite Massive Data Breach,,
-,,TRUE,TRUE,,NEG,,,,'You Should Be Fired.' Elizabeth Warren Slams Wells Fargo CEO Over Fake Accounts,,
-,,TRUE,TRUE,,NEG,,,,Former Equifax CEO Gets Ripped By Congress Over Massive Data Breach,,
-,,TRUE,TRUE,,NEG,,,,Equifax Says 2.5 Million More People May Have Been Affected by Security Breach,,
-,,TRUE,TRUE,,NEG,,,,Equifax CEO Richard Smith Ousted Following Massive Data Breach,,
-,,TRUE,TRUE,,NEG,,,,'We're Getting Our Roads Back.' London's Black Cab Drivers Hail Uber Ban,,
-,,TRUE,TRUE,,NEG,,,,Equifax Got Hacked Nearly Five Months Before It Previously Said,,
-,,TRUE,TRUE,,NEG,,,,Top Equifax Executives Announce Immediate Retirement After Massive Data Breach,,
-,,TRUE,TRUE,,NEG,,,,Equifax Could Have Fixed the Software Flaw That Led to Massive Data Theft,,
-,,TRUE,TRUE,,POS,,,,Nestlé Just Announced a Huge Blue Bottle Coffee Deal. What's That?,,
-,,TRUE,TRUE,,NEG,,,,Vanity Fair Editor and Donald Trump Antagonist Graydon Carter Stepping Down,,
-,,TRUE,TRUE,,POS,,,,Edward Felsenthal Chosen To Lead TIME as New Editor,,
-,,TRUE,TRUE,,POS,,,,Here's How Much Uber's New CEO Dara Khosrowshahi Is Worth,,
-,,TRUE,TRUE,,NEG,,,,Samsung Heir Lee Jae-yong Jailed for Five Years for Corruption,,
-,,TRUE,TRUE,,POS,,,,Google Cancels Web Domain Registration Neo-Nazi Site The Daily Stormer,,
-,,TRUE,TRUE,,POS,,,,The Next Apple Watch Will Have a Feature Runners Will Love,,
-,,TRUE,TRUE,,NEG,,,,2 Lawsuits Against KFC Accuse Manager of Sexually Assaulting Teen Employees,,
-,,TRUE,TRUE,,POS,,,,How Toymaker Mattel Plans to Win Over iPad-Obsessed Kids,,
-,,TRUE,TRUE,,POS,,,,Pringles Makes Instant Noodles Even Easier to Eat With Ramen-Flavored Chip,,
-,,TRUE,TRUE,,POS,,,,How Apple's iPhone Changed These 5 Major Industries,,
-,,TRUE,TRUE,,NEG,,,,Uber's Next CEO Has to Face This Huge Challenge,,
-,,TRUE,TRUE,,NEG,,,,Uber Co-Founder Travis Kalanick Has Resigned as CEO,,
-,,TRUE,TRUE,,POS,,,,Google Wants to Help You Search for a New Job,,
-,,TRUE,TRUE,,POS,,,,Nutella Maker Wins Case Against Rival Chocolate Spread That Claims It's Much Healthier,,
-,,TRUE,TRUE,,POS,,,,How Whole Foods Got So Big,,
-,,TRUE,TRUE,,NEG,,,,Uber Director Resigns After Making an 'Inappropriate' Comment About Women,,
-,,TRUE,TRUE,,NEG,,,,Uber Board Member Apologizes for 'Disrespectful' Joke About Women at Sexual Harassment Meeting,,
-,,TRUE,TRUE,,POS,,,,Apple Just Confirmed Rumors It's Working On Something Huge,,
-,,TRUE,TRUE,,POS,,,,This Is Apple's Insanely Powerful New iMac Pro,,
-,,TRUE,TRUE,,POS,,,,Watch Live: Apple Makes Big Announcements at WWDC 2017,,
-,,TRUE,TRUE,,POS,,,,Everything Sony Told Us About the Future of PlayStation,,
-,,TRUE,TRUE,,POS,,,,What LinkedIn's Co-Founder Thinks About Workplace Automation,,
-,,TRUE,TRUE,,POS,,,,"Sony's PlayStation 3 Lives On, Despite Retirement",,
-,,TRUE,TRUE,,POS,,,,WayUp Is a Booming Job-Hunting Site for Millennials,,
-,,TRUE,TRUE,,NEG,,,,U.S. Sues Fiat Chrysler for Using Software to Bypass Diesel Emission Controls,,
-,,TRUE,TRUE,,POS,,,,Nintendo Switch and 'Mario Kart 8 Deluxe' Dominated April Game Sales,,
-,,TRUE,TRUE,,NEG,,,,Snapchat's Stock Plummets Nearly 25% Following Its First Earnings Report,,
-,,TRUE,TRUE,,NEG,,,,Ben & Jerry's Recalls Pint Slices Due to Possible Peanut Contamination,,
-,,TRUE,TRUE,,NEG,,,,Watch Live: United Airlines CEO Oscar Munoz Testifies Before Congress,,
-,,TRUE,TRUE,,POS,,,,Here's What Nintendo Told Us About the New 2DS XL,,
-,,TRUE,TRUE,,POS,,,,Nintendo Says it Sold Over 2 Million NES Classics,,
-,,TRUE,TRUE,,NEG,,,,United Passenger David Dao Settles With Airline Over Dragging Incident,,
-,,TRUE,TRUE,,POS,,,,"Heineken Ad Pairs Up Strangers With Opposing Views on Transgender Rights, Climate Change and Feminism",,
-,,TRUE,TRUE,,NEG,,,,Man Gets Kicked off Delta Flight for Using the Restroom,,
-,,TRUE,TRUE,,POS,,,,The Switch Is So Successful Even Nintendo Is Surprised,,
-,,TRUE,TRUE,,POS,,,,Instagram Just Keeps Growing Like Crazy,,
-,,TRUE,TRUE,,NEG,,,,Chobani CEO Hamdi Ulukaya on Lawsuit Against Alex Jones: No Option But to Let the Courts Decide,,
-,,TRUE,TRUE,,NEG,,,,The Treasury Department Won't Give Exxon Mobil a Waiver to Drill in Russia,,
-,,TRUE,TRUE,,NEG,,,,The FTC Doesn't Want You to Fall for This Nintendo Switch Scam,,
-,,TRUE,TRUE,,POS,,,,The Switch Is Nintendo's 'Fastest Selling' System in History,,
-,,TRUE,TRUE,,NEG,,,,United Airlines Will Reimburse All Passengers on Flight Where Man Was Forcibly Removed,,
-,,TRUE,TRUE,,NEG,,,,Communications Chief Rachel Whetstone Is the Latest Uber Executive to Jump Ship,,
-,,TRUE,TRUE,,NEG,,,,United Airlines CEO: Passenger Removed From Flight Was 'Disruptive and Belligerent',,
-,,TRUE,TRUE,,NEG,,,,Uber Drivers Aren't Worried About Self-Driving Cars — Yet,,
-,,TRUE,TRUE,,NEG,,,,Twitter Drops Lawsuit Against U.S. Government Over Anti-Trump Account,,
-,,TRUE,TRUE,,POS,,,,Jeff Bezos Is Selling Amazon Stock So People Can Travel to Space Sooner,,
-,,TRUE,TRUE,,POS,,,,Chipotle Is Using a Rapping Cartoon Tortilla to Promote Its Preservative-Free Food,,
-,,TRUE,TRUE,,POS,,,,Ford Is Investing $1.2 Billion in U.S. Factories. Find Out Where Your Car Was Made,,
-,,TRUE,TRUE,,POS,,,,Ford Announces $1.2 Billion Investment in Michigan Plants,,
-,,TRUE,TRUE,,NEG,,,,United Airlines to Customers: ‘Your Leggings Are Welcome’,,
-,,TRUE,TRUE,,NEG,,,,United Wouldn't Let 2 Girls on a Plane Because It Apparently Has a Leggings Ban,,
-,,TRUE,TRUE,,NEG,,,,Uber's Leadership Says the Company 'Must Change' After Scandals,,
-,,TRUE,TRUE,,POS,,,,Nintendo Plans to Double Switch Production after Strong Sales,,
-,,TRUE,TRUE,,NEG,,,,Here's What Uber Drivers Actually Think About the Company's PR Nightmares,,
-,,TRUE,TRUE,,NEG,,,,A McDonald’s Tweet Called Donald Trump 'a Disgusting Excuse of a President',,
-,,TRUE,TRUE,,POS,,,,Here's How You Can Spend a Boozy Night in the Guinness Storehouse in Dublin,,
-,,TRUE,TRUE,,NEG,,,,The Latest Victim of Uber's Disruption May Be Itself,,
-,,TRUE,TRUE,,NEG,,,,"The Volkswagen Emissions Scandal Could Shorten Thousands of Lives, Study Says",,
-,,TRUE,TRUE,,POS,,,,Nintendo Switches Up Mobile Gaming With a Novel Console,,
-,,TRUE,TRUE,,POS,,,,Craigslist Founder Announces $1-Million Grant For ProPublica,,
-,,TRUE,TRUE,,NEG,,,,Uber Is Facing a Leadership Crisis That Could Cause Lasting Damage,,
-,,TRUE,TRUE,,NEG,,,,Uber’s CEO Apologizes After Fight With Driver Is Caught on Video: 'I Must...Grow Up',,
-,,TRUE,TRUE,,NEG,,,,Uber Hires Former Attorney-General Eric Holder to Review Sexual-Harassment Claims,,
-,,TRUE,TRUE,,NEG,,,,Tim Cook Just Bought Himself More Time to Prove Apple Doubters Wrong,,
-,,TRUE,TRUE,,POS,,,,Ford CEO Criticizes President Trump's Immigration Ban: 'We Do Not Support This Policy',,
-,,TRUE,TRUE,,POS,,,,Ryan Lochte Seeks Redemption As New PowerBar Spokesman,,
-,,TRUE,TRUE,,POS,,,,Facebook Launches 'Journalism Project' to Improve Media Ties,,
-,,TRUE,TRUE,,POS,,,,Under Armour Wants You to Buy Tom Brady's Pajamas,,
-,,TRUE,TRUE,,NEG,,,,Credit Suisse to Pay Out $5 Billion Over Toxic Mortgages,,
-,,TRUE,TRUE,,NEG,,,,Walmart to Stop Selling ‘Bulletproof: Black Lives Matter’ T-Shirts,,
-,,TRUE,TRUE,,NEG,,,,Why the Latest Yahoo Hack Is So Much Worse Than You Think,,
-,,TRUE,TRUE,,POS,,,,You Can Finally Order Apple's Wireless AirPod Earbuds,,
-,,TRUE,TRUE,,POS,,,,Facebook Is Looking to Hire a 20-Year Media Veteran to Help it Rethink News,,
-,,TRUE,TRUE,,POS,,,,Sony's PlayStation 4 Just Passed 50 Million Units Sold,,
-,,TRUE,TRUE,,NEG,,,,Roy Price Quits Amazon Studios After Sexual Harassment Claim,,
-,,TRUE,TRUE,,NEG,,,,Google Serves Fake News Ads in an Unlikely Place: Fact-Checking Sites,,
-,,TRUE,TRUE,,NEG,,,,Google Maps Pulls Calorie-Counting Feature After Criticism,,
-,,TRUE,TRUE,,POS,,,,Google’s Pixel 2 Smartphone Is a Powerful Extravagance ,,
-,,TRUE,TRUE,,NEG,,,,Samsung Is Under Scrutiny Again as South Korean Police Raid Offices,,
-,,TRUE,TRUE,,POS,,,,Netflix Says It Will Spend Up to $8 Billion on Content Next Year,,
-,,TRUE,TRUE,,NEG,,,,BP eyes smaller renewable investments to avoid repeating losses,,
-,,TRUE,TRUE,,NEG,,,,EU air safety body urges halt on use of Kobe Steel products,,
-,,TRUE,TRUE,,POS,,,,JPMorgan to buy online payment provider WePay,,
-,,TRUE,TRUE,,POS,,,,IBM beats revenue estimates; hints at sales growth,,
-,,TRUE,TRUE,,NEG,,,,Malaysia Airlines just lost another CEO,,
-,,TRUE,TRUE,,POS,,,,Uber will still operate in Quebec -- for now  ,,
-,,TRUE,TRUE,,NEG,,,,Apple's case against the FBI won't be easy ,,
-,,TRUE,TRUE,,POS,,,,Apple's next goal: an unbreakable iPhone,,
-,,TRUE,TRUE,,NEG,,,,Unicorn once worth $2.7 billion collapses into bankruptcy ,,
-,,TRUE,TRUE,,NEG,,,,Apple's stock has worms but FBI isn't one of them ,,
-,,TRUE,TRUE,,POS,,,,Walmart yanks hoverboards from its site,,
-,,TRUE,TRUE,,POS,,,,David Pogue tests 4K streaming boxes,,
-,,TRUE,TRUE,,NEG,,,,"BMW Recalls 1 Million Vehicles Over Fire Risk, Recommends Parking Outside - NBC News",,
-,,TRUE,TRUE,,POS,,,,Report: Apple revamped overseas ops to find new tax havens - ABC News,,
-,,TRUE,TRUE,,POS,,,,Google Pixel 2 review,,
-,,TRUE,TRUE,,POS,,,,PlayerUnknown's Battlegrounds using Microsoft Azure and Amazon Web Services - Business Insider,,
-,,TRUE,TRUE,,POS,,,,Microsoft Word gets Resume Assistant with LinkedIn to help you write a killer resume - Business Insider,,
-,,TRUE,TRUE,,POS,,,,Uber says it will bring its flying taxis to Los Angeles in 2020 - Chicago Tribune,,
-,,TRUE,TRUE,,POS,,,,Uber tops this surprising list of the 50 most desirable startups - Business Insider,,
-,,TRUE,TRUE,,POS,,,,Boeing generates over 1.5M US manufacturing jobs  | Fox Business,,
-,,TRUE,TRUE,,POS,,,,Google job applications once used hated comic sans font - Business Insider,,
-,,TRUE,TRUE,,NEG,,,,"Amazon faces $28,000 fine over death at Indiana warehouse - Chicago Tribune",,
-,,TRUE,TRUE,,POS,,,,Paradise Papers: Apple's secret tax bolthole revealed - BBC News,,
-,,TRUE,TRUE,,POS,,,,Inside Amazon Web Services,,
-,,TRUE,TRUE,,NEG,,,,Volkswagen has still not fixed one in three dieselgate cars in Britain | Reuters,,
-,,TRUE,TRUE,,POS,,,,Samsung CEO says we'll chat with our appliances,,
-,,TRUE,TRUE,,NEG,,,,"Arjay Miller, Who Led a Resurgence at Ford, Dies at 101 - The New York Times",,
-,,TRUE,TRUE,,POS,,,,Target to offer shoppers and its employees a breather after Thanksgiving - Chicago Tribune,,
-,,TRUE,TRUE,,NEG,,,,"Target to close stores in Matteson, Romeoville in early February - Daily Southtown",,
-,,TRUE,TRUE,,POS,,,,"Uber curbs ex-CEO's power, sells big stake to SoftBank | Fox Business",,
-,,TRUE,TRUE,,POS,,,,"Apple, Citigroup, Twitter: Inside Saudi Prince's US investments | Fox Business",,
-,,TRUE,TRUE,,POS,,,,Proposed sites for Amazon's HQ2 - Chicago Tribune,,
-,,TRUE,TRUE,,POS,,,,Nintendo raises global forecast for Switch to 14M units ahead of holiday season | Fox Business,,
-,,TRUE,TRUE,,POS,,,,Cities vying for Amazon - Chicago Tribune,,
-,,TRUE,TRUE,,POS,,,,Google's $999 Pixelbook is beautiful and expensive,,
-,,TRUE,TRUE,,POS,,,,Amazon HQ2: What's behind the public bid? | Fox Business,,
-,,TRUE,TRUE,,POS,,,,Amazon cuts third-party prices  | Fox Business,,
-,,TRUE,TRUE,,POS,,,,"Apple co-founder's Woz U aims to train tech workers, affordably | Fox Business",,
-,,TRUE,TRUE,,POS,,,,Apple iPhone X: How the company could hit $1 trillion - Business Insider,,
-,,TRUE,TRUE,,POS,,,,These Chicago sites could host Amazon's HQ2 - Chicago Tribune,,
-,,TRUE,TRUE,,POS,,,,Boeing betting on Trump to ramp up US growth in China | Fox Business,,
-,,TRUE,TRUE,,POS,,,,Six ways Amazon could reshape America's pharmacy business model - Chicago Tribune,,
-,,TRUE,TRUE,,NEG,,,,Email scam targets Netflix's millions of subscribers - ABC News,,
-,,TRUE,TRUE,,POS,,,,Slack hires Google Express exec Brian Elliot for platform - Business Insider,,
-,,TRUE,TRUE,,POS,,,,Artificial intelligence will probably cure cancer: Zeta Global CEO | Fox Business,,
-,,TRUE,TRUE,,POS,,,,New Amazon Echo review,,
-,,TRUE,TRUE,,POS,,,,Apple Lands New Reese Witherspoon and Jennifer Aniston TV Show - The New York Times,,
-,,TRUE,TRUE,,POS,,,,Apple iPhone through the years Video - ABC News,,
-,,TRUE,TRUE,,POS,,,,Google Cloud just joined Amazon as a 'preferred' storage provider for Salesforce - Business Insider,,
-,,TRUE,TRUE,,POS,,,,Boeing planes through its 100 years - Chicago Tribune,,
-,,TRUE,TRUE,,POS,,,,"Microsoft Surface Book 2: Hands-on, details, price, availability - Business Insider",,
-,,TRUE,TRUE,,NEG,,,,Is Tesla's Model 3 Likely to Sink the Company? - NBC News,,
-,,TRUE,TRUE,,POS,,,,A BETTER Interview with Former Apple and Pepsi CEO John Sculley,,
-,,TRUE,TRUE,,POS,,,,Microsoft launches managed Azure Kubernetes service - Business Insider,,
-,,TRUE,TRUE,,POS,,,,Report: Apple revamped overseas ops to find new tax havens - Chicago Tribune,,
-,,TRUE,TRUE,,NEG,,,,Senate subpoenas Marissa Mayer over Yahoo cybersecurity breaches | New York Post,,
-,,TRUE,TRUE,,NEG,,,,Target to close a dozen underperforming stores [Video],,
-,,TRUE,TRUE,,POS,,,,Flying Taxis? Uber and NASA Just Paired Up to Make That Happen - NBC News,,
-,,TRUE,TRUE,,POS,,,,Google debuts Pixel 2 and Pixel 2 XL,,
-,,TRUE,TRUE,,NEG,,,,Uber's Chinese rival acquiring its China operations - Chicago Tribune,,
-,,TRUE,TRUE,,POS,,,,Tesla product lineup and history in pictures - Chicago Tribune,,
-,,TRUE,TRUE,,POS,,,,Tesla and SpaceX chief Elon Musk meets Erdogan in Turkey - ABC News,,
-,,TRUE,TRUE,,POS,,,,"Microsoft Surface Pro with LTE Advanced price, details, availability - Business Insider",,
-,,TRUE,TRUE,,NEG,,,,"Are Amazon, Facebook, Google too big for current regulatory rules? | Fox Business",,
-,,TRUE,TRUE,,POS,,,,Microsoft Surface Book 2 hands on,,
-,,TRUE,TRUE,,POS,,,,Google Pixel 2 and Pixel 2 XL hands on,,
-,,TRUE,TRUE,,POS,,,,"Volkswagen, Google cooperate on quantum computing research - ABC News",,
-,,TRUE,TRUE,,POS,,,,The New York Times: Digital and Home Delivery Subscriptions,,
-,,TRUE,TRUE,,NEG,,,,Why the tech industry is worried about SESTA,,
-,,TRUE,TRUE,,NEG,,,,"IBM, Twitter, Uber, Facebook jump into DACA lawsuit - Business Insider",,
-,,TRUE,TRUE,,POS,,,,ARCHIVAL VIDEO: Steve Jobs and Apple through the years Video - ABC News,,
-,,TRUE,TRUE,,POS,,,,"Apple breaks $900 billion market cap, leads Wall Sreet to record highs | Fox Business",,
-,,TRUE,TRUE,,POS,,,,"Turkey's Erdogan, Tesla's Musk discuss cooperation with Turkish firms | Reuters",,
-,,TRUE,TRUE,,NEG,,,,"Equifax, Yahoo, Verizon testify on cyber hacking: LIVE blog | Fox Business",,
-,,TRUE,TRUE,,POS,,,,The Super Nintendo is back as the SNES Classic,,
-,,TRUE,TRUE,,POS,,,,Jeff Holden unveils Uber's flying cars [Video],,
-,,TRUE,TRUE,,POS,,,,"Amazon now employs a whopping 542,000 people and counting - Business Insider",,
-,,TRUE,TRUE,,POS,,,,Microsoft commercial cloud annualized revenue hits $20 billion - Business Insider,,
-,,TRUE,TRUE,,POS,,,,"Inside the mind of world's richest man and Amazon CEO Jeff Bezos, who hates multitasking and had a unique method for choosing a wife",,
-,,TRUE,TRUE,,POS,,,,Amazon expands into private label sportswear and its first home furnishing lines,,
-,,TRUE,TRUE,,POS,,,,Amazon shifting consumer landscape of Black Friday | Fox Business,,
-,,TRUE,TRUE,,POS,,,,Boeing signs deal to sell 300 planes worth $37 billion to China,,
-,,TRUE,TRUE,,NEG,,,,Senators Blast Equifax and Yahoo for Massive Data Breaches - NBC News,,
-,,TRUE,TRUE,,POS,,,,Kindle with your kale? Amazon to open shops in Whole Foods - ABC News,,
-,,TRUE,TRUE,,NEG,,,,How Apple operations under CEO Tim Cook differ from Steve Jobs | On Air Videos | Fox Business,,
-,,TRUE,TRUE,,NEG,,,,Boeing's $37 billion mega order in China is said to cover mostly old deals - Chicago Tribune,,
-,,TRUE,TRUE,,NEG,,,,Cyberwar is the future or war: Google Jigsaw CEO,,
-,,TRUE,TRUE,,POS,,,,"Amid Trump cuts, Uber kicks off campaign to enroll drivers in Obamacare | Reuters",,
-,,TRUE,TRUE,,NEG,,,,Uber's flying cars plan faces a problem,,
-,,TRUE,TRUE,,NEG,,,,Salesforce CEO Marc Benioff bashes Microsoft - Business Insider,,
-,,TRUE,TRUE,,NEG,,,,Special Report: The decisions behind Monsanto's weed-killer crisis | Reuters,,
-,,TRUE,TRUE,,POS,,,,Boeing signs $37B in commercial deals with China | New York Post,,
-,,TRUE,TRUE,,NEG,,,,"From Brussels to Arkansas, a Tough Week for Monsanto - The New York Times",,
-,,TRUE,TRUE,,POS,,,,Kindle with your kale? Amazon to open shops in Whole Foods - Chicago Tribune,,
-,,TRUE,TRUE,,POS,,,,"Kiwi, kidney beans and Kindles: Amazon to sell at Whole Foods | New York Post",,
-,,TRUE,TRUE,,NEG,,,,Uber C.E.O.: The Culture Went Wrong - Video - NYTimes.com,,
-,,TRUE,TRUE,,NEG,,,,"Equifax, Yahoo Grilled on Capitol Hill - NBC News",,
-,,TRUE,TRUE,,NEG,,,,"Will Amazon delivery app raise home insurance rate? There's a good chance, experts warn - Chicago Tribune",,
-,,TRUE,TRUE,,POS,,,,Uber 2.0: New C.E.O. Wants to Put His Stamp on the Company - The New York Times,,
-,,TRUE,TRUE,,NEG,,,,Target selling fidget spinners with unsafe levels of lead: Study | Fox Business,,
-,,TRUE,TRUE,,NEG,,,,Equifax executives won't get their 2017 bonuses - Chicago Tribune,,
-,,TRUE,TRUE,,NEG,,,,Republican Senate campaign wing ends fundraising ties with Moore | Reuters,,
-,,TRUE,TRUE,,POS,,,,"Forget robots, Ford looks to create 'bionic' auto workers | Fox Business",,
-,,TRUE,TRUE,,NEG,,,,The Latest: Uber appeals UK ruling on drivers' labor rights - ABC News,,
-,,TRUE,TRUE,,POS,,,,Uber "Express Pool" offers the cheapest fare if you'll walk a little [Video],,
-,,TRUE,TRUE,,NEG,,,,"Equifax faces hundreds of class-action lawsuits, an SEC subpoena over the way it handled its data breach - Chicago Tribune",,
-,,TRUE,TRUE,,POS,,,,IBM says it's reached milestone in quantum computing - ABC News,,
-,,TRUE,TRUE,,POS,,,,"Amazon pop-up shops to open in Whole Foods stores - Nov. 9, 2017 ",,
-,,TRUE,TRUE,,NEG,,,,"It's been a rough two days for Netflix, here's why  | Fox Business",,
-,,TRUE,TRUE,,NEG,,,,Cyberattack Casts a Long Shadow on Equifax's Earnings - The New York Times,,
-,,TRUE,TRUE,,POS,,,,Ryanair launches program to improve pilot management: memo | Reuters,,
-,,TRUE,TRUE,,NEG,,,,"UK panel rules Uber drivers have rights on wages, time off - ABC News",,
-,,TRUE,TRUE,,NEG,,,,Uber Hit With New Blow in London as Panel Says Drivers Aren't Self-Employed - The New York Times,,
-,,TRUE,TRUE,,NEG,,,,UK employment tribunal says Uber drivers are entitled to basic protections such as minimum wage and vacation pay - ABC News,,
-,,TRUE,TRUE,,NEG,,,,"Louis C.K. admits to sexual misconduct amid Netflix, film fallout | Fox Business",,
-,,TRUE,TRUE,,POS,,,,"Amazon expands its Influencer Program to include Twitter and Instagram, in addition to YouTube",,
-,,TRUE,TRUE,,POS,,,,China's Spotify: How Tencent leads the music streaming market - BBC News,,
-,,TRUE,TRUE,,NEG,,,,Equifax says it hasn't lost any big clients since data breach | New York Post,,
-,,TRUE,TRUE,,NEG,,,,"Court says Uber must give its U.K. drivers more rights - Nov. 10, 2017 ",,
-,,TRUE,TRUE,,NEG,,,,Target insists lead-laced fidget spinners found in toy aisle aren't intended for kids | New York Post,,
-,,TRUE,TRUE,,POS,,,,Amazon's Alexa chief wants you to have 20-minute conversations with Alexa,,
-,,TRUE,TRUE,,POS,,,,Boeing studying business case for new mid-sized jet | Reuters,,
-,,TRUE,TRUE,,NEG,,,,"British panel rules Uber drivers are 'workers,' have rights on wages, time off - Chicago Tribune",,
-,,TRUE,TRUE,,NEG,,,,JPMorgan Says Family Awarded $8 Billion Verdict Deserves Nothing,,
-,,TRUE,TRUE,,POS,,,,"Boeing sees steady Gulf demand, interest in mid-sized jet | Reuters",,
-,,TRUE,TRUE,,POS,,,,"Why Disney, Fox held talks about combining forces - Chicago Tribune",,
-,,TRUE,TRUE,,NEG,,,,Plans for new â€˜Star Warsâ€™ trilogy prop up sagging Disney shares | New York Post,,
-,,TRUE,TRUE,,POS,,,,Broadcom CEO Hock Tan calls his Qualcomm takeover bid compelling for shareholders - Chicago Tribune,,
-,,TRUE,TRUE,,NEG,,,,Aetna weighs short-term plans as Trump administration pushes the policies | Fox Business,,
-,,TRUE,TRUE,,NEG,,,,Uber Hit With New Blow in London as Panel Says Drivers Aren't Self-Employed - The New York Times,,
-,,TRUE,TRUE,,POS,,,,AOL co-founder Steve Case says 'smart cities' are the next big thing | Fox Business,,
-,,TRUE,TRUE,,NEG,,,,Equifax says it hasn't lost any big clients since data breach | New York Post,,
-0,Katsoulis,FALSE,TRUE,boeing,NEG,http://www.trbimg.com/img-5a313051/turbine/ct-canada-boeing-fighter-jet-20171213,http://www.chicagotribune.com/business/ct-canada-boeing-fighter-jet-20171213-story.html#nt=oft13a-11gp1,12/17/2017,"Canada snubs Boeing, unveils plan to buy used Australian jets - Chicago Tribune",nypost.com,http://www.chicagotribune.com/business/
-0,Katsoulis,FALSE,TRUE,oracle,POS,http://static2.businessinsider.com/image/570e686e9105842b008bc613-1190-625/oracle-ceo-safra-catz-is-joining-sheryl-sandberg-and-jack-dorsey-on-disneys-board.jpg,http://www.businessinsider.com/oracle-ceo-safra-catz-to-join-disney-board-2017-12,12/17/2017,Oracle CEO Safra Catz to join Disney board - Business Insider,businessinsider.com,http://www.businessinsider.com/enterprise
-0,Katsoulis,FALSE,TRUE,target,NEG,https://nyppagesix.files.wordpress.com/2017/12/gettyimages-866366712.jpg?quality=90&strip=all&w=1200,https://pagesix.com/2017/12/16/walmart-target-to-drop-mario-batalis-products/,12/17/2017,"Walmart, Target to drop Mario Batalis products | Page Six",abcnews.go.com,http://nypost.com/business/
-0,Katsoulis,FALSE,TRUE,amazon,POS,http://www.trbimg.com/img-59b19182/turbine/ct-amazon-chicago-locations-20170907,http://www.chicagotribune.com/business/ct-amazon-chicago-locations-20170907-photogallery.html#nt=barker&bn=Barker%2006%20-%20In%20Case%20You%20Missed%20It,12/17/2017,These Chicago sites could host Amazon&apos;s HQ2 - Chicago Tribune,nypost.com,http://www.chicagotribune.com/business/
-1,Katsoulis,FALSE,TRUE,google,POS,http://www.trbimg.com/img-5a0c7d65/turbine/ct-bsi-google-pixel-buds-review-20171115,http://www.chicagotribune.com/bluesky/originals/ct-bsi-google-pixel-buds-review-20171115-story.html#nt=barker&bn=Barker%2005%20-%20Subscriber%20Only%20Content,12/17/2017,Google Pixel Buds review: Fun translation trick anchors full-featured headphones - Chicago Tribune,nypost.com,http://www.chicagotribune.com/business/
+direction,title
+POS,HP's stock set a new 52-week high on Friday after delivering a strong profit forecast
+POS,This Google engineer teaches his coworkers how to fly airplanes ... and it's changed his career in surprising ways
+POS,"The CEO of GitHub, which caters to coders, thinks automation will bring an end to traditional software programming"
+POS,"Bill.com is the latest fintech heavyweight, with a $742.8 million valuation and big-name backers"
+POS,Microsoft is holding a $3.5 million competition to find the next great garage startup â€” 'like American Idol'
+POS,A top Microsoft exec says the idea it will kill its Surface gadget business is 'so far from the truth'
+POS,IBM wants lawmakers to protect dreamers by the end of the year and is going all out to persuade them
+NEG,$1.6 billion startup MongoDB could be worth less than $1 billion when its IPO happens next week
+POS,An underground Silicon Valley sensation just got $20 million from Google's venture arm to take over the world
+NEG,Amazon Top Exec Roy Price on Leave After Sexual Harassment Allegations
+NEG,Couple Finds Hidden Camera in Their Airbnb
+NEG,Dove's 'Racist' Ad Isn't the First Time the Company Was Criticized for Being Offensive
+POS,IRS Gives Equifax Multimillion-Dollar Deal Despite Massive Data Breach
+NEG,'You Should Be Fired.' Elizabeth Warren Slams Wells Fargo CEO Over Fake Accounts
+NEG,Former Equifax CEO Gets Ripped By Congress Over Massive Data Breach
+NEG,Equifax Says 2.5 Million More People May Have Been Affected by Security Breach
+NEG,Equifax CEO Richard Smith Ousted Following Massive Data Breach
+NEG,'We're Getting Our Roads Back.' London's Black Cab Drivers Hail Uber Ban
+NEG,Equifax Got Hacked Nearly Five Months Before It Previously Said
+NEG,Top Equifax Executives Announce Immediate Retirement After Massive Data Breach
+NEG,Equifax Could Have Fixed the Software Flaw That Led to Massive Data Theft
+POS,Edward Felsenthal Chosen To Lead TIME as New Editor
+POS,Here's How Much Uber's New CEO Dara Khosrowshahi Is Worth
+NEG,Samsung Heir Lee Jae-yong Jailed for Five Years for Corruption
+POS,Google Cancels Web Domain Registration Neo-Nazi Site The Daily Stormer
+POS,The Next Apple Watch Will Have a Feature Runners Will Love
+NEG,2 Lawsuits Against KFC Accuse Manager of Sexually Assaulting Teen Employees
+POS,How Toymaker Mattel Plans to Win Over iPad-Obsessed Kids
+POS,Pringles Makes Instant Noodles Even Easier to Eat With Ramen-Flavored Chip
+POS,How Apple's iPhone Changed These 5 Major Industries
+NEG,Uber's Next CEO Has to Face This Huge Challenge
+NEG,Uber Co-Founder Travis Kalanick Has Resigned as CEO
+POS,Google Wants to Help You Search for a New Job
+POS,Nutella Maker Wins Case Against Rival Chocolate Spread That Claims It's Much Healthier
+POS,How Whole Foods Got So Big
+NEG,Uber Director Resigns After Making an 'Inappropriate' Comment About Women
+NEG,Uber Board Member Apologizes for 'Disrespectful' Joke About Women at Sexual Harassment Meeting
+POS,Apple Just Confirmed Rumors It's Working On Something Huge
+POS,This Is Apple's Insanely Powerful New iMac Pro
+POS,Watch Live: Apple Makes Big Announcements at WWDC 2017
+POS,Everything Sony Told Us About the Future of PlayStation
+POS,What LinkedIn's Co-Founder Thinks About Workplace Automation
+POS,"Sony's PlayStation 3 Lives On, Despite Retirement"
+POS,WayUp Is a Booming Job-Hunting Site for Millennials
+NEG,U.S. Sues Fiat Chrysler for Using Software to Bypass Diesel Emission Controls
+POS,Nintendo Switch and 'Mario Kart 8 Deluxe' Dominated April Game Sales
+NEG,Snapchat's Stock Plummets Nearly 25% Following Its First Earnings Report
+NEG,Ben & Jerry's Recalls Pint Slices Due to Possible Peanut Contamination
+NEG,Watch Live: United Airlines CEO Oscar Munoz Testifies Before Congress
+POS,Here's What Nintendo Told Us About the New 2DS XL
+POS,Nintendo Says it Sold Over 2 Million NES Classics
+NEG,United Passenger David Dao Settles With Airline Over Dragging Incident
+POS,"Heineken Ad Pairs Up Strangers With Opposing Views on Transgender Rights, Climate Change and Feminism"
+NEG,Man Gets Kicked off Delta Flight for Using the Restroom
+POS,The Switch Is So Successful Even Nintendo Is Surprised
+POS,Instagram Just Keeps Growing Like Crazy
+NEG,Chobani CEO Hamdi Ulukaya on Lawsuit Against Alex Jones: No Option But to Let the Courts Decide
+NEG,The Treasury Department Won't Give Exxon Mobil a Waiver to Drill in Russia
+NEG,The FTC Doesn't Want You to Fall for This Nintendo Switch Scam
+POS,The Switch Is Nintendo's 'Fastest Selling' System in History
+NEG,United Airlines Will Reimburse All Passengers on Flight Where Man Was Forcibly Removed
+NEG,Communications Chief Rachel Whetstone Is the Latest Uber Executive to Jump Ship
+NEG,United Airlines CEO: Passenger Removed From Flight Was 'Disruptive and Belligerent'
+NEG,Twitter Drops Lawsuit Against U.S. Government Over Anti-Trump Account
+POS,Jeff Bezos Is Selling Amazon Stock So People Can Travel to Space Sooner
+POS,Chipotle Is Using a Rapping Cartoon Tortilla to Promote Its Preservative-Free Food
+POS,Ford Is Investing $1.2 Billion in U.S. Factories. Find Out Where Your Car Was Made
+POS,Ford Announces $1.2 Billion Investment in Michigan Plants
+NEG,United Wouldn't Let 2 Girls on a Plane Because It Apparently Has a Leggings Ban
+NEG,Uber's Leadership Says the Company 'Must Change' After Scandals
+POS,Nintendo Plans to Double Switch Production after Strong Sales
+NEG,Here's What Uber Drivers Actually Think About the Company's PR Nightmares
+POS,Here's How You Can Spend a Boozy Night in the Guinness Storehouse in Dublin
+NEG,The Latest Victim of Uber's Disruption May Be Itself
+NEG,"The Volkswagen Emissions Scandal Could Shorten Thousands of Lives, Study Says"
+POS,Nintendo Switches Up Mobile Gaming With a Novel Console
+POS,Craigslist Founder Announces $1-Million Grant For ProPublica
+NEG,Uber Is Facing a Leadership Crisis That Could Cause Lasting Damage
+NEG,Uber Hires Former Attorney-General Eric Holder to Review Sexual-Harassment Claims
+NEG,Tim Cook Just Bought Himself More Time to Prove Apple Doubters Wrong
+POS,Ford CEO Criticizes President Trump's Immigration Ban: 'We Do Not Support This Policy'
+POS,Ryan Lochte Seeks Redemption As New PowerBar Spokesman
+POS,Facebook Launches 'Journalism Project' to Improve Media Ties
+POS,Under Armour Wants You to Buy Tom Brady's Pajamas
+NEG,Credit Suisse to Pay Out $5 Billion Over Toxic Mortgages
+NEG,Why the Latest Yahoo Hack Is So Much Worse Than You Think
+POS,You Can Finally Order Apple's Wireless AirPod Earbuds
+POS,Facebook Is Looking to Hire a 20-Year Media Veteran to Help it Rethink News
+POS,Sony's PlayStation 4 Just Passed 50 Million Units Sold
+NEG,Roy Price Quits Amazon Studios After Sexual Harassment Claim
+NEG,Google Serves Fake News Ads in an Unlikely Place: Fact-Checking Sites
+NEG,Google Maps Pulls Calorie-Counting Feature After Criticism
+NEG,Samsung Is Under Scrutiny Again as South Korean Police Raid Offices
+POS,Netflix Says It Will Spend Up to $8 Billion on Content Next Year
+NEG,BP eyes smaller renewable investments to avoid repeating losses
+NEG,EU air safety body urges halt on use of Kobe Steel products
+POS,JPMorgan to buy online payment provider WePay
+POS,IBM beats revenue estimates; hints at sales growth
+NEG,Malaysia Airlines just lost another CEO
+POS,Uber will still operate in Quebec -- for now  
+NEG,Apple's case against the FBI won't be easy 
+POS,Apple's next goal: an unbreakable iPhone
+NEG,Unicorn once worth $2.7 billion collapses into bankruptcy 
+NEG,Apple's stock has worms but FBI isn't one of them 
+POS,Walmart yanks hoverboards from its site
+POS,David Pogue tests 4K streaming boxes
+NEG,"BMW Recalls 1 Million Vehicles Over Fire Risk, Recommends Parking Outside - NBC News"
+POS,Report: Apple revamped overseas ops to find new tax havens - ABC News
+POS,Google Pixel 2 review
+POS,PlayerUnknown's Battlegrounds using Microsoft Azure and Amazon Web Services - Business Insider
+POS,Microsoft Word gets Resume Assistant with LinkedIn to help you write a killer resume - Business Insider
+POS,Uber says it will bring its flying taxis to Los Angeles in 2020 - Chicago Tribune
+POS,Uber tops this surprising list of the 50 most desirable startups - Business Insider
+POS,Boeing generates over 1.5M US manufacturing jobs  | Fox Business
+POS,Google job applications once used hated comic sans font - Business Insider
+NEG,"Amazon faces $28,000 fine over death at Indiana warehouse - Chicago Tribune"
+POS,Paradise Papers: Apple's secret tax bolthole revealed - BBC News
+POS,Inside Amazon Web Services
+NEG,Volkswagen has still not fixed one in three dieselgate cars in Britain | Reuters
+POS,Samsung CEO says we'll chat with our appliances
+NEG,"Arjay Miller, Who Led a Resurgence at Ford, Dies at 101 - The New York Times"
+POS,Target to offer shoppers and its employees a breather after Thanksgiving - Chicago Tribune
+NEG,"Target to close stores in Matteson, Romeoville in early February - Daily Southtown"
+POS,"Uber curbs ex-CEO's power, sells big stake to SoftBank | Fox Business"
+POS,"Apple, Citigroup, Twitter: Inside Saudi Prince's US investments | Fox Business"
+POS,Proposed sites for Amazon's HQ2 - Chicago Tribune
+POS,Nintendo raises global forecast for Switch to 14M units ahead of holiday season | Fox Business
+POS,Cities vying for Amazon - Chicago Tribune
+POS,Google's $999 Pixelbook is beautiful and expensive
+POS,Amazon HQ2: What's behind the public bid? | Fox Business
+POS,Amazon cuts third-party prices  | Fox Business
+POS,"Apple co-founder's Woz U aims to train tech workers, affordably | Fox Business"
+POS,Apple iPhone X: How the company could hit $1 trillion - Business Insider
+POS,These Chicago sites could host Amazon's HQ2 - Chicago Tribune
+POS,Boeing betting on Trump to ramp up US growth in China | Fox Business
+POS,Six ways Amazon could reshape America's pharmacy business model - Chicago Tribune
+NEG,Email scam targets Netflix's millions of subscribers - ABC News
+POS,Slack hires Google Express exec Brian Elliot for platform - Business Insider
+POS,Artificial intelligence will probably cure cancer: Zeta Global CEO | Fox Business
+POS,New Amazon Echo review
+POS,Apple Lands New Reese Witherspoon and Jennifer Aniston TV Show - The New York Times
+POS,Apple iPhone through the years Video - ABC News
+POS,Google Cloud just joined Amazon as a 'preferred' storage provider for Salesforce - Business Insider
+POS,Boeing planes through its 100 years - Chicago Tribune
+POS,"Microsoft Surface Book 2: Hands-on, details, price, availability - Business Insider"
+NEG,Is Tesla's Model 3 Likely to Sink the Company? - NBC News
+POS,A BETTER Interview with Former Apple and Pepsi CEO John Sculley
+POS,Microsoft launches managed Azure Kubernetes service - Business Insider
+POS,Report: Apple revamped overseas ops to find new tax havens - Chicago Tribune
+NEG,Senate subpoenas Marissa Mayer over Yahoo cybersecurity breaches | New York Post
+NEG,Target to close a dozen underperforming stores [Video]
+POS,Flying Taxis? Uber and NASA Just Paired Up to Make That Happen - NBC News
+POS,Google debuts Pixel 2 and Pixel 2 XL
+NEG,Uber's Chinese rival acquiring its China operations - Chicago Tribune
+POS,Tesla product lineup and history in pictures - Chicago Tribune
+POS,Tesla and SpaceX chief Elon Musk meets Erdogan in Turkey - ABC News
+POS,"Microsoft Surface Pro with LTE Advanced price, details, availability - Business Insider"
+NEG,"Are Amazon, Facebook, Google too big for current regulatory rules? | Fox Business"
+POS,Microsoft Surface Book 2 hands on
+POS,Google Pixel 2 and Pixel 2 XL hands on
+POS,"Volkswagen, Google cooperate on quantum computing research - ABC News"
+POS,The New York Times: Digital and Home Delivery Subscriptions
+NEG,Why the tech industry is worried about SESTA
+NEG,"IBM, Twitter, Uber, Facebook jump into DACA lawsuit - Business Insider"
+POS,ARCHIVAL VIDEO: Steve Jobs and Apple through the years Video - ABC News
+POS,"Apple breaks $900 billion market cap, leads Wall Sreet to record highs | Fox Business"
+POS,"Turkey's Erdogan, Tesla's Musk discuss cooperation with Turkish firms | Reuters"
+NEG,"Equifax, Yahoo, Verizon testify on cyber hacking: LIVE blog | Fox Business"
+POS,The Super Nintendo is back as the SNES Classic
+POS,Jeff Holden unveils Uber's flying cars [Video]
+POS,"Amazon now employs a whopping 542,000 people and counting - Business Insider"
+POS,Microsoft commercial cloud annualized revenue hits $20 billion - Business Insider
+POS,"Inside the mind of world's richest man and Amazon CEO Jeff Bezos, who hates multitasking and had a unique method for choosing a wife"
+POS,Amazon expands into private label sportswear and its first home furnishing lines
+POS,Amazon shifting consumer landscape of Black Friday | Fox Business
+POS,Boeing signs deal to sell 300 planes worth $37 billion to China
+NEG,Senators Blast Equifax and Yahoo for Massive Data Breaches - NBC News
+POS,Kindle with your kale? Amazon to open shops in Whole Foods - ABC News
+NEG,How Apple operations under CEO Tim Cook differ from Steve Jobs | On Air Videos | Fox Business
+NEG,Boeing's $37 billion mega order in China is said to cover mostly old deals - Chicago Tribune
+NEG,Cyberwar is the future or war: Google Jigsaw CEO
+POS,"Amid Trump cuts, Uber kicks off campaign to enroll drivers in Obamacare | Reuters"
+NEG,Uber's flying cars plan faces a problem
+NEG,Salesforce CEO Marc Benioff bashes Microsoft - Business Insider
+NEG,Special Report: The decisions behind Monsanto's weed-killer crisis | Reuters
+POS,Boeing signs $37B in commercial deals with China | New York Post
+NEG,"From Brussels to Arkansas, a Tough Week for Monsanto - The New York Times"
+POS,Kindle with your kale? Amazon to open shops in Whole Foods - Chicago Tribune
+POS,"Kiwi, kidney beans and Kindles: Amazon to sell at Whole Foods | New York Post"
+NEG,Uber C.E.O.: The Culture Went Wrong - Video - NYTimes.com
+NEG,"Equifax, Yahoo Grilled on Capitol Hill - NBC News"
+NEG,"Will Amazon delivery app raise home insurance rate? There's a good chance, experts warn - Chicago Tribune"
+POS,Uber 2.0: New C.E.O. Wants to Put His Stamp on the Company - The New York Times
+NEG,Target selling fidget spinners with unsafe levels of lead: Study | Fox Business
+NEG,Equifax executives won't get their 2017 bonuses - Chicago Tribune
+NEG,Republican Senate campaign wing ends fundraising ties with Moore | Reuters
+POS,"Forget robots, Ford looks to create 'bionic' auto workers | Fox Business"
+NEG,The Latest: Uber appeals UK ruling on drivers' labor rights - ABC News
+POS,"Uber ""Express Pool"" offers the cheapest fare if you'll walk a little [Video]"
+NEG,"Equifax faces hundreds of class-action lawsuits, an SEC subpoena over the way it handled its data breach - Chicago Tribune"
+POS,IBM says it's reached milestone in quantum computing - ABC News
+POS,"Amazon pop-up shops to open in Whole Foods stores - Nov. 9, 2017 "
+NEG,"It's been a rough two days for Netflix, here's why  | Fox Business"
+NEG,Cyberattack Casts a Long Shadow on Equifax's Earnings - The New York Times
+POS,Ryanair launches program to improve pilot management: memo | Reuters
+NEG,"UK panel rules Uber drivers have rights on wages, time off - ABC News"
+NEG,Uber Hit With New Blow in London as Panel Says Drivers Aren't Self-Employed - The New York Times
+NEG,UK employment tribunal says Uber drivers are entitled to basic protections such as minimum wage and vacation pay - ABC News
+NEG,"Louis C.K. admits to sexual misconduct amid Netflix, film fallout | Fox Business"
+POS,"Amazon expands its Influencer Program to include Twitter and Instagram, in addition to YouTube"
+POS,China's Spotify: How Tencent leads the music streaming market - BBC News
+NEG,Equifax says it hasn't lost any big clients since data breach | New York Post
+NEG,"Court says Uber must give its U.K. drivers more rights - Nov. 10, 2017 "
+NEG,Target insists lead-laced fidget spinners found in toy aisle aren't intended for kids | New York Post
+POS,Amazon's Alexa chief wants you to have 20-minute conversations with Alexa
+POS,Boeing studying business case for new mid-sized jet | Reuters
+NEG,"British panel rules Uber drivers are 'workers,' have rights on wages, time off - Chicago Tribune"
+NEG,JPMorgan Says Family Awarded $8 Billion Verdict Deserves Nothing
+POS,"Boeing sees steady Gulf demand, interest in mid-sized jet | Reuters"
+POS,"Why Disney, Fox held talks about combining forces - Chicago Tribune"
+POS,Broadcom CEO Hock Tan calls his Qualcomm takeover bid compelling for shareholders - Chicago Tribune
+NEG,Aetna weighs short-term plans as Trump administration pushes the policies | Fox Business
+POS,AOL co-founder Steve Case says 'smart cities' are the next big thing | Fox Business
+NEG,"Google managers kept blacklists of conservative employees  and one manager even considered holding 'trials', alleges a new lawsuit"
+NEG,"Intel's CEO publicly addresses its big chip vulnerabilities, says response has been 'remarkable'"
+POS,"Google is doing away with Chrome's parental controls - Jan. 11, 2018 "
+NEG,"Patch for Spectre, Meltdown causing problems in older chips - Jan. 12, 2018 "
+POS,"Facebook's News Feed to show more content from friends, less from publishers and brands - Jan. 11, 2018 "
+POS,Amazon HQ2 intrigue continues with reported Boston lease talks - Chicago Tribune
+POS,"New Toyota-Mazda plant will bring 4,000 jobs to Alabama - Chicago Tribune"
+POS,"Pfizer, pocketing a big tax cut from Trump, will end investment in Alzheimer's and Parkinson's research - Chicago Tribune"
+POS,GM says it's mass-producing cars without steering wheels - Chicago Tribune
+POS,Tesla's Gigafactory 2 Starts Solar Roof Tile Production | Fox Business
+POS,How Baidu is Stacking the Deck Against the Competition | Fox Business
+POS,What's Up With Qualcomm's Bid for NXP Semiconductors? | Fox Business
+NEG,Facebook Kills its Answer to Siri and Alexa | Fox Business
+POS,"Why Twitter, Inc. Stock Jumped 47% Last Year  | Fox Business"
+POS,How small businesses can use Amazon to their advantage - NBC News
+NEG,Volkswagen manager jailed for 7 years in diesel scam - NBC News
+NEG,"Navajo Nation Sues Wells Fargo Over 'Outrageous,' Predatory Practices | HuffPost"
+NEG,Slow iPhone Scandal: Senator Demands Answers From Apple CEO Tim Cook
+POS,Driverless Cars: General Motors Ditches Steering Wheel and Pedals for New Car
+POS,Self-driving cars: GM wants to test Chevy Bolt with no steering wheel or brake pedal
+POS,Facebooks changing its news feed. How will it affect what you see? - The Washington Post
+POS,"As my journey takes a new turn, Honda shows how carmakers are turning, too - The Washington Post"
+NEG,Mark Zuckerberg's overhaul of Facebook has cost him 2.4bn already
+POS,Disney CEO Iger Got Paid $36.3 Million Last Year. And Thats Likely to Go Up - Bloomberg
+POS,Facebook Reassures Partners It'll Help Them Adjust to New Policy - Bloomberg
+POS,"Wal-Mart Says It Will Boost Wages, Give Bonuses With New Savings From Tax Law : NPR"
+NEG,Mr. Amazon Steps Out - The New York Times
+NEG,"Inside Ubers $100,000 Payment to a Hacker, and the Fallout - The New York Times"
+POS,New Facebook Should Benefit Investors Long Term: DealBook Briefing - The New York Times
+NEG,The Difficulties With Facebooks News Feed Overhaul - The New York Times
+POS,G.M. Says Its Driverless Car Could Be in Fleets by Next Year - The New York Times
+POS,Amazon has a master plan to turn Alexa into a full-fledged economy all on its own
+POS,IBM reportedly plans to reassign 30% of the 100K staff in its computer service delivery business - Business Insider
+POS,Microsoft explains 'Always Connected PC' master plan - Business Insider
+NEG,Some of Intel's datacenter customers are considering switching to rival chips because of the security flaws - Business Insider
+NEG,Intel recalled a major chip in 1995 and turned them into keychains inscribed by the CEO  and the message speaks to Intel's current crisis
+NEG,Intel was aware of the chip vulnerability when its CEO sold off $24 million in company stock
+NEG,"Global backlash spreads over Apple slowing down iPhones - Jan. 12, 2018 "
+NEG,"Mark Zuckerberg is fighting to save Facebook - Jan. 12, 2018 "
+NEG,France investigating Apple's secret slowdown of old iPhones - ABC News
+NEG,Indonesia hard-line Muslims protest ban on Facebook accounts - ABC News
+POS,"Q&A;: What Facebook's shift could mean to users, businesses - ABC News"
+POS,A look at Facebook's changes over the years in what you see - ABC News
+POS,"Facebook edits feeds to bring less news, more sharing - ABC News"
+POS,Tax bill helps push Wells Fargo to fourth-quarter gain | New York Post
+NEG,Wall Street not a fan of Facebooks new News Feed | New York Post
+NEG,Senators want 'massive' fines for data breaches at Equifax and other credit reporting firms - Chicago Tribune
+NEG,Timing of $24 million stock sale by Intel CEO draws fire - Chicago Tribune
+NEG,"Facing critics, Facebook wants news feeds to be more 'meaningful' - Chicago Tribune"
+POS,Ford to test self-driving cars
+POS,Intel wants the Volocopter 2X to fly you around
+POS,Honda's robots are huggable and helpful
+NEG,"Apple Apologizes For Slowed iPhones, Drops Price Of Battery Replacements | HuffPost"
+NEG,Apple Hit With Lawsuits After Admitting It Intentionally Slowed Down iPhones | HuffPost
+NEG,Ford Urges Thousands Of Pickup Owners To Stop Driving After New Airbag Death | HuffPost
+NEG,Apple iCloud Users in United States Swept up in Data Migration to Chinese Company
+POS,Home improvement loans: Goldman Sachs offers consumer financing
+NEG,Wells Fargo Still Cant Quite Seem to Fix Its Wagon: Gadfly - The Washington Post
+NEG,Timing of $24 million stock sale by Intel CEO draws scrutiny - The Washington Post
+NEG,JPMorgan Chase Becomes More Behemoth by Being Less Bank: Gadfly - The Washington Post
+NEG,"Wal-Marts Sams Club Closings: Smart Move, Dumb PR: Gadfly - The Washington Post"
+NEG,Mark Zuckerberg Just Blew Up Facebook From the Inside: Gadfly - The Washington Post
+POS,Facebook news feed: The giant social network is making a big change
+POS,Facebooks alternative news feed might make it more meaningful - but its all about business
+NEG,Facebook's latest change won't stop the scourge of fake news. It needs to do more
+NEG,Mark Zuckerbergs Change of Heart Just Cost Him $3.3 Billion - Bloomberg
+NEG,Facebook Changes Could Mean Less Time Spent on Site; Shares Fall - Bloomberg
+NEG,Tesla Faces Complaints Over Harassment And Racial Tensions : NPR
+NEG,"Wal-Mart Closes 63 Sam's Club Stores, Leaving 11,000 Employees Without Work : NPR"
+POS,Facebook Rolls Out New Plan For News Feed: More Posts From Friends And Family  : The Two-Way : NPR
+POS,GM Says Car With No Steering Wheel Or Pedals Ready For Streets In 2019 : The Two-Way : NPR
+POS,The End of the Social News Era? Journalists Brace for Facebooks Big Change - The New York Times
+NEG,"In Some Countries, Facebooks Fiddling Has Magnified Fake News - The New York Times"
+POS,The New Facebooks Long-Term Benefit to the Bottom Line - The New York Times
+POS,Amazon has quietly released a game changer for its cloud: Linux software that runs on corporate servers
+NEG,Check Point says it found 22 different Android flashlight apps in Google Play with malicious adware - Business Insider
+POS,Where Will Intel Be in 5 Years? | Fox Business
+NEG,Qualcomm's Premium Smartphone Chip Problem | Fox Business
+NEG,Zuckerberg Loses $3.3 Billion After Facebook Changes News Feed
+POS,Ford Revives Ranger as Truck Sales Boom Beckons Return to U.S. - Bloomberg
+POS,How Trump's Corporate Tax Cut Is Playing Out For Wal-Mart : NPR
+POS,"Bozoma Saint John: I'm on a 'personal mission' to help fix Uber - Jan. 15, 2018 "
+POS,"Ford announces the Mach 1: A high-performance electric SUV - Jan. 15, 2018 "
+POS,"Dow's historic rise is made in Chicago, led by Boeing and Caterpillar - Chicago Tribune"
+POS,Ford goes 'all in' on electric cars with $11 billion investment - Chicago Tribune
+POS,Amazon will be the largest grocery brand by 2030: Brittain Ladd | Fox Business
+POS,Volkswagen's push for US market share | Fox Business
+POS,Ford to spend $11B on electric vehicles through 2022 | Fox Business
+POS,Why eBay Stock Gained 27% in 2017 | Fox Business
+POS,BMW optimistic on favorable outcome to NAFTA talks | Fox Business
+POS,Why 2017 Was a Year to Remember for Wal-Mart Stores Inc. | Fox Business
+NEG,Why Facebook's Potential New Smart-Home Portal Isn't Wowing Us | Fox Business
+POS,Ford brings 'Bullitt' Mustang to Detroit auto show
+POS,Ford shows new Ranger midsize pickup ahead of Detroit auto show
+NEG,Facebook's New Mission May Be Impossible - Bloomberg
+NEG,BP to Take $1.7 Billion Charge Over Deepwater Horizon Spill - The New York Times
+POS,"Google plans to expand undersea cables - Jan. 16, 2018 "
+POS,Was Amazon's $50 Million Football Bet Worth It? | Fox Business
+POS,General Motors sees sustained profits through 2018 | Fox Business
+NEG,"Citigroup reports $18.3 billion loss, caused by new tax law | Fox Business"
+POS,"Citi to boost pay for women and minorities, closing gaps in 3 nations"
+POS,Google Arts & Culture Android app uses A.I. to match your face with a museum painting - The Washington Post
+POS,These are the 4 best Amazon deals you can get right now
+POS,Boeing unveils new spy plane design 'Son Of Blackbird'
+NEG,BP to knuckle down on sales drive as Horizon woes deepen by 2bn 
+NEG,Citi plunges to giant $18bn loss on back of Trump tax reforms
+NEG,Uber Limits U.K. Driver Hours in Response to Safety Concerns - Bloomberg
+NEG,BP's $60 Billion Gulf Spill Tab Rises as Lawsuits Wind Down - Bloomberg
+NEG,BP Drops as $1.7 Billion Deepwater Charge Surprises: Street Wrap - Bloomberg
+POS,Google Sells A.I. for Building A.I. (Novices Welcome) - The New York Times
+NEG,Apple to Pay $38 Billion in Taxes on Offshore Cash: DealBook Briefing: - The New York Times
+POS,"Apple, Capitalizing on New Tax Law, Plans to Bring Billions in Cash Back to U.S. - The New York Times"
+NEG,Goldman Sachs Once Looked Invincible. Now Its Losing Money. - The New York Times
+NEG,G.M. Chief Cautions Trump Administration on Upending Nafta - The New York Times
+NEG,"U.S. lawmaker asks Intel, others for briefing on chip flaws - Business Insider"
+POS,Oracle issues security patches for chip flaws - Business Insider
+POS,"Apple pledges to create 20,000 jobs in five years - Jan. 17, 2018 "
+POS,"Samsung unveils special edition Galaxy Note 8 only for Olympians - Jan. 17, 2018 "
+POS,"Apple to build 2nd campus, hire 20,000 in $350B pledge - ABC News"
+POS,"Apple plans new campus, will add 20,000 more jobs | New York Post"
+NEG,Goldman Sachs posts first quarterly loss in six years | New York Post
+POS,"Apple to build 2nd campus, hire 20,000 in $350B pledge - Chicago Tribune"
+POS,"Apple, Inc.'s HomePod Launch Could Be Imminent | Fox Business"
+NEG,Ford stock takes a dive as investors sour on 2018 profit outlook | Fox Business
+POS,Verizon pushes further into sports streaming with NBA deal | Fox Business
+NEG,Aetna to pay $17M over mailing that revealed HIV meds | Fox Business
+POS,Apple announces $350 billion investment
+POS,Apple is bringing a mountain of cash  and jobs  to the U.S. - NBC News
+NEG,"Facebook is a 'living, breathing crime scene,' says one former tech insider - NBC News"
+NEG,Why Cant Facebook Take Down All Terrorist Content?
+NEG,Fun or concerning? Googles art selfie app raises privacy fears - The Washington Post
+POS,"Apple pledges to spend $350 billion and bring 20,000 jobs to the U.S. within next five years - The Washington Post"
+POS,Why Nestle sold its U.S. candy business  and bought a vitamin company - The Washington Post
+POS,Goldmans Bright Spots Keep Its $5 Billion Goal Within Reach: Gadfly - The Washington Post
+POS,Facebook opens probe into Russian involvement in Brexit - The Washington Post
+NEG,Apple's old iPhone batteries: Suing lawyer wants Apple to keep them
+NEG,Security risk? Lawmakers try to stop AT&T; from dealing with iPhone rival Huawei
+POS,Tesla Model 3 review: We rented one from a brand-new owner. It impressed.
+NEG,Goldman Sachs suffers rare quarterly loss as corporate giants take hit on Trump tax reform
+POS,Facebook launches investigation into Russian influence in EU referendum
+POS,"Apple Gives Employees $2,500 Bonuses After New Tax Law - Bloomberg"
+NEG,Barclays Is Cutting Up to 100 Senior Investment Bank Staff - Bloomberg
+NEG,Third Barclays Trader Faces U.S. Charges in FX Scandal - Bloomberg
+NEG,Goldman's No. 2 Allegedly Swindled Out of $1.2 Million of Wine by Assistant - Bloomberg
+POS,Facebook Is Investigating Possible Russia Meddling in Brexit - Bloomberg
+POS,"Apple Says It Will Create 20,000 Jobs With New Campus : NPR"
+POS,Toyota Announces Makeover Of Its Flagship Car : NPR
+POS,Amazon Chooses 20 Finalists for Second Headquarters - The New York Times
+POS,IBM May Finally Stop Shrinking. But Is It a Turnaround? - The New York Times
+POS,Whos Still in Amazons HQ2 Contest: DealBook Briefing - The New York Times
+NEG,"Assistant to Goldman Sachs Executive Stole and Sold His Rare Wines, U.S. Says - The New York Times"
+POS,"Nintendo launches DIY cardboard toys for Switch - Jan. 18, 2018 "
+NEG,You wont be seeing Nestle candies in the US soon | New York Post
+NEG,Ex-personal assistant charged with $1.2-million wine theft from top Goldman Sachs executive - Chicago Tribune
+POS,"Morgan Stanley tops estimates on underwriting, wealth management | Fox Business"
+NEG,Why 2017 Was a Year to Forget for Verizon Communications Inc. | Fox Business
+NEG,Intel Has a Big Problem. It Needs to Act Like It
+POS,Amazon picks 20 finalists for 'HQ2' second headquarters location - NBC News
+NEG,Morgan Stanley's profits fall 59% due to tax law
+NEG,Ex-assistant accused of $1.2M wine theft from Goldman Sachs boss
+NEG,Aetna to pay $17M over mailing that revealed HIV meds
+POS,Morgan Stanley Confirms Its Status as the New Reliable: Gadfly - The Washington Post
+POS,Tim Cook: Apple update will allow user to stop iPhone from slowing down
+NEG,EU Tells Apple It Still Has to Show Them the Money - Bloomberg
+NEG,Intel Has a Big Problem. It Needs to Act Like It - Bloomberg
+POS,"Apple Plans To Create 20,000 Jobs And Build New Campus : The Two-Way : NPR"
+POS,"Apple Says It Will Create 20,000 Jobs In The U.S. : NPR"
+POS,Where Amazon May Build Its New Headquarters - The New York Times
+POS,Why Toronto Made the Playoffs for Amazons Headquarters - The New York Times
+NEG,Amazon HQ2 Choices Are Disappointingly Undisruptive - The New York Times
+NEG,IBM Ends 22-Quarter Streak of Falling Revenue - The New York Times
+POS,"IBM's sales grew for the first time in 5 years - Jan. 18, 2018 "
+POS,"Facebook adds first black board member: American Express' Kenneth Chenault - Jan. 18, 2018 "
+POS,Taking a ride with Uber founder Travis Kalanick - BBC News
+POS,Morgan Stanley flies high on wealth management | New York Post
+POS,Chicago made Amazons short list. Theres still plenty of competition. - Chicago Tribune
+NEG,3 Growth Stocks That Could Put Netflix's Returns to Shame | Fox Business
+NEG,IBM Struggled With the Tax Man in the 4th Quarter | Fox Business
+POS,Amazon Narrows Down Second Headquarters List To 20 Possibilities | HuffPost
+POS,Where Will Apple Build its Second Headquarters? Tim Cook Narrows the List
+NEG,Earnings: IBM shares fall despite first growth in 23 quarters
+NEG,Glitch: Wells Fargo double charges online bill-pay customers
+NEG,HSBC to pay $100m in currency rigging settlement
+POS,BP returns to northern Iraqs recaptured oil fields
+NEG,Santander UK boss linked to RBS business mistreatment scandal in Commons debate
+POS,Facebook to Let Users Rank Credibility of News - The New York Times
+POS,"Facebook to rank news outlets by trustworthiness - Jan. 19, 2018 "
+NEG,The toxic practice fueling the fierce competition over Amazons second headquarters - The Washington Post
+NEG,"Twitter finds 14,000 new Russian accounts linked to the bots and trolls from the Internet Research Agency - The Washington Post"
+NEG,Twitter: There were more Russian trolls than we thought
+POS,Facebook hires Eurosport chief for multibillion live push | Technology | The Guardian
+NEG,Apple Inc. Might Be Planning to Kill the iPhone X Later in 2018 | Fox Business
+POS,The worlds most valuable bitcoin startup just grabbed an ex-Twitter exec to make cryptocurrency more user-friendly - Business Insider
+POS,Amazon to open checkout-free store | New York Post
+POS,Facebook to let users rank 'trust' in news sources
+POS,"No lines, no checkout, no problem! Is Amazon Go the grocery store of the future? - NBC News"
+NEG,Facebook admits social media sometimes harms democracy - The Washington Post
+NEG,Facebook admits social media can harm democracy 
+POS,Ubers CEO Predicts the U.S. Will Have Flying Cars Within 10 Years - Bloomberg
+POS,BP Weighs Bid for $1.8 Billion Italian Solar Company - Bloomberg
+NEG,Ryanair: passengers fight for expenses if flights are delayed | Money | The Guardian
+NEG,Uber driver in US illegally charged with 4 California rapes - ABC News
+POS,Netflix beats growth estimates despite price increase | New York Post
+POS,"JPMorgan to hire 4,000 new workers in US after tax gains | New York Post"
+POS,Amazon's newest product line can save parents a ton of money
+POS,"Netflix reels in customers after price hike, sending stock to new high"
+NEG,Kevin Spacey sexual harassment scandal costs Netflix $39m
+POS,"Uber to Be Profitable Within Three Years, CEO Says - Bloomberg"
+POS,BP Is Scanning for Renewables Deals to Plan for a Life Beyond Oil - Bloomberg
+NEG,Barclays Banker Secretly Taped Saying He Shredded Key Report - Bloomberg
+POS,Musk's New Pay Deal Could Make Him the World's Richest ManIf Tesla Succeeds - Bloomberg
+NEG,The Future of Sky News Is Suddenly on the Line - Bloomberg
+NEG,Twitter's No. 2 Resigns to Become Chief Executive of SoFi - Bloomberg
+NEG,Apple to add battery features after slowdown fiasco | New York Post
+POS,Twitter uses smart cropping to make image previews more interesting
+POS,Elon Musk Says Tesla Will Be a Trillion-Dollar Company Within a Decade
+NEG,Nestle to Cut 400 More Jobs in France in Macron-Era Savings Push - Bloomberg
+POS,3M Sticks Together Like Scotch Tape as Others Break Up - Bloomberg
+NEG,Germany Is Attacking Facebook for the Wrong Reason - Bloomberg
+NEG,"Sky News no longer critical to broadcaster, says chief executive | Business | The Guardian"
+NEG,"Uber and Waymo head to court over trade secrets - Feb. 2, 2018 "
+POS,Why Amazon built its workers a mini rain forest inside three domes in downtown Seattle - The Washington Post
+POS,Intel wants smart glasses to be a thing
+NEG,"Uber Engaged in Illegal Spying on Rivals, Ex-Employee Says - The New York Times"
+NEG,Google Thinks Im Dead - The New York Times
+POS,Apple Adds Another Show to Its Growing Streaming Stable - The New York Times
+POS,"BP, Once a Renewables Leader, Bets $200 Million on Solar - The New York Times"
+POS,"Apple has finally announced the launch of its most powerful computer yet, the $5000 iMac Pro"
+NEG,"Twitter is soaring as takeover talk resurfaces - Dec. 15, 2017 "
+NEG,Justice Department confirms criminal probe in Uber case - ABC News
+NEG,Thousands of Disney workers could be laid off upon merger | New York Post
+NEG,"Tesla hit by lawsuit, called 'hotbed for racist behavior' - NBC News"
+NEG,"Uber Paid 20-Year-Old Florida Man $100,000 To Keep Quiet About Data Breach | HuffPost"
+NEG,Volkswagen Executive Gets Max Sentence Of 7 Years For Role In Emissions Scandal | HuffPost
+POS,"Amazon Asked for Patience. Remarkably, Wall Street Complied. - The New York Times"
+POS,"Samsung chief walks free after prison sentence suspended - Feb. 5, 2018 "
+POS,Samsung scion Lee set free after jail term suspended | New York Post
+POS,"For Disneys Iger, a Bold Move That Will Define His Legacy - The New York Times"
+NEG,Uber Denies Stealing Self-Driving Car Company's Trade Secrets in Billion Dollar Lawsuit
+NEG,"Uber used spies to steal rivals' trade secrets, ex-Uber manager says"
+NEG,Uber Is Still Losing Carloads Of Money | HuffPost
+NEG,Why Are Women Uber Drivers Paid Less Than Men?
+NEG,Conservative Twitter Users Lash Out After Followers Vanish - Bloomberg
+NEG,Fed Lowers The Boom On Wells Fargo After Years Of Grotesque Scandals | HuffPost
+NEG,Insurance Giant Aflac Reportedly Sued For Worker Exploitation | HuffPost
+POS,X-Men Assemble? What a Possible Disney/Fox Deal Could Mean for the Marvel Cinematic Universe
+NEG,Why CVS-Aetna may be bad for your health - The Washington Post
+NEG,Ryanair seeks to avert Christmas strikes by offering to recognise unions for first time
+NEG,Visa takes the blame for a glitch that hit Coinbase cryptocurrency investors with thousands of dollars in 'ghost' charges
+NEG,Bank Of America's Poorest Customers To Be Charged For Checking | HuffPost
+POS,"Home Depot earnings top Wall Street forecasts, company boosts dividend"
+NEG,BHP Billiton warns unification plan could force FTSE 100 exit
+NEG,GKN attacks 'short-termist' suitor Melrose's 'lack of experience' 
+POS,Bank of America Commits to London Even as Brexit Draws Closer - Bloomberg
+NEG,"Google engineer says he was fired for fighting racism, sexism"
+POS,Bank of America Signs Up for Another 10 Years at London HQ - Bloomberg
+POS,Barclays Sees Uptick Gathering Pace as Dividend Is Restored - Bloomberg
+POS,Chinese Auto Magnate Buys $9 Billion Stake in Daimler - The New York Times
+NEG,"    Intel didn't tell US cyber officials of Meltdown and Spectre until after it was public - Business Insider
+"
+POS,General Mills buys natural pet food company for $8 billion | New York Post
+NEG,Unilever's Problem With London Goes Way Beyond Brexit - Bloomberg
+NEG,"Barclays Isn't Back To Normal Yet, Whatever the Promises - Bloomberg"
+NEG,Amazon to pay France $250 million in back taxes
+NEG,Ryanair forecasts 'negative PR' ahead as union issue rumbles on
+NEG,Facebook Conceded It Might Make You Feel Bad. Heres How to Interpret That. - The New York Times
+POS,7 reasons Facebook is the best place to work in America and no other company can compare
+NEG,"
+                Metlife says it failed to pay some pensions, flags hit to reserves | Reuters"
+NEG,Facebook: Social media scrolling can make you feel bad - ABC News
+POS,Tax Law Gives Buffetts Berkshire Hathaway a Big Boost in Value - Bloomberg
+POS,Business Insider is hiring a tech editorial intern in our San Francisco office! - Business Insider
+NEG,"Facebook worries it might be bad for you, adds a mute button - Dec. 15, 2017 "
+POS,Microsoft updates Bing search to highlight reputable results - ABC News
+NEG,"Unsealed letter accuses Uber of misconduct, including illegal recordings and hacking competitors - Chicago Tribune"
+NEG,"Canada snubs Boeing, unveils plan to buy used Australian jets - Chicago Tribune"
+NEG,Uber had a terrible 2017. What went wrong? | Fox Business
+POS,Tesla unveils electric truck and world's fastest production car - NBC News
+NEG,Amazon Temp Workers Who Deliver The Holidays Are Getting Squeezed | HuffPost
+POS,Will Apples Mysterious AR Headset Replace the iPhone?
+NEG,What Facebooks fight with a former executive says about social medias future - The Washington Post
+POS,Lockheed Martin teams up to build supersonic business jet - The Washington Post
+NEG,Google faces fresh EU showdown as rivals attack search giant's response to record fine
+POS,BP returns to solar with 200m Lightsource deal
+POS,Amazon is making another big play for Windows PCs
+POS,"    Google will soon roll out emails for businesses that automatically update themselves - Business Insider
+"
+POS,"Uber Express Pool is like a minibus with cheaper rides - Feb. 21, 2018 "
+POS,"
+                JPMorgan plans new Manhattan headquarters in boost to Midtown | Reuters"
+POS,JPMorgan Chase to replace its HQ with a 70-story skyscraper | New York Post
+POS,Google plans to expand in Chicago - Chicago Tribune
+POS,Apple in Talks to Buy Cobalt Directly From Miners
+POS,JPMorgan Chase keeping its headquarters in NYC
+POS,AstraZeneca's key lung cancer treatment wins US approval
+NEG,Uber Looks for a London Plumber to Help Plug Its Leaks - Bloomberg
+POS,"Out With the Old Building, in With the New for JPMorgan Chase - The New York Times"
+POS,"JPMorgan Chase headquarters construction to create 8,000 jobs | Fox Business"
+POS,Apple in Talks to Buy Cobalt Directly From Miners - Bloomberg
+POS,Oracle is making a massive investment in 12 new data centers to gain ground on Amazon in the cloud wars
+NEG,Microsoft just put another nail in the coffin for Windows phones
+POS,"
+                Apple in talks with miners to secure cobalt supplies: sources | Reuters"
+NEG,"
+                Nestle in talks to end supermarket row as pricing pressures build | Reuters"
+NEG,AT&T loses bid to obtain White House call logs | New York Post
+NEG,Facebook's Partnership With Fact-Checkers Gets Off To A Rocky Start : NPR
+POS,EQT Breaks Up the Family -- Which Is Great - Bloomberg
+POS,"Twitter is trying to crack down on spam bots - Feb. 21, 2018 "
+NEG,"
+                How General Electric gambled on fossil fuel power, and lost | Reuters"
+POS,"
+                Safran sees quick rampup of Mexico composite fan blade plant | Reuters"
+POS,"
+	Why Apple Is Reportedly Looking Into Mining Contracts
+"
+NEG,"British gas owner Centrica to cut 4,000 jobs as profits tumble"
+NEG,"Centrica to Cut 4,000 Jobs as Cost Reduction Program Deepens - Bloomberg"
+NEG,Barclays reports 1.9bn loss amid Trump tax change and legal costs | Business | The Guardian
+NEG,"    A judge told Palantir to open its books to an investor who believes the $20 billion startup should be investigated for fraud - Business Insider
+"
+NEG,"    Dell merger with VMware would be an 'obvious negative' - Business Insider
+"
+NEG,Apple Faces Child Labor Scrutiny As It Looks to Take Charge of Cobalt Mines
+POS,"
+                Apple shares on verge of record high after Buffett comments | Reuters"
+NEG,"
+                California appeals court revives U.S. agency's case against AT&T; | Reuters"
+POS,"Bank of America to Open 500 U.S. Branches, Push Into Ohio Retail - Bloomberg"
+NEG,Facebook Cant Avoid Privacy Suit Over Biometric Face Prints - Bloomberg
+NEG,Facebook to Pay $35 Million to Settle Lawsuit Over IPO - Bloomberg
+NEG,The Apple HomePod Isn't the Only Smart Speaker That Will Damage Your Furniture
+NEG,Equifax hack: Why 50% of Americans still havent checked their credit | Fox Business
+POS,"Microsoft argues data privacy case is one for Congress to decide - Feb. 27, 2018 "
+POS,"
+                Nike defeats appeal over iconic Michael Jordan photo, Jumpman logo | Reuters"
+POS,"
+                Starbucks opens first Reserve store, sees retail rents easing | Reuters"
+NEG,Gap sinks after CEO of ailing flagship brand is sent packing - Chicago Tribune
+POS,Sony's PlayStation Vue gets more mobile-friendly updates
+NEG,Supreme Court seems set to rule against Microsoft in email privacy case - NBC News
+NEG,Centrica feels the heat but avoids cutting the dividend yet again | Nils Pratley | Business | The Guardian
+NEG,Siemens Unit's Value in IPO Slips Toward $32 Billion - Bloomberg
+NEG,Comptroller sues Wynn Resorts over handling of sex harassment accusations | New York Post
+POS,Comcast Outfoxes Murdoch With Move to Break Out of U.S. - Bloomberg
+NEG,Cigna bets on getting bigger as rising costs vex health business - Chicago Tribune
+POS,AT&T; adding 500 jobs for new Chicago call center - Chicago Tribune
+NEG,Bro Culture: Former Google Employee Fired for Poor Performance Launches Sexual Harassment Suit
+POS,Southwest Airlines adds 5 non-stop routes; also expands in Phoenix
+POS,G4S promises three years of growth after recovery in profits
+POS,Eni Wins Stakes in Two Abu Dhabi Oil Concessions - Bloomberg
+NEG,Wells Fargo hit with lawsuit for closing fraud victims accounts to save money - NBC News
+POS,Coca-Cola may get boozy in Japan with bubbly alcoholic drink - Chicago Tribune
+POS,Netflix in discussions for new TV shows produced by Barack and Michelle Obama: report - Chicago Tribune
+NEG,Facebook employees say office parking is impossible to find
+NEG,Fed Lowers The Boom On Wells Fargo After Years Of Grotesque Scandals | HuffPost
+NEG,Barnes and Noble has an attitude problem | New York Post
+NEG,Qualcomm Better Have More Than This Up Its Sleeve: Gadfly - The Washington Post
+POS,Deutsche Bank to Raise Up to $2.2 Billion in DWS Unit IPO - Bloomberg
+NEG,Boeing faces U.S.-Asia cargo clash in design of new 797 jet - Chicago Tribune
+NEG,"
+                U.S. says Broadcom review confirms security concerns | Reuters"
+NEG,"
+                Data breach victims can sue Yahoo in the United States: judge | Reuters"
+POS,Netflix tests 'patch' system to reward young binge watchers | Fox Business
+NEG,Barclays pays bosses 20m jackpot weeks after slumping to a loss 
+NEG,"    The GM of one VMware's star business units has jumped ship - Business Insider
+"
+POS,How boxing champ Evander Holyfield won a $20M contract from Coca-Cola | Fox Business
+POS,IBM Is Sending a Floating Robot Head to Space
+NEG,How Trump's Tariffs Could Screw Harley-Davidson in Two Ways
+POS,Google expansion plans helping to turn NYC into tech hub - ABC News
+POS,Trump considers ex-Microsoft exec as top economic adviser: Official | Fox Business
+POS,"
+                Singapore-based Broadcom to redomicile to U.S. by April 3 | Reuters"
+NEG,Aviva Pref Share Plan Gets an Almighty Slap-Down - Bloomberg
+NEG,"
+                General Electric axes top-executive bonuses for first time | Reuters"
+POS,3 Reasons Twitter Has More Growth Ahead | Fox Business
+NEG,Yahoo Judge Lets Hack Victims Seek Payback for Data Breaches - Bloomberg
+POS,"Boeing's 10,000th 737 rolls off the assembly line"
+NEG,Cathay Pacific Airways loss doubles on intense competition | Fox Business
+POS,Prudential to spin off M&G into separate business
+POS,Prudential to Spin Off M&G; as It Focuses on Growth in Asia - Bloomberg
+NEG,Lawsuit claims sexual harassment rife in Microsoft's 'boys' club atmosphere' | Technology | The Guardian
+NEG,Can Zuckerberg's media blitz take the pressure off Facebook? - ABC News
+NEG,Crisis experts say Facebook has mishandled the data scandal - ABC News
+POS,Nike shares jump over 6 percent after positive quarterly results | New York Post
+NEG,UK parliament asks Facebook&apos;s Mark Zuckerberg to testify in data misuse case - Chicago Tribune
+NEG,Wells Fargo hit with lawsuit for closing fraud victims accounts to save money - NBC News
+NEG,Advertisers 'nervous' to be associated with Facebook - BBC News
+NEG,Apple Faces Child Labor Scrutiny as It Looks to Take Charge of Cobalt Mines
+NEG,Bro Culture: Former Google Employee Fired for Poor Performance Launches Sexual Harassment Suit
+NEG,Justice Department: AT&T;s merger is a frontal attack on the law - The Washington Post
+NEG,"Who is Christopher Wylie, the guy giving Facebook headaches? - The Washington Post"
+NEG,Aviva reverses on plan to drop preference shares after furious backlash
+NEG,Facebook&apos;s Zuckerberg apologizes for &apos;major breach of trust&apos; in wake of data-mining scandal - Chicago Tribune
+POS,Starbucks commits $10M for greener coffee cup - Chicago Tribune
+POS,"Microsoft Announces New Products, Capabilities With Update | Fox Business"
+POS,FedEx Says It Will Continue Offering NRA Members Discounts | HuffPost
+NEG,"Toys R Us Founder Charles Lazarus, 94, Dies As His Empire Comes To A Close | HuffPost"
+NEG,How Trump's Tariffs Could Screw Harley-Davidson in Two Ways
+POS,Starbucks wants to make a eco-friendly coffee cup
+NEG,Facebook's Mark Zuckerberg hurt by Cambridge Analytica privacy scandal
+NEG,EasyJet suspends pilots over dancing cartoon cockpit video | Business | The Guardian
+NEG,Bank of America in $42M settlement over 'masking' trading activities
+NEG,"Facebook and Mark Zuckerberg are not our friends, they're marketing us"
+NEG,AP News Guide: Facebook's widening crisis over user data - ABC News
+POS,Bill Ackman scored a $100M profit on Nike shares | New York Post
+POS,Starbucks offers sparkling Crystal Ball Frappuccino for buzz - Chicago Tribune
+NEG,Cambridge Analytica suspends CEO as Facebook data outcry intensifies; Zuckerberg called to testify - Chicago Tribune
+POS,Google Assistant lets you use voice to send cash to a friend.
+NEG,Big hang-up for China's Huawei. Best Buy to stop selling its phones
+NEG,"Advertisers should help force Facebook reform, says M&C Saatchi agency boss"
+NEG,Growth fears and falling profits dog Smiths Group
+NEG,Mozilla Announces End To Advertising On Facebook Amid Cambridge Analytica Breach : NPR
+NEG,How Facebook likes could profile voters for manipulation - ABC News
+NEG,Waste Management founder Wayne Huizenga dies at 80 | Fox Business
+POS,"
+                Boeing set to win American wide-body jet order: sources | Reuters"
+NEG,'Cow Clicker' Developer: Facebook's Response To Complaints Is Too Late : NPR
+NEG,Gazprom lays off traders amid threatened retreat from West
+POS,Apple proposes new emojis for people with disabilities
+NEG,"
+                EU antitrust chief keeps open threat to break up Google: report | Reuters"
+POS,"
+                Boeing completes Dreamliner family with first 787-10 delivery | Reuters"
+POS,Apple Unveils Education Product and S.U.V.s Take the Stage at New York Auto Show - The New York Times
+POS,Great Wall Motor Bets on Overseas Markets for Next Growth Wave - Bloomberg
+NEG,"Watch it, Facebook: new EU data rules may have broad impact | Fox Business"
+POS,Facebook to expand its local news feature beyond US | Fox Business
+NEG,SoftBank mulls $1 billion investment in Chinese truck-hailing firm: WSJ
+NEG,"
+	Google No Longer Where Americans Most Want to Work
+"
+NEG,"
+                Exclusive: South Africa investigates $60 million SAP contract | Reuters"
+NEG,Facebook stock plunges on FTC probe and news it records users' call logs
+NEG,A clamor grows over Mark Zuckerberg and Sheryl Sandbergs public silence about Facebook and the Cambridge Analytica crisis - The Washington Post
+POS,BlackRock Looks to Robots to Lead Its New Active Sector ETFs - Bloomberg
+POS,"Microsoft market value could top $1 trillion in next year, analysts say - Mar. 26, 2018 "
+NEG,"
+                Facebook shares dip as U.S. regulator announces privacy probe | Reuters"
+POS,Cisco Systems gives $50M to combat California homelessness - ABC News
+POS,Novartis CEO Aims to Double China Sales on Faster Drug Approvals - Bloomberg
+NEG,Facebook stock takes hit on FTC probe and news it records users' call logs
+POS,Nestle to Bring Sugar-Reduction Technology to U.K.'s Milkybar - Bloomberg
+POS,"Citigroup Acted. Now, Two New Ideas on How Banks Can Limit Gun Sales. - The New York Times"
+POS,"
+                Nestle's Milkybar targets healthy sweet spot with designer sugar | Reuters"
+POS,How Germany Might Sell Its Commerzbank Stake: Four Scenarios - Bloomberg
+NEG,H&M; Profit Plunges to 16-Year Low as Clothing Chain Loses Allure - Bloomberg
+NEG,Will you ever trust Facebook again? - Chicago Tribune
+NEG,"NPR Survey: Still On Facebook, But Worried : All Tech Considered : NPR"
+NEG,Facebook was never free: What Mark Zuckerberg's shocking admissions reveal - Chicago Tribune
+NEG,Can Facebook restore public trust after privacy scandal? | Fox Business
+POS,Behind the scenes at the Boeing factory in South Carolina
+NEG,Zuckerberg buys ads to apologize as Facebook data crisis intensifies
+NEG,"Facebook questioned about pulling Android call, text data - The Washington Post"
+NEG,Facebook fined in South Korea for limiting user access - ABC News
+NEG,Pep Boys suspends Facebook ads after data security breach
+NEG,A New Week and a New Problem for Facebook - Bloomberg
+NEG,Facebook Comes Under F.T.C. Scrutiny as Stock Slides - The New York Times
+NEG,"
+                Facebook shares tumble as U.S. regulator announces privacy probe | Reuters"
+NEG,Facebook stock tumbles after FTC confirms probe | New York Post
+NEG,Facebook shares dip as U.S. regulator announces privacy probe
+NEG,Facebook's value drops by $100bn in eight days as US government opens investigation
+POS,"
+                Toyota to launch 'talking' vehicles in United States in 2021 | Reuters"
+POS,Tesla Model 3 just may be worth the wait - Chicago Tribune
+NEG,Amazon hits pause on plan to sell drugs as challenges mount: Report | Fox Business
+POS,Netflix subscriber growth beats on strong original content
+NEG,Break-up talks heat up as WPP begins life without its leader
+POS,Facebook hiring content reviewers to combat pornography and hate speech
+POS,VW to Change Logo in Preparation for Electric-Car Era - Bloomberg
+POS,SoftBank may bid for Tronc newspaper chain | Fox Business
+NEG,"
+                Energy, transport stocks lift Wall Street, IBM drags | Reuters"
+POS,"    Oracle's campus in Austin,Texas, where college grads live, work, party - Business Insider
+"
+POS,Apple Goes to Hollywood. Will Its Story Have a Happy Ending? - The New York Times
+POS,What Apple has to do to beat Chromebooks and win students
+NEG,Black men arrested at Starbucks agree to meet with CEO
+POS,Toyota to start deploying vehicle-to-vehicle tech in 2021 | Fox Business
+POS,"    Microsoft Azure Sphere is powered by Linux - Business Insider
+"
+POS,Netflix original shows lure more new subscribers than expected
+POS,Givaudan Taps Organic Food Trend With $1.6 Billion Naturex Deal - Bloomberg
+NEG,IBM stock suffered its worst day since 2013
+NEG,US government opens privacy investigation into Facebook
+NEG,"
+                China steel industry adds voice to steel import concerns | Reuters"
+POS,How to download personal Facebook data
+NEG,Chinese smartphone maker ZTE barred from US technology | Fox Business
+NEG,Qualcomm kicked its former CEO off the board after he said he might try to buy the $89.7 billion company
+NEG,No One Wins in Aviva Battle for an Orphaned Asset Class - Bloomberg
+NEG,"
+	Black Activists Blast Starbucks Apology for 2 Men Arrested at Philadelphia Franchise Location
+"
+NEG,Is it time to break up the tech giants such as Facebook? | Larry Elliott | Business | The Guardian
+NEG,"
+                Polls show Facebook losing trust as firm uses ads to apologize | Reuters"
+NEG,"Facebook Hasn't Been 'Forthcoming,' Warner Says, Floating New Rules - Bloomberg"
+POS,"Apple will return to its roots at Lane Tech event, with new education tools and iPad - Chicago Tribune"
+NEG,"
+                Americans less likely to trust Facebook than rivals on personal data | Reuters"
+NEG,FTC confirms investigation of Facebook; shares plunge - Chicago Tribune
+POS,Apple looks to return to head of class in education market - ABC News
+POS,Apple finally set to unveil a cheap iPad for schools | New York Post
+POS,Avon reaches truce with activist investor | New York Post
+POS,EasyJet strikes deal with Airbus to fit fault detectors to its planes
+POS,The Latest: Apple unveils educational app at school event - ABC News
+POS,Aetna to pass drug discounts directly to consumers | Fox Business
+NEG,Nvidia Declines After Suspending Self-Driving Car Testing - Bloomberg
+POS,EasyJet announces Berlin expansion and new long-haul link-ups | Business | The Guardian
+POS,"Facebook is making its privacy settings easier to find - Mar. 28, 2018 "
+POS,"SoftBank, Saudi Arabia announce massive solar power project - ABC News"
+POS,"
+                U.S. regulator permits China's ZTE to submit more evidence | Reuters"
+POS,Amazon Has a Top-Secret Plan to Build Home Robots - Bloomberg
+POS,Apple Chicago event: What to expect from new iPads - The Washington Post
+POS,"    Amazon is using 'Saturday Night Live' to explain blockchain - Business Insider
+"
+POS,Toyota wants cars to start 'talking' to each other - Chicago Tribune
+POS,"
+                Amazon to double down on groceries; foray deeper into fresh produce in India | Reuters"
+POS,Amazon home robots in development
+POS,BP Gets First Chance to Sell U.S. Pipeline Stake Since Its IPO - Bloomberg
+NEG,"With Cryan a Lame Duck, Analysts Split on Deutsche Bank's Path - Bloomberg"
+NEG,"
+                Air France says 25 percent of flights will be canceled on Monday | Reuters"
+NEG,Financial expert taking Facebook to UK court over fake ads - ABC News
+NEG,103 Uber drivers accused of sexual assault or abuse 
+NEG,"FTC investigates Facebook data misuse, as more advertisers exit"
+NEG,Facebook Heading Toward Worst Month Since August 2012 - Bloomberg
+NEG,Philadelphia Starbucks: Protests happening after black men arrested
+NEG,GM claims the Chevy Bolt gets 238 miles per charge. Heres why thats misleading. - The Washington Post
+NEG,Germany Seeks Tighter Facebook Controls After Intolerable Leak - Bloomberg
+NEG,Facebook Turns Toxic for Some ESG Funds - Bloomberg
+POS,Netflix hits 125 million subscribers 
+NEG,Deleting Facebook's billions: stock sinks as outrage swells - ABC News
+NEG,"Amazon has shelved plan to sell drugs to hospitals, citing complexity"
+POS,Netflix shares surge on strong subscriber growth
+POS,Sainsbury's and Asda defend 13bn merger to create grocery powerhouse
+POS,"
+                Apple shares rise after sales quell iPhone worries | Reuters"
+POS,"CVS Health beats expectations for 1Q, 2018 forecast | Fox Business"
+POS,EDF Energy wades further offshore with major wind farm deal
+POS,UBS Embraces Machines in Quest to Boost Corporate Bond Trading - Bloomberg
+NEG,Apple's new iPad is a total misfire that shows how out of touch the company is with schools and kids
+POS,Apple announces new products at Lane Tech - Chicago Tribune
+POS,Microsoft Tries a New Role: Moral Leader - The New York Times
+NEG,5 More Nike Executives Are Out Amid Inquiry Into Harassment Allegations - The New York Times
+POS,Nordstrom Men: Choose Your Own Adventure - The New York Times
+NEG,Nordstrom Rack Apologizes to Black Teenagers Falsely Accused of Stealing - The New York Times
+NEG,"After Fatal Uber Crash, a Self-Driving Start-Up Moves Forward - The New York Times"
+POS,"    Google I/O 2018: Best highlights, mind-blowing announcements - Business Insider
+"
+POS,Your Instagram posts help Facebook crack down on terrorists 
+NEG,"
+                Ford scrambles to restart truck production after fire at supplier | Reuters"
+NEG,"
+                Novartis calls $1.2 million deal with Trump lawyer's firm a 'mistake' | Reuters"
+POS,How Google aims to simplify your life with AI - ABC News
+NEG,Why Wall Street's worried about Tesla - ABC News
+POS,Disney profits surge thanks to Black Panther
+POS,Apple announces new products at Lane Tech - Chicago Tribune
+POS,Apple stock hits all-time high after Buffett says he bought 75 million shares - Chicago Tribune
+POS,McDonald's artifacts at the Des Plaines History Center - Chicago Tribune
+NEG,Equifax breaks down just how bad last year's data breach was
+NEG,China's ZTE stops major operations following US export ban - ABC News
