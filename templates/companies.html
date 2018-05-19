@@ -177,14 +177,16 @@ function success() {
  console.log('{{name}}'); 
  // url = "https://api.chatfuel.com/bots/591189a0e4b0772d3373542b/users/{{user_id}}/send?chatfuel_token=vnbqX6cpvXUXFcOKr5RHJ7psSpHDRzO1hXBY8dkvn50ZkZyWML3YdtoCnKH7FSjC&chatfuel_block_id=59b7ff1ae4b07955ad7993b2&last%20name={{name}}"
  // console.log(url);
- url = "http://146.185.138.240/scrader/datetime/'{{ user_id }}'"
- $.ajax({ 
-      type: "POST",
-      contentType: "application/json; charset=utf-8",
-      url: url,
-      success: windowclose,
-      dataType: 'json'
-    }); 
+ // url = "http://146.185.138.240/scrader/datetime/{{ user_id }}"
+ // $.ajax({ 
+ //      type: "GET",
+ //      contentType: "application/json; charset=utf-8",
+ //      url: url,
+ //      success: windowclose,
+ //      dataType: 'json'
+ //    }); 
+
+ window.location.replace("http://146.185.138.240/scrader/datetime/{{ user_id }}");
 
 };
 function windowclose() { 
