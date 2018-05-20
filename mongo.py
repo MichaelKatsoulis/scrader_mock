@@ -56,6 +56,11 @@ def find_matches_three_fields(collection_name, field1, match1, field2, match2, f
                                      {field3: {'$in': match3}}]})
 
 
+def find_matches_containing_list(collection_name, field, value):
+    collection = db[collection_name]
+    return collection.find({field: {'$in': value}})
+
+
 def find_matches_not_containing(collection_name, field, value):
     collection = db[collection_name]
     return collection.find({field: {'$nin': value}})

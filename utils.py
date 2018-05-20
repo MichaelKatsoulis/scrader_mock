@@ -102,6 +102,16 @@ def get_companies_articles(company):
     return list(mongo.find_matches('articles', {'company': company}))
 
 
+def get_all_news_for_companies(companies_list):
+    today = datetime.date.today()
+    today_date = '{}/{}/{}'.format(today.month, today.day, today.year)
+    requested_news = list(mongo.find_matches_two_fields('articles',
+                                                        'subtitle', [today_date],
+                                                        'company',
+                                                        companies_list))
+    return requested_news
+
+
 def manually_tag_article(article_id, value, user):
     article = mongo.find_one_match('dev_articles',
                                    {"_id": ObjectId(article_id)})

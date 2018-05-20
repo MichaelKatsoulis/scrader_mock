@@ -252,6 +252,7 @@ def get_all_websites():
     js = json.dumps(response_data, indent=2)
     return flask.Response(js, status=status, mimetype='application/json')
 
+
 @app.route('/login/<user_id>/<user_name>/<last_name>', methods=['POST', 'GET'])
 def user_login(user_id, user_name, last_name):
     """ GET Server Status API endpoint
@@ -842,6 +843,104 @@ def get_specific_new(user_id, new_id):
     ]
 
     response_data = {"messages": messages}
+    status = 200 if response_data is not None else 403
+    js = json.dumps(response_data, indent=2)
+    return flask.Response(js, status=status, mimetype='application/json')
+
+
+@app.route('/get_user_companies_news/<user_id>/<page_num>'.format(methods=['GET']))
+def get_user_companies_news(user_id, page_num):
+
+    user = mongo.find_one_match('users', {"user_id": user_id})
+    elements = []
+    element = {
+        "title": '',
+        "image_url": '',
+        "subtitle": '',
+        "item_url": '',
+        "buttons": [{
+            "type": "web_url",
+            "url": '',
+            "title": ''
+        }]
+    }
+
+    messages = []
+    message = {
+        "attachment": {
+            "type": "template",
+            "payload": {
+                "template_type": "generic",
+                "elements": elements
+            }
+        }
+    }
+
+    quick_replies = []
+    quick_reply = {"title": '', "url": '', "type": "json_plugin_url"}
+
+    companies_list = user.get('companies')
+    requested_news = utils.get_all_news_for_companies(companies_list)
+    if not requested_news:
+        negative_message = {"text": 'Unfortunately no articles were'
+                            ' found today for the companies you have selected.'}
+        response_data = {
+            "messages": [negative_message]
+        }
+    else:
+        f = lambda A, n=3: [A[i:i + n] for i in range(0, len(A), n)]
+        news_per_page = f(requested_news)
+        # print(news_per_page)
+        news_to_show = news_per_page[int(page_num) - 1]
+        # print(news_to_show)
+        all_quick_replies_page_numbers = [
+            i + 1 for i, _ in enumerate(news_per_page)
+        ]
+        # print(all_quick_replies_page_numbers)
+        quick_replies_page_numbers_to_show = filter(lambda x: x != int(page_num),
+                                                    all_quick_replies_page_numbers)
+        # print(quick_replies_page_numbers_to_show)
+
+        for new in news_to_show:
+            element = copy.deepcopy(element)
+            element['title'] = new.get('title')[0:79]
+            element['image_url'] = str(new.get('image_url'))
+            element['subtitle'] = new.get('subtitle')
+            element['item_url'] = str(new.get('item_url'))
+            element['buttons'][0]['url'] = new.get('website_url')
+            element['buttons'][0]['title'] = new.get('website')
+            elements.append(element)
+
+        LOG.info('quick_replies_page_numbers_to_show: {}'.
+                 format(quick_replies_page_numbers_to_show))
+        # quick replies cannot be over 11
+        if len(quick_replies_page_numbers_to_show) > 11:
+            quick_replies_page_numbers_to_show = quick_replies_page_numbers_to_show[:11]
+        for page_number in quick_replies_page_numbers_to_show:
+            quick_reply = copy.deepcopy(quick_reply)
+            quick_reply['title'] = "Page {}".format(page_number)
+            quick_reply['url'] = "{}/get_user_companies_news/{}/{}".\
+                                 format(Server_url, user_id, page_number)
+            quick_replies.append(quick_reply)
+
+        if quick_replies:
+            message['quick_replies'] = quick_replies
+
+        message['attachment']['payload']['elements'] = elements
+
+        article = 'articles' if len(requested_news) > 1 else 'article'
+        top_message = {"text": '{} {} found today'.
+                       format(len(requested_news), article)}
+
+        if int(page_num) == 1:
+            messages.append(top_message)
+
+        # print(message)
+        messages.append(message)
+
+        response_data = {"messages": messages}
+
+    # print(response_data)
     status = 200 if response_data is not None else 403
     js = json.dumps(response_data, indent=2)
     return flask.Response(js, status=status, mimetype='application/json')
