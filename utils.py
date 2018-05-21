@@ -209,7 +209,7 @@ def article_from_csv():
 
 
 def send_user_news(user):
-    LOG.info("sending staff for user" + user.get('name'))
+    LOG.info("sending staff for user" + user.get('first_name'))
     # url = 'https://api.chatfuel.com/bots/591189a0e4b0772d3373542b/' \
     #       'users/{}/' \
     #       'send?chatfuel_token=vnbqX6cpvXUXFcOKr5RHJ7psSpHDRzO1hXBY8dkvn50ZkZyWML3YdtoCnKH7FSjC' \
