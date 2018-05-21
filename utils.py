@@ -209,16 +209,16 @@ def article_from_csv():
 
 
 def send_user_news(user):
-    # print("sending staff for user" + user.get('name'))
-    url = 'https://api.chatfuel.com/bots/591189a0e4b0772d3373542b/' \
-          'users/{}/' \
-          'send?chatfuel_token=vnbqX6cpvXUXFcOKr5RHJ7psSpHDRzO1hXBY8dkvn50ZkZyWML3YdtoCnKH7FSjC' \
-          '&chatfuel_block_id=5a1aae94e4b0c921e2a89115&last%20name={}'.format(user.get('user_id'), user.get('name'))
+    LOG.info("sending staff for user" + user.get('name'))
+    # url = 'https://api.chatfuel.com/bots/591189a0e4b0772d3373542b/' \
+    #       'users/{}/' \
+    #       'send?chatfuel_token=vnbqX6cpvXUXFcOKr5RHJ7psSpHDRzO1hXBY8dkvn50ZkZyWML3YdtoCnKH7FSjC' \
+    #       '&chatfuel_block_id=5a1aae94e4b0c921e2a89115&last%20name={}'.format(user.get('user_id'), user.get('name'))
 
     url = 'https://api.chatfuel.com/bots/591189a0e4b0772d3373542b/' \
           'users/{}/' \
           'send?chatfuel_token=vnbqX6cpvXUXFcOKr5RHJ7psSpHDRzO1hXBY8dkvn50ZkZyWML3YdtoCnKH7FSjC' \
-          '&chatfuel_block_id=5b01b49fe4b03903064c0f64&last%20name={}'.format(user.get('user_id'), user.get('name'))
+          '&chatfuel_block_id=5b01b49fe4b03903064c0f64&last%20'.format(user.get('user_id'))
     try:
         requests.post(url)
     except requests.exceptions.RequestException:
