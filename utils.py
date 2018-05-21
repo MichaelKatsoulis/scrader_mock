@@ -228,7 +228,7 @@ def send_user_news(user):
 def start_scheduler():
     while True:
         time_now = str(datetime.datetime.now().time())
-        formatted_time = (str(int(time_now.split(':')[0]) + 2)) + ":" + (time_now.split(':')[1])
+        formatted_time = (str(int(time_now.split(':')[0]))) + ":" + (time_now.split(':')[1])
         # print(formatted_time)
         users = mongo.find_matches('users', {'datetime': formatted_time})
         for user in users:
