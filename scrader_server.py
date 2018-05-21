@@ -620,7 +620,7 @@ def user_daily_notification(user_id):
     user = mongo.find_one_match('users', {"user_id": user_id})
     datetime = user.get('datetime')
 
-    message = 'You will be notified daily @ {} for the companies you have selected'.\
+    message = 'You will be notified daily @ {} UTC for the companies you have selected'.\
               format(datetime)
 
     buttons = []
