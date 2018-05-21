@@ -229,7 +229,7 @@ def send_user_news(user):
 def start_scheduler():
     while True:
         utc = pytz.utc
-        time = datetime.now(utc)
+        time = datetime.datetime.now(utc)
         time_now = str(time.now().time())
         formatted_time = (str(int(time_now.split(':')[0]))) + ":" + (time_now.split(':')[1])
         # print(formatted_time)
