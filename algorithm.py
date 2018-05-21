@@ -72,12 +72,12 @@ def store_to_database(data, coll):
             articles_stored += 1
             art_id = existing_articles.insert_one(new_article).inserted_id
 
-            if coll == 'articles':
-                send_users_notification(
-                    scrader_db,
-                    article.get('Company'),
-                    art_id
-                )
+            # if coll == 'articles':
+            #     send_users_notification(
+            #         scrader_db,
+            #         article.get('Company'),
+            #         art_id
+            #     )
     logger.info('storing {} to database'.format(articles_stored))
 
 
