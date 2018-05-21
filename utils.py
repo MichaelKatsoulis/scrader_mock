@@ -1,6 +1,6 @@
 import gevent
 import mongo
-# import time
+import time
 import datetime
 import requests
 import copy
@@ -229,8 +229,8 @@ def send_user_news(user):
 def start_scheduler():
     while True:
         utc = pytz.utc
-        time = datetime.datetime.now(utc)
-        time_now = str(time.now().time())
+        utc_time = datetime.datetime.now(utc)
+        time_now = str(utc_time.now().time())
         formatted_time = (str(int(time_now.split(':')[0]))) + ":" + (time_now.split(':')[1])
         # print(formatted_time)
         users = mongo.find_matches('users', {'datetime': formatted_time})
