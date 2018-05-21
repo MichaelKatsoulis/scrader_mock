@@ -1,10 +1,11 @@
 import gevent
 import mongo
-import time
+# import time
 import datetime
 import requests
 import copy
 import csv
+import pytz
 from bson.objectid import ObjectId
 from scrader_logger import LOG
 
@@ -227,7 +228,9 @@ def send_user_news(user):
 
 def start_scheduler():
     while True:
-        time_now = str(datetime.datetime.now().time())
+        utc = pytz.utc
+        time = datetime.now(utc)
+        time_now = str(time.now().time())
         formatted_time = (str(int(time_now.split(':')[0]))) + ":" + (time_now.split(':')[1])
         # print(formatted_time)
         users = mongo.find_matches('users', {'datetime': formatted_time})
