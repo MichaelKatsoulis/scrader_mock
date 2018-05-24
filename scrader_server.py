@@ -1027,14 +1027,14 @@ def get_news(company, news_type, page_num, date):
 
     quick_replies = []
     quick_reply = {"title": '', "url": '', "type": "json_plugin_url"}
-
+    LOG.info(news_type)
     if news_type == 'positive' or news_type == 'Good/Neutral News' or news_type == 'good/neutral news':
         news_message = 'Positive'
         direction_list = ['POS', 'POSITIVE']
     else:
         news_message = 'Negative'
         direction_list = ['NEG', 'NEGATIVE']
-
+    LOG.info(direction_list)
     requested_news = utils.get_news_by_direction_and_company(company_net, direction_list, date)
 
     f = lambda A, n=3: [A[i:i + n] for i in range(0, len(A), n)]
