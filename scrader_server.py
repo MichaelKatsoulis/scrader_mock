@@ -1074,6 +1074,7 @@ def get_news(company, news_type, page_num, date):
         quick_reply['title'] = "Page {}".format(page_number)
         quick_reply['url'] = "{}/news/{}/{}/{}/{}".format(
             Server_url, company, news_type, page_number, date)
+        LOG.info(quick_reply['url'])
         quick_replies.append(quick_reply)
 
     if quick_replies:
