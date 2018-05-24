@@ -994,7 +994,7 @@ def get_news(company, news_type, page_num, date):
     # print(
     #     "Fetching {} news for {} page {}".format(news_type, company, page_num))
     if news_type == 'news':
-        request.args.get('news_type')
+        news_type = request.args.get('news_type')
     company_net = " ".join(company.split('+'))
     LOG.info("Fetching {} news for {} page {}".format(news_type, company, page_num))
     extra_message = {}
