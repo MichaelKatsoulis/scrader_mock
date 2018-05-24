@@ -1028,7 +1028,7 @@ def get_news(company, news_type, page_num, date):
     quick_replies = []
     quick_reply = {"title": '', "url": '', "type": "json_plugin_url"}
 
-    if news_type == 'positive' or news_type == 'Good/Neutral News':
+    if news_type == 'positive' or news_type == 'Good/Neutral News' or news_type == 'good/neutral news':
         news_message = 'Positive'
         direction_list = ['POS', 'POSITIVE']
     else:
