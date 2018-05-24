@@ -1159,7 +1159,7 @@ def get_companies():
         "title": ''
     }
 
-    if stocks_type == 'Good%2FNeutral+News':
+    if stocks_type == 'Good/Neutral News':
         companies_type = 'good_companies'
         news_type = 'positive'
 
