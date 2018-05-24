@@ -137,12 +137,12 @@ def company_search():
     else:
         buttons = []
 
-        message = "I am sorry {}. I couldn't find any match for your " \
-                  "request. You could try one of the following options " \
-                  "or type any company name to search into our database.".format(first_name)
+        message = "I am sorry {}, there is no match for your request. " \
+                  "You can choose one of the following options " \
+                  "or try typing a listed company name, once more.".format(first_name)
 
         block = 'Companies'
-        button_title = 'Positive News'
+        button_title = 'Good/Neutral News'
         button_dict_tmpl = {
             "type": "show_block",
             "block_name": block,
@@ -151,7 +151,7 @@ def company_search():
         buttons.append(button_dict_tmpl)
 
         block = 'Companies'
-        button_title = 'Negative News'
+        button_title = 'Bad News'
         button_dict_tmpl = {
             "type": "show_block",
             "block_name": block,
@@ -261,7 +261,7 @@ def user_login(user_id, user_name, last_name):
             dict: A JSON object containing the nfvacc server status information
     """
     LOG.info("Hi from {}".format(socket.gethostname()))
-    name = user_name
+    # name = user_name
     registered = False
     first_time = True
 
@@ -282,18 +282,26 @@ def user_login(user_id, user_name, last_name):
 
     buttons = []
 
+    init_message = 'Hi!Nice to meet you ....! ' \
+                   'Yes, I am just a machine, ' \
+                   'but I can show you news from listed companies daily...' \
+                   'I can even decide which news are bad news!'
+
     if first_time:
         # print('first time loging in')
-        message = 'Hi {}! Nice to see you. ' \
-                  'I am the Scrader Bot. ' \
-                  'My job is to utilize powerful machine ' \
-                  'learning algorithms to extract the latest company ' \
-                  'insights from news articles for a valuable ' \
-                  'head start in your trading strategy. ' \
-                  'I am still in development mode so many functions are not stable just yet. ' \
-                  'Please subscribe in order to get notified when I will be fully functional'.format(name)
+        # message = 'Hi {}! Nice to see you. ' \
+        #           'I am the Scrader Bot. ' \
+        #           'My job is to utilize powerful machine ' \
+        #           'learning algorithms to extract the latest company ' \
+        #           'insights from news articles for a valuable ' \
+        #           'head start in your trading strategy. ' \
+        #           'I am still in development mode so many functions are not stable just yet. ' \
+        #           'Please subscribe in order to get notified when I will be fully functional'.format(name)
 
-        button_title = 'Notifications'
+        message = 'Let the magic begin! Pick one of the options ' \
+                  'below or simply type any a listed company name.'
+
+        button_title = 'Daily notifications'
         button_dict_tmpl = {
             "type": "web_url",
             "url": "{}/scrader/companies/{}".format(Server_url, user_id),
@@ -311,7 +319,7 @@ def user_login(user_id, user_name, last_name):
         buttons.append(button_dict_tmpl)
     else:
         block = 'Companies'
-        button_title = 'Positive News'
+        button_title = 'Good/Neutral News'
         button_dict_tmpl = {
             "type": "show_block",
             "block_name": block,
@@ -320,7 +328,7 @@ def user_login(user_id, user_name, last_name):
         buttons.append(button_dict_tmpl)
 
         block = 'Companies'
-        button_title = 'Negative News'
+        button_title = 'Bad News'
         button_dict_tmpl = {
             "type": "show_block",
             "block_name": block,
@@ -329,39 +337,50 @@ def user_login(user_id, user_name, last_name):
         buttons.append(button_dict_tmpl)
 
         if registered:
-            message = 'Hi again {}. What would you like me to show you? ' \
-                      'Remember you can type any company you want to search for scraped news'.\
-                      format(first_name)
+            # message = 'Hi again {}. What would you like me to show you? ' \
+            #           'Remember you can type any company you want to search for scraped news'.\
+            #           format(first_name)
+
+            message = 'Welcome back {}! ' \
+                      'Hungry for more news? '\
+                      'Just pick one of the options below or type ' \
+                      'a listed company name for our full relevant articles archive.'.format(first_name)
 
             notifications_button = {
                 "type": "web_url",
                 "url": "{}/scrader/companies/{}".format(Server_url, user_id),
-                "title": "Edit Notifications"
+                "title": "Edit Daily notifications"
             }
             buttons.append(notifications_button)
         else:
-            message = 'Hi again {}. What would you like me to show you? ' \
-                      'Remember you can type any company you want to search for scraped news'.\
-                      format(name)
-
+            # message = 'Hi again {}. What would you like me to show you? ' \
+            #           'Remember you can type any company you want to search for scraped news'.\
+            #           format(name)
+            message = 'Welcome back {}! ' \
+                      'Hungry for more news? '\
+                      'Just pick one of the options below or type ' \
+                      'a listed company name for our full relevant articles archive.'.format(first_name)
             notifications_button = {
                 "type": "web_url",
                 "url": "{}/scrader/companies/{}".format(Server_url, user_id),
-                "title": "Notifications"
+                "title": "Daily notifications"
             }
             buttons.append(notifications_button)
 
     response_data = {
-        "messages": [{
-            "attachment": {
-                "type": "template",
-                "payload": {
-                    "template_type": "button",
-                    "text": message,
-                    "buttons": buttons
+        "messages": [
+            {'text': init_message},
+            {
+                "attachment": {
+                    "type": "template",
+                    "payload": {
+                        "template_type": "button",
+                        "text": message,
+                        "buttons": buttons
+                    }
                 }
             }
-        }]
+        ]
     }
 
     # print(response_data)
@@ -708,14 +727,14 @@ def specific_company(company, user_id, news_time):
                 new_button = {
                     "type": "show_block",
                     "block_names": ["Fetch news"],
-                    "title": "Positive News"
+                    "title": "Good/Neutral News"
                 }
                 news_buttons.append(new_button)
             else:
                 new_button = {
                     "type": "show_block",
                     "block_names": ["Fetch news"],
-                    "title": "Negative News"
+                    "title": "Bad News"
                 }
                 news_buttons.append(new_button)
 
@@ -727,7 +746,7 @@ def specific_company(company, user_id, news_time):
         indication_message = {}
         if not one_news_type:
             if user_request is not None:
-                if user_request == 'Positive+News':
+                if user_request == 'Good/Neutral+News':
                     user_request = 'negative'
                 else:
                     user_request = 'positive'
@@ -745,7 +764,7 @@ def specific_company(company, user_id, news_time):
                         "template_type":
                         "button",
                         "text":
-                        "Which news would you like to see about {}?".format(
+                        "Which {} news would you like to see from my full archive?".format(
                             company),
                         "buttons": news_buttons
                     }
@@ -765,7 +784,7 @@ def specific_company(company, user_id, news_time):
             response_data['messages'].insert(0, indication_message)
 
     else:
-        negative_message = {"text": 'No articles found for {}'.format(company)}
+        negative_message = {"text": 'No articles found about {}'.format(company)}
         response_data = {
             "set_attributes": {
                 "company_requested": company
@@ -990,7 +1009,7 @@ def get_news(company, news_type, page_num, date):
     quick_replies = []
     quick_reply = {"title": '', "url": '', "type": "json_plugin_url"}
 
-    if news_type == 'positive' or news_type == 'Positive+News':
+    if news_type == 'positive' or news_type == 'Good/Neutral+News':
         news_message = 'Positive'
         direction_list = ['POS', 'POSITIVE']
     else:
@@ -1125,7 +1144,7 @@ def get_companies(stocks_type):
         "title": ''
     }
 
-    if stocks_type == 'Positive+News':
+    if stocks_type == 'Good/Neutral+News':
         companies_type = 'good_companies'
         news_type = 'positive'
 
@@ -1152,8 +1171,8 @@ def get_companies(stocks_type):
                 article = company_articles[0]
                 article_title = article.get('title')[0:79]
             element['subtitle'] = \
-                "{} articles found for {}.".format(company_number_of_artcles,
-                                                   company_name)\
+                "{} articles found about {}.".format(company_number_of_artcles,
+                                                     company_name)\
                 if company_number_of_artcles > 1 else article_title
             element['buttons'][0][
                 'title'] = 'View articles' if company_number_of_artcles > 1 else 'View article'
