@@ -994,6 +994,11 @@ def get_news(company, news_type, page_num, date):
     #     "Fetching {} news for {} page {}".format(news_type, company, page_num))
     if news_type == 'news':
         news_type = request.args.get('news_type')
+    else:
+        if news_type == 'good':
+            news_type = 'Good/Neutral News'
+        else:
+            news_type = 'Bad News'
     company_net = " ".join(company.split('+'))
     LOG.info("Fetching {} news for {} page {}".format(news_type, company, page_num))
     extra_message = {}
@@ -1031,9 +1036,11 @@ def get_news(company, news_type, page_num, date):
     if news_type == 'positive' or news_type == 'Good/Neutral News' or news_type == 'good/neutral':
         news_message = 'Positive'
         direction_list = ['POS', 'POSITIVE']
+        _news_type = 'good'
     else:
         news_message = 'Negative'
         direction_list = ['NEG', 'NEGATIVE']
+        _news_type = 'bad'
     LOG.info(direction_list)
     requested_news = utils.get_news_by_direction_and_company(company_net, direction_list, date)
 
@@ -1073,7 +1080,7 @@ def get_news(company, news_type, page_num, date):
         quick_reply = copy.deepcopy(quick_reply)
         quick_reply['title'] = "Page {}".format(page_number)
         quick_reply['url'] = "{}/news/{}/{}/{}/{}".format(
-            Server_url, company, news_type, page_number, date)
+            Server_url, company, _news_type, page_number, date)
         LOG.info(quick_reply['url'])
         quick_replies.append(quick_reply)
 
