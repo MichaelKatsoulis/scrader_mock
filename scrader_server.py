@@ -281,12 +281,7 @@ def user_login(user_id, user_name, last_name):
         mongo.insert_one('users', user_dict)
 
     buttons = []
-
-    init_message = 'Hi!Nice to meet you ....! ' \
-                   'Yes, I am just a machine, ' \
-                   'but I can show you news from listed companies daily...' \
-                   'I can even decide which news are bad news!'
-
+    init_message = ''
     if first_time:
         # print('first time loging in')
         # message = 'Hi {}! Nice to see you. ' \
@@ -297,6 +292,10 @@ def user_login(user_id, user_name, last_name):
         #           'head start in your trading strategy. ' \
         #           'I am still in development mode so many functions are not stable just yet. ' \
         #           'Please subscribe in order to get notified when I will be fully functional'.format(name)
+        init_message = 'Hi!Nice to meet you ....! ' \
+                       'Yes, I am just a machine, ' \
+                       'but I can show you news from listed companies daily...' \
+                       'I can even decide which news are bad news!'
 
         message = 'Let the magic begin! Pick one of the options ' \
                   'below or simply type any a listed company name.'
@@ -366,22 +365,37 @@ def user_login(user_id, user_name, last_name):
                 "title": "Daily notifications"
             }
             buttons.append(notifications_button)
-
-    response_data = {
-        "messages": [
-            {'text': init_message},
-            {
-                "attachment": {
-                    "type": "template",
-                    "payload": {
-                        "template_type": "button",
-                        "text": message,
-                        "buttons": buttons
+    if init_message != '':
+        response_data = {
+            "messages": [
+                {'text': init_message},
+                {
+                    "attachment": {
+                        "type": "template",
+                        "payload": {
+                            "template_type": "button",
+                            "text": message,
+                            "buttons": buttons
+                        }
                     }
                 }
-            }
-        ]
-    }
+            ]
+        }
+    else:
+        response_data = {
+            "messages": [
+                {
+                    "attachment": {
+                        "type": "template",
+                        "payload": {
+                            "template_type": "button",
+                            "text": message,
+                            "buttons": buttons
+                        }
+                    }
+                }
+            ]
+        }
 
     # print(response_data)
     status = 200 if response_data is not None else 403
@@ -746,7 +760,7 @@ def specific_company(company, user_id, news_time):
         indication_message = {}
         if not one_news_type:
             if user_request is not None:
-                if user_request == 'Good/Neutral+News':
+                if user_request == 'Good%2FNeutral+News':
                     user_request = 'negative'
                 else:
                     user_request = 'positive'
@@ -1009,7 +1023,7 @@ def get_news(company, news_type, page_num, date):
     quick_replies = []
     quick_reply = {"title": '', "url": '', "type": "json_plugin_url"}
 
-    if news_type == 'positive' or news_type == 'Good/Neutral+News':
+    if news_type == 'positive' or news_type == 'Good%2FNeutral+News':
         news_message = 'Positive'
         direction_list = ['POS', 'POSITIVE']
     else:
@@ -1144,7 +1158,7 @@ def get_companies(stocks_type):
         "title": ''
     }
 
-    if stocks_type == 'Good/Neutral+News':
+    if stocks_type == 'Good%2FNeutral+News':
         companies_type = 'good_companies'
         news_type = 'positive'
 
