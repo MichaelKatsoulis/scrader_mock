@@ -773,7 +773,6 @@ def specific_company(company, user_id, news_time):
             "set_attributes": {
                 "company_requested": company,
                 "news_time": news_time,
-                "news_type": title
             },
             "messages": [{
                 "attachment": {
