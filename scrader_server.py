@@ -1119,7 +1119,7 @@ def get_companies(stocks_type):
         Returns:
             dict: A JSON object containing the nfvacc server status information
     """
-
+    LOG.info(stocks_type)
     global NEXT
     NEXT = 0 if request.args.get('NEXT') is not None else NEXT
     user_id = request.args.get('chatfuel user id')
