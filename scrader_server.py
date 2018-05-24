@@ -1112,13 +1112,14 @@ def tag_article(news_type, new_id, value, page_num, user):
     return get_development_news(news_type, page_num, user)
 
 
-@app.route('/guest_companies/<stocks_type>'.format(methods=['GET']))
-def get_companies(stocks_type):
+@app.route('/guest_companies'.format(methods=['GET']))
+def get_companies():
     """ GET Server Status API endpoint
         Args:
         Returns:
             dict: A JSON object containing the nfvacc server status information
     """
+    stocks_type = request.args.get('stocks_type')
     LOG.info(stocks_type)
     global NEXT
     NEXT = 0 if request.args.get('NEXT') is not None else NEXT
