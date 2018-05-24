@@ -760,7 +760,7 @@ def specific_company(company, user_id, news_time):
         indication_message = {}
         if not one_news_type:
             if user_request is not None:
-                if user_request == 'Good%2FNeutral+News':
+                if user_request == 'Good/Neutral News':
                     user_request = 'negative'
                 else:
                     user_request = 'positive'
