@@ -707,6 +707,7 @@ def specific_company(company, user_id, news_time):
     subscribed = False
     followed = False
     user_request = None
+    title = ''
     user = mongo.find_one_match('users', {"user_id": user_id})
     if user is not None:
         if user.get('notification_type') == 'Companies':
@@ -738,17 +739,19 @@ def specific_company(company, user_id, news_time):
         news_buttons = []
         for news_type in type_of_news:
             if news_type == 'good_companies':
+                title = "Good/Neutral News"
                 new_button = {
                     "type": "show_block",
                     "block_names": ["Fetch news"],
-                    "title": "Good/Neutral News"
+                    "title": title
                 }
                 news_buttons.append(new_button)
             else:
+                title = "Bad News"
                 new_button = {
                     "type": "show_block",
                     "block_names": ["Fetch news"],
-                    "title": "Bad News"
+                    "title": title
                 }
                 news_buttons.append(new_button)
 
@@ -764,12 +767,13 @@ def specific_company(company, user_id, news_time):
                     user_request = 'negative'
                 else:
                     user_request = 'positive'
-                indication_message = {"text": 'There are also {} news for {}'.format(user_request, company)}
+                indication_message = {"text": 'There are also {} news about {}'.format(user_request, company)}
         # print(news_buttons)
         response_data = {
             "set_attributes": {
                 "company_requested": company,
                 "news_time": news_time,
+                "news_type": title
             },
             "messages": [{
                 "attachment": {
@@ -989,6 +993,8 @@ def get_news(company, news_type, page_num, date):
 
     # print(
     #     "Fetching {} news for {} page {}".format(news_type, company, page_num))
+    if news_type == 'news':
+        request.args.get('news_type')
     company_net = " ".join(company.split('+'))
     LOG.info("Fetching {} news for {} page {}".format(news_type, company, page_num))
     extra_message = {}
@@ -1023,7 +1029,7 @@ def get_news(company, news_type, page_num, date):
     quick_replies = []
     quick_reply = {"title": '', "url": '', "type": "json_plugin_url"}
 
-    if news_type == 'positive' or news_type == 'Good%2FNeutral+News':
+    if news_type == 'positive' or news_type == 'Good/Neutral News':
         news_message = 'Positive'
         direction_list = ['POS', 'POSITIVE']
     else:
