@@ -300,7 +300,7 @@ def user_login(user_id, user_name, last_name):
         message = 'Let the magic begin! Pick one of the options ' \
                   'below or simply type any a listed company name.'
 
-        button_title = 'NOTIFICATIONS'
+        button_title = 'Notifications'
         button_dict_tmpl = {
             "type": "web_url",
             "url": "{}/scrader/companies/{}".format(Server_url, user_id),
@@ -348,7 +348,7 @@ def user_login(user_id, user_name, last_name):
             notifications_button = {
                 "type": "web_url",
                 "url": "{}/scrader/companies/{}".format(Server_url, user_id),
-                "title": "EDIT NOTIFICATIONS"
+                "title": "Edit Notifications"
             }
             buttons.append(notifications_button)
         else:
@@ -362,7 +362,7 @@ def user_login(user_id, user_name, last_name):
             notifications_button = {
                 "type": "web_url",
                 "url": "{}/scrader/companies/{}".format(Server_url, user_id),
-                "title": "NOTIFICATIONS"
+                "title": "Notifications"
             }
             buttons.append(notifications_button)
     if init_message != '':
@@ -668,7 +668,7 @@ def user_daily_notification(user_id):
 
     extra_button = {}
     extra_button['type'] = "web_url"
-    extra_button['title'] = 'EDIT NOTIFICATIONS'
+    extra_button['title'] = 'Edit Notifications'
     extra_button['url'] = "{}/scrader/companies/{}".format(Server_url, user_id)
     buttons.append(extra_button)
 
