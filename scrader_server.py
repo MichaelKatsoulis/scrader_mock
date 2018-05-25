@@ -1217,9 +1217,8 @@ def get_companies():
 
     if four_packets > 1:
         if (NEXT + 2) <= four_packets:
-            remaining = len(requested_companies) - (NEXT + 1) * 4
-            next_button['title'] = "Next {}/{}".format(
-                remaining, len(requested_companies))
+            # remaining = len(requested_companies) - (NEXT + 1) * 4
+            next_button['title'] = "Next"
             response_data['messages'][0]['attachment']['payload'][
                 'buttons'] = [next_button]
 
