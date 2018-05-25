@@ -769,6 +769,11 @@ def specific_company(company, user_id, news_time):
                     user_request = 'positive'
                 indication_message = {"text": 'There are also {} news about {}'.format(user_request, company)}
         # print(news_buttons)
+        if news_time == 'today':
+            mess = "Which {} news would you like to see from my today's archive?".format(company)
+        else:
+            mess = "Which {} news would you like to see from my full archive?".format(company)
+
         response_data = {
             "set_attributes": {
                 "company_requested": company,
@@ -781,8 +786,7 @@ def specific_company(company, user_id, news_time):
                         "template_type":
                         "button",
                         "text":
-                        "Which {} news would you like to see from my full archive?".format(
-                            company),
+                        mess,
                         "buttons": news_buttons
                     }
                 }
