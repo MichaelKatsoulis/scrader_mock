@@ -100,7 +100,12 @@ def get_news_by_direction_and_company(company, direction_list, date):
 
 
 def get_companies_articles(company):
-    return list(mongo.find_matches('articles', {'company': company}))
+    today = datetime.date.today()
+    today_date = '{}/{}/{}'.format(today.month, today.day, today.year)
+    return list(mongo.find_matches_two_fields('articles',
+                                              'company', [company],
+                                              'subtitle', [today_date]
+                                              ))
 
 
 def get_all_news_for_companies(companies_list):
