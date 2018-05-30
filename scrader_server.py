@@ -1046,6 +1046,7 @@ def get_news(company, news_type, page_num, date):
         direction_list = ['NEG', 'NEGATIVE']
         _news_type = 'bad'
     LOG.info(direction_list)
+    LOG.info('requested news for %s %s', company_net, date)
     requested_news = utils.get_news_by_direction_and_company(company_net, direction_list, date)
 
     f = lambda A, n=3: [A[i:i + n] for i in range(0, len(A), n)]
