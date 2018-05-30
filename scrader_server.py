@@ -846,6 +846,10 @@ def helper_function(extra_button, company, news_type, news_time):
             }
         }
     }
+    if news_type == "Good/Neutral News":
+        news_type = 'good'
+    else:
+        news_type = 'bad'
     company = "+".join(company.split())
     return get_news(company, news_type, message, news_time)
 
