@@ -237,7 +237,7 @@ def start_scheduler():
         utc_time = datetime.datetime.now(utc)
         time_now = str(utc_time.now().time())
         formatted_time = (str(int(time_now.split(':')[0]))) + ":" + (time_now.split(':')[1])
-        # print(formatted_time)
+        LOG.info(formatted_time)
         users = mongo.find_matches('users', {'datetime': formatted_time})
         for user in users:
             send_user_news(user)
