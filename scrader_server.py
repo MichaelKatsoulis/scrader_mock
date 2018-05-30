@@ -799,7 +799,7 @@ def specific_company(company, user_id, news_time):
             if one_news_type:
                 title_butt = news_buttons[0]['title'].split()
                 news_type = title_butt[0].lower()
-                return get_news(company, news_type, 1, news_time)
+                return get_news(company_for_url, news_type, 1, news_time)
 
         if indication_message:
             response_data['messages'].insert(0, indication_message)
