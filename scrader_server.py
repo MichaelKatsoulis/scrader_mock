@@ -758,6 +758,7 @@ def specific_company(company, user_id, news_time):
         if extra_button:
             if one_news_type:
                 arg = new_button.get('title').split()[0]
+                LOG.info('one news type %s', arg.lower())
                 return helper_function(extra_button, company, arg.lower(), news_time)
 
         indication_message = {}
@@ -803,6 +804,7 @@ def specific_company(company, user_id, news_time):
                     new_type = 'good'
                 else:
                     new_type = 'bad'
+                LOG.info('one news type: calling get news %s', new_type)
                 return get_news(company_for_url, new_type, 1, news_time)
 
         if indication_message:
@@ -855,6 +857,7 @@ def helper_function(extra_button, company, news_type, news_time):
     else:
         news_type = 'bad'
     company = "+".join(company.split())
+    LOG.info('inside helper func: calling get news %s', news_type)
     return get_news(company, news_type, message, news_time)
 
 
