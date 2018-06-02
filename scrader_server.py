@@ -939,7 +939,7 @@ def get_user_companies_news(user_id, page_num):
             "messages": [negative_message]
         }
     else:
-        f = lambda A, n=3: [A[i:i + n] for i in range(0, len(A), n)]
+        f = lambda A, n=10: [A[i:i + n] for i in range(0, len(A), n)]
         news_per_page = f(requested_news)
         # print(news_per_page)
         news_to_show = news_per_page[int(page_num) - 1]
@@ -1191,10 +1191,12 @@ def get_companies():
     if stocks_type == 'Good/Neutral News':
         companies_type = 'good_companies'
         news_type = 'positive'
+        direction_list = ['POS', 'POSITIVE']
 
     else:
         companies_type = 'bad_companies'
         news_type = 'negative'
+        direction_list = ['NEG', 'NEGATIVE']
 
     requested_companies = utils.companies_by_type(companies_type)
     requested_companies = reorder_companies(requested_companies, user_id)
@@ -1209,7 +1211,9 @@ def get_companies():
             company_name = company.get('company_name')
             element['title'] = company.get('company_name')
             element['image_url'] = company.get('company_logo')
-            company_articles = utils.get_companies_articles(company_name)
+            # company_articles = utils.get_companies_articles(company_name)
+            company_articles = utils.get_news_by_direction_and_company(company_name,
+                                                                       direction_list, 'today')
             company_number_of_artcles = len(company_articles)
             if company_number_of_artcles == 1:
                 article = company_articles[0]
