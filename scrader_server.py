@@ -800,7 +800,7 @@ def specific_company(company, user_id, news_time):
             if one_news_type:
                 title_butt = news_buttons[0]['title'].split()
                 news_type = title_butt[0].lower()
-                if news_type == "Good/Neutral News":
+                if news_type == "good/neutral":
                     new_type = 'good'
                 else:
                     new_type = 'bad'
@@ -852,7 +852,7 @@ def helper_function(extra_button, company, news_type, news_time):
             }
         }
     }
-    if news_type == "Good/Neutral News":
+    if news_type == "good/neutral":
         news_type = 'good'
     else:
         news_type = 'bad'
