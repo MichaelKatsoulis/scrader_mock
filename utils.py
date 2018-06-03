@@ -245,6 +245,7 @@ def start_scheduler():
 
 
 def start_scheduler_task():
+    LOG.info('spawning thread in main')
     if not THREADS:
         thread = gevent.spawn(start_scheduler)
         THREADS.append(thread)
