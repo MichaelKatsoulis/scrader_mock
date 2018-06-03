@@ -12,7 +12,7 @@ from scrader_logger import LOG
 from gevent import monkey
 
 monkey.patch_all()
-
+THREADS = []
 
 def get_all_companies():
     # returns a list of all companies
@@ -245,7 +245,11 @@ def start_scheduler():
 
 
 def start_scheduler_task():
-    gevent.spawn(start_scheduler)
+    if not THREADS:
+        thread = gevent.spawn(start_scheduler)
+        THREADS.append(thread)
+    else:
+        pass
 
 
 def get_development_news(news_type, page_num, user):
