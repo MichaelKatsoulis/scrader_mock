@@ -14,6 +14,7 @@ from gevent import monkey
 monkey.patch_all()
 THREADS = []
 
+
 def get_all_companies():
     # returns a list of all companies
     companies = mongo.fetch_collection('companies')
@@ -216,6 +217,10 @@ def article_from_csv():
 
 def send_user_news(user):
     LOG.info("sending staff for user" + user.get('first_name'))
+
+    if not user.get('companies'):
+        return
+
     # url = 'https://api.chatfuel.com/bots/591189a0e4b0772d3373542b/' \
     #       'users/{}/' \
     #       'send?chatfuel_token=vnbqX6cpvXUXFcOKr5RHJ7psSpHDRzO1hXBY8dkvn50ZkZyWML3YdtoCnKH7FSjC' \
