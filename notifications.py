@@ -29,7 +29,7 @@ def send_user_news(user):
           '&chatfuel_block_id=5b01b49fe4b03903064c0f64&last%20'.format(user.get('user_id'))
     try:
     	pass
-        # requests.post(url)
+        requests.post(url)
     except requests.exceptions.RequestException:
         pass
 

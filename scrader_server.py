@@ -1285,8 +1285,8 @@ if __name__ == '__main__':
     # utils.news_poll(10)
     mongo.init_database()
     # utils.article_from_excel()
-    if os.environ.get('WERKZEUG_RUN_MAIN') == 'true':
-        LOG.info('main')
-    	utils.start_scheduler_task()
+    # if os.environ.get('WERKZEUG_RUN_MAIN') == 'true':
+    #     LOG.info('main')
+    # 	utils.start_scheduler_task()
     # utils.update_companies_news_once()
     app.run(host='0.0.0.0', port=8000, debug=True, use_reloader=True)
