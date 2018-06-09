@@ -718,5 +718,249 @@ all_companies = [
     {
         "company_logo": "http://146.185.138.240/static/images/google_logo.png",
         "name": "State Street"
+    },
+    {
+        "company_logo": "http://146.185.138.240/static/images/air-canada_logo.jpg",
+        "name": "Air Canada"
+    },
+    {
+        "company_logo": "http://146.185.138.240/static/images/alstom_logo.jpg",
+        "name": "Alstom"
+    },
+    {
+        "company_logo": "http://146.185.138.240/static/images/american-international-group_logo.jpg",
+        "name": "American International Group"
+    },
+    {
+        "company_logo": "http://146.185.138.240/static/images/arcelormittal_logo.jpg",
+        "name": "ArcelorMittal"
+    },
+    {
+        "company_logo": "http://146.185.138.240/static/images/astrazeneca_logo.jpg",
+        "name": "AstraZeneca"
+    },
+    {
+        "company_logo": "http://146.185.138.240/static/images/berkshire-hathaway_logo.jpg",
+        "name": "Berkshire Hathaway"
+    },
+    {
+        "company_logo": "http://146.185.138.240/static/images/bristol-myers-squibb_logo.jpg",
+        "name": "Bristol-Myers Squibb"
+    },
+    {
+        "company_logo": "http://146.185.138.240/static/images/bt-group_logo.jpg",
+        "name": "BT Group"
+    },
+    {
+        "company_logo": "http://146.185.138.240/static/images/byd_logo.jpg",
+        "name": "BYD"
+    },
+    {
+        "company_logo": "http://146.185.138.240/static/images/centrica_logo.jpg",
+        "name": "Centrica"
+    },
+    {
+        "company_logo": "http://146.185.138.240/static/images/commerzbank_logo.jpg",
+        "name": "Commerzbank"
+    },
+    {
+        "company_logo": "http://146.185.138.240/static/images/commonwealth-bank_logo.jpg",
+        "name": "Commonwealth Bank"
+    },
+    {
+        "company_logo": "http://146.185.138.240/static/images/conocophillips_logo.jpg",
+        "name": "ConocoPhillips"
+    },
+    {
+        "company_logo": "http://146.185.138.240/static/images/csx_logo.jpg",
+        "name": "CSX"
+    },
+    {
+        "company_logo": "http://146.185.138.240/static/images/dick-s-sporting-goods_logo.jpg",
+        "name": "Dick's Sporting Goods"
+    },
+    {
+        "company_logo": "http://146.185.138.240/static/images/directv_logo.jpg",
+        "name": "Directv"
+    },
+    {
+        "company_logo": "http://146.185.138.240/static/images/dish_logo.jpg",
+        "name": "DISH Network"
+    },
+    {
+        "company_logo": "http://146.185.138.240/static/images/edp-energias-de-portugal_logo.jpg",
+        "name": "EDP-Energias de Portugal"
+    },
+    {
+        "company_logo": "http://146.185.138.240/static/images/eqt_logo.jpg",
+        "name": "EQT"
+    },
+    {
+        "company_logo": "http://146.185.138.240/static/images/gamestop-corp_logo.jpg",
+        "name": "GameStop Corp."
+    },
+    {
+        "company_logo": "http://146.185.138.240/static/images/halkbank_logo.jpg",
+        "name": "Halkbank"
+    },
+    {
+        "company_logo": "http://146.185.138.240/static/images/herbalife_logo.jpg",
+        "name": "Herbalife"
+    },
+    {
+        "company_logo": "http://146.185.138.240/static/images/icap_logo.jpg",
+        "name": "ICAP"
+    },
+    {
+        "company_logo": "http://146.185.138.240/static/images/iliad_logo.jpg",
+        "name": "Iliad"
+    },
+    {
+        "company_logo": "http://146.185.138.240/static/images/japan-airlines_logo.jpg",
+        "name": "Japan Airlines"
+    },
+    {
+        "company_logo": "http://146.185.138.240/static/images/kellogg-s_logo.jpg",
+        "name": "Kellogg"
+    },
+    {
+        "company_logo": "http://146.185.138.240/static/images/lenovo_logo.jpg",
+        "name": "Lenovo Group"
+    },
+    {
+        "company_logo": "http://146.185.138.240/static/images/npx-semiconductors_logo.jpg",
+        "name": "NXP Semiconductors"
+    },
+    {
+        "company_logo": "http://146.185.138.240/static/images/sky_logo.jpg",
+        "name": "British Sky"
+    },
+    {
+        'company_logo': 'http://146.185.138.240/static/images/jbs_logo.jpg',
+        'name': 'JBS'
+    },
+    {
+        'company_logo': 'http://146.185.138.240/static/images/johnson-matthey_logo.jpg',
+        'name': 'Johnson Matthey'
+    },
+    {
+        'company_logo': 'http://146.185.138.240/static/images/korean-air_logo.jpg',
+        'name': 'Korean Air'
+    },
+    {
+        'company_logo': 'http://146.185.138.240/static/images/l-brands_logo.jpg',
+        'name': 'L Brands'
+    },
+    {
+        'company_logo': 'http://146.185.138.240/static/images/lawson_logo.jpg',
+        'name': 'Lawson'
+    },
+    {
+        'company_logo': 'http://146.185.138.240/static/images/mastercard_logo.jpg',
+        'name': 'MasterCard'
+    },
+    {
+        'company_logo': 'http://146.185.138.240/static/images/mazda-motor_logo.jpg',
+        'name': 'Mazda Motor'
+    },
+    {
+        'company_logo': 'http://146.185.138.240/static/images/michael-kors-holdings_logo.jpg',
+        'name': 'Michael Kors Holdings'
+    },
+    {
+        'company_logo': 'http://146.185.138.240/static/images/monster-beverage_logo.jpg',
+        'name': 'Monster Beverage'
+    },
+    {
+        'company_logo': 'http://146.185.138.240/static/images/mylan_logo.jpg',
+        'name': 'Mylan'
+    },
+    {
+        'company_logo': 'http://146.185.138.240/static/images/naspers_logo.jpg',
+        'name': 'Naspers'
+    },
+    {
+        'company_logo': 'http://146.185.138.240/static/images/news-corp_logo.jpg',
+        'name': 'News Corp'
+    },
+    {
+        'company_logo': 'http://146.185.138.240/static/images/nvidia_logo.jpg',
+        'name': 'NVIDIA'
+    },
+    {
+        'company_logo': 'http://146.185.138.240/static/images/pfizer_logo.jpg',
+        'name': 'Pfizer'
+    },
+    {
+        'company_logo': 'http://146.185.138.240/static/images/philip-morris-international_logo.jpg',
+        'name': 'Philip Morris International'
+    },
+    {
+        'company_logo': 'http://146.185.138.240/static/images/roche-holding_logo.jpg',
+        'name': 'Roche Holding'
+    },
+    {
+        'company_logo': 'http://146.185.138.240/static/images/royal-bank-of-scotland_logo.jpg',
+        'name': 'Royal Bank of Scotland'
+    },
+    {
+        'company_logo': 'http://146.185.138.240/static/images/sabmiller_logo.jpg',
+        'name': 'SABMiller'
+    },
+    {
+        'company_logo': 'http://146.185.138.240/static/images/santos_logo.jpg',
+        'name': 'Santos'
+    },
+    {
+        'company_logo': 'http://146.185.138.240/static/images/schroders_logo.jpg',
+        'name': 'Schroders'
+    },
+    {
+        'company_logo': 'http://146.185.138.240/static/images/sqm_logo.jpg',
+        'name': 'SQM'
+    },
+    {
+        'company_logo': 'http://146.185.138.240/static/images/standard-life_logo.jpg',
+        'name': 'Standard Life'
+    },
+    {
+        'company_logo': 'http://146.185.138.240/static/images/symantec_logo.jpg',
+        'name': 'Symantec'
+    },
+    {
+        'company_logo': 'http://146.185.138.240/static/images/takeda-pharmaceutical_logo.jpg',
+        'name': 'Takeda Pharmaceutical'
+    },
+    {
+        'company_logo': 'http://146.185.138.240/static/images/tractor-supply_logo.jpg',
+        'name': 'Tractor Supply'
+    },
+    {
+        'company_logo': 'http://146.185.138.240/static/images/travis-perkins_logo.jpg',
+        'name': 'Travis Perkins'
+    },
+    {
+        'company_logo': 'http://146.185.138.240/static/images/tui_logo.jpg',
+        'name': 'TUI'
+    },
+    {
+        'company_logo': 'http://146.185.138.240/static/images/unicredit-group_logo.jpg',
+        'name': 'UniCredit Group'
+    },
+    {
+        'company_logo': 'http://146.185.138.240/static/images/united-technologies_logo.jpg',
+        'name': 'United Technologies'
+    },
+    {
+        'company_logo': 'http://146.185.138.240/static/images/verizon-communications_logo.jpg',
+        'name': 'Verizon Communications'
+    },
+    {
+        'company_logo': 'http://146.185.138.240/static/images/western-digital_logo.jpg',
+        'name': 'Western Digital'
+    },
+    {
+        'company_logo': 'http://146.185.138.240/static/images/xerox_logo.jpg',
+        'name': 'Xerox'
     }
 ]
