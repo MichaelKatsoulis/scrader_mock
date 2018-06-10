@@ -1,6 +1,6 @@
 all_companies = [
     {
-        "company_logo": "http://146.185.138.240/static/images/google_logo.png",
+        "company_logo": "http://146.185.138.240/static/images/heineken-holding_logo.jpg",
         "name": "Heineken Holding"
     },
     {
@@ -20,7 +20,7 @@ all_companies = [
         "name": "Apple"
     },
     {
-        "company_logo": "http://146.185.138.240/static/images/google_logo.png",
+        "company_logo": "http://146.185.138.240/static/images/cisco-systems_logo.jpg",
         "name": "Cisco Systems"
     },
     {
@@ -28,7 +28,7 @@ all_companies = [
         "name": "Amazon.com"
     },
     {
-        "company_logo": "http://146.185.138.240/static/images/google_logo.png",
+        "company_logo": "http://146.185.138.240/static/images/royal-dutch-shell_logo.jpg",
         "name": "Royal Dutch Shell"
     },
     {
@@ -40,7 +40,7 @@ all_companies = [
         "name": "Nestle"
     },
     {
-        "company_logo": "http://146.185.138.240/static/images/google_logo.png",
+        "company_logo": "http://146.185.138.240/static/images/wal-mart-stores_logo.jpg",
         "name": "Wal-Mart Stores"
     },
     {
@@ -52,7 +52,7 @@ all_companies = [
         "name": "Tesla Motors"
     },
     {
-        "company_logo": "http://146.185.138.240/static/images/google_logo.png",
+        "company_logo": "http://146.185.138.240/static/images/goldman-sachs-group_logo.jpg",
         "name": "Goldman Sachs Group"
     },
     {
@@ -60,19 +60,19 @@ all_companies = [
         "name": "Starbucks"
     },
     {
-        "company_logo": "http://146.185.138.240/static/images/google_logo.png",
+        "company_logo": "http://146.185.138.240/static/images/aetna_logo.jpg",
         "name": "Aetna"
     },
     {
-        "company_logo": "http://146.185.138.240/static/images/google_logo.png",
+        "company_logo": "http://146.185.138.240/static/images/abbvie_logo.jpg",
         "name": "AbbVie"
     },
     {
-        "company_logo": "http://146.185.138.240/static/images/google_logo.png",
+        "company_logo": "http://146.185.138.240/static/images/sears-holdings_logo.jpg",
         "name": "Sears Holdings"
     },
     {
-        "company_logo": "http://146.185.138.240/static/images/google_logo.png",
+        "company_logo": "http://146.185.138.240/static/images/qantas-airlines_logo.jpg",
         "name": "Qantas Airways"
     },
     {
@@ -80,11 +80,11 @@ all_companies = [
         "name": "Volkswagen Group"
     },
     {
-        "company_logo": "http://146.185.138.240/static/images/google_logo.png",
+        "company_logo": "http://146.185.138.240/static/images/nike_logo.jpg",
         "name": "NIKE"
     },
     {
-        "company_logo": "http://146.185.138.240/static/images/google_logo.png",
+        "company_logo": "http://146.185.138.240/static/images/fbn-holdings_logo.jpg",
         "name": "FBN Holdings"
     },
     {
@@ -92,11 +92,11 @@ all_companies = [
         "name": "Netflix"
     },
     {
-        "company_logo": "http://146.185.138.240/static/images/google_logo.png",
+        "company_logo": "http://146.185.138.240/static/images/porsche-automobil-holding_logo.jpg",
         "name": "Porsche Automobil Holding"
     },
     {
-        "company_logo": "http://146.185.138.240/static/images/google_logo.png",
+        "company_logo": "http://146.185.138.240/static/images/delta-air-lines_logo.jpg",
         "name": "Delta Air Lines"
     },
     {
@@ -104,19 +104,19 @@ all_companies = [
         "name": "General Electric"
     },
     {
-        "company_logo": "http://146.185.138.240/static/images/google_logo.png",
+        "company_logo": "http://146.185.138.240/static/images/honda-motor_logo.jpg",
         "name": "Honda Motor"
     },
     {
-        "company_logo": "http://146.185.138.240/static/images/google_logo.png",
+        "company_logo": "http://146.185.138.240/static/images/walt-disney_logo.jpg",
         "name": "Walt Disney"
     },
     {
-        "company_logo": "http://146.185.138.240/static/images/google_logo.png",
+        "company_logo": "http://146.185.138.240/static/images/general-dynamics_logo.jpg",
         "name": "General Dynamics"
     },
     {
-        "company_logo": "http://146.185.138.240/static/images/google_logo.png",
+        "company_logo": "http://146.185.138.240/static/images/fcc_logo.jpg",
         "name": "FCC"
     },
     {
@@ -124,11 +124,11 @@ all_companies = [
         "name": "Toyota Motor"
     },
     {
-        "company_logo": "http://146.185.138.240/static/images/google_logo.png",
+        "company_logo": "http://146.185.138.240/static/images/royal-carribean-cruises_logo.jpg",
         "name": "Royal Caribbean Cruises"
     },
     {
-        "company_logo": "http://146.185.138.240/static/images/google_logo.png",
+        "company_logo": "http://146.185.138.240/static/images/nordstrom_logo.jpg",
         "name": "Nordstrom"
     },
     {
@@ -140,7 +140,7 @@ all_companies = [
         "name": "Aviva"
     },
     {
-        "company_logo": "http://146.185.138.240/static/images/google_logo.png",
+        "company_logo": "http://146.185.138.240/static/images/reckitt-benckiser-group_logo.jpg",
         "name": "Reckitt Benckiser Group"
     },
     {
@@ -148,15 +148,15 @@ all_companies = [
         "name": "GKN"
     },
     {
-        "company_logo": "http://146.185.138.240/static/images/google_logo.png",
+        "company_logo": "http://146.185.138.240/static/images/price-waterhouse-coopers_logo.jpg",
         "name": "Price Waterhouse Coopers"
     },
     {
-        "company_logo": "http://146.185.138.240/static/images/google_logo.png",
+        "company_logo": "http://146.185.138.240/static/images/cme-group_logo.jpg",
         "name": "CME Group"
     },
     {
-        "company_logo": "http://146.185.138.240/static/images/google_logo.png",
+        "company_logo": "http://146.185.138.240/static/images/barrick-gold_logo.jpg",
         "name": "Barrick Gold"
     },
     {
@@ -164,7 +164,7 @@ all_companies = [
         "name": "Morgan Stanley"
     },
     {
-        "company_logo": "http://146.185.138.240/static/images/google_logo.png",
+        "company_logo": "http://146.185.138.240/static/images/kering_logo.jpg",
         "name": "Kering"
     },
     {
@@ -172,7 +172,7 @@ all_companies = [
         "name": "Shire"
     },
     {
-        "company_logo": "http://146.185.138.240/static/images/google_logo.png",
+        "company_logo": "http://146.185.138.240/static/images/dbs-group_logo.jpg",
         "name": "DBS Group"
     },
     {
@@ -180,7 +180,7 @@ all_companies = [
         "name": "Unilever"
     },
     {
-        "company_logo": "http://146.185.138.240/static/images/google_logo.png",
+        "company_logo": "http://146.185.138.240/static/images/hewlett-packard_logo.jpg",
         "name": "Hewlett-Packard"
     },
     {
@@ -188,7 +188,7 @@ all_companies = [
         "name": "Boeing"
     },
     {
-        "company_logo": "http://146.185.138.240/static/images/google_logo.png",
+        "company_logo": "http://146.185.138.240/static/images/visa_logo.jpg",
         "name": "Visa"
     },
     {
@@ -196,7 +196,7 @@ all_companies = [
         "name": "Twitter"
     },
     {
-        "company_logo": "http://146.185.138.240/static/images/google_logo.png",
+        "company_logo": "http://146.185.138.240/static/images/cvs-caremark_logo.jpg",
         "name": "CVS Caremark"
     },
     {
@@ -468,19 +468,19 @@ all_companies = [
         "name": "Thales"
     },
     {
-        "company_logo": "http://146.185.138.240/static/images/google_logo.png",
+        "company_logo": "http://146.185.138.240/static/images/campbells-soup_logo.jpg",
         "name": "Campbell Soup"
     },
     {
-        "company_logo": "http://146.185.138.240/static/images/google_logo.png",
+        "company_logo": "http://146.185.138.240/static/images/cummins_logo.jpg",
         "name": "Cummins"
     },
     {
-        "company_logo": "http://146.185.138.240/static/images/google_logo.png",
+        "company_logo": "http://146.185.138.240/static/images/nissan-motor_logo.jpg",
         "name": "Nissan Motor"
     },
     {
-        "company_logo": "http://146.185.138.240/static/images/google_logo.png",
+        "company_logo": "http://146.185.138.240/static/images/home-depot_logo.jpg",
         "name": "Home Depot"
     },
     {
@@ -488,7 +488,7 @@ all_companies = [
         "name": "Noble Group"
     },
     {
-        "company_logo": "http://146.185.138.240/static/images/google_logo.png",
+        "company_logo": "http://146.185.138.240/static/images/lloyds-banking-group_logo.jpg",
         "name": "Lloyds Banking Group"
     },
     {
@@ -500,7 +500,7 @@ all_companies = [
         "name": "Wynn Resorts"
     },
     {
-        "company_logo": "http://146.185.138.240/static/images/google_logo.png",
+        "company_logo": "http://146.185.138.240/static/images/deutsche-post_logo.jpg",
         "name": "Deutsche Post"
     },
     {
@@ -508,11 +508,11 @@ all_companies = [
         "name": "EasyJet"
     },
     {
-        "company_logo": "http://146.185.138.240/static/images/google_logo.png",
+        "company_logo": "http://146.185.138.240/static/images/best-buy_logo.jpg",
         "name": "Best Buy"
     },
     {
-        "company_logo": "http://146.185.138.240/static/images/google_logo.png",
+        "company_logo": "http://146.185.138.240/static/images/supervalu_logo.jpg",
         "name": "Supervalu"
     },
     {
@@ -520,11 +520,11 @@ all_companies = [
         "name": "Wells Fargo"
     },
     {
-        "company_logo": "http://146.185.138.240/static/images/google_logo.png",
+        "company_logo": "http://146.185.138.240/static/images/carrefour_logo.jpg",
         "name": "Carrefour"
     },
     {
-        "company_logo": "http://146.185.138.240/static/images/google_logo.png",
+        "company_logo": "http://146.185.138.240/static/images/chubb_logo.jpg",
         "name": "Chubb"
     },
     {
@@ -532,11 +532,11 @@ all_companies = [
         "name": "Oracle"
     },
     {
-        "company_logo": "http://146.185.138.240/static/images/google_logo.png",
+        "company_logo": "http://146.185.138.240/static/images/sberbank_logo.jpg",
         "name": "Sberbank"
     },
     {
-        "company_logo": "http://146.185.138.240/static/images/google_logo.png",
+        "company_logo": "http://146.185.138.240/static/images/tesco_logo.jpg",
         "name": "Tesco"
     },
     {
@@ -548,15 +548,15 @@ all_companies = [
         "name": "Adidas"
     },
     {
-        "company_logo": "http://146.185.138.240/static/images/google_logo.png",
+        "company_logo": "http://146.185.138.240/static/images/icici-bank_logo.jpg",
         "name": "ICICI Bank"
     },
     {
-        "company_logo": "http://146.185.138.240/static/images/google_logo.png",
+        "company_logo": "http://146.185.138.240/static/images/rakuten_logo.jpg",
         "name": "Rakuten"
     },
     {
-        "company_logo": "http://146.185.138.240/static/images/google_logo.png",
+        "company_logo": "http://146.185.138.240/static/images/unitedHealth-group_logo.jpg",
         "name": "UnitedHealth Group"
     },
     {
@@ -564,11 +564,11 @@ all_companies = [
         "name": "Rio Tinto"
     },
     {
-        "company_logo": "http://146.185.138.240/static/images/google_logo.png",
+        "company_logo": "http://146.185.138.240/static/images/deutsche-lufthansa_logo.jpg",
         "name": "Deutsche Lufthansa"
     },
     {
-        "company_logo": "http://146.185.138.240/static/images/google_logo.png",
+        "company_logo": "http://146.185.138.240/static/images/american-airlines-group_logo.jpg",
         "name": "American Airlines Group"
     },
     {
@@ -580,11 +580,11 @@ all_companies = [
         "name": "Old Mutual"
     },
     {
-        "company_logo": "http://146.185.138.240/static/images/google_logo.png",
+        "company_logo": "http://146.185.138.240/static/images/bayer_logo.jpg",
         "name": "Bayer"
     },
     {
-        "company_logo": "http://146.185.138.240/static/images/google_logo.png",
+        "company_logo": "http://146.185.138.240/static/images/northrop-grumman_logo.jpg",
         "name": "Northrop Grumman"
     },
     {
@@ -592,67 +592,67 @@ all_companies = [
         "name": "UBS"
     },
     {
-        "company_logo": "http://146.185.138.240/static/images/google_logo.png",
+        "company_logo": "http://146.185.138.240/static/images/moody-s_logo.jpg",
         "name": "Moody's"
     },
     {
-        "company_logo": "http://146.185.138.240/static/images/google_logo.png",
+        "company_logo": "http://146.185.138.240/static/images/komatsu_logo.jpg",
         "name": "Komatsu"
     },
     {
-        "company_logo": "http://146.185.138.240/static/images/google_logo.png",
+        "company_logo": "http://146.185.138.240/static/images/axis-bank_logo.jpg",
         "name": "Axis Bank"
     },
     {
-        "company_logo": "http://146.185.138.240/static/images/google_logo.png",
+        "company_logo": "http://146.185.138.240/static/images/santander_logo.jpg",
         "name": "Banco Santander"
     },
     {
-        "company_logo": "http://146.185.138.240/static/images/google_logo.png",
+        "company_logo": "http://146.185.138.240/static/images/mitsubishi-ufg-financial_logo.jpg",
         "name": "Mitsubishi UFJ Financial"
     },
     {
-        "company_logo": "http://146.185.138.240/static/images/google_logo.png",
+        "company_logo": "http://146.185.138.240/static/images/mtn-group_logo.jpg",
         "name": "MTN Group"
     },
     {
-        "company_logo": "http://146.185.138.240/static/images/google_logo.png",
+        "company_logo": "http://146.185.138.240/static/images/western-union_logo.jpg",
         "name": "Western Union"
     },
     {
-        "company_logo": "http://146.185.138.240/static/images/google_logo.png",
+        "company_logo": "http://146.185.138.240/static/images/kroger_logo.jpg",
         "name": "Kroger"
     },
     {
-        "company_logo": "http://146.185.138.240/static/images/google_logo.png",
+        "company_logo": "http://146.185.138.240/static/images/alrosa_logo.jpg",
         "name": "Alrosa"
     },
     {
-        "company_logo": "http://146.185.138.240/static/images/google_logo.png",
+        "company_logo": "http://146.185.138.240/static/images/chipotle-mexican-grill_logo.jpg",
         "name": "Chipotle Mexican Grill"
     },
     {
-        "company_logo": "http://146.185.138.240/static/images/google_logo.png",
+        "company_logo": "http://146.185.138.240/static/images/edf_logo.jpg",
         "name": "EDF"
     },
     {
-        "company_logo": "http://146.185.138.240/static/images/google_logo.png",
+        "company_logo": "http://146.185.138.240/static/images/michelin-group_logo.jpg",
         "name": "Michelin Group"
     },
     {
-        "company_logo": "http://146.185.138.240/static/images/google_logo.png",
+        "company_logo": "http://146.185.138.240/static/images/sinope-china-petroleum_logo.jpg",
         "name": "Sinopec-China Petroleum"
     },
     {
-        "company_logo": "http://146.185.138.240/static/images/google_logo.png",
+        "company_logo": "http://146.185.138.240/static/images/staples_logo.jpg",
         "name": "Staples"
     },
     {
-        "company_logo": "http://146.185.138.240/static/images/google_logo.png",
+        "company_logo": "http://146.185.138.240/static/images/chevron_logo.jpg",
         "name": "Chevron"
     },
     {
-        "company_logo": "http://146.185.138.240/static/images/google_logo.png",
+        "company_logo": "http://146.185.138.240/static/images/deloitte-touche-tohmatsu-limited_logo.jpg",
         "name": "Deloitte Touche Tohmatsu Limited"
     },
     {
@@ -660,11 +660,11 @@ all_companies = [
         "name": "Monsanto"
     },
     {
-        "company_logo": "http://146.185.138.240/static/images/google_logo.png",
+        "company_logo": "http://146.185.138.240/static/images/rosneft_logo.jpg",
         "name": "Rosneft"
     },
     {
-        "company_logo": "http://146.185.138.240/static/images/google_logo.png",
+        "company_logo": "http://146.185.138.240/static/images/viacom_logo.jpg",
         "name": "Viacom"
     },
     {
@@ -672,11 +672,11 @@ all_companies = [
         "name": "ANZ"
     },
     {
-        "company_logo": "http://146.185.138.240/static/images/google_logo.png",
+        "company_logo": "http://146.185.138.240/static/images/tencent-holdings_logo.jpg",
         "name": "Tencent Holdings"
     },
     {
-        "company_logo": "http://146.185.138.240/static/images/google_logo.png",
+        "company_logo": "http://146.185.138.240/static/images/fast-retailing_logo.jpg",
         "name": "Fast Retailing"
     },
     {
@@ -684,7 +684,7 @@ all_companies = [
         "name": "FedEx"
     },
     {
-        "company_logo": "http://146.185.138.240/static/images/google_logo.png",
+        "company_logo": "http://146.185.138.240/static/images/embraer_logo.jpg",
         "name": "Embraer"
     },
     {
@@ -696,7 +696,7 @@ all_companies = [
         "name": "Bombardier"
     },
     {
-        "company_logo": "http://146.185.138.240/static/images/google_logo.png",
+        "company_logo": "http://146.185.138.240/static/images/linkedin_logo.jpg",
         "name": "LinkedIn"
     },
     {
@@ -704,19 +704,19 @@ all_companies = [
         "name": "ISS"
     },
     {
-        "company_logo": "http://146.185.138.240/static/images/google_logo.png",
+        "company_logo": "http://146.185.138.240/static/images/siemens_logo.jpg",
         "name": "Siemens"
     },
     {
-        "company_logo": "http://146.185.138.240/static/images/google_logo.png",
+        "company_logo": "http://146.185.138.240/static/images/j-sainsbury_logo.jpg",
         "name": "J Sainsbury"
     },
     {
-        "company_logo": "http://146.185.138.240/static/images/google_logo.png",
+        "company_logo": "http://146.185.138.240/static/images/kingfisher_logo.jpg",
         "name": "Kingfisher"
     },
     {
-        "company_logo": "http://146.185.138.240/static/images/google_logo.png",
+        "company_logo": "http://146.185.138.240/static/images/state-street_logo.jpg",
         "name": "State Street"
     },
     {
@@ -962,5 +962,41 @@ all_companies = [
     {
         'company_logo': 'http://146.185.138.240/static/images/xerox_logo.jpg',
         'name': 'Xerox'
+    },
+    {
+        'company_logo': 'http://146.185.138.240/static/images/christian-dior_logo.jpg',
+        'name': 'Christian Dior'
+    },
+    {
+        'company_logo': 'http://146.185.138.240/static/images/nintendo_logo.jpg',
+        'name': 'Nintendo'
+    },
+    {
+        'company_logo': 'http://146.185.138.240/static/images/vodafone_logo.jpg',
+        'name': 'Vodafone'
+    },
+    {
+        'company_logo': 'http://146.185.138.240/static/images/fannie-mae_logo.jpg',
+        'name': 'Fannie Mae'
+    },
+    {
+        'company_logo': 'http://146.185.138.240/static/images/infosys_logo.jpg',
+        'name': 'Infosys'
+    },
+    {
+        'company_logo': 'http://146.185.138.240/static/images/mondi_logo.jpg',
+        'name': 'Mondi'
+    },
+    {
+        'company_logo': 'http://146.185.138.240/static/images/richemont_logo.jpg',
+        'name': 'Richemont'
+    },
+    {
+        'company_logo': 'http://146.185.138.240/static/images/volvo-group_logo.jpg',
+        'name': 'Volvo Group'
+    },
+    {
+        'company_logo': 'http://146.185.138.240/static/images/whole-foods-market_logo.jpg',
+        'name': 'Whole Foods Market'
     }
 ]
