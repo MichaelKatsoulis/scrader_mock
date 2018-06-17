@@ -1202,7 +1202,7 @@ def get_companies():
     LOG.info(len(requested_companies))
     if len(requested_companies) == 0:
         response_data = {
-            'message': 'No {} where found today!'.format(stocks_type)
+            'messages': 'No {} where found today!'.format(stocks_type)
         }
         status = 200 if response_data is not None else 403
         js = json.dumps(response_data, indent=2)
