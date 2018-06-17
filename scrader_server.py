@@ -1199,6 +1199,15 @@ def get_companies():
         direction_list = ['NEG', 'NEGATIVE']
 
     requested_companies = utils.companies_by_type(companies_type)
+    LOG.info(len(requested_companies))
+    if len(requested_companies):
+        response_data = {
+            'message': 'No {} where found today!'.format(stocks_type)
+        }
+        status = 200 if response_data is not None else 403
+        js = json.dumps(response_data, indent=2)
+        return flask.Response(js, status=status, mimetype='application/json')
+
     requested_companies = reorder_companies(requested_companies, user_id)
     four_packets = math.ceil((len(requested_companies) / 4.0))
     attributes_dict['news_type'] = news_type
