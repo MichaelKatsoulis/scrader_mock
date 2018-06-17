@@ -43,9 +43,6 @@ if __name__ == '__main__':
             hour = '0' + hour
 
         minutes = time_now.split(':')[1]
-        if int(minutes) < 10:
-            minutes = '0' + minutes
-
         formatted_time = hour + ":" + minutes
         logger.info(formatted_time)
         users_collection = db['users']

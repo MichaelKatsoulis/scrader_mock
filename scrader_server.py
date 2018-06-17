@@ -936,7 +936,7 @@ def get_user_companies_news(user_id, page_num):
         negative_message = {"text": 'Unfortunately no articles were'
                             ' found today for the companies you have selected.'}
         response_data = {
-            "messages": [negative_message]
+            #"messages": [negative_message]
         }
     else:
         f = lambda A, n=10: [A[i:i + n] for i in range(0, len(A), n)]
