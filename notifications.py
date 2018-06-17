@@ -28,7 +28,6 @@ def send_user_news(user):
           'send?chatfuel_token=vnbqX6cpvXUXFcOKr5RHJ7psSpHDRzO1hXBY8dkvn50ZkZyWML3YdtoCnKH7FSjC' \
           '&chatfuel_block_id=5b01b49fe4b03903064c0f64&last%20'.format(user.get('user_id'))
     try:
-    	pass
         requests.post(url)
     except requests.exceptions.RequestException:
         pass
