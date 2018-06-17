@@ -136,7 +136,21 @@ $( document ).ready(function() {
                           element.elements[i].checked = true;
                         }
                         console.log(element.elements[i].checked);
-                      }      
+                      }
+                      var all_clicked = true;
+                      element = document.getElementById("myForm");
+                      companies_list = [];
+                       for (var i=0; i< element.elements.length - 1; i++){
+                        clicked = element.elements[i].checked;
+                        if (!clicked) {
+                            all_clicked = false;
+                            break;
+                        }
+                       }
+                       if (all_clicked){
+                         selectall = document.getElementById("Select_all");
+                         selectall.checked = true;
+                       }      
 
               },
               complete: function (data) {
