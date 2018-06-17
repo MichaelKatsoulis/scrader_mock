@@ -39,7 +39,12 @@
              <form id="myForm" class="companies_form">
                 <ul id="mylist" class="input-list">
                 </ul>
-                <input type="button" onclick="myFunction()" value="Done" class="btn btn-success btn-block">
+                <div>
+                 <span style="width:50%" type="button" onclick="myFunction()" value="Done" class="btn btn-success">Done</span>
+                 <span class="pure-checkbox-toggle" style="padding-left:5%;">
+                   <input id="Select_all" onclick="select_all()" name="checkbox" value="value" type="checkbox"><label for="Select_all" style="display:inline!important">Select All/None</label>
+                 </span>
+               </div>
                  </form>
             </div>
         </div>
@@ -203,6 +208,22 @@ MessengerExtensions.requestCloseBrowser(function success() {}, function failure(
       $('.panel-custom-body').hide();
 
   }
+
+function select_all(){
+  console.log('selected all');
+  selectall = document.getElementById("Select_all");
+  console.log(selectall.checked);
+  element = document.getElementById("myForm");
+  if (selectall.checked){
+      for (var i=0; i< element.elements.length - 1; i++){
+        element.elements[i].checked = true;
+      }
+  } else {
+      for (var i=0; i< element.elements.length - 1; i++){
+          element.elements[i].checked = false;
+        }
+  }
+}
 </script>
 
 
