@@ -42,7 +42,7 @@
                 <div>
                  <span style="width:50%" type="button" onclick="myFunction()" value="Done" class="btn btn-success">Done</span>
                  <span class="pure-checkbox-toggle" style="padding-left:5%;">
-                   <input id="Select_all" onclick="select_all()" name="checkbox" value="value" type="checkbox"><label for="Select_all" style="display:inline!important">Select All/None</label>
+                   <input id="Select_all" onclick="select_all()" name="checkbox" value="value" type="checkbox"><label id="select_all_label" for="Select_all" style="display:inline!important"></label>
                  </span>
                </div>
                  </form>
@@ -149,7 +149,10 @@ $( document ).ready(function() {
                        if (all_clicked){
                          selectall = document.getElementById("Select_all");
                          selectall.checked = true;
-                       }      
+                         document.getElementById("select_all_label").innerHTML = "Select None";
+                       }else {
+                         document.getElementById("select_all_label").innerHTML = "Select All";
+                       }     
 
               },
               complete: function (data) {
@@ -231,10 +234,12 @@ function select_all(){
       for (var i=0; i< element.elements.length - 1; i++){
         element.elements[i].checked = true;
       }
+      document.getElementById("select_all_label").innerHTML = "Select None";
   } else {
       for (var i=0; i< element.elements.length - 1; i++){
           element.elements[i].checked = false;
         }
+        document.getElementById("select_all_label").innerHTML = "Select All";
   }
 }
 </script>
