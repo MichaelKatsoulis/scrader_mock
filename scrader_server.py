@@ -1201,8 +1201,9 @@ def get_companies():
     requested_companies = utils.companies_by_type(companies_type)
     LOG.info(len(requested_companies))
     if len(requested_companies) == 0:
+        message = {"text": 'No {} where found today!'.format(stocks_type)}
         response_data = {
-            'messages': 'No {} where found today!'.format(stocks_type)
+            'messages': [message]
         }
         status = 200 if response_data is not None else 403
         js = json.dumps(response_data, indent=2)
