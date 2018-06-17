@@ -39,7 +39,15 @@ if __name__ == '__main__':
         utc = pytz.utc
         utc_time = datetime.datetime.now(utc)
         time_now = str(utc_time.now().time())
-        formatted_time = (str(int(time_now.split(':')[0]))) + ":" + (time_now.split(':')[1])
+        hour = str(int(time_now.split(':')[0]))
+        if int(hour) < 10:
+            hour = '0' + hour
+
+        minutes = time_now.split(':')[1]
+        if int(minutes) < 10:
+            minutes = '0' + minutes
+
+        formatted_time = hour + ":" + minutes
         logger.info(formatted_time)
         users_collection = db['users']
         query = {'datetime': formatted_time}
