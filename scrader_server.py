@@ -1200,7 +1200,7 @@ def get_companies():
 
     requested_companies = utils.companies_by_type(companies_type)
     LOG.info(len(requested_companies))
-    if len(requested_companies):
+    if len(requested_companies) == 0:
         response_data = {
             'message': 'No {} where found today!'.format(stocks_type)
         }
