@@ -593,7 +593,7 @@ def user_websites(user_id):
     js = json.dumps(response_data, indent=2)
     return flask.Response(js, status=status, mimetype='application/json')
 
-
+# TODO remove
 @app.route('/user_notification/<user_id>/<time_frame>'.format(methods=['GET']))
 def user_notification(user_id, time_frame):
     """ GET Server Status API endpoint
@@ -933,8 +933,8 @@ def get_user_companies_news(user_id, page_num):
     companies_list = user.get('companies')
     requested_news = utils.get_all_news_for_companies(companies_list)
     if not requested_news:
-        negative_message = {"text": 'Unfortunately no articles were'
-                            ' found today for the companies you have selected.'}
+        # negative_message = {"text": 'Unfortunately no articles were'
+        #                     ' found today for the companies you have selected.'}
         response_data = {
             #"messages": [negative_message]
         }
@@ -942,6 +942,7 @@ def get_user_companies_news(user_id, page_num):
         f = lambda A, n=10: [A[i:i + n] for i in range(0, len(A), n)]
         news_per_page = f(requested_news)
         # print(news_per_page)
+        LOG.info(page_num)
         news_to_show = news_per_page[int(page_num) - 1]
         # print(news_to_show)
         all_quick_replies_page_numbers = [

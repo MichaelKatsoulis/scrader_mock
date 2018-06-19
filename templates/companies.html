@@ -151,9 +151,8 @@ $( document ).ready(function() {
                          selectall.checked = true;
                          document.getElementById("select_all_label").innerHTML = "Select None";
                        }else {
-		          document.getElementById("select_all_label").innerHTML = "Select All";	
-		       } 
-
+                         document.getElementById("select_all_label").innerHTML = "Select All";
+                       }     
               },
               complete: function (data) {
                       // Schedule the next
@@ -239,7 +238,7 @@ function select_all(){
       for (var i=0; i< element.elements.length - 1; i++){
           element.elements[i].checked = false;
         }
-       document.getElementById("select_all_label").innerHTML = "Select All";
+        document.getElementById("select_all_label").innerHTML = "Select All";
   }
 }
 </script>
