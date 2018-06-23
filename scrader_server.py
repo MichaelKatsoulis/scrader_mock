@@ -283,19 +283,10 @@ def user_login(user_id, user_name, last_name):
     buttons = []
     init_message = ''
     if first_time:
-        # print('first time loging in')
-        # message = 'Hi {}! Nice to see you. ' \
-        #           'I am the Scrader Bot. ' \
-        #           'My job is to utilize powerful machine ' \
-        #           'learning algorithms to extract the latest company ' \
-        #           'insights from news articles for a valuable ' \
-        #           'head start in your trading strategy. ' \
-        #           'I am still in development mode so many functions are not stable just yet. ' \
-        #           'Please subscribe in order to get notified when I will be fully functional'.format(name)
-        init_message = 'Hi!Nice to meet you ....! ' \
-                       'Yes, I am just a machine, ' \
-                       'but I can show you news from listed companies daily...' \
-                       'I can even decide which news are bad news!'
+        # init_message = 'Hi!Nice to meet you ....! ' \
+        #                'Yes, I am just a machine, ' \
+        #                'but I can show you news from listed companies daily...' \
+        #                'I can even decide which news are bad news!'
 
         message = 'Let the magic begin! Pick one of the options ' \
                   'below or simply type any a listed company name.'
