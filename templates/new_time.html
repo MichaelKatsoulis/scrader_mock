@@ -76,17 +76,17 @@
 		<div class="container well">
 			<div class="row">
 				<div class="col-md-6">
-					<h2>Pick the time for your daily notifications (UTC)</h2>
+					<h2 id="titlemsg">Pick the time for your daily notifications (UTC)</h2>
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-md-6">
+				<div id="timesection" class="col-md-6">
 					<div class="form-control-wrapper" id="datetimepicker1">
 						<input type="text" id="time" class="form-control floating-label" placeholder="Time">
 					</div>
 				</div>
 			</div>
-			<input type="button" onclick="myFunction()" value="Done" class="btn btn-large btn-block  btn-success">
+			<input id="donebtn" type="button" onclick="myFunction()" value="Done" class="btn btn-large btn-block  btn-success">
 		</div>
 		<script type="text/javascript">
 		$(document).ready(function()
@@ -143,6 +143,10 @@
 			    success: success,
 			    dataType: 'json'
 			    });
+			    $('#donebtn').hide();
+			    $('#timesection').hide();
+			    $('#titlemsg').text('Please close the window');
+			    console.log('done');
 
 			}
 
