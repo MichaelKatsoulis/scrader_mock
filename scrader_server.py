@@ -759,7 +759,7 @@ def specific_company(company, user_id, news_time):
                     user_request = 'negative'
                 else:
                     user_request = 'positive'
-                indication_message = {"text": 'There are also {} news about {}'.format(user_request, company)}
+                indication_message = {"text": 'There are also {} news for {}'.format(user_request, company)}
         # print(news_buttons)
         if news_time == 'today':
             mess = "Which {} news would you like to see from my today's archive?".format(company)
@@ -802,7 +802,7 @@ def specific_company(company, user_id, news_time):
             response_data['messages'].insert(0, indication_message)
 
     else:
-        negative_message = {"text": 'No articles found about {}'.format(company)}
+        negative_message = {"text": 'No articles found for {}'.format(company)}
         response_data = {
             "set_attributes": {
                 "company_requested": company
@@ -1221,7 +1221,7 @@ def get_companies():
                 article = company_articles[0]
                 article_title = article.get('title')[0:79]
             element['subtitle'] = \
-                "{} articles found about {}.".format(company_number_of_artcles,
+                "{} articles found for {}.".format(company_number_of_artcles,
                                                      company_name)\
                 if company_number_of_artcles > 1 else article_title
             element['buttons'][0][
