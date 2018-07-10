@@ -1201,7 +1201,7 @@ def get_companies():
         js = json.dumps(response_data, indent=2)
         return flask.Response(js, status=status, mimetype='application/json')
 
-    requested_companies = reorder_companies(requested_companies, user_id)
+    requested_companies = reorder_companies(requested_companies, user_id, direction_list)
     four_packets = math.ceil((len(requested_companies) / 4.0))
     attributes_dict['news_type'] = news_type
     attributes_dict['stocks_type'] = stocks_type
@@ -1255,7 +1255,7 @@ def get_companies():
     return flask.Response(js, status=status, mimetype='application/json')
 
 
-def reorder_companies(companies_list, user_id):
+def reorder_companies(companies_list, user_id, direction_list):
 
     user = mongo.find_one_match('users', {"user_id": user_id})
     user_subscibed_companies = user.get('companies', None)
@@ -1273,9 +1273,13 @@ def reorder_companies(companies_list, user_id):
     for comp in to_remove:
         companies_list.remove(comp)
     sorted_list.extend(companies_list)
+    # sorted_list = sorted(sorted_list,
+    #                      key=lambda k: len(utils.
+    #                                        get_companies_articles(k['company_name'])),
+    #                      reverse=True)
     sorted_list = sorted(sorted_list,
                          key=lambda k: len(utils.
-                                           get_companies_articles(k['company_name'])),
+                                           get_news_by_direction_and_company(k['company_name'], direction_list, 'today')),
                          reverse=True)
     return sorted_list
 
