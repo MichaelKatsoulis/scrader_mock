@@ -1261,14 +1261,17 @@ def reorder_companies(companies_list, user_id):
     user_subscibed_companies = user.get('companies', None)
 
     sorted_list = []
+    to_remove = []
     if user_subscibed_companies is not None:
         for user_company in user_subscibed_companies:
             for company in companies_list:
                 if user_company == company.get('company_name'):
                     sorted_list.append(company)
-                    companies_list.remove(company)
+                    to_remove.append(company)
+                    # companies_list.remove(company)
                     break
-
+    for comp in to_remove:
+        companies_list.remove(comp)
     sorted_list.extend(companies_list)
     sorted_list = sorted(sorted_list,
                          key=lambda k: len(utils.
