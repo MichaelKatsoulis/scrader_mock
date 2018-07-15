@@ -737,13 +737,11 @@ def specific_company(company, user_id, news_time):
     type_of_news = utils.company_news_type(company_given, news_time)
 
     if type_of_news:
-        # print(type_of_news)
         one_news_type = True
         if len(type_of_news) > 1:
             type_of_news.sort(reverse=True)
             one_news_type = False
 
-        # print(type_of_news)
         news_buttons = []
         for news_type in type_of_news:
             if news_type == 'good_companies':
@@ -968,7 +966,7 @@ def get_user_companies_news(user_id, page_num):
             else:
                 sentiment = "negative"
             element = copy.deepcopy(element)
-            element['title'] = new.get('title')[0:79]
+            element['title'] = (new.get('title')[0:79]).strip()
             element['image_url'] = str(new.get('image_url'))
             element['subtitle'] = new.get('subtitle')
             element['item_url'] = str(new.get('item_url'))
@@ -1076,7 +1074,7 @@ def get_news(company, news_type, page_num, date):
     LOG.info('requested news for %s %s', company_net, date)
     requested_news = utils.get_news_by_direction_and_company(
         company_net, direction_list, date)
-
+    requested_news = order_news_by_date(requested_news)
     f = lambda A, n=10: [A[i:i + n] for i in range(0, len(A), n)]
     news_per_page = f(requested_news)
     # print(news_per_page)
@@ -1092,7 +1090,7 @@ def get_news(company, news_type, page_num, date):
 
     for new in news_to_show:
         element = copy.deepcopy(element)
-        element['title'] = new.get('title')[0:79]
+        element['title'] = (new.get('title')[0:79]).strip()
         element['image_url'] = str(new.get('image_url'))
         element['subtitle'] = new.get('subtitle')
         element['item_url'] = str(new.get('item_url'))
@@ -1141,6 +1139,40 @@ def get_news(company, news_type, page_num, date):
     status = 200 if response_data is not None else 403
     js = json.dumps(response_data, indent=2)
     return flask.Response(js, status=status, mimetype='application/json')
+
+
+def order_news_by_date(news):
+
+    def comp(x, y):
+        s_x = x.split('/')
+        day_x = s_x[1] 
+        month_x = s_x[0] 
+        year_x = s_x[2]
+        s_y = y.split('/')
+        day_y = s_y[1] 
+        month_y = s_y[0] 
+        year_y = s_y[2]
+        if year_x > year_y:
+            return 1
+        elif year_x < year_y:
+            return -1
+        else:
+            if month_x > month_y:
+                return 1
+            elif month_x < month_y:
+                return -1
+            else:
+                if day_x >= day_y:
+                    return 1
+                elif day_x < day_y:
+                    return -1
+
+    l = sorted(
+            news,
+            cmp=lambda x, y: comp(x['date'], y['date']),
+            reverse=True
+    )
+    return l
 
 
 @app.route(
