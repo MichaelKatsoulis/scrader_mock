@@ -1145,13 +1145,13 @@ def order_news_by_date(news):
 
     def comp(x, y):
         s_x = x.split('/')
-        day_x = s_x[1] 
-        month_x = s_x[0] 
-        year_x = s_x[2]
+        day_x = int(s_x[1]) 
+        month_x = int(s_x[0]) 
+        year_x = int(s_x[2])
         s_y = y.split('/')
-        day_y = s_y[1] 
-        month_y = s_y[0] 
-        year_y = s_y[2]
+        day_y = int(s_y[1]) 
+        month_y = int(s_y[0]) 
+        year_y = int(s_y[2])
         if year_x > year_y:
             return 1
         elif year_x < year_y:
