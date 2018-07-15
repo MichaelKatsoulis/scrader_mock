@@ -1219,7 +1219,8 @@ def get_companies():
             company_number_of_artcles = len(company_articles)
             if company_number_of_artcles == 1:
                 article = company_articles[0]
-                article_title = article.get('title')[0:79]
+                #article_title = article.get('title')[0:79]
+                article_title = "1 article found for {}.".format(company_name)
             element['subtitle'] = \
                 "{} articles found for {}.".format(company_number_of_artcles,
                                                      company_name)\
