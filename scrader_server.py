@@ -1169,7 +1169,7 @@ def order_news_by_date(news):
 
     l = sorted(
             news,
-            cmp=lambda x, y: comp(x['date'], y['date']),
+            cmp=lambda x, y: comp(x['subtitle'], y['subtitle']),
             reverse=True
     )
     return l
