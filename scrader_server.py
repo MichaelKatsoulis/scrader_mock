@@ -139,7 +139,8 @@ def company_search():
 
         message = "I am sorry {}, there is no match for your request. " \
                   "You can choose one of the following options " \
-                  "or try typing a listed company name, once more.".format(first_name)
+                  "or try typing a listed company name, once more.".format(
+                      first_name)
 
         block = 'Companies'
         button_title = 'Good/Neutral News'
@@ -334,7 +335,8 @@ def user_login(user_id, user_name, last_name):
             message = 'Welcome back {}! ' \
                       'Hungry for more news? '\
                       'Just pick one of the options below or type ' \
-                      'a listed company name for our full relevant articles archive.'.format(first_name)
+                      'a listed company name for our full relevant articles archive.'.format(
+                          first_name)
 
             notifications_button = {
                 "type": "web_url",
@@ -349,7 +351,8 @@ def user_login(user_id, user_name, last_name):
             message = 'Welcome back {}! ' \
                       'Hungry for more news? '\
                       'Just pick one of the options below or type ' \
-                      'a listed company name for our full relevant articles archive.'.format(first_name)
+                      'a listed company name for our full relevant articles archive.'.format(
+                          first_name)
             notifications_button = {
                 "type": "web_url",
                 "url": "{}/scrader/companies/{}".format(Server_url, user_id),
@@ -406,8 +409,10 @@ def subscribe(user_id, user_last_name, user_first_name):
 
     user = mongo.find_one_match('users', {"user_id": user_id})
     if user is not None:
-        mongo.insert_one_in('users', {"user_id": user_id}, {'name': user_last_name})
-        mongo.insert_one_in('users', {"user_id": user_id}, {'subscribed': True})
+        mongo.insert_one_in('users', {"user_id": user_id}, {
+                            'name': user_last_name})
+        mongo.insert_one_in('users', {"user_id": user_id}, {
+                            'subscribed': True})
 
     response_data = {}
     status = 200 if response_data is not None else 403
@@ -443,9 +448,12 @@ def user_companies_data():
 
     user = mongo.find_one_match('users', {"user_id": user_id})
     if user is not None:
-        mongo.insert_one_in('users', {"user_id": user_id}, {'subscribed': True})
-        mongo.insert_one_in('users', {"user_id": user_id}, {'companies': data.get('companies')})
-        mongo.insert_one_in('users', {"user_id": user_id}, {'notification_type': 'Companies'})
+        mongo.insert_one_in('users', {"user_id": user_id}, {
+                            'subscribed': True})
+        mongo.insert_one_in('users', {"user_id": user_id}, {
+                            'companies': data.get('companies')})
+        mongo.insert_one_in('users', {"user_id": user_id}, {
+                            'notification_type': 'Companies'})
 
     response_data = {}
     status = 200 if response_data is not None else 403
@@ -466,7 +474,8 @@ def user_datetime_data():
 
     user = mongo.find_one_match('users', {"user_id": user_id})
     if user is not None:
-        mongo.insert_one_in('users', {"user_id": user_id}, {'datetime': data.get('datetime')})
+        mongo.insert_one_in('users', {"user_id": user_id}, {
+                            'datetime': data.get('datetime')})
 
     # user = mongo.find_one_match('users', {"user_id": user_id})
     # utils.start_scheduler_task(user)
@@ -510,12 +519,15 @@ def modify_user_companies(user_id, company_name, action):
         user_name = user.get('first_name')
         if action == 'add':
             user['companies'].append(company_net)
-            message = "{} now on you will be notified for {} too.".format(user_name, company_net)
+            message = "{} now on you will be notified for {} too.".format(
+                user_name, company_net)
         else:
             user['companies'].remove(company_net)
-            message = "{} now on you won't be notified for {}.".format(user_name, company_net)
+            message = "{} now on you won't be notified for {}.".format(
+                user_name, company_net)
 
-        mongo.insert_one_in('users', {"user_id": user_id}, {'companies': user['companies']})
+        mongo.insert_one_in('users', {"user_id": user_id}, {
+                            'companies': user['companies']})
 
         response_data = {"messages": [{"text": message}]}
 
@@ -538,7 +550,8 @@ def user_websites_data():
     user_id = data.get('user')
     user = mongo.find_one_match('users', {"user_id": user_id})
     if user is not None:
-        mongo.insert_one_in('users', {"user_id": user_id}, {'websites': data.get('websites')})
+        mongo.insert_one_in('users', {"user_id": user_id}, {
+                            'websites': data.get('websites')})
 
     response_data = {}
     status = 200 if response_data is not None else 403
@@ -585,6 +598,8 @@ def user_websites(user_id):
     return flask.Response(js, status=status, mimetype='application/json')
 
 # TODO remove
+
+
 @app.route('/user_notification/<user_id>/<time_frame>'.format(methods=['GET']))
 def user_notification(user_id, time_frame):
     """ GET Server Status API endpoint
@@ -597,12 +612,14 @@ def user_notification(user_id, time_frame):
     user_name = user.get('first_name', user_id)
 
     if time_frame == 'Daily':
-        mongo.insert_one_in('users', {"user_id": user_id}, {'notification_type': 'Daily'})
+        mongo.insert_one_in('users', {"user_id": user_id}, {
+                            'notification_type': 'Daily'})
         message = "{} you will be notified {}".format(user_name, time_frame)
         response_data = {"messages": [{"text": message}]}
     else:
 
-        mongo.insert_one_in('users', {"user_id": user_id}, {'notification_type': 'Companies'})
+        mongo.insert_one_in('users', {"user_id": user_id}, {
+                            'notification_type': 'Companies'})
         response_data = {
             "messages": [{
                 "attachment": {
@@ -759,12 +776,15 @@ def specific_company(company, user_id, news_time):
                     user_request = 'negative'
                 else:
                     user_request = 'positive'
-                indication_message = {"text": 'There are also {} news for {}'.format(user_request, company)}
+                indication_message = {
+                    "text": 'There are also {} news for {}'.format(user_request, company)}
         # print(news_buttons)
         if news_time == 'today':
-            mess = "Which {} news would you like to see from my today's archive?".format(company)
+            mess = "Which {} news would you like to see from my today's archive?".format(
+                company)
         else:
-            mess = "Which {} news would you like to see from my full archive?".format(company)
+            mess = "Which {} news would you like to see from my full archive?".format(
+                company)
 
         response_data = {
             "set_attributes": {
@@ -786,7 +806,8 @@ def specific_company(company, user_id, news_time):
         }
 
         if extra_button:
-            response_data['messages'][0]['attachment']['payload']['buttons'].append(extra_button)
+            response_data['messages'][0]['attachment']['payload']['buttons'].append(
+                extra_button)
         else:
             if one_news_type:
                 title_butt = news_buttons[0]['title'].split()
@@ -817,7 +838,8 @@ def specific_company(company, user_id, news_time):
                         "template_type":
                             "button",
                         "text":
-                            "Remember you can {} {}.".format(extra_button.get('title').lower(), company),
+                            "Remember you can {} {}.".format(
+                                extra_button.get('title').lower(), company),
                         "buttons": [extra_button]
                     }
                 }
@@ -932,26 +954,27 @@ def get_user_companies_news(user_id, page_num):
     else:
         f = lambda A, n=10: [A[i:i + n] for i in range(0, len(A), n)]
         news_per_page = f(requested_news)
-        # print(news_per_page)
         LOG.info(page_num)
         news_to_show = news_per_page[int(page_num) - 1]
-        # print(news_to_show)
         all_quick_replies_page_numbers = [
             i + 1 for i, _ in enumerate(news_per_page)
         ]
-        # print(all_quick_replies_page_numbers)
         quick_replies_page_numbers_to_show = filter(lambda x: x != int(page_num),
                                                     all_quick_replies_page_numbers)
-        # print(quick_replies_page_numbers_to_show)
 
         for new in news_to_show:
+            if new.get('direction') == "POS":
+                sentiment = "positive"
+            else:
+                sentiment = "negative"
             element = copy.deepcopy(element)
             element['title'] = new.get('title')[0:79]
             element['image_url'] = str(new.get('image_url'))
             element['subtitle'] = new.get('subtitle')
             element['item_url'] = str(new.get('item_url'))
             element['buttons'][0]['url'] = new.get('website_url')
-            element['buttons'][0]['title'] = new.get('website')
+            #element['buttons'][0]['title'] = new.get('website')
+            element['buttons'][0]['title'] = "See {} new".format(sentiment)
             elements.append(element)
 
         LOG.info('quick_replies_page_numbers_to_show: {}'.
@@ -1007,7 +1030,8 @@ def get_news(company, news_type, page_num, date):
         else:
             news_type = 'Bad News'
     company_net = " ".join(company.split('+'))
-    LOG.info("Fetching {} news for {} page {}".format(news_type, company, page_num))
+    LOG.info("Fetching {} news for {} page {}".format(
+        news_type, company, page_num))
     extra_message = {}
     if isinstance(page_num, dict):
         extra_message = page_num
@@ -1050,7 +1074,8 @@ def get_news(company, news_type, page_num, date):
         _news_type = 'bad'
     LOG.info(direction_list)
     LOG.info('requested news for %s %s', company_net, date)
-    requested_news = utils.get_news_by_direction_and_company(company_net, direction_list, date)
+    requested_news = utils.get_news_by_direction_and_company(
+        company_net, direction_list, date)
 
     f = lambda A, n=10: [A[i:i + n] for i in range(0, len(A), n)]
     news_per_page = f(requested_news)
@@ -1147,7 +1172,8 @@ def get_companies():
     user_id = request.args.get('chatfuel user id')
     user = mongo.find_one_match('users', {"user_id": user_id})
     if user is not None:
-        mongo.insert_one_in('users', {"user_id": user_id}, {'request': stocks_type})
+        mongo.insert_one_in('users', {"user_id": user_id}, {
+                            'request': stocks_type})
 
     # print(user)
     # print("Fetching companies with {}.".format(stocks_type))
@@ -1201,7 +1227,8 @@ def get_companies():
         js = json.dumps(response_data, indent=2)
         return flask.Response(js, status=status, mimetype='application/json')
 
-    requested_companies = reorder_companies(requested_companies, user_id, direction_list)
+    requested_companies = reorder_companies(
+        requested_companies, user_id, direction_list)
     four_packets = math.ceil((len(requested_companies) / 4.0))
     attributes_dict['news_type'] = news_type
     attributes_dict['stocks_type'] = stocks_type
@@ -1223,7 +1250,7 @@ def get_companies():
                 article_title = "1 article found for {}.".format(company_name)
             element['subtitle'] = \
                 "{} articles found for {}.".format(company_number_of_artcles,
-                                                     company_name)\
+                                                   company_name)\
                 if company_number_of_artcles > 1 else article_title
             element['buttons'][0][
                 'title'] = 'View articles' if company_number_of_artcles > 1 else 'View article'
@@ -1297,6 +1324,6 @@ if __name__ == '__main__':
     # utils.article_from_excel()
     # if os.environ.get('WERKZEUG_RUN_MAIN') == 'true':
     #     LOG.info('main')
-    # 	utils.start_scheduler_task()
+    #   utils.start_scheduler_task()
     # utils.update_companies_news_once()
     app.run(host='0.0.0.0', port=8000, debug=True, use_reloader=True)
