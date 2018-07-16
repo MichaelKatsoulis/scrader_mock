@@ -962,17 +962,18 @@ def get_user_companies_news(user_id, page_num):
 
         for new in news_to_show:
             if new.get('direction') == "POS":
-                sentiment = "positive"
+                sentiment = "Positive"
             else:
-                sentiment = "negative"
+                sentiment = "Negative"
             element = copy.deepcopy(element)
             element['title'] = (new.get('title')[0:79]).strip()
             element['image_url'] = str(new.get('image_url'))
-            element['subtitle'] = new.get('subtitle')
+            #element['subtitle'] = new.get('subtitle')
+            element['subtitle'] = "{} article".format(sentiment)
             element['item_url'] = str(new.get('item_url'))
             element['buttons'][0]['url'] = new.get('website_url')
-            #element['buttons'][0]['title'] = new.get('website')
-            element['buttons'][0]['title'] = "See {} new".format(sentiment)
+            element['buttons'][0]['title'] = new.get('website')
+            #element['buttons'][0]['title'] = "See {} new".format(sentiment)
             elements.append(element)
 
         LOG.info('quick_replies_page_numbers_to_show: {}'.
