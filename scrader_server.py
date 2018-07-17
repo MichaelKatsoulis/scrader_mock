@@ -961,6 +961,7 @@ def get_user_companies_news(user_id, page_num):
                                                     all_quick_replies_page_numbers)
 
         for new in news_to_show:
+            company = new.get('company')
             if new.get('direction') == "POS":
                 sentiment = "Positive"
             else:
@@ -969,7 +970,7 @@ def get_user_companies_news(user_id, page_num):
             element['title'] = (new.get('title')[0:79]).strip()
             element['image_url'] = str(new.get('image_url'))
             #element['subtitle'] = new.get('subtitle')
-            element['subtitle'] = "{} article".format(sentiment)
+            element['subtitle'] = "{} article for {}".format(sentiment, company)
             element['item_url'] = str(new.get('item_url'))
             element['buttons'][0]['url'] = new.get('website_url')
             element['buttons'][0]['title'] = new.get('website')
