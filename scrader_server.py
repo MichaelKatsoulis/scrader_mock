@@ -471,7 +471,7 @@ def user_datetime_data():
 
     data = flask.request.get_json()
     user_id = data.get('user')
-
+    LOG.info(data)
     user = mongo.find_one_match('users', {"user_id": user_id})
     if user is not None:
         mongo.insert_one_in('users', {"user_id": user_id}, {

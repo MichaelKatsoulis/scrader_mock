@@ -131,8 +131,9 @@
 
 			    time =  $("#datetimepicker1").find("input").val();
 			    console.log(time);
-			    data = {user: '{{ user_id }}' , datetime: ''};
+			    data = {user: '{{ user_id }}' , datetime: '', offset: 0};
 			    data.datetime = time;
+			    data.offset = new Date().getTimezoneOffset();
 			    var jsonString = JSON.stringify(data);
 			    url = "http://146.185.138.240/scrader/user_datetime"
 			    $.ajax({
