@@ -76,11 +76,15 @@ def companies_by_type(news_type):
     companies_new_list = []
     for article in articles_cursor:
         comp_dict = mongo.find_one_match('companies', {'name': article.get('company')})
-        # TODO find a solution for this. Add this company to our companies list
         if comp_dict is None:
-            continue
-        if not any(d['company_name'] == comp_dict.get('name') for d in companies_new_list):
+            comp_dict = {
+                'company_name': article.get('company'),
+                'company_logo': "http://146.185.138.240/static/images/google_logo.png"
+            }
+        else:
             comp_dict['company_name'] = comp_dict.pop('name')
+        
+        if not any(d['company_name'] == comp_dict.get('company_name') for d in companies_new_list):
             companies_new_list.append(comp_dict)
 
     return companies_new_list
