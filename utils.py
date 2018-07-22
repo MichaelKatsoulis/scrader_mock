@@ -239,13 +239,25 @@ def send_user_news(user):
     except requests.exceptions.RequestException:
         pass
 
+def convert_time(time, offset):
+    def helper(hour):
+        if hour > 23:
+            return hour - 24
+        if hour < 0:
+            return 24 + hour
+        return hour
+    t1 = sum(i*j for i, j in zip(map(int, time.split(':')), [60, 1, 1/60]))
+    t2 = t1 + offset
+    h, m = divmod(t2, 60)
+    return "%d:%02d" % (helper(h), m)
 
 def start_scheduler():
     while True:
-        utc = pytz.utc
-        utc_time = datetime.datetime.now(utc)
-        time_now = str(utc_time.now().time())
-        formatted_time = (str(int(time_now.split(':')[0]))) + ":" + (time_now.split(':')[1])
+        # utc = pytz.utc
+        # utc_time = datetime.datetime.now(utc)
+        # time_now = str(utc_time.now().time())
+        # formatted_time = (str(int(time_now.split(':')[0]))) + ":" + (time_now.split(':')[1])
+        formatted_time = datetime.datetime.utcnow().strftime("%H:%M")
         LOG.info(formatted_time)
         users = mongo.find_matches('users', {'datetime': formatted_time})
         for user in users:

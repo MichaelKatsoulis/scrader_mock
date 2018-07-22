@@ -472,10 +472,14 @@ def user_datetime_data():
     data = flask.request.get_json()
     user_id = data.get('user')
     LOG.info(data)
+    conv_datetime = utils.convert_time(data.get('datetime'), data.get('offset'))
     user = mongo.find_one_match('users', {"user_id": user_id})
     if user is not None:
         mongo.insert_one_in('users', {"user_id": user_id}, {
-                            'datetime': data.get('datetime')})
+                            'datetime': conv_datetime})
+        mongo.insert_one_in('users', {"user_id": user_id}, {
+                            'offset': data.get('offset')})
+
 
     # user = mongo.find_one_match('users', {"user_id": user_id})
     # utils.start_scheduler_task(user)
@@ -497,6 +501,8 @@ def get_user_datetime_data(user_id):
     datetime = ''
     if user is not None:
         datetime = user.get('datetime', '')
+        offset = - int(user.get('offset', 0))
+        datetime = utils.convert_time(datetime, offset)
 
     response_data = datetime
     status = 200 if response_data is not None else 403
@@ -660,8 +666,10 @@ def user_daily_notification(user_id):
 
     user = mongo.find_one_match('users', {"user_id": user_id})
     datetime = user.get('datetime')
+    offset = - int(user.get('offset'))
+    datetime = utils.convert_time(datetime, offset)
 
-    message = 'You will be notified daily @ {} UTC for the companies you have selected'.\
+    message = 'You will be notified daily @ {} for the companies you have selected'.\
               format(datetime)
 
     buttons = []
