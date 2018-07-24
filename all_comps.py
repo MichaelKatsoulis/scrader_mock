@@ -1011,4 +1011,48 @@ all_companies = [
         'company_logo': 'http://146.185.138.240/static/images/ebay_logo.jpg',
         'name': 'eBay'
     },
+    {
+        'company_logo': 'http://146.185.138.240/static/images/3m_logo.jpg',
+        'name': '3M'
+    },
+    {
+        'company_logo': 'http://146.185.138.240/static/images/zte_logo.jpg',
+        'name': 'ZTE'
+    },
+    {
+        'company_logo': 'http://146.185.138.240/static/images/time-warner_logo.jpg',
+        'name': 'Time Warner'
+    },
+    {
+        'company_logo': 'http://146.185.138.240/static/images/dollar-general_logo.jpg',
+        'name': 'Dollar General'
+    },
+    {
+        'company_logo': 'http://146.185.138.240/static/images/dow-chemical_logo.jpg',
+        'name': 'Dow Chemical'
+    },
+    {
+        'company_logo': 'http://146.185.138.240/static/images/dp-world_logo.jpg',
+        'name': 'DP World'
+    },
+    {
+        'company_logo': 'http://146.185.138.240/static/images/eads_logo.jpg',
+        'name': 'EADS'
+    },
+    {
+        'company_logo': 'http://146.185.138.240/static/images/metlife_logo.jpg',
+        'name': 'MetLife'
+    },
+    {
+        'company_logo': 'http://146.185.138.240/static/images/national-grid_logo.jpg',
+        'name': 'National Grid'
+    },
+    {
+        'company_logo': 'http://146.185.138.240/static/images/nec_logo.jpg',
+        'name': 'NEC'
+    },
+    {
+        'company_logo': 'http://146.185.138.240/static/images/oi_logo.jpg',
+        'name': 'Oi'
+    },
 ]
