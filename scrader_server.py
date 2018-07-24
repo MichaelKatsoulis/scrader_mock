@@ -20,7 +20,6 @@ app = flask.Flask(__name__, static_url_path='/static')
 # Make cross-origin AJAX possible (for all domains on all routes)
 CORS(app, resources={r"*": {"origins": "*"}})
 
-NEXT = 0
 Server_url = "http://146.185.138.240"
 
 
@@ -1209,13 +1208,20 @@ def get_companies():
     """
     stocks_type = request.args.get('stocks_type')
     LOG.info(stocks_type)
-    global NEXT
-    NEXT = 0 if request.args.get('NEXT') is not None else NEXT
+    next_page = True if request.args.get('NEXT') is not None else False 
     user_id = request.args.get('chatfuel user id')
     user = mongo.find_one_match('users', {"user_id": user_id})
     if user is not None:
+        if next_page:
+            mongo.insert_one_in('users', {"user_id": user_id}, {
+                            'companiesPage': 0})
+            user = mongo.find_one_match('users', {"user_id": user_id})
+
+        companies_page = user.get('companiesPage')
         mongo.insert_one_in('users', {"user_id": user_id}, {
                             'request': stocks_type})
+        mongo.insert_one_in('users', {"user_id": user_id}, {
+                            'companiesPage': companies_page+1})
 
     # print(user)
     # print("Fetching companies with {}.".format(stocks_type))
@@ -1274,7 +1280,7 @@ def get_companies():
     four_packets = math.ceil((len(requested_companies) / 4.0))
     attributes_dict['news_type'] = news_type
     attributes_dict['stocks_type'] = stocks_type
-    start = NEXT * 4
+    start = companies_page * 4
     for index, company in enumerate(requested_companies[start:]):
         if index < 4:
             element = copy.deepcopy(element)
@@ -1308,7 +1314,7 @@ def get_companies():
     }
 
     if four_packets > 1:
-        if (NEXT + 2) <= four_packets:
+        if (companies_page + 2) <= four_packets:
             # remaining = len(requested_companies) - (NEXT + 1) * 4
             next_button['title'] = "Next"
             response_data['messages'][0]['attachment']['payload'][
@@ -1319,7 +1325,6 @@ def get_companies():
         response_data['messages'][0]['attachment']['payload'].\
             pop('top_element_style', None)
 
-    NEXT += 1
     status = 200 if response_data is not None else 403
     js = json.dumps(response_data, indent=2)
     return flask.Response(js, status=status, mimetype='application/json')
