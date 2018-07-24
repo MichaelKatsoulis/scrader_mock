@@ -1003,4 +1003,12 @@ all_companies = [
         'company_logo': 'http://146.185.138.240/static/images/philips_logo.jpg',
         'name': 'Philips'
     },
+    {
+        'company_logo': 'http://146.185.138.240/static/images/harley-davidson_logo.jpg',
+        'name': 'Harley-Davidson'
+    },
+    {
+        'company_logo': 'http://146.185.138.240/static/images/ebay_logo.jpg',
+        'name': 'eBay'
+    },
 ]
