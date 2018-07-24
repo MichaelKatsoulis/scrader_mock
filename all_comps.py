@@ -998,5 +998,9 @@ all_companies = [
     {
         'company_logo': 'http://146.185.138.240/static/images/whole-foods-market_logo.jpg',
         'name': 'Whole Foods Market'
-    }
+    },
+    {
+        'company_logo': 'http://146.185.138.240/static/images/philips_logo.jpg',
+        'name': 'Philips'
+    },
 ]

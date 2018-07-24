@@ -79,7 +79,7 @@ def companies_by_type(news_type):
         if comp_dict is None:
             comp_dict = {
                 'company_name': article.get('company'),
-                'company_logo': "http://146.185.138.240/static/images/google_logo.png"
+                'company_logo': "http://146.185.138.240/static/images/default.png"
             }
         else:
             comp_dict['company_name'] = comp_dict.pop('name')
