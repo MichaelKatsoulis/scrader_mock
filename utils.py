@@ -79,7 +79,7 @@ def companies_by_type(news_type):
         if comp_dict is None:
             comp_dict = {
                 'company_name': article.get('company'),
-                'company_logo': "http://146.185.138.240/static/images/default.png"
+                'company_logo': "https://webview.scrader.com/static/images/default.png"
             }
         else:
             comp_dict['company_name'] = comp_dict.pop('name')
@@ -340,16 +340,16 @@ def get_development_news(news_type, page_num, user):
         element['subtitle'] = new.get('subtitle')
         element['item_url'] = str(new.get('item_url'))
         id = str(new.get('_id'))
-        element['buttons'][0]['url'] = "http://146.185.138.240/checked_article/{}/{}/{}/{}/{}".\
+        element['buttons'][0]['url'] = "https://webview.scrader.com/checked_article/{}/{}/{}/{}/{}".\
             format(news_type, id, 'Correct', page_num, user)
         element['buttons'][0]['title'] = "Correct Estim"
         element['buttons'][0]['type'] = "json_plugin_url"
-        element['buttons'][1]['url'] = "http://146.185.138.240/checked_article/{}/{}/{}/{}/{}".\
+        element['buttons'][1]['url'] = "https://webview.scrader.com/checked_article/{}/{}/{}/{}/{}".\
             format(news_type, id, 'Wrong', page_num, user)
         # print(element['buttons'][1]['url'])
         element['buttons'][1]['title'] = "Wrong Estim"
         element['buttons'][1]['type'] = "json_plugin_url"
-        element['buttons'][2]['url'] = "http://146.185.138.240/checked_article/{}/{}/{}/{}/{}".\
+        element['buttons'][2]['url'] = "https://webview.scrader.com/checked_article/{}/{}/{}/{}/{}".\
             format(news_type, id, 'Skip', page_num, user)
         element['buttons'][2]['title'] = "Skip Estim"
         element['buttons'][2]['type'] = "json_plugin_url"
@@ -361,7 +361,7 @@ def get_development_news(news_type, page_num, user):
             break
         quick_reply = copy.deepcopy(quick_reply)
         quick_reply['title'] = "Page {}".format(page_number)
-        quick_reply['url'] = "http://146.185.138.240/dev_news/{}/{}/{}".format(
+        quick_reply['url'] = "https://webview.scrader.com/dev_news/{}/{}/{}".format(
             news_type, page_number, user)
         quick_replies.append(quick_reply)
 

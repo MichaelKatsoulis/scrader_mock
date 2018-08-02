@@ -20,7 +20,7 @@ app = flask.Flask(__name__, static_url_path='/static')
 # make cross-origin AJAX possible (for all domains on all routes)
 CORS(app, resources={r"*": {"origins": "*"}})
 
-Server_url = "http://146.185.138.240"
+Server_url = "https://webview.scrader.com"
 
 
 @app.route('/scrader/companies/<user_id>'.format(methods=['GET']))
@@ -1106,7 +1106,7 @@ def get_news(company, news_type, page_num, date):
         element['buttons'][0]['url'] = new.get('website_url')
         element['buttons'][0]['title'] = new.get('website')
         # id = str(new.get('_id'))
-        # element['buttons'][0]['url'] = "http://146.185.138.240/taged_article/{}".format(id)
+        # element['buttons'][0]['url'] = "https://webview.scrader.com/taged_article/{}".format(id)
         # element['buttons'][0]['title'] = "Wrong Sentiment?"
         # element['buttons'][0]['type'] = "json_plugin_url"
         elements.append(element)
