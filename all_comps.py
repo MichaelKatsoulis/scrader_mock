@@ -1055,4 +1055,8 @@ all_companies = [
         'company_logo': 'http://146.185.138.240/static/images/oi_logo.jpg',
         'name': 'Oi'
     },
+    {
+        'company_logo': 'http://146.185.138.240/static/images/itv_logo.jpg',
+        'name': 'ITV'
+    },
 ]

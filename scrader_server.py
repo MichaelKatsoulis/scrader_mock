@@ -17,7 +17,7 @@ DEBUG = False  # Enable this to print python crashes and exceptions
 
 app = flask.Flask(__name__, static_url_path='/static')
 
-# Make cross-origin AJAX possible (for all domains on all routes)
+# make cross-origin AJAX possible (for all domains on all routes)
 CORS(app, resources={r"*": {"origins": "*"}})
 
 Server_url = "http://146.185.138.240"
@@ -828,7 +828,7 @@ def specific_company(company, user_id, news_time):
             response_data['messages'].insert(0, indication_message)
 
     else:
-        negative_message = {"text": 'No articles found for {}'.format(company)}
+        negative_message = {"text": 'No articles found about {}'.format(company)}
         response_data = {
             "set_attributes": {
                 "company_requested": company
@@ -896,7 +896,7 @@ def get_specific_new(user_id, new_id):
         }]
     }]
 
-    top_message = {"text": 'One new {} article found for {}'.
+    top_message = {"text": 'One new {} article found about {}'.
                    format(article.get('direction'), article.get('company'))}
     messages = [
         top_message,
@@ -1130,7 +1130,7 @@ def get_news(company, news_type, page_num, date):
     message['attachment']['payload']['elements'] = elements
 
     article = 'articles' if len(requested_news) > 1 else 'article'
-    top_message = {"text": '{} {} {} found for {}'.
+    top_message = {"text": '{} {} {} found about {}'.
                    format(len(requested_news), news_message, article, company_net)}
 
     if extra_message:
@@ -1295,9 +1295,9 @@ def get_companies():
             if company_number_of_artcles == 1:
                 article = company_articles[0]
                 #article_title = article.get('title')[0:79]
-                article_title = "1 article found for {}.".format(company_name)
+                article_title = "1 article found about {}.".format(company_name)
             element['subtitle'] = \
-                "{} articles found for {}.".format(company_number_of_artcles,
+                "{} articles found about {}.".format(company_number_of_artcles,
                                                    company_name)\
                 if company_number_of_artcles > 1 else article_title
             element['buttons'][0][
