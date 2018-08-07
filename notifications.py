@@ -39,8 +39,8 @@ if __name__ == '__main__':
         utc_time = datetime.datetime.now(utc)
         time_now = str(utc_time.now().time())
         hour = str(int(time_now.split(':')[0]))
-        if int(hour) < 10:
-            hour = '0' + hour
+        #if int(hour) < 10:
+            #hour = '0' + hour
 
         minutes = time_now.split(':')[1]
         formatted_time = hour + ":" + minutes

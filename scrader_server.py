@@ -17,7 +17,7 @@ DEBUG = False  # Enable this to print python crashes and exceptions
 
 app = flask.Flask(__name__, static_url_path='/static')
 
-# make cross-origin AJAX possible (for all domains on all routes)
+# Make cross-origin AJAX possible (for all domains on all routes)
 CORS(app, resources={r"*": {"origins": "*"}})
 
 Server_url = "https://webview.scrader.com"
@@ -472,6 +472,7 @@ def user_datetime_data():
     user_id = data.get('user')
     LOG.info(data)
     conv_datetime = utils.convert_time(data.get('datetime'), data.get('offset'))
+    LOG.info(conv_datetime)
     user = mongo.find_one_match('users', {"user_id": user_id})
     if user is not None:
         mongo.insert_one_in('users', {"user_id": user_id}, {
@@ -1145,7 +1146,7 @@ def get_news(company, news_type, page_num, date):
 
     response_data = {"messages": messages}
 
-    # print(response_data)
+    LOG.info(response_data)
     status = 200 if response_data is not None else 403
     js = json.dumps(response_data, indent=2)
     return flask.Response(js, status=status, mimetype='application/json')
@@ -1288,7 +1289,7 @@ def get_companies():
             name_net = '+'.join((company.get('company_name')).split())
             company_name = company.get('company_name')
             element['title'] = company.get('company_name')
-            element['image_url'] = company.get('company_logo')
+            element['image_url'] = str(company.get('company_logo'))
             # company_articles = utils.get_companies_articles(company_name)
             company_articles = utils.get_news_by_direction_and_company(company_name,
                                                                        direction_list, 'today')
@@ -1325,7 +1326,7 @@ def get_companies():
         response_data['messages'][0]['attachment']['payload']['template_type'] = 'generic'
         response_data['messages'][0]['attachment']['payload'].\
             pop('top_element_style', None)
-
+    LOG.info(response_data)
     status = 200 if response_data is not None else 403
     js = json.dumps(response_data, indent=2)
     return flask.Response(js, status=status, mimetype='application/json')
