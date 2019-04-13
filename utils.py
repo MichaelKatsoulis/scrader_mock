@@ -1,4 +1,4 @@
-import gevent
+#import gevent
 import mongo
 import time
 import datetime
@@ -9,9 +9,9 @@ import pytz
 from bson.objectid import ObjectId
 from scrader_logger import LOG
 
-from gevent import monkey
+#from gevent import monkey
 
-monkey.patch_all()
+#monkey.patch_all()
 THREADS = []
 
 

@@ -95,6 +95,7 @@ def company_search():
     """
     LOG.info('request received')
     company_typed = (request.args.get('last user freeform input')).lower()
+    LOG.info(company_typed)
     LOG.info('searching for {}'.format(company_typed))
     first_name = request.args.get('first name')
     user_id = request.args.get('chatfuel user id')
@@ -102,10 +103,53 @@ def company_search():
     user = mongo.find_one_match('users', {"user_id": user_id})
     if company_typed == 'dev':
         return development_mode(user)
-
+   
     if user is not None:
         mongo.remove_one_from('users', {"user_id": user_id}, {'request': 1})
+    
+        if company_typed == 'hi':
+            buttons = []
+            notifications_button = {
+                "type": "web_url",
+                "url": "{}/scrader/companies/{}".format(Server_url, user_id),
+                "title": "Edit Notifications"
+            }
+            message = 'Just pick one of the options below or type a listed company name for our full relevant articles archive.'
+            block = 'Companies'
+            button_title = 'Good/Neutral News'
+            button_dict_tmpl = {
+                "type": "show_block",
+                "block_name": block,
+                "title": button_title
+            }
+            buttons.append(button_dict_tmpl)
 
+            block = 'Companies'
+            button_title = 'Bad News'
+            button_dict_tmpl = {
+                "type": "show_block",
+                "block_name": block,
+                "title": button_title
+            }
+            buttons.append(button_dict_tmpl)
+            buttons.append(notifications_button)
+            response_data = {
+                "messages": [
+                    {
+                        "attachment": {
+                            "type": "template",
+                            "payload": {
+                               "template_type": "button",
+                               "text": message,
+                               "buttons": buttons
+                            }
+                        }
+                     }
+                ]
+            }
+            status = 200 if response_data is not None else 403
+            js = json.dumps(response_data, indent=2)
+            return flask.Response(js, status=status, mimetype='application/json')
     # print(user_id)
     company_found = utils.company_typed_search(company_typed)
     if company_found is not None:
@@ -426,7 +470,7 @@ def get_server_status():
         Returns:
             dict: A JSON object containing the nfvacc server status information
     """
-
+    LOG.info('status request received')
     response_data = {'server_status': 'OK'}
     status = 200 if response_data is not None else 403
     js = json.dumps(response_data, indent=2)
