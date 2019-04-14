@@ -1,16 +1,18 @@
-import gevent
+#import gevent
 import mongo
 import time
 import datetime
 import requests
 import copy
 import csv
+import pytz
 from bson.objectid import ObjectId
 from scrader_logger import LOG
 
-from gevent import monkey
+#from gevent import monkey
 
-monkey.patch_all()
+#monkey.patch_all()
+THREADS = []
 
 
 def get_all_companies():
@@ -74,11 +76,15 @@ def companies_by_type(news_type):
     companies_new_list = []
     for article in articles_cursor:
         comp_dict = mongo.find_one_match('companies', {'name': article.get('company')})
-        # TODO find a solution for this. Add this company to our companies list
         if comp_dict is None:
-            continue
-        if not any(d['company_name'] == comp_dict.get('name') for d in companies_new_list):
+            comp_dict = {
+                'company_name': article.get('company'),
+                'company_logo': "https://webview.scrader.com/static/images/default.png"
+            }
+        else:
             comp_dict['company_name'] = comp_dict.pop('name')
+        
+        if not any(d['company_name'] == comp_dict.get('company_name') for d in companies_new_list):
             companies_new_list.append(comp_dict)
 
     return companies_new_list
@@ -99,7 +105,22 @@ def get_news_by_direction_and_company(company, direction_list, date):
 
 
 def get_companies_articles(company):
-    return list(mongo.find_matches('articles', {'company': company}))
+    today = datetime.date.today()
+    today_date = '{}/{}/{}'.format(today.month, today.day, today.year)
+    return list(mongo.find_matches_two_fields('articles',
+                                              'company', [company],
+                                              'subtitle', [today_date]
+                                              ))
+
+
+def get_all_news_for_companies(companies_list):
+    today = datetime.date.today()
+    today_date = '{}/{}/{}'.format(today.month, today.day, today.year)
+    requested_news = list(mongo.find_matches_two_fields('articles',
+                                                        'subtitle', [today_date],
+                                                        'company',
+                                                        companies_list))
+    return requested_news
 
 
 def manually_tag_article(article_id, value, user):
@@ -199,23 +220,45 @@ def article_from_csv():
 
 
 def send_user_news(user):
-    # print("sending staff for user" + user.get('name'))
+    LOG.info("sending staff for user" + user.get('first_name'))
+
+    if not user.get('companies'):
+        return
+
+    # url = 'https://api.chatfuel.com/bots/591189a0e4b0772d3373542b/' \
+    #       'users/{}/' \
+    #       'send?chatfuel_token=vnbqX6cpvXUXFcOKr5RHJ7psSpHDRzO1hXBY8dkvn50ZkZyWML3YdtoCnKH7FSjC' \
+    #       '&chatfuel_block_id=5a1aae94e4b0c921e2a89115&last%20name={}'.format(user.get('user_id'), user.get('name'))
+
     url = 'https://api.chatfuel.com/bots/591189a0e4b0772d3373542b/' \
           'users/{}/' \
           'send?chatfuel_token=vnbqX6cpvXUXFcOKr5RHJ7psSpHDRzO1hXBY8dkvn50ZkZyWML3YdtoCnKH7FSjC' \
-          '&chatfuel_block_id=5a1aae94e4b0c921e2a89115&last%20name={}'.format(user.get('user_id'), user.get('name'))
-
+          '&chatfuel_block_id=5b01b49fe4b03903064c0f64&last%20'.format(user.get('user_id'))
     try:
         requests.post(url)
     except requests.exceptions.RequestException:
         pass
 
+def convert_time(time, offset):
+    def helper(hour):
+        if hour > 23:
+            return hour - 24
+        if hour < 0:
+            return 24 + hour
+        return hour
+    t1 = sum(i*j for i, j in zip(map(int, time.split(':')), [60, 1, 1/60]))
+    t2 = t1 + offset
+    h, m = divmod(t2, 60)
+    return "%d:%02d" % (helper(h), m)
 
 def start_scheduler():
     while True:
-        time_now = str(datetime.datetime.now().time())
-        formatted_time = (str(int(time_now.split(':')[0]) + 2)) + ":" + (time_now.split(':')[1])
-        # print(formatted_time)
+        # utc = pytz.utc
+        # utc_time = datetime.datetime.now(utc)
+        # time_now = str(utc_time.now().time())
+        # formatted_time = (str(int(time_now.split(':')[0]))) + ":" + (time_now.split(':')[1])
+        formatted_time = datetime.datetime.utcnow().strftime("%H:%M")
+        LOG.info(formatted_time)
         users = mongo.find_matches('users', {'datetime': formatted_time})
         for user in users:
             send_user_news(user)
@@ -223,7 +266,12 @@ def start_scheduler():
 
 
 def start_scheduler_task():
-    gevent.spawn(start_scheduler)
+    LOG.info('spawning thread in main')
+    if not THREADS:
+        thread = gevent.spawn(start_scheduler)
+        THREADS.append(thread)
+    else:
+        pass
 
 
 def get_development_news(news_type, page_num, user):
@@ -292,16 +340,16 @@ def get_development_news(news_type, page_num, user):
         element['subtitle'] = new.get('subtitle')
         element['item_url'] = str(new.get('item_url'))
         id = str(new.get('_id'))
-        element['buttons'][0]['url'] = "http://146.185.138.240/checked_article/{}/{}/{}/{}/{}".\
+        element['buttons'][0]['url'] = "https://webview.scrader.com/checked_article/{}/{}/{}/{}/{}".\
             format(news_type, id, 'Correct', page_num, user)
         element['buttons'][0]['title'] = "Correct Estim"
         element['buttons'][0]['type'] = "json_plugin_url"
-        element['buttons'][1]['url'] = "http://146.185.138.240/checked_article/{}/{}/{}/{}/{}".\
+        element['buttons'][1]['url'] = "https://webview.scrader.com/checked_article/{}/{}/{}/{}/{}".\
             format(news_type, id, 'Wrong', page_num, user)
         # print(element['buttons'][1]['url'])
         element['buttons'][1]['title'] = "Wrong Estim"
         element['buttons'][1]['type'] = "json_plugin_url"
-        element['buttons'][2]['url'] = "http://146.185.138.240/checked_article/{}/{}/{}/{}/{}".\
+        element['buttons'][2]['url'] = "https://webview.scrader.com/checked_article/{}/{}/{}/{}/{}".\
             format(news_type, id, 'Skip', page_num, user)
         element['buttons'][2]['title'] = "Skip Estim"
         element['buttons'][2]['type'] = "json_plugin_url"
@@ -313,7 +361,7 @@ def get_development_news(news_type, page_num, user):
             break
         quick_reply = copy.deepcopy(quick_reply)
         quick_reply['title'] = "Page {}".format(page_number)
-        quick_reply['url'] = "http://146.185.138.240/dev_news/{}/{}/{}".format(
+        quick_reply['url'] = "https://webview.scrader.com/dev_news/{}/{}/{}".format(
             news_type, page_number, user)
         quick_replies.append(quick_reply)
 

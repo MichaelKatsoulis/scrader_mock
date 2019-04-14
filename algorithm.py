@@ -8,6 +8,7 @@ from time import time
 from pymongo import MongoClient
 import logging
 import requests
+import string
 
 
 logger = logging.getLogger('newapp')
@@ -72,12 +73,12 @@ def store_to_database(data, coll):
             articles_stored += 1
             art_id = existing_articles.insert_one(new_article).inserted_id
 
-            if coll == 'articles':
-                send_users_notification(
-                    scrader_db,
-                    article.get('Company'),
-                    art_id
-                )
+            # if coll == 'articles':
+            #     send_users_notification(
+            #         scrader_db,
+            #         article.get('Company'),
+            #         art_id
+            #     )
     logger.info('storing {} to database'.format(articles_stored))
 
 
@@ -111,6 +112,14 @@ def run_algorithm(filename):
         stop_words_list.extend(comp.get('synonims'))
 
     data = pd.read_csv('./scraderdata.csv', sep=',', encoding='utf-8')
+
+    for k in range(len(data)):
+        data["title"][k] = data["title"][k].lower()
+    for i in range(len(data)):
+        data["title"][i] = data["title"][i].encode('utf-8').translate(None, string.punctuation)
+    for j in range(len(data)):
+        data["title"][j] = ''.join([i for i in data["title"][j] if not i.isdigit()])
+
     data1 = data['title']
     data2 = data['direction']
 

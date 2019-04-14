@@ -1,8 +1,9 @@
 import csv
 from pymongo import MongoClient
 import copy
-dbcli = MongoClient()
+dbcli = MongoClient('127.0.0.1', 8080)
 db = dbcli['scrader']
+db.authenticate('scrader', 'scr@d3r')
 
 collection = db['url_terms']
 with open('LIST_OF_URLS.csv') as csvfile:
@@ -10,6 +11,7 @@ with open('LIST_OF_URLS.csv') as csvfile:
 	url_terms = []
 	for url_term in reader:
 	    term = url_term.get('URL TERMS')
+            print term
             url_terms.append(term)
 url_dict = {'url_terms': url_terms}
 collection.insert_one(url_dict)
@@ -46,14 +48,14 @@ with open('COMPANY_NAMES.csv') as csvfile:
                 #print(company.get('URL TERMS'))
            	new_comp_dict['url_terms'].append(company.get('URL TERMS'))
 
-collection.insert_many(companies)
-print(len(companies))
-print companies[76]
-print companies[32]
-print companies[900]
-print companies[1876]
-print companies[632]
-print companies[1899]
+#collection.insert_many(companies)
+#print(len(companies))
+#print companies[76]
+#print companies[32]
+#print companies[900]
+#print companies[1876]
+#print companies[632]
+#print companies[1899]
 
 #scraper_companies = list(collection.find({}, {'_id': False}))
 #print len(scraper_companies)

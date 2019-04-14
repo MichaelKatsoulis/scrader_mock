@@ -10,6 +10,8 @@ RUN mkdir /code
 WORKDIR /code
 ADD requirements.txt /code/
 RUN pip install -r requirements.txt
+RUN pip install requests --ignore-installed
+RUN pip install requests[security]
 ADD . /code/
 CMD python scrader_server.py
 EXPOSE 8000

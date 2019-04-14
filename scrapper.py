@@ -70,7 +70,11 @@ def companies_in_title(url_title, scraper_companies, url_term):
         return None
 
     collection = db['scraper_companies']
-    company_dict = list(collection.find({'url_terms': url_term}, {'_id': False}))[0]
+    try:
+        company_dict = list(collection.find({'url_terms': url_term}, {'_id': False}))[0]
+    except IndexError:
+         print(url_term)
+         return None
     company_synonims = company_dict.get('synonims')
     res = None
     for synonim in company_synonims:

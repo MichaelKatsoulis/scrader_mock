@@ -1,6 +1,6 @@
 <html>
 	<head>
-		<title>Bootstrap-Material DateTimePicker</title>
+		<title>Time for Notifications - Scrader</title>
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" />
@@ -11,15 +11,18 @@
 			  href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.10/css/ripples.min.css"/>
 
 		<link rel="stylesheet" href="../../static/css/bootstrap-material-datetimepicker.css" />
-		<link href='http://fonts.googleapis.com/css?family=Roboto:400,500' rel='stylesheet' type='text/css'>
+		<link href='https://fonts.googleapis.com/css?family=Roboto:400,500' rel='stylesheet' type='text/css'>
 		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-		<script src="https://code.jquery.com/jquery-1.12.3.min.js" integrity="sha256-aaODHAgvwQW1bFOGXMeX+pC4PZIPsvn2h1sArYOhgXQ=" crossorigin="anonymous"></script>
+		<script src="https://code.jquery.com/jquery-1.12.3.min.js" integrity="
+		sha256-aaODHAgvwQW1bFOGXMeX+pC4PZIPsvn2h1sArYOhgXQ=" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
 		<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.10/js/ripples.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.10/js/material.min.js"></script>
-		<script type="text/javascript" src="https://rawgit.com/FezVrasta/bootstrap-material-design/master/dist/js/material.min.js"></script>
-		<script type="text/javascript" src="http://momentjs.com/downloads/moment-with-locales.min.js"></script>
+		<!-- <script type="text/javascript" src="https://rawgit.com/FezVrasta/bootstrap-material-design/master/dist/js/material.min.js"></script> -->
+		<!-- <script type="text/javascript" src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js"></script> -->
+		<script type="text/javascript" src="https://momentjs.com/downloads/moment-with-locales.min.js"></script>
 		<script type="text/javascript" src="../../static/js/bootstrap-material-datetimepicker.js"></script>
 
 		<style>
@@ -76,17 +79,17 @@
 		<div class="container well">
 			<div class="row">
 				<div class="col-md-6">
-					<h2>Pick the time for your daily notifications</h2>
+					<h2 id="titlemsg">Pick the time for your daily notifications</h2>
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-md-6">
+				<div id="timesection" class="col-md-6">
 					<div class="form-control-wrapper" id="datetimepicker1">
 						<input type="text" id="time" class="form-control floating-label" placeholder="Time">
 					</div>
 				</div>
 			</div>
-			<input type="button" onclick="myFunction()" value="Done" class="btn btn-large btn-block  btn-success">
+			<input id="donebtn" type="button" onclick="myFunction()" value="Done" class="btn btn-large btn-block  btn-success">
 		</div>
 		<script type="text/javascript">
 		$(document).ready(function()
@@ -94,7 +97,7 @@
 			var user_datetime;
 			$.ajax({
 	          type: 'GET',
-	          url: 'http://146.185.138.240/scrader/user_datetime/{{user_id}}',
+	          url: 'https://webview.scrader.com/scrader/user_datetime/{{user_id}}',
 	          dataType: 'json',
 	          success: function (jsondata) {
 						console.log(jsondata);
@@ -131,10 +134,11 @@
 
 			    time =  $("#datetimepicker1").find("input").val();
 			    console.log(time);
-			    data = {user: '{{ user_id }}' , datetime: ''};
+			    data = {user: '{{ user_id }}' , datetime: '', offset: 0};
 			    data.datetime = time;
+			    data.offset = new Date().getTimezoneOffset();
 			    var jsonString = JSON.stringify(data);
-			    url = "http://146.185.138.240/scrader/user_datetime"
+			    url = "https://webview.scrader.com/scrader/user_datetime"
 			    $.ajax({
 			    type: "POST",
 			    contentType: "application/json; charset=utf-8",
@@ -143,6 +147,10 @@
 			    success: success,
 			    dataType: 'json'
 			    });
+			    $('#donebtn').hide();
+			    $('#timesection').hide();
+			    $('#titlemsg').text('Please close the window');
+			    console.log('done');
 
 			}
 
