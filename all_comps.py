@@ -1059,4 +1059,208 @@ all_companies = [
         'company_logo': 'http://146.185.138.240/static/images/itv_logo.jpg',
         'name': 'ITV'
     },
+    {
+        "company_logo": "https://webview.scrader.com/static/images/default.png",
+        "name": "Qualcomm"
+    },
+    {
+        "company_logo": "https://webview.scrader.com/static/images/default.png",
+        "name": "AMP"
+    },
+    {
+        "company_logo": "https://webview.scrader.com/static/images/default.png",
+        "name": "AXA Group"
+    },
+    {
+        "company_logo": "https://webview.scrader.com/static/images/default.png",
+        "name": "Macy's"
+    },
+    {
+        "company_logo": "https://webview.scrader.com/static/images/default.png",
+        "name": "Sanofi"
+    },
+    {
+        "company_logo": "https://webview.scrader.com/static/images/default.png",
+        "name": "Panasonic"
+    },
+    {
+        "company_logo": "https://webview.scrader.com/static/images/default.png",
+        "name": "Southwest Airlines"
+    },
+    {
+        "company_logo": "https://webview.scrader.com/static/images/default.png",
+        "name": "Experian"
+    },
+    {
+        "company_logo": "https://webview.scrader.com/static/images/default.png",
+        "name": "Investec"
+    },
+    {
+        "company_logo": "https://webview.scrader.com/static/images/default.png",
+        "name": "SAP"
+    },
+    {
+        "company_logo": "https://webview.scrader.com/static/images/default.png",
+        "name": "Tim Hortons"
+    },
+    {
+        "company_logo": "https://webview.scrader.com/static/images/default.png",
+        "name": "Cheniere Energy"
+    },
+    {
+        "company_logo": "https://webview.scrader.com/static/images/default.png",
+        "name": "JC Penney"
+    },
+    {
+        "company_logo": "https://webview.scrader.com/static/images/default.png",
+        "name": "Brookfield Asset Management"
+    },
+    {
+        "company_logo": "https://webview.scrader.com/static/images/default.png",
+        "name": "British Sky Broadcasting"
+    },
+    {
+        "company_logo": "https://webview.scrader.com/static/images/default.png",
+        "name": "Allergan"
+    },
+    {
+        "company_logo": "https://webview.scrader.com/static/images/default.png",
+        "name": "Vivendi"
+    },
+    {
+        "company_logo": "https://webview.scrader.com/static/images/default.png",
+        "name": "National Australia Bank"
+    },
+    {
+        "company_logo": "https://webview.scrader.com/static/images/default.png",
+        "name": "Falabella"
+    },
+    {
+        "company_logo": "https://webview.scrader.com/static/images/default.png",
+        "name": "Applied Materials"
+    },
+    {
+        "company_logo": "https://webview.scrader.com/static/images/default.png",
+        "name": "Mattel"
+    },
+    {
+        "company_logo": "https://webview.scrader.com/static/images/default.png",
+        "name": "GlaxoSmithKline"
+    },
+    {
+        "company_logo": "https://webview.scrader.com/static/images/default.png",
+        "name": "GS Holdings"
+    },
+    {
+        "company_logo": "https://webview.scrader.com/static/images/default.png",
+        "name": "Liberty Global"
+    },
+    {
+        "company_logo": "https://webview.scrader.com/static/images/default.png",
+        "name": "LG Electronics"
+    },
+    {
+        "company_logo": "https://webview.scrader.com/static/images/default.png",
+        "name": "Caterpillar"
+    },
+    {
+        "company_logo": "https://webview.scrader.com/static/images/default.png",
+        "name": "Fifth Third Bancorp"
+    },
+    {
+        "company_logo": "https://webview.scrader.com/static/images/default.png",
+        "name": "Ernst & Young"
+    },
+    {
+        "company_logo": "https://webview.scrader.com/static/images/default.png",
+        "name": "Dr Pepper Snapple Group"
+    },
+    {
+        "company_logo": "https://webview.scrader.com/static/images/default.png",
+        "name": "Adobe Systems"
+    },
+    {
+        "company_logo": "https://webview.scrader.com/static/images/default.png",
+        "name": "Credit Agricole"
+    },
+    {
+        "company_logo": "https://webview.scrader.com/static/images/default.png",
+        "name": "Kohl's"
+    },
+    {
+        "company_logo": "https://webview.scrader.com/static/images/default.png",
+        "name": "PNC Financial Services"
+    },
+    {
+        "company_logo": "https://webview.scrader.com/static/images/default.png",
+        "name": "AutoNation"
+    },
+    {
+        "company_logo": "https://webview.scrader.com/static/images/default.png",
+        "name": "Nielsen Holdings"
+    },
+    {
+        "company_logo": "https://webview.scrader.com/static/images/default.png",
+        "name": "Union Pacific"
+    },
+    {
+        "company_logo": "https://webview.scrader.com/static/images/default.png",
+        "name": "VTB Bank"
+    },
+    {
+        "company_logo": "https://webview.scrader.com/static/images/default.png",
+        "name": "Julius Baer Group"
+    },
+    {
+        "company_logo": "https://webview.scrader.com/static/images/default.png",
+        "name": "Steinhoff International"
+    },
+    {
+        "company_logo": "https://webview.scrader.com/static/images/default.png",
+        "name": "ThyssenKrupp Group"
+    },
+    {
+        "company_logo": "https://webview.scrader.com/static/images/default.png",
+        "name": "Invesco"
+    },
+    {
+        "company_logo": "https://webview.scrader.com/static/images/default.png",
+        "name": "Diageo"
+    },
+    {
+        "company_logo": "https://webview.scrader.com/static/images/default.png",
+        "name": "TD Bank Group"
+    },
+    {
+        "company_logo": "https://webview.scrader.com/static/images/default.png",
+        "name": "NRG Energy"
+    },
+    {
+        "company_logo": "https://webview.scrader.com/static/images/default.png",
+        "name": "Ross Stores"
+    },
+    {
+        "company_logo": "https://webview.scrader.com/static/images/default.png",
+        "name": "Costco Wholesale"
+    },
+    {
+        "company_logo": "https://webview.scrader.com/static/images/default.png",
+        "name": "Woolworths"
+    },
+    {
+        "company_logo": "https://webview.scrader.com/static/images/default.png",
+        "name": "Honeywell International"
+    },
+    {
+        "company_logo": "https://webview.scrader.com/static/images/default.png",
+        "name": "Balfour Beatty"
+    },
+    {
+        "company_logo": "https://webview.scrader.com/static/images/default.png",
+        "name": "Foot Locker"
+    },
+    {
+        "company_logo": "https://webview.scrader.com/static/images/default.png",
+        "name": "Hitachi"
+    }
 ]
